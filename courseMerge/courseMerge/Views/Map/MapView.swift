@@ -16,7 +16,6 @@ struct MapView: View {
     
     var body: some View {
         ZStack {
-            // TODO: 요기 어떻게 바꿔야할지 모르겠어영
             Map(coordinateRegion: $region)
             
             VStack {
@@ -51,7 +50,7 @@ struct HeaderView: View {
     @State private var selectedDate = Date()
     @State private var isExpanded = false
     @State private var iconViewHeight: CGFloat = 0
-    
+    @State private var expanded = false
     
     var body: some View {
         VStack {
@@ -66,7 +65,7 @@ struct HeaderView: View {
                             .foregroundColor(.white)
                     }
                     .padding()
-                    .frame(width: 130, height: 34) // Figma 에서 124로 설정했는데 너무 작아서 수정함.
+                    .frame(width: 130, height: 34)
                     .font(.system(size: 15))
                     .background(Color.blue)
                     .cornerRadius(20)
@@ -96,36 +95,58 @@ struct HeaderView: View {
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .frame(height: 52)
+            
+            Divider()
         }
         .padding(.horizontal)
         .background(Color.white)
         
-        // TODO: Figma 처럼 커스텀을 해야할 듯, 지도의 영역과 여백이 생기는 부분 제거해야함.
         VStack {
-            DisclosureGroup("구성원 보기", isExpanded: $isExpanded) {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(1...iconData.count, id: \.self) { index in
-                            IconView(
-                                color: iconData[index-1].color,
-                                iconName: iconData[index-1].iconName,
-                                label: iconData[index-1].label,
-                                hasCrown: iconData[index-1].hasCrown,
-                                hasPerson: iconData[index-1].hasPerson,
-                                iconViewHeight: $iconViewHeight
-                            )
-                            .padding(.horizontal, 8)
+            if expanded {
+                VStack {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(1...iconData.count, id: \.self) { index in
+                                Button(action: {
+                                    print("\(iconData[index-1].label) 버튼 클릭")
+                                }) {
+                                    IconView(
+                                        color: iconData[index-1].color,
+                                        iconName: iconData[index-1].iconName,
+                                        label: iconData[index-1].label,
+                                        hasCrown: iconData[index-1].hasCrown,
+                                        hasPerson: iconData[index-1].hasPerson,
+                                        iconViewHeight: $iconViewHeight
+                                    )
+                                }
+                                .padding(.horizontal, 8)
+                            }
                         }
                     }
                 }
-                .frame(height: isExpanded ? iconViewHeight : 0)
+                .padding()
+                .padding(.top, -8)
+                .background(Color.white.opacity(0.5))
             }
-            .frame(height: isExpanded ? iconViewHeight + 40 : 10)
-            .animation(.easeInOut, value: isExpanded)
-            .padding()
-            .background(Color.white.opacity(0.8))
+            
+            Button {
+                withAnimation(.easeInOut) {
+                    expanded.toggle()
+                }
+            } label: {
+                HStack {
+                    Spacer()
+                    Image(systemName: expanded ? "chevron.up" : "chevron.down")
+                        .foregroundColor(.black)
+                        .padding(.bottom, 8)
+                        .offset(y: 4)
+                    Spacer()
+                }
+                .frame(height: 20)
+                .background(Color.white.opacity(expanded ? 0.5 : 1))
+            }
+            .padding(.top, -8)
         }
-        
     }
 }
 
@@ -207,7 +228,6 @@ let iconData: [IconData] = [
     IconData(color: .purple, iconName: "악어모가지", label: "악어모가지", hasCrown: false, hasPerson: false),
     IconData(color: .brown, iconName: "기린발톱", label: "기린발톱", hasCrown: false, hasPerson: false)
 ]
-
 
 #Preview {
     MapView()
