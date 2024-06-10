@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct UpdateCourseView: View {
-    @State var showingSection = true
+    @State private var expandedSections: Set<UUID> = []
+    let descriptionSample = CourseDescription.example
+    
     var body: some View {
         VStack {
             /* ios 17 부터 가능!! -
@@ -17,18 +19,30 @@ struct UpdateCourseView: View {
         
             if #available(iOS 17.0, *) {
                 List {
-                    Section(isExpanded: $showingSection) {
-                        Text("dfsdsd")
-                    } header: {
-                        VStack(alignment: .leading) {
-                            Text("연남동 코스 끝내기")
-                                .font(.headline)
-                                .fontWeight(.bold)
-                                .foregroundStyle(Color("LabelsPrimary"))
-                            
-                            Text("2024-06-01")
-                                .font(.subheadline)
-                                .foregroundStyle(Color("LabelsSecondary"))
+                    ForEach(descriptionSample) { sample in
+                        Section(isExpanded: Binding(
+                            get: { expandedSections.contains(sample.id) },
+                            set: { isExpanded in
+                                if isExpanded {
+                                    expandedSections.insert(sample.id)
+                                } else {
+                                    expandedSections.remove(sample.id)
+                                }
+                            }
+                        )) {
+                            // Section content goes here
+                            Text("Section content for \(sample.description)")
+                        } header: {
+                            VStack(alignment: .leading) {
+                                Text(sample.description)
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(Color("LabelsPrimary"))
+                                
+                                Text(sample.formattedDate)
+                                    .font(.subheadline)
+                                    .foregroundStyle(Color("LabelsSecondary"))
+                            }
                         }
                     }
                 }

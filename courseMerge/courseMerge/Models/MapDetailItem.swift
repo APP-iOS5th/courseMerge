@@ -7,6 +7,27 @@
 
 import Foundation
 
+struct CourseDescription: Identifiable {
+    let id = UUID()
+    let description: String
+    let date: Date
+    
+    var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
+    }
+}
+
+extension CourseDescription {
+    static var example: [CourseDescription] = [
+        CourseDescription(description: "연남동 코스 끝내기", date: Date(timeIntervalSince1970: 1719910800)), // Example date: 2024-06-01
+        CourseDescription(description: "오늘은 성수도", date: Date(timeIntervalSince1970: 1719997200)),
+        CourseDescription(description: "이제 어디갈까", date: Date(timeIntervalSince1970: 1720083600))
+    ]
+}
+
+
 struct MapDetailItem: Identifiable {
     let id = UUID()
     let name: String?

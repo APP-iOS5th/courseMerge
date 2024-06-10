@@ -85,7 +85,7 @@ struct SearchView: View {
     
     let categoryItems: [CategoryItem] = CategoryItem.categoryItems
     
-    var recentVisited: [MapDetailItem] = MapDetailItem.recentVisitedExample
+    let recentVisited: [MapDetailItem] = MapDetailItem.recentVisitedExample
     
     // TODO: Focus State 추가
     
