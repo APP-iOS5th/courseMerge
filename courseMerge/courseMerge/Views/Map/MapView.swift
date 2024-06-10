@@ -51,17 +51,19 @@ struct HeaderView: View {
     @State private var isExpanded = false
     @State private var iconViewHeight: CGFloat = 0
     @State private var expanded = false
+    @State private var showingActionSheet = false
+    @State private var activatedPartyName: String = "제주도 파티"
     
     var body: some View {
         VStack {
             HStack {
                 Button {
-                    print("제주도파티 버튼 클릭")
+                    self.showingActionSheet = true
                 } label: {
                     HStack {
                         Image(systemName: "line.3.horizontal")
                             .foregroundColor(.white)
-                        Text("제주도 파티")
+                        Text(activatedPartyName)
                             .foregroundColor(.white)
                     }
                     .padding()
@@ -69,6 +71,25 @@ struct HeaderView: View {
                     .font(.system(size: 15))
                     .background(Color.blue)
                     .cornerRadius(20)
+                    .actionSheet(isPresented: $showingActionSheet) {
+                        ActionSheet(
+                            title: Text("파티를 선택해주세요"),
+                            message: nil,
+                            // TODO: 버튼 텍스트에 fontWeight 안들어감 ㅂㄷㅂㄷ
+                            buttons: [
+                                .default(Text("제주도 파티").fontWeight(.bold), action: {
+                                    self.activatedPartyName = "제주도 파티"
+                                }),
+                                .default(Text("은평구 파티").fontWeight(.regular), action: {
+                                    self.activatedPartyName = "은평구 파티"
+                                }),
+                                .default(Text("동두천 파티").fontWeight(.regular), action: {
+                                    self.activatedPartyName = "동두천 파티"
+                                }),
+                                .cancel(Text("Cancel"))
+                            ]
+                        )
+                    }
                 }
                 
                 DatePicker("", selection: $selectedDate, displayedComponents: .date)
@@ -222,7 +243,7 @@ struct IconData {
 let iconData: [IconData] = [
     IconData(color: .black, iconName: "Main", label: "Main", hasCrown: false, hasPerson: false),
     IconData(color: .red, iconName: "별빛여우", label: "별빛여우", hasCrown: true, hasPerson: false),
-    IconData(color: .blue, iconName: "달빛도깨비", label: "달빛도깨비", hasCrown: false, hasPerson: true),
+    IconData(color: .orange, iconName: "달빛도깨비", label: "달빛도깨비", hasCrown: false, hasPerson: true),
     IconData(color: .yellow, iconName: "무지개코끼리", label: "무지개코끼리", hasCrown: false, hasPerson: false),
     IconData(color: .green, iconName: "개코원숭이", label: "개코원숭이", hasCrown: false, hasPerson: false),
     IconData(color: .purple, iconName: "악어모가지", label: "악어모가지", hasCrown: false, hasPerson: false),
