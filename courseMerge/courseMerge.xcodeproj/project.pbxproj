@@ -12,6 +12,7 @@
 		970B7CBF2C168D3B003CB335 /* SearchResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CBE2C168D3B003CB335 /* SearchResultDetailView.swift */; };
 		970B7CC12C168D4C003CB335 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CC02C168D4C003CB335 /* SearchResultsView.swift */; };
 		970B7CC32C168D5A003CB335 /* UpdateCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CC22C168D5A003CB335 /* UpdateCourseView.swift */; };
+		78C24FCA2C16989D007DAF99 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C24FC92C16989D007DAF99 /* MapView.swift */; };
 		9717A39A2C15CF4E00B92765 /* CourseMergeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */; };
 		9717A39C2C15CF4E00B92765 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A39B2C15CF4E00B92765 /* ContentView.swift */; };
 		9717A39E2C15CF5000B92765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9717A39D2C15CF5000B92765 /* Assets.xcassets */; };
@@ -21,7 +22,6 @@
 		9717A3B92C15D35000B92765 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3B82C15D35000B92765 /* SettingView.swift */; };
 		9717A3BB2C15D35A00B92765 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3BA2C15D35A00B92765 /* ChatListView.swift */; };
 		9717A3BD2C15D36200B92765 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3BC2C15D36200B92765 /* MemberView.swift */; };
-		9717A3BF2C15D36800B92765 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3BE2C15D36800B92765 /* MapView.swift */; };
 		9717A3CA2C16882000B92765 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3C92C16882000B92765 /* test.swift */; };
 		9717A3CC2C16883900B92765 /* viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3CB2C16883900B92765 /* viewModel.swift */; };
 		9717A3CE2C16885700B92765 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3CD2C16885700B92765 /* color.swift */; };
@@ -35,6 +35,8 @@
 		970B7CBE2C168D3B003CB335 /* SearchResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDetailView.swift; sourceTree = "<group>"; };
 		970B7CC02C168D4C003CB335 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		970B7CC22C168D5A003CB335 /* UpdateCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCourseView.swift; sourceTree = "<group>"; };
+		78C24FC92C16989D007DAF99 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = courseMerge/Views/Map/MapView.swift; sourceTree = SOURCE_ROOT; };
+		78EDDE042C1694B0009C4EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9717A3962C15CF4E00B92765 /* CourseMerge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourseMerge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMergeApp.swift; sourceTree = "<group>"; };
 		9717A39B2C15CF4E00B92765 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,7 +47,6 @@
 		9717A3B82C15D35000B92765 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		9717A3BA2C15D35A00B92765 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		9717A3BC2C15D36200B92765 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
-		9717A3BE2C15D36800B92765 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9717A3C92C16882000B92765 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = test.swift; path = courseMerge/APIs/test.swift; sourceTree = SOURCE_ROOT; };
 		9717A3CB2C16883900B92765 /* viewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = viewModel.swift; path = courseMerge/ViewModels/viewModel.swift; sourceTree = SOURCE_ROOT; };
 		9717A3CD2C16885700B92765 /* color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = color.swift; path = courseMerge/Extensions/color.swift; sourceTree = SOURCE_ROOT; };
@@ -83,6 +84,7 @@
 		9717A3982C15CF4E00B92765 /* CourseMerge */ = {
 			isa = PBXGroup;
 			children = (
+				78EDDE042C1694B0009C4EDF /* Info.plist */,
 				9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */,
 				9717A3C82C1687AE00B92765 /* Models */,
 				9717A3C72C1687AC00B92765 /* Extensions */,
@@ -128,7 +130,7 @@
 		9717A3A92C15CFC600B92765 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				9717A3BE2C15D36800B92765 /* MapView.swift */,
+				78C24FC92C16989D007DAF99 /* MapView.swift */,
 				970B7CBC2C168D31003CB335 /* SearchView.swift */,
 				970B7CBE2C168D3B003CB335 /* SearchResultDetailView.swift */,
 				970B7CC02C168D4C003CB335 /* SearchResultsView.swift */,
@@ -275,7 +277,7 @@
 			files = (
 				970B7CC32C168D5A003CB335 /* UpdateCourseView.swift in Sources */,
 				9717A3B32C15D33400B92765 /* LoginView.swift in Sources */,
-				9717A3BF2C15D36800B92765 /* MapView.swift in Sources */,
+				78C24FCA2C16989D007DAF99 /* MapView.swift in Sources */,
 				970B7CBF2C168D3B003CB335 /* SearchResultDetailView.swift in Sources */,
 				97FD63562C16D7E30080438A /* MapDetailItem.swift in Sources */,
 				9717A3B92C15D35000B92765 /* SettingView.swift in Sources */,
@@ -424,11 +426,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CourseMerge/Preview Content\"";
-				DEVELOPMENT_TEAM = 285ZKW5MPR;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CourseMerge/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "코스머지";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자 위치 (항상, 사용할 때만)";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자 위치 (항상)";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자 위치 (사용할 때만)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -439,7 +445,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iyungui.CourseMerge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Cosmos.CourseMerge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -455,11 +461,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CourseMerge/Preview Content\"";
-				DEVELOPMENT_TEAM = 285ZKW5MPR;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CourseMerge/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "코스머지";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자 위치 (항상, 사용할 때만)";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자 위치 (항상)";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자 위치 (사용할 때만)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -470,7 +480,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iyungui.CourseMerge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Cosmos.CourseMerge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
