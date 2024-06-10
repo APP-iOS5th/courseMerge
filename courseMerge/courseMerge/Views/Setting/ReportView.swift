@@ -10,6 +10,8 @@ import SwiftUI
 struct ReportView: View {
     var body: some View {
         Text("신고하기")
+            .navigationTitle("신고하기")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 

@@ -10,6 +10,8 @@ import SwiftUI
 struct DevelopersDetailsView: View {
     var body: some View {
         Text("개발자 정보")
+            .navigationTitle("개발자 정보")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 
