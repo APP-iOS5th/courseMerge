@@ -78,6 +78,8 @@ struct ItemRow: View {
 
 struct SearchView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
+    
     @State private var searchText: String = ""
     
     let categoryItems: [CategoryItem] = CategoryItem.categoryItems
@@ -116,6 +118,8 @@ struct SearchView: View {
                 }
                 .listStyle(GroupedListStyle())
                 .scrollContentBackground(.hidden)
+                .background(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : .clear)
+                
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
                 .navigationTitle("장소 검색")
                 .navigationBarTitleDisplayMode(.inline)
@@ -127,7 +131,7 @@ struct SearchView: View {
                     }
                 }
             }
-            .background(Color("BGSecondary"))
+            .background(colorScheme == .dark ? Color("BGSecondaryDarkElevated") : Color("BGSecondary"))
         }
     }
     
@@ -150,7 +154,7 @@ struct SearchView: View {
                     }
                     .padding(.horizontal, 10)
                     .padding(.vertical, 7)
-                    .background(Color.white)
+                    .background(Color("FillTertiary"))
                     .cornerRadius(4)
                 }
             }
@@ -160,5 +164,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    testMapView()
+    SearchView()
 }

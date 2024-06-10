@@ -18,7 +18,8 @@ struct SearchResultDetailView: View {
     @Binding var isFirstCourse: Bool
     
     @Environment(\.dismiss) var dismiss
-    
+    @Environment(\.colorScheme) var colorScheme
+
     // TODO: 신고하기 버튼 추가
     
     var body: some View {
@@ -65,7 +66,6 @@ struct SearchResultDetailView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 24, height: 24)
-                            .foregroundStyle(.blue)
                     }
                     
                     Text(item.category?.rawValue ?? "No value")
@@ -117,7 +117,7 @@ struct SearchResultDetailView: View {
                         Spacer()
                     }
                     .padding(.horizontal)
-                    .background(Color("BGPrimary"))
+                    .background(colorScheme == .dark ? Color("BGSecondaryDarkElevated") : Color("BGPrimary"))
                     .cornerRadius(8)
                 }
                 .padding(.horizontal, 20)
@@ -178,7 +178,7 @@ struct SearchResultDetailView: View {
                 }
                 Spacer()
             }
-            .background(Color("BGSecondary"))
+            .background(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : Color("BGSecondary"))
         }
     }
 }
