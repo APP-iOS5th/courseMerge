@@ -9,8 +9,27 @@ import SwiftUI
 
 struct SettingView: View {
     var body: some View {
-        VStack {
-            Text("SettingView")
+        Form {
+            Section {
+                Text("Profile")
+                Text("Blocked Contactcts")
+            } header: {
+                Text("General")
+            }
+            Section {
+                Text("Privacy Policy")
+                Text("Terms and Conditions")
+                Text("Developers")
+                Text("Report")
+            } header: {
+                Text("About")
+            }
+            Section {
+                Text("Log out")
+                Text("Sign out")
+            } header: {
+                Text("Account")
+            }
         }
     }
 }
