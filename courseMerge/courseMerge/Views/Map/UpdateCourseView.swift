@@ -40,6 +40,13 @@ struct UpdateCourseView: View {
                                     }
                                 }
                             }
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    
+                                } label: {
+                                    Label("삭제", systemImage: "trash")
+                                }
+                            }
                         } header: {
                             VStack(alignment: .leading) {
                                 Text(sample.description)
