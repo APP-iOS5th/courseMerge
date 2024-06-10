@@ -9,17 +9,17 @@ import SwiftUI
 
 struct UpdateCourseView: View {
     @State private var expandedSections: Set<UUID> = []
-    let descriptionSample = CourseDescription.example
+    @State private var descriptionSample = CourseDescription.example
     @State private var selectedItem: MapDetailItem?
     
     @State private var searchText: String = ""
-
+    
     var body: some View {
         VStack {
             /* ios 17 부터 가능!! -
              https://stackoverflow.com/questions/77266191/sidebar-list-style-in-swiftui-does-not-work
              */
-        
+            
             if #available(iOS 17.0, *) {
                 List {
                     ForEach(descriptionSample) { sample in
@@ -42,13 +42,8 @@ struct UpdateCourseView: View {
                                     }
                                 }
                             }
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                    
-                                } label: {
-                                    Label("삭제", systemImage: "trash")
-                                }
-                            }
+                            .onDelete(perform: removePlace)
+                            .onMove(perform: movePlace)
                         } header: {
                             VStack(alignment: .leading) {
                                 Text(sample.description)
@@ -64,7 +59,7 @@ struct UpdateCourseView: View {
                     }
                 }
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-
+                
                 .listStyle(.sidebar)
             }
         }
@@ -75,14 +70,15 @@ struct UpdateCourseView: View {
         .navigationTitle("코스 변경")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    
-                } label: {
-                    Text("Edit")
-                }
-            }
+            EditButton()
         }
+    }
+    
+    func removePlace(at offsets: IndexSet) {
+        descriptionSample.remove(atOffsets: offsets)
+    }
+    func movePlace(from source: IndexSet, to destination: Int) {
+        descriptionSample.move(fromOffsets: source, toOffset: destination)
     }
 }
 
