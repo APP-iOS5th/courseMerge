@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {
+    @State var showAlert = false
     var body: some View {
         NavigationStack {
             Form {
@@ -22,7 +23,7 @@ struct SettingView: View {
                         Text("프로파일 수정")
                     }
                     NavigationLink {
-//                        BlockedContactsView()
+                        //                        BlockedContactsView()
                     } label: {
                         Image(systemName: "person.slash")
                             .resizable()
@@ -35,7 +36,7 @@ struct SettingView: View {
                 }
                 Section {
                     NavigationLink {
-
+                        
                     } label: {
                         Image(systemName: "shield.lefthalf.fill")
                             .resizable()
@@ -44,7 +45,7 @@ struct SettingView: View {
                         Text("개인정보 처리방침")
                     }
                     NavigationLink {
-
+                        
                     } label: {
                         Image(systemName: "doc.fill")
                             .resizable()
@@ -52,7 +53,7 @@ struct SettingView: View {
                             .frame(height: 28)
                         Text("서비스 이용약관")
                     }
-                   
+                    
                     NavigationLink {
                         
                     } label: {
@@ -60,7 +61,7 @@ struct SettingView: View {
                         Text("개발자 정보")
                     }
                     NavigationLink {
-
+                        
                     } label: {
                         Image(systemName: "exclamationmark.bubble.fill")
                             .resizable()
@@ -72,18 +73,18 @@ struct SettingView: View {
                 } header: {
                     Text("앱 정보")
                 }
+                
                 Section {
+                    Button("로그아웃", action: {
+                        showAlert = true
+                    })
+                        .alert(isPresented: $showAlert) {
+                            Alert(title: Text("로그아웃!"), primaryButton: .cancel(), secondaryButton: .destructive(Text("확인")))
+                        }
+                
+                    
                     NavigationLink {
-
-                    } label: {
-                        Image(systemName: "rectangle.portrait.and.arrow.right.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 28)
-                        Text("로그아웃")
-                    }
-                    NavigationLink {
-
+                        
                     } label: {
                         Image(systemName: "person.crop.circle.fill.badge.xmark")
                             .resizable()
@@ -95,8 +96,9 @@ struct SettingView: View {
                 } header: {
                     Text("계정")
                 }
-            }
-        }
+                
+            }//폼
+        }//네비게이션스택
     }
 }
 
