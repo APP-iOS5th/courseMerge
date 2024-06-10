@@ -61,10 +61,18 @@ struct SearchView: View {
             VStack {
                 categoryList
                 List {
-                    ForEach(filteredItems, id: \.self) { item in
-                        Text(item)
+                    Section {
+                        ForEach(filteredItems, id: \.self) { item in
+                            Text(item)
+                        }
+                    } header: {
+                        Text("최근 검색한 장소")
+//                            .font(.footnote)
+//                            .foregroundStyle(Color("LabelsSecondary"))
                     }
+                    
                 }
+                .listStyle(GroupedListStyle())
                 .scrollContentBackground(.hidden)
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
                 .navigationTitle("장소 검색")
