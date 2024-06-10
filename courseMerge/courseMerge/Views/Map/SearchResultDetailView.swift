@@ -11,7 +11,9 @@ import SwiftUI
 
 struct SearchResultDetailView: View {
     let item: MapDetailItem
+    
     @State private var isFavorite: Bool = true
+    
     @State private var firstCourseText: String = ""
     @Binding var isFirstCourse: Bool
     
@@ -54,9 +56,17 @@ struct SearchResultDetailView: View {
                 
                 // Category
                 HStack {
-                    Image(systemName: (item.category?.symbol)!)
-                        .font(.title)
-                        .foregroundStyle(.blue)
+                    if let symbol = item.category?.symbol {
+                        Image(systemName: symbol)
+                            .font(.title)
+                            .foregroundStyle(.blue)
+                    } else if let customImage = item.category?.customImage {
+                        customImage
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .foregroundStyle(.blue)
+                    }
                     
                     Text(item.category?.rawValue ?? "No value")
                         .font(.body)

@@ -14,7 +14,7 @@ struct testMapView: View {
     let heights = stride(from: 0.5, through: 0.75, by: 0.1).map { PresentationDetent.fraction($0) }
     @State private var isShowDetailViewModal: Bool = true
     
-    @State private var isFirstCourse: Bool = true
+    @State private var isFirstCourse: Bool = false
     
     var body: some View {
         VStack {
@@ -48,8 +48,8 @@ struct testMapView: View {
 extension MapDetailItem {
     static var recentVisitedExample: [MapDetailItem] = [
         MapDetailItem(name: "니시무라멘", address: "서울특별시 연남동 249-1", phoneNumber: "010-1234-5678", category: .restaurant),
-        MapDetailItem(name: "유나드 마이 요거트", address: "서울특별시 연남동 249-2", phoneNumber: "010-1234-5678", category: .cafe),
-        MapDetailItem(name: "오츠 커피", address: "서울특별시 연남동 249-3", phoneNumber: "010-1234-5678", category: .cafe),
+        MapDetailItem(name: "유나드마이요거트", address: "서울특별시 연남동 249-2", phoneNumber: "010-1234-5678", category: .cafe),
+        MapDetailItem(name: "오츠커피", address: "서울특별시 연남동 249-3", phoneNumber: "010-1234-5678", category: .cafe),
         MapDetailItem(name: "그믐족발", address: "서울특별시 연남동 249-4", phoneNumber: nil, category: .restaurant),
         MapDetailItem(name: "궁둥공원", address: "서울특별시 연남동 249-5", phoneNumber: nil, category: .park),
     ]
@@ -80,16 +80,7 @@ struct SearchView: View {
     @Environment(\.dismiss) var dismiss
     @State private var searchText: String = ""
     
-    let items = Array(0...10).map { "Item \($0)" }
     let categoryItems: [CategoryItem] = CategoryItem.categoryItems
-
-    var filteredItems: [String] {
-        if searchText.isEmpty {
-            return items
-        } else {
-            return items.filter { $0.localizedCaseInsensitiveContains(searchText) }
-        }
-    }
     
     var recentVisited: [MapDetailItem] = MapDetailItem.recentVisitedExample
     
@@ -101,6 +92,8 @@ struct SearchView: View {
         NavigationStack {
             VStack {
                 categoryList
+                
+                // recent Visited
                 List {
                     Section {
                         ForEach(recentVisited) { item in
