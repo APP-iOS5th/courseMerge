@@ -13,6 +13,13 @@
 		970B7CC12C168D4C003CB335 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CC02C168D4C003CB335 /* SearchResultsView.swift */; };
 		970B7CC32C168D5A003CB335 /* UpdateCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CC22C168D5A003CB335 /* UpdateCourseView.swift */; };
 		78C24FCA2C16989D007DAF99 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C24FC92C16989D007DAF99 /* MapView.swift */; };
+		3D349C312C16B94B0092E10C /* UpdateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C302C16B94B0092E10C /* UpdateProfileView.swift */; };
+		3D349C332C16D4110092E10C /* BlockedContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C322C16D4110092E10C /* BlockedContactsView.swift */; };
+		3D349C352C16D5090092E10C /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C342C16D5090092E10C /* PrivacyPolicyView.swift */; };
+		3D349C372C16D54B0092E10C /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C362C16D54B0092E10C /* TermsOfServiceView.swift */; };
+		3D349C392C16D5E60092E10C /* DevelopersDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C382C16D5E60092E10C /* DevelopersDetailsView.swift */; };
+		3D349C3B2C16D68C0092E10C /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C3A2C16D68C0092E10C /* ReportView.swift */; };
+		3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */; };
 		9717A39A2C15CF4E00B92765 /* CourseMergeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */; };
 		9717A39C2C15CF4E00B92765 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A39B2C15CF4E00B92765 /* ContentView.swift */; };
 		9717A39E2C15CF5000B92765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9717A39D2C15CF5000B92765 /* Assets.xcassets */; };
@@ -41,6 +48,13 @@
 		970B7CC22C168D5A003CB335 /* UpdateCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCourseView.swift; sourceTree = "<group>"; };
 		78C24FC92C16989D007DAF99 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = courseMerge/Views/Map/MapView.swift; sourceTree = SOURCE_ROOT; };
 		78EDDE042C1694B0009C4EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3D349C302C16B94B0092E10C /* UpdateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UpdateProfileView.swift; path = courseMerge/Views/Setting/UpdateProfileView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C322C16D4110092E10C /* BlockedContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlockedContactsView.swift; path = courseMerge/Views/Setting/BlockedContactsView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C342C16D5090092E10C /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrivacyPolicyView.swift; path = courseMerge/Views/Setting/PrivacyPolicyView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C362C16D54B0092E10C /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TermsOfServiceView.swift; path = courseMerge/Views/Setting/TermsOfServiceView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C382C16D5E60092E10C /* DevelopersDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DevelopersDetailsView.swift; path = courseMerge/Views/Setting/DevelopersDetailsView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C3A2C16D68C0092E10C /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReportView.swift; path = courseMerge/Views/Setting/ReportView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDeletionView.swift; path = courseMerge/Views/Setting/AccountDeletionView.swift; sourceTree = SOURCE_ROOT; };
 		9717A3962C15CF4E00B92765 /* CourseMerge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourseMerge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMergeApp.swift; sourceTree = "<group>"; };
 		9717A39B2C15CF4E00B92765 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -162,6 +176,13 @@
 			isa = PBXGroup;
 			children = (
 				9717A3B82C15D35000B92765 /* SettingView.swift */,
+				3D349C302C16B94B0092E10C /* UpdateProfileView.swift */,
+				3D349C322C16D4110092E10C /* BlockedContactsView.swift */,
+				3D349C342C16D5090092E10C /* PrivacyPolicyView.swift */,
+				3D349C362C16D54B0092E10C /* TermsOfServiceView.swift */,
+				3D349C382C16D5E60092E10C /* DevelopersDetailsView.swift */,
+				3D349C3A2C16D68C0092E10C /* ReportView.swift */,
+				3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -297,6 +318,9 @@
 				EA4D62B72C16B9D1003EA8EB /* MemberPartySettingSheet.swift in Sources */,
 				EA4D62B92C16DFE8003EA8EB /* MemberView_empty.swift in Sources */,
 				9717A3B92C15D35000B92765 /* SettingView.swift in Sources */,
+				3D349C392C16D5E60092E10C /* DevelopersDetailsView.swift in Sources */,
+				3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */,
+				3D349C352C16D5090092E10C /* PrivacyPolicyView.swift in Sources */,
 				9717A3BD2C15D36200B92765 /* MemberView.swift in Sources */,
 				9717A3CA2C16882000B92765 /* test.swift in Sources */,
 				EA4D62BD2C16E2C3003EA8EB /* GroupPartyItem.swift in Sources */,
@@ -308,8 +332,12 @@
 				970B7CBD2C168D31003CB335 /* SearchView.swift in Sources */,
 				9717A3CE2C16885700B92765 /* color.swift in Sources */,
 				9717A3BB2C15D35A00B92765 /* ChatListView.swift in Sources */,
+				3D349C332C16D4110092E10C /* BlockedContactsView.swift in Sources */,
 				9717A3CC2C16883900B92765 /* viewModel.swift in Sources */,
+				3D349C3B2C16D68C0092E10C /* ReportView.swift in Sources */,
+				3D349C312C16B94B0092E10C /* UpdateProfileView.swift in Sources */,
 				9717A3B52C15D33D00B92765 /* NotificationView.swift in Sources */,
+				3D349C372C16D54B0092E10C /* TermsOfServiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +485,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -492,6 +521,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
