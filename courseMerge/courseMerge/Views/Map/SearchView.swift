@@ -26,7 +26,44 @@ struct testMapView: View {
 }
 
 
+// MARK: - ItemRow - recent visited place
 
+struct RecentVisited: Identifiable {
+    let id = UUID()
+    let name: String
+    let address: String
+}
+
+extension RecentVisited {
+    static var example: [RecentVisited] = [
+        RecentVisited(name: "니시무라멘", address: "서울특별시 연남동 249-1"),
+        RecentVisited(name: "유나드 마이 요거트", address: "서울특별시 연남동 249-2"),
+        RecentVisited(name: "오츠 커피", address: "서울특별시 연남동 249-3"),
+        RecentVisited(name: "그믐족발", address: "서울특별시 연남동 249-4"),
+        RecentVisited(name: "궁둥공원", address: "서울특별시 연남동 249-5"),
+    ]
+}
+
+struct ItemRow: View {
+    let item: RecentVisited
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(item.name)
+                .font(.body)
+            Text(item.address)
+                .font(.subheadline)
+                .foregroundStyle(Color("LabelsSecondary"))
+        }
+    }
+}
+
+#Preview {
+    ItemRow(item: RecentVisited.example.first!)
+}
+
+
+// MARK: - SearchView
 
 struct SearchView: View {
     @Environment(\.dismiss) var dismiss
@@ -43,21 +80,20 @@ struct SearchView: View {
         }
     }
     
+    var recentVisited: [RecentVisited] = RecentVisited.example
+    
     var body: some View {
         NavigationStack {
             VStack {
                 categoryList
                 List {
                     Section {
-                        ForEach(filteredItems, id: \.self) { item in
-                            Text(item)
+                        ForEach(recentVisited) { item in
+                            ItemRow(item: item)
                         }
                     } header: {
                         Text("최근 검색한 장소")
-//                            .font(.footnote)
-//                            .foregroundStyle(Color("LabelsSecondary"))
                     }
-                    
                 }
                 .listStyle(GroupedListStyle())
                 .scrollContentBackground(.hidden)
