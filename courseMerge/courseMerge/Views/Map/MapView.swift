@@ -16,6 +16,7 @@ struct MapView: View {
     
     var body: some View {
         ZStack {
+            // TODO: 요기 어떻게 바꿔야할지 모르겠어영
             Map(coordinateRegion: $region)
                 .ignoresSafeArea(edges: .all)
             
@@ -34,7 +35,7 @@ struct HeaderView: View {
         VStack {
             HStack {
                 Button {
-                    print("제주도 파티 버튼 클릭됨")
+                    print("제주도파티 버튼 클릭")
                 } label: {
                     HStack {
                         Image(systemName: "line.3.horizontal")
@@ -58,7 +59,7 @@ struct HeaderView: View {
                     .cornerRadius(10)
                 
                 Button {
-                    print("sss")
+                    // TODO: 검색화면 연결
                 } label: {
                     Image(systemName: "magnifyingglass")
                         .padding()
@@ -68,7 +69,7 @@ struct HeaderView: View {
             .frame(maxWidth: .infinity, alignment: .trailing)
             .frame(height: 48)
             
-            Text("지도2")
+            Text("지도")
                 .font(.largeTitle)
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
