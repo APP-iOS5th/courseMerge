@@ -11,24 +11,24 @@ struct SettingView: View {
     var body: some View {
         Form {
             Section {
-                Text("Profile")
-                Text("Blocked Contactcts")
+                Text("프로파일 수정")
+                Text("차단한 사용자 관리")
             } header: {
-                Text("General")
+                Text("일반")
             }
             Section {
-                Text("Privacy Policy")
-                Text("Terms and Conditions")
-                Text("Developers")
-                Text("Report")
+                Text("개인정보 처리방침")
+                Text("서비스 이용약관")
+                Text("개발자 정보")
+                Text("신고하기")
             } header: {
-                Text("About")
+                Text("앱 정보")
             }
             Section {
-                Text("Log out")
-                Text("Sign out")
+                Text("로그아웃")
+                Text("회원탈퇴")
             } header: {
-                Text("Account")
+                Text("계정")
             }
         }
     }
