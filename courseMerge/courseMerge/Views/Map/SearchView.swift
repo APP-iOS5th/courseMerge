@@ -89,7 +89,9 @@ struct SearchView: View {
                 List {
                     Section {
                         ForEach(recentVisited) { item in
-                            ItemRow(item: item)
+                            NavigationLink(destination: SearchResultDetailView()) {
+                                ItemRow(item: item)
+                            }
                         }
                     } header: {
                         Text("최근 검색한 장소")
