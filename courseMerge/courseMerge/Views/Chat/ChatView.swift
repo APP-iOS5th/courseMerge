@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct ChatView: View {
-    let item: ChatList
+    let item: GroupPartyInfo
     var body: some View {
         VStack {
             Text("Hello, World!")
         }
-        .navigationTitle(item.name)
+        .navigationTitle(item.title)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
     NavigationStack {
-        ChatView(item: ChatList.example.first!)
+        ChatView(item: GroupPartyInfo.exampleParties.first!)
     }
 }
