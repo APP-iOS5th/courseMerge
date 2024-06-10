@@ -41,18 +41,36 @@ struct SearchView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(filteredItems, id: \.self) { item in
-                    Text(item)
+            VStack {
+                categoryList
+                
+                List {
+                    ForEach(filteredItems, id: \.self) { item in
+                        Text(item)
+                    }
+                }
+                .scrollContentBackground(.hidden)
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+                .navigationTitle("장소 검색")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Cancel") {
+                            dismiss()
+                        }
+                    }
                 }
             }
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-            .navigationTitle("장소 검색")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Cancel") {
-                        dismiss()
+            .background(Color("BGSecondary"))
+        }
+    }
+    
+    var categoryList: some View {
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(0...5, id: \.self) { item in
+                    HStack {
+                        Label("카페", systemImage: "fork.knife.circle.fill")
                     }
                 }
             }
@@ -61,5 +79,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    testMapView()
+    SearchView()
 }
