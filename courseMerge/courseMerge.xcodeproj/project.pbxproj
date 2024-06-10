@@ -17,6 +17,10 @@
 		9717A3BB2C15D35A00B92765 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3BA2C15D35A00B92765 /* ChatListView.swift */; };
 		9717A3BD2C15D36200B92765 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3BC2C15D36200B92765 /* MemberView.swift */; };
 		9717A3BF2C15D36800B92765 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3BE2C15D36800B92765 /* MapView.swift */; };
+		9717A3CA2C16882000B92765 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3C92C16882000B92765 /* test.swift */; };
+		9717A3CC2C16883900B92765 /* viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3CB2C16883900B92765 /* viewModel.swift */; };
+		9717A3CE2C16885700B92765 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3CD2C16885700B92765 /* color.swift */; };
+		9717A3D02C16885F00B92765 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3CF2C16885F00B92765 /* model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,10 @@
 		9717A3BA2C15D35A00B92765 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		9717A3BC2C15D36200B92765 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
 		9717A3BE2C15D36800B92765 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		9717A3C92C16882000B92765 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = test.swift; path = courseMerge/APIs/test.swift; sourceTree = SOURCE_ROOT; };
+		9717A3CB2C16883900B92765 /* viewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = viewModel.swift; path = courseMerge/ViewModels/viewModel.swift; sourceTree = SOURCE_ROOT; };
+		9717A3CD2C16885700B92765 /* color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = color.swift; path = courseMerge/Extensions/color.swift; sourceTree = SOURCE_ROOT; };
+		9717A3CF2C16885F00B92765 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = model.swift; path = courseMerge/Models/model.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +72,10 @@
 			isa = PBXGroup;
 			children = (
 				9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */,
-				9717A3B12C15D01B00B92765 /* Extensions */,
-				9717A3B02C15D01600B92765 /* APIs */,
-				9717A3AF2C15D01200B92765 /* ViewModels */,
-				9717A3AE2C15D00E00B92765 /* Models */,
+				9717A3C82C1687AE00B92765 /* Models */,
+				9717A3C72C1687AC00B92765 /* Extensions */,
+				9717A3C62C1687A900B92765 /* ViewModels */,
+				9717A3C42C16879800B92765 /* APIs */,
 				9717A3A72C15CFAC00B92765 /* Views */,
 				9717A39B2C15CF4E00B92765 /* ContentView.swift */,
 				9717A39D2C15CF5000B92765 /* Assets.xcassets */,
@@ -145,32 +153,36 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		9717A3AE2C15D00E00B92765 /* Models */ = {
+		9717A3C42C16879800B92765 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		9717A3AF2C15D01200B92765 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		9717A3B02C15D01600B92765 /* APIs */ = {
-			isa = PBXGroup;
-			children = (
+				9717A3C92C16882000B92765 /* test.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
 		};
-		9717A3B12C15D01B00B92765 /* Extensions */ = {
+		9717A3C62C1687A900B92765 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9717A3CB2C16883900B92765 /* viewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9717A3C72C1687AC00B92765 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9717A3CD2C16885700B92765 /* color.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9717A3C82C1687AE00B92765 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9717A3CF2C16885F00B92765 /* model.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +220,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */;
+			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -247,9 +259,13 @@
 				9717A3BF2C15D36800B92765 /* MapView.swift in Sources */,
 				9717A3B92C15D35000B92765 /* SettingView.swift in Sources */,
 				9717A3BD2C15D36200B92765 /* MemberView.swift in Sources */,
+				9717A3CA2C16882000B92765 /* test.swift in Sources */,
 				9717A39C2C15CF4E00B92765 /* ContentView.swift in Sources */,
 				9717A39A2C15CF4E00B92765 /* CourseMergeApp.swift in Sources */,
+				9717A3D02C16885F00B92765 /* model.swift in Sources */,
+				9717A3CE2C16885700B92765 /* color.swift in Sources */,
 				9717A3BB2C15D35A00B92765 /* ChatListView.swift in Sources */,
+				9717A3CC2C16883900B92765 /* viewModel.swift in Sources */,
 				9717A3B52C15D33D00B92765 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,7 +457,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */ = {
+		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9717A3A22C15CF5000B92765 /* Debug */,
