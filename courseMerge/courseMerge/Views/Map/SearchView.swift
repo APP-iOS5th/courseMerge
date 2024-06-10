@@ -13,6 +13,9 @@ struct testMapView: View {
     // result detail view fraction
     let heights = stride(from: 0.5, through: 0.75, by: 0.1).map { PresentationDetent.fraction($0) }
     @State private var isShowDetailViewModal: Bool = true
+    
+    @State private var isFirstCourse: Bool = true
+    
     var body: some View {
         VStack {
             Button {
@@ -32,94 +35,14 @@ struct testMapView: View {
             SearchView()
         }
         .sheet(isPresented: $isShowDetailViewModal) {
-            SearchResultDetailView(item: MapDetailItem.recentVisitedExample.first!)
-                .presentationDetents([.medium, .fraction(0.75)])
+            SearchResultDetailView(item: MapDetailItem.recentVisitedExample.first!, isFirstCourse: $isFirstCourse)
+//                .presentationDetents([.fraction(0.6), .fraction(0.75)])
+                .presentationDetents(isFirstCourse ? [.fraction(0.65), .fraction(0.8)] : [.fraction(0.6), .fraction(0.75)])
 //                .presentationDetents(Set(heights))
                 .presentationDragIndicator(.visible)
         }
     }
 }
-
-// MARK: - SearchResultDetailView
-
-struct SearchResultDetailView: View {
-    let item: MapDetailItem
-    @State private var isFavorite: Bool = false
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        NavigationStack {
-            VStack {
-                HStack {
-                    Text(item.name ?? "No Name")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                    
-                    Button {
-                        isFavorite.toggle()
-                    } label: {
-                        Image(systemName: "star.fill")
-                            .font(.title)
-                            .foregroundStyle(isFavorite ? Color("PastelYellow") : Color("FillPrimary"))
-                    }
-                    .padding(.bottom, 5)
-                    
-                    Spacer()
-                    
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.title)
-                            .foregroundStyle(Color("FillPrimary"))
-                    }
-                    .padding(.bottom, 5)
-
-                }
-                .padding(.top)
-                .padding()
-                
-                Spacer()
-            }
-//            .navigationTitle(item.name ?? "No Name")
-//            .toolbar {
-//                ToolbarItem(placement: .topBarLeading) {
-//                    Button {
-//                        isFavorite.toggle()
-//                    } label: {
-//                        Image(systemName: "star.fill")
-//                            .foregroundStyle(isFavorite ? Color("PastelYellow") : Color("FillPrimary"))
-//                    }
-//                }
-//                ToolbarItem(placement: .topBarTrailing) {
-//                    Button {
-//                        dismiss()
-//                    } label: {
-//                        Image(systemName: "xmark.circle.fill")
-//                            .foregroundStyle(Color("FillPrimary"))
-//                    }
-//                }
-//            }
-        }
-    }
-}
-
-#Preview {
-    NavigationStack {
-        SearchResultDetailView(item: MapDetailItem.recentVisitedExample.first!)
-    }
-}
-
-
-
-struct MapDetailItem: Identifiable {
-    let id = UUID()
-    let name: String?
-    let address: String?
-    let phoneNumber: String?
-    let category: Category?
-}
-
 
 // MARK: - ItemRow - recent visited place
 extension MapDetailItem {
@@ -169,7 +92,10 @@ struct SearchView: View {
     }
     
     var recentVisited: [MapDetailItem] = MapDetailItem.recentVisitedExample
+    
     // TODO: Focus State 추가
+    
+    @State private var isFirstCourse: Bool = true
     
     var body: some View {
         NavigationStack {
@@ -178,7 +104,7 @@ struct SearchView: View {
                 List {
                     Section {
                         ForEach(recentVisited) { item in
-                            NavigationLink(destination: SearchResultDetailView(item: item)) {
+                            NavigationLink(destination: SearchResultDetailView(item: item, isFirstCourse: $isFirstCourse)) {
                                 ItemRow(item: item)
                                 
                             }

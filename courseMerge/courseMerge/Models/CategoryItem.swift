@@ -8,6 +8,15 @@
 import Foundation
 import SwiftUI
 
+struct MapDetailItem: Identifiable {
+    let id = UUID()
+    let name: String?
+    let address: String?
+    let phoneNumber: String?
+    let category: Category?
+    
+}
+
 enum Category: String, CaseIterable {
     case cafe = "카페"
     case restaurant = "식당"
