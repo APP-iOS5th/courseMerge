@@ -2,7 +2,7 @@
 //  MapView.swift
 //  CourseMerge
 //
-//  Created by Yungui Lee on 6/9/24.
+//  Created by 황규상 on 6/10/24.
 //
 
 import SwiftUI
