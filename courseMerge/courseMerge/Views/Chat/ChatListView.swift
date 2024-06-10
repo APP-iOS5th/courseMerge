@@ -32,7 +32,7 @@ struct ChatListView: View {
                 List {
                     ForEach(exampleChatList) { item in
                         
-                        NavigationLink(destination: ChatView()) {
+                        NavigationLink(destination: ChatView(item: item)) {
                             VStack(alignment: .leading) {
                                 Text(item.name)
                                     .font(.headline)
@@ -101,13 +101,4 @@ struct ChatListView: View {
 
 #Preview {
     ChatListView()
-}
-
-
-struct ChatView: View {
-    var body: some View {
-        VStack {
-            
-        }
-    }
 }
