@@ -10,6 +10,7 @@ import SwiftUI
 struct UpdateCourseView: View {
     @State private var expandedSections: Set<UUID> = []
     let descriptionSample = CourseDescription.example
+    @State private var selectedItem: MapDetailItem?
     
     var body: some View {
         VStack {
@@ -32,7 +33,9 @@ struct UpdateCourseView: View {
                         )) {
                             ForEach(sample.items) { item in
                                 VStack {
-                                    NavigationLink(destination: SearchResultDetailView(item: item, isFirstCourse: .constant(false))) {
+                                    Button {
+                                        selectedItem = item
+                                    } label: {
                                         ItemRow(item: item)
                                     }
                                 }
@@ -53,6 +56,10 @@ struct UpdateCourseView: View {
                 }
                 .listStyle(.sidebar)
             }
+        }
+        .sheet(item: $selectedItem) { item in
+            SearchResultDetailView(item: item, isFirstCourse: .constant(false), isEdit: .constant(true))
+                .presentationDetents([.fraction(0.6), .fraction(0.75)])
         }
         .navigationTitle("코스 변경")
         .navigationBarTitleDisplayMode(.inline)

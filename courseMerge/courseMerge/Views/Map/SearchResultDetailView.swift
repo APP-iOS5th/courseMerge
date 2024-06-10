@@ -19,6 +19,10 @@ struct SearchResultDetailView: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
+    
+    
+    // Update Course View 에서 해당 뷰를 재사용하기 위한 코드 추가
+    @Binding var isEdit: Bool
 
     // TODO: 신고하기 버튼 추가
     
@@ -165,13 +169,13 @@ struct SearchResultDetailView: View {
                 }
                 
                 Button {
-                    
+                    // if isEdit { } else { }
                 } label: {
-                    Text("코스에 추가하기")
+                    Text(isEdit ? "삭제하기" : "코스에 추가하기")
                         .font(.headline)
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity, minHeight: 50)
-                        .background(.blue)
+                        .background(isEdit ? Color("PastelRed") : .blue)
                         .cornerRadius(10)
                         .padding(.horizontal, 20)
                         .padding(.top)
@@ -185,7 +189,7 @@ struct SearchResultDetailView: View {
 
 #Preview {
     NavigationStack {
-        SearchResultDetailView(item: MapDetailItem.recentVisitedExample.first!, isFirstCourse: .constant(true))
+        SearchResultDetailView(item: MapDetailItem.recentVisitedExample.first!, isFirstCourse: .constant(true), isEdit: .constant(false))
     }
 }
 

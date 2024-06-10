@@ -43,7 +43,7 @@ struct testMapView: View {
                 SearchView()
             }
             .sheet(isPresented: $isShowDetailViewModal) {
-                SearchResultDetailView(item: MapDetailItem.recentVisitedExample.first!, isFirstCourse: $isFirstCourse)
+                SearchResultDetailView(item: MapDetailItem.recentVisitedExample.first!, isFirstCourse: $isFirstCourse, isEdit: .constant(false))
 //                                .presentationDetents([.fraction(0.6), .fraction(0.75)])
                     .presentationDetents(isFirstCourse ? [.fraction(0.65), .fraction(0.8)] : [.fraction(0.6), .fraction(0.75)])
                 //                .presentationDetents(Set(heights))
@@ -105,7 +105,7 @@ struct SearchView: View {
                 List {
                     Section {
                         ForEach(recentVisited) { item in
-                            NavigationLink(destination: SearchResultDetailView(item: item, isFirstCourse: $isFirstCourse)) {
+                            NavigationLink(destination: SearchResultDetailView(item: item, isFirstCourse: $isFirstCourse, isEdit: .constant(false))) {
                                 ItemRow(item: item)
                                 
                             }
