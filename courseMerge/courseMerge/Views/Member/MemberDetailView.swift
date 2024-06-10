@@ -11,58 +11,13 @@ import SwiftUI
 struct MemberDetailView: View {
     
     @State private var createdParties: [GroupPartyInfo] = []
-    @State private var profilebtns: [User] = []
     @State private var isSharingSheetPresented = false
     
     var body: some View {
         
         VStack{
             PartyInfoControllView()
-            
-            HStack(){
-                
-                Button(action: {
-                    //시트가 나오고
-                    //공유 링크가 나오고
-                    //접속 해야지 추가...
-                    //
-                    profilebtns.append(User(username: "New User", usercolor: ".pastelGreen", isHost:false))
-                }, label: {
-                    VStack{
-                        ZStack{
-                            Circle().fill(.bgSecondary)
-                                .frame(width: 100, height: 100)
-                            Image(systemName: "plus")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 40, height: 40)
-                        }
-                        Text("구성원 추가")
-                            .foregroundStyle(.labelsPrimary)
-                    }
-                })
-                
-                ForEach(profilebtns, id: \.self) {index in
-                    Button(action: {
-                      
-                    }, label: {
-                        VStack{
-                            ZStack{
-                                Circle().fill(Color(index.usercolor)) //컬러 수정필요
-                                    .frame(width: 100, height: 100)
-                                Image("ProfileMark")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 40, height: 40)
-                            }
-                            Text("\(index.username)")
-                                .foregroundStyle(.labelsPrimary)
-                        }
-                    })
-                }
-            }
-           
-        }
+            AddMemberProfileView()
         .padding(10)
         .sheet(isPresented: $isSharingSheetPresented){
             /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Sheet Content")/*@END_MENU_TOKEN@*/
@@ -125,6 +80,60 @@ struct PartyInfoControllView: View {
            
             
         }
+    }
+}
+
+struct AddMemberProfileView: View {
+    
+    
+    @State private var profilebtns: [User] = []
+    
+    var body: some View{
+        ScrollView{
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10)
+            {
+                Button(action: {
+                    //시트가 나오고
+                    //공유 링크가 나오고
+                    //접속 해야지 추가...
+                    //
+                    profilebtns.append(User(username: "New User", usercolor: ".pastelBlue", isHost:false))
+                }, label: {
+                    VStack{
+                        ZStack{
+                            Circle().fill(.bgSecondary)
+                                .frame(width: 80, height: 80)
+                            Image(systemName: "plus")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 30, height: 30)
+                        }
+                        Text("구성원 추가")
+                            .foregroundStyle(.labelsPrimary)
+                    }
+                })
+                
+                ForEach(profilebtns, id: \.self) {index in
+                    Button(action: {
+                        
+                    }, label: {
+                        VStack{
+                            ZStack{
+                                //Circle().fill(Color("\(index.usercolor)")) //컬러 수정 필요
+                                Circle().fill(.pastelBlue) //컬러 수정필요하다... 색을 못 읽어온다...
+                                    .frame(width: 80, height: 80)
+                                Image("ProfileMark")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 30, height: 30)
+                            }
+                            Text("\(index.username)")
+                                .foregroundStyle(.labelsPrimary)
+                        }
+                    })
+                }
+            }
+        }}
     }
 }
 
