@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct SearchResultDetailView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    SearchResultDetailView()
-}
+//struct SearchResultDetailView: View {
+//    var body: some View {
+//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//    }
+//}
+//
+//#Preview {
+//    SearchResultDetailView()
+//}

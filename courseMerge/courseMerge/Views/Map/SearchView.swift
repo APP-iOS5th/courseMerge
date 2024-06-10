@@ -8,44 +8,72 @@
 import SwiftUI
 
 struct testMapView: View {
-    @State private var isShowModal: Bool = false
+    @State private var isShowSearchViewModal: Bool = false
     
+    // result detail view fraction
+    let heights = stride(from: 0.5, through: 0.75, by: 0.1).map { PresentationDetent.fraction($0) }
+    @State private var isShowDetailViewModal: Bool = true
     var body: some View {
         VStack {
             Button {
-                isShowModal = true
+                isShowSearchViewModal = true
             } label: {
                 Image(systemName: "magnifyingglass")
                     .font(.title)
             }
+            Button {
+                isShowDetailViewModal = true
+            } label: {
+                Image(systemName: "doc.text")
+                    .font(.title)
+            }
         }
-        .sheet(isPresented: $isShowModal) {
+        .sheet(isPresented: $isShowSearchViewModal) {
             SearchView()
+        }
+        .sheet(isPresented: $isShowDetailViewModal) {
+            SearchResultDetailView()
+                .presentationDetents([.medium, .fraction(0.75)])
+//                .presentationDetents(Set(heights))
+                .presentationDragIndicator(.visible)
         }
     }
 }
 
+// MARK: - SearchResultDetailView
 
-// MARK: - ItemRow - recent visited place
+struct SearchResultDetailView: View {
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    }
+}
 
-struct RecentVisited: Identifiable {
+#Preview {
+    SearchResultDetailView()
+}
+
+
+
+struct MapDetailItem: Identifiable {
     let id = UUID()
     let name: String
     let address: String
 }
 
-extension RecentVisited {
-    static var example: [RecentVisited] = [
-        RecentVisited(name: "니시무라멘", address: "서울특별시 연남동 249-1"),
-        RecentVisited(name: "유나드 마이 요거트", address: "서울특별시 연남동 249-2"),
-        RecentVisited(name: "오츠 커피", address: "서울특별시 연남동 249-3"),
-        RecentVisited(name: "그믐족발", address: "서울특별시 연남동 249-4"),
-        RecentVisited(name: "궁둥공원", address: "서울특별시 연남동 249-5"),
+
+// MARK: - ItemRow - recent visited place
+extension MapDetailItem {
+    static var recentVisitedExample: [MapDetailItem] = [
+        MapDetailItem(name: "니시무라멘", address: "서울특별시 연남동 249-1"),
+        MapDetailItem(name: "유나드 마이 요거트", address: "서울특별시 연남동 249-2"),
+        MapDetailItem(name: "오츠 커피", address: "서울특별시 연남동 249-3"),
+        MapDetailItem(name: "그믐족발", address: "서울특별시 연남동 249-4"),
+        MapDetailItem(name: "궁둥공원", address: "서울특별시 연남동 249-5"),
     ]
 }
 
 struct ItemRow: View {
-    let item: RecentVisited
+    let item: MapDetailItem
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -59,7 +87,7 @@ struct ItemRow: View {
 }
 
 #Preview {
-    ItemRow(item: RecentVisited.example.first!)
+    ItemRow(item: MapDetailItem.recentVisitedExample.first!)
 }
 
 
@@ -80,7 +108,8 @@ struct SearchView: View {
         }
     }
     
-    var recentVisited: [RecentVisited] = RecentVisited.example
+    var recentVisited: [MapDetailItem] = MapDetailItem.recentVisitedExample
+    // TODO: Focus State 추가
     
     var body: some View {
         NavigationStack {
@@ -152,5 +181,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView()
+    testMapView()
 }
