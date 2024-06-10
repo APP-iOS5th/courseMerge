@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct UpdateProfileView: View {
+    @State var myColor = Color.red
     var body: some View {
-        Text("Update Profile")
+        ColorPicker("select Color", selection: $myColor)
+        Button("profile", systemImage: "pin") {
+            
+        }
+        .navigationTitle("프로필 변경")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("확인") {
+                        
+                    }
+                }
+            }
     }
 }
 
