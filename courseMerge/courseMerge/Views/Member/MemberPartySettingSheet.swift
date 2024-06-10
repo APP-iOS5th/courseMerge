@@ -12,14 +12,18 @@ struct MemberPartySettingSheet: View {
     @Environment(\.presentationMode) var presentMode
     
     //파티(모임) 제목 enumtype으로 빼기
-    @State private var partytitle = "내용을 입력하세요.(필수)"
+    @State private var partytitle = " 내용을 입력하세요.(필수)"
+    //파티(모임) 제목 폰트 컬러
+    @State private var partyTitleColor: Color = .labelsTertiary
     //파티(모임) 설명  enumtype으로 빼기
     @State private var partyDescr = "내용을 입력하세요."
+    //파티(모임) 설명 폰트 컬러
+    @State private var partyDescrColor: Color = .labelsTertiary
 
     
     var body: some View {
         NavigationView {
-            ScrollView{
+            ScrollViewReader { targetproxy in
                 VStack(alignment: .leading) {
                     Text("제목")
                         .font(.title3)
@@ -30,6 +34,10 @@ struct MemberPartySettingSheet: View {
                         .frame(width:  361, height: 65)
                         .background(.fillTertiary)
                         .cornerRadius(10)
+                        .onChange(of: partytitle) { newValue in
+                            partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
+                        }
+                        .foregroundColor(partyTitleColor)
                     
                     Text("설명")
                         .font(.title3)
@@ -41,8 +49,13 @@ struct MemberPartySettingSheet: View {
                         .scrollContentBackground(.hidden)
                         .background(.fillTertiary)
                         .cornerRadius(10)
+                        .onChange(of: partyDescr) { newValue in
+                            partyDescrColor = newValue.isEmpty ? .labelsPrimary : .labelsPrimary
+                        }
+                        .foregroundColor(partyDescrColor)
                     
                     DatePickerInputArea()
+    
                     
                 }
             }
@@ -84,63 +97,75 @@ struct DatePickerInputArea: View {
     @State private var showEndDatePicker = false
     
     var body: some View{
-        VStack{
-            HStack{
-                Text("시작일")
-                
-                Spacer()
-                
-                Button("\(formatDate(startDate))"){
+        ScrollViewReader{ targetproxy in
+            VStack{
+                HStack{
+                    Text("시작일")
+                        .padding(.top ,20)
                     
-                    if activeDatePicker == .startDate {
-                        activeDatePicker = nil
-                    } else {
-                        activeDatePicker = .startDate
-                    }
-                }
-                .padding()
-                .frame(width: 130, height: 35)
-                .background(.fillTertiary)
-                .cornerRadius(5)
-                .padding(.top,20)
-                
-            }
-            
-            Divider()
-            
-            HStack{
-                Text("종료일")
-                
-                Spacer()
-                
-                Button("\(formatDate(endDate))"){
+                    Spacer()
                     
-                    if activeDatePicker == .endDate {
-                        activeDatePicker = nil
-                    } else {
-                        activeDatePicker = .endDate
+                    Button("\(formatDate(startDate))"){
+                        
+                        if activeDatePicker == .startDate {
+                            activeDatePicker = nil
+                        } else {
+                            activeDatePicker = .startDate
+                            targetproxy.scrollTo("startDatePicker", anchor: .center)
+                        }
                     }
+                    .padding()
+                    .frame(width: 130, height: 35)
+                    .background(.fillTertiary)
+                    .cornerRadius(5)
+                    .padding(.top,20)
+                    .id("startDatePickerBtn")
+                    
                 }
-                .padding()
-                .frame(width: 130, height: 35)
-                .background(.fillTertiary)
-                .cornerRadius(5)
-                .padding(.top,20)
                 
+                Divider()
+                
+                HStack{
+                    Text("종료일")
+                        .padding(.top ,20)
+                    
+                    Spacer()
+                    
+                    Button("\(formatDate(endDate))"){
+                        
+                        if activeDatePicker == .endDate {
+                            activeDatePicker = nil
+                        } else {
+                            activeDatePicker = .endDate
+                            targetproxy.scrollTo("endDatePicker", anchor: .center)
+                        }
+                    }
+                    .padding()
+                    .frame(width: 130, height: 35)
+                    .background(.fillTertiary)
+                    .cornerRadius(5)
+                    .padding(.top,20)
+                    .id("endDatePickerBtn")
+                }
             }
+            .padding(.leading,  5)
         }
-        .padding(.leading,  5)
+       
         
         if activeDatePicker == .startDate  {
             DatePicker("시작일",selection: $startDate,displayedComponents: .date)
                 .datePickerStyle(.graphical)
-                .padding(.top,20)
+                .padding(20)
+                .id("startDatePicker")
+                .padding(.bottom, 70)
         }
         
         if activeDatePicker == .endDate {
             DatePicker("종료일",selection: $endDate,displayedComponents: .date)             
                 .datePickerStyle(.graphical)
-                .padding(.top,20)
+                .padding(20)
+                .id("endDatePicker")
+                .padding(.bottom, 70)
         }
         
         
