@@ -46,7 +46,7 @@ struct SearchView: View {
                     Text(item)
                 }
             }
-            .searchable(text: $searchText)
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
             .navigationTitle("장소 검색")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -61,5 +61,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView()
+    testMapView()
 }
