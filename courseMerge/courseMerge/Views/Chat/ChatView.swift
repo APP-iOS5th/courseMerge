@@ -48,10 +48,28 @@ struct ChatView: View {
                         
                         HStack(alignment: .top, spacing: 10) {
                             if !item.isCurrentUser {
-                                Image(systemName: "person.circle.fill")
-                                    .resizable()
-                                    .frame(width: 40, height: 40, alignment: .center)
-                                    .cornerRadius(20)
+                                
+                                    // custom profile View
+                                    Circle().fill(Color(item.member.usercolor))
+                                        .stroke(Color(.separatorsNonOpaque), lineWidth: 1)
+                                        .frame(width: 50, height: 50)
+                                        .overlay {
+                                            Image("ProfileMark")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 20, height: 20)
+                                            
+                                            if item.member.isHost {
+                                                VStack {
+                                                    Spacer()
+                                                    HStack {
+                                                        Spacer()
+                                                        Image("custom.crown.circle.fill")
+                                                    }
+                                                }
+                                            }
+                                            // 호스트도 아닌 본인인 경우 추가
+                                        }
                             } else {
                                 Spacer()
                             }
