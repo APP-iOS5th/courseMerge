@@ -23,7 +23,7 @@ extension Message {
         Message(content: "나는 여유로운 힐링 여행을 하고 싶어-!\n이 카페 먼저 갈까?", isCurrentUser: false, member: User(username: "정희지", usercolor: "PastelGreen", isHost: false)),
         Message(content: "오케이 알겠어요옹", isCurrentUser: true, member: User(username: "이융의", usercolor: "PastelBlue", isHost: false)),
         Message(content: "거기 디저트 맛있어요??.", isCurrentUser: true, member: User(username: "이융의", usercolor: "PastelBlue", isHost: false)),
-        Message(content: "당연하지!", isCurrentUser: false, member: User(username: "황규상", usercolor: "PastelRed", isHost: true)),
+        Message(content: "당연하지!", isCurrentUser: false, member: User(username: "정희지", usercolor: "PastelGreen", isHost: false)),
         Message(content: "어서와~~ 히히ㅣ", isCurrentUser: false, member: User(username: "정희지", usercolor: "PastelGreen", isHost: false)),
         Message(content: "The average distance from the Moon to the Earth is about 238,855 miles (384,400 kilometers). This distance can vary slightly because the Moon follows an elliptical orbit around the Earth, but the figure I mentioned is the average distance.", isCurrentUser: false, member: User(username: "조현기", usercolor: "PastelYellow", isHost: false))
       
@@ -39,21 +39,25 @@ struct ChatView: View {
     
     var body: some View {
         ScrollView {
-            ForEach(exampleMessages) { item in
-                
-                HStack(alignment: .top, spacing: 10) {
-                    if !item.isCurrentUser {
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40, alignment: .center)
-                            .cornerRadius(20)
-                    } else {
-                        Spacer()
+            LazyVStack {
+                // TODO: 내가 아닌 메시지 같은 사람이 연속으로 보낼 경우, profileImage, name 생략.
+                // 그리고 나 혹은 다른 사람이 연속으로 보낼 경우 메시지 간 간격 줄이기
+                ForEach(exampleMessages) { item in
+                    
+                    HStack(alignment: .top, spacing: 10) {
+                        if !item.isCurrentUser {
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .cornerRadius(20)
+                        } else {
+                            Spacer()
+                        }
+                        MessageCell(contentMessage: item.content, isCurrentUser: item.isCurrentUser, member: item.member)
                     }
-                    MessageCell(contentMessage: item.content, isCurrentUser: item.isCurrentUser, member: item.member)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
