@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D349C312C16B94B0092E10C /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C302C16B94B0092E10C /* EditProfileView.swift */; };
+		3D349C312C16B94B0092E10C /* UpdateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C302C16B94B0092E10C /* UpdateProfileView.swift */; };
+		3D349C332C16D4110092E10C /* BlockedContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C322C16D4110092E10C /* BlockedContactsView.swift */; };
+		3D349C352C16D5090092E10C /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C342C16D5090092E10C /* PrivacyPolicyView.swift */; };
+		3D349C372C16D54B0092E10C /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C362C16D54B0092E10C /* TermsOfServiceView.swift */; };
+		3D349C392C16D5E60092E10C /* DevelopersDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C382C16D5E60092E10C /* DevelopersDetailsView.swift */; };
+		3D349C3B2C16D68C0092E10C /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C3A2C16D68C0092E10C /* ReportView.swift */; };
+		3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */; };
 		9717A39A2C15CF4E00B92765 /* CourseMergeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */; };
 		9717A39C2C15CF4E00B92765 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A39B2C15CF4E00B92765 /* ContentView.swift */; };
 		9717A39E2C15CF5000B92765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9717A39D2C15CF5000B92765 /* Assets.xcassets */; };
@@ -25,7 +31,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D349C302C16B94B0092E10C /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditProfileView.swift; path = courseMerge/Views/Setting/EditProfileView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C302C16B94B0092E10C /* UpdateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UpdateProfileView.swift; path = courseMerge/Views/Setting/UpdateProfileView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C322C16D4110092E10C /* BlockedContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlockedContactsView.swift; path = courseMerge/Views/Setting/BlockedContactsView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C342C16D5090092E10C /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrivacyPolicyView.swift; path = courseMerge/Views/Setting/PrivacyPolicyView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C362C16D54B0092E10C /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TermsOfServiceView.swift; path = courseMerge/Views/Setting/TermsOfServiceView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C382C16D5E60092E10C /* DevelopersDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DevelopersDetailsView.swift; path = courseMerge/Views/Setting/DevelopersDetailsView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C3A2C16D68C0092E10C /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReportView.swift; path = courseMerge/Views/Setting/ReportView.swift; sourceTree = SOURCE_ROOT; };
+		3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDeletionView.swift; path = courseMerge/Views/Setting/AccountDeletionView.swift; sourceTree = SOURCE_ROOT; };
 		9717A3962C15CF4E00B92765 /* CourseMerge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourseMerge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMergeApp.swift; sourceTree = "<group>"; };
 		9717A39B2C15CF4E00B92765 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -135,7 +147,13 @@
 			isa = PBXGroup;
 			children = (
 				9717A3B82C15D35000B92765 /* SettingView.swift */,
-				3D349C302C16B94B0092E10C /* EditProfileView.swift */,
+				3D349C302C16B94B0092E10C /* UpdateProfileView.swift */,
+				3D349C322C16D4110092E10C /* BlockedContactsView.swift */,
+				3D349C342C16D5090092E10C /* PrivacyPolicyView.swift */,
+				3D349C362C16D54B0092E10C /* TermsOfServiceView.swift */,
+				3D349C382C16D5E60092E10C /* DevelopersDetailsView.swift */,
+				3D349C3A2C16D68C0092E10C /* ReportView.swift */,
+				3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -261,6 +279,9 @@
 				9717A3B32C15D33400B92765 /* LoginView.swift in Sources */,
 				9717A3BF2C15D36800B92765 /* MapView.swift in Sources */,
 				9717A3B92C15D35000B92765 /* SettingView.swift in Sources */,
+				3D349C392C16D5E60092E10C /* DevelopersDetailsView.swift in Sources */,
+				3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */,
+				3D349C352C16D5090092E10C /* PrivacyPolicyView.swift in Sources */,
 				9717A3BD2C15D36200B92765 /* MemberView.swift in Sources */,
 				9717A3CA2C16882000B92765 /* test.swift in Sources */,
 				9717A39C2C15CF4E00B92765 /* ContentView.swift in Sources */,
@@ -268,9 +289,12 @@
 				9717A3D02C16885F00B92765 /* model.swift in Sources */,
 				9717A3CE2C16885700B92765 /* color.swift in Sources */,
 				9717A3BB2C15D35A00B92765 /* ChatListView.swift in Sources */,
+				3D349C332C16D4110092E10C /* BlockedContactsView.swift in Sources */,
 				9717A3CC2C16883900B92765 /* viewModel.swift in Sources */,
-				3D349C312C16B94B0092E10C /* EditProfileView.swift in Sources */,
+				3D349C3B2C16D68C0092E10C /* ReportView.swift in Sources */,
+				3D349C312C16B94B0092E10C /* UpdateProfileView.swift in Sources */,
 				9717A3B52C15D33D00B92765 /* NotificationView.swift in Sources */,
+				3D349C372C16D54B0092E10C /* TermsOfServiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

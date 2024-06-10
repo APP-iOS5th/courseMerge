@@ -14,7 +14,7 @@ struct SettingView: View {
             Form {
                 Section {
                     NavigationLink {
-                        EditProfileView()
+                        UpdateProfileView()
                     } label: {
                         Image(systemName: "person.circle.fill")
                             .resizable()
@@ -23,7 +23,7 @@ struct SettingView: View {
                         Text("프로파일 수정")
                     }
                     NavigationLink {
-                        //                        BlockedContactsView()
+                        BlockedContactsView()
                     } label: {
                         Image(systemName: "person.slash")
                             .resizable()
@@ -36,7 +36,7 @@ struct SettingView: View {
                 }
                 Section {
                     NavigationLink {
-                        
+                        PrivacyPolicyView()
                     } label: {
                         Image(systemName: "shield.lefthalf.fill")
                             .resizable()
@@ -45,7 +45,7 @@ struct SettingView: View {
                         Text("개인정보 처리방침")
                     }
                     NavigationLink {
-                        
+                        TermsOfServiceView()
                     } label: {
                         Image(systemName: "doc.fill")
                             .resizable()
@@ -55,13 +55,13 @@ struct SettingView: View {
                     }
                     
                     NavigationLink {
-                        
+                        DevelopersDetailsView()
                     } label: {
                         Image(systemName: "hammer.fill")
                         Text("개발자 정보")
                     }
                     NavigationLink {
-                        
+                        ReportView()
                     } label: {
                         Image(systemName: "exclamationmark.bubble.fill")
                             .resizable()
@@ -75,16 +75,16 @@ struct SettingView: View {
                 }
                 
                 Section {
-                    Button("로그아웃", action: {
+                    Button("로그아웃", systemImage: "rectangle.portrait.and.arrow.right.fill") {
                         showAlert = true
-                    })
+                    }
                         .alert(isPresented: $showAlert) {
                             Alert(title: Text("로그아웃!"), primaryButton: .cancel(), secondaryButton: .destructive(Text("확인")))
                         }
                 
                     
                     NavigationLink {
-                        
+                        AccountDeletionView()
                     } label: {
                         Image(systemName: "person.crop.circle.fill.badge.xmark")
                             .resizable()
@@ -98,6 +98,8 @@ struct SettingView: View {
                 }
                 
             }//폼
+            .navigationTitle("설정")
+            .navigationBarTitleDisplayMode(.inline)
         }//네비게이션스택
     }
 }
