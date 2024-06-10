@@ -1,14 +1,14 @@
 //
-//  courseMergeApp.swift
-//  courseMerge
+//  CourseMergeApp.swift
+//  CourseMerge
 //
-//  Created by 황규상 on 6/10/24.
+//  Created by Yungui Lee on 6/9/24.
 //
 
 import SwiftUI
 
 @main
-struct courseMergeApp: App {
+struct CourseMergeApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
