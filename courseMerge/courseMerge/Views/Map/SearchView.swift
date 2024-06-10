@@ -91,6 +91,15 @@ struct SearchView: View {
                         ForEach(recentVisited) { item in
                             NavigationLink(destination: SearchResultDetailView()) {
                                 ItemRow(item: item)
+                                
+                            }
+                            
+                        }
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                
+                            } label: {
+                                Label("삭제", systemImage: "trash")
                             }
                         }
                     } header: {
