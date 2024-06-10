@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-//struct ChatList: Identifiable {
-//    let id = UUID()
-//    let name: String
-//    let participants: String
-//}
-//
-//extension ChatList {
-//    static var example: [ChatList] = [
-//        ChatList(name: "동두천 파티", participants: "별빛 여우 외 7명"),
-//        ChatList(name: "은평구 파티", participants: "무지개코끼리 외 2명"),
-//        ChatList(name: "제주도 파티", participants: "별빛 여우 외 7명")
-//    ]
-//}
-
 struct ChatListView: View {
     @State private var showNotification = false
     @State private var exampleParties = GroupPartyInfo.exampleParties
