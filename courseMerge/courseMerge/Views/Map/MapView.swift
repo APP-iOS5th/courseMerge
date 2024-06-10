@@ -18,11 +18,30 @@ struct MapView: View {
         ZStack {
             // TODO: 요기 어떻게 바꿔야할지 모르겠어영
             Map(coordinateRegion: $region)
-                .ignoresSafeArea(edges: .all)
             
             VStack {
                 HeaderView()
                 Spacer()
+            }
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Button(action: {
+                        print("현재위치버튼 클릭")
+                    }) {
+                        Image(systemName: "location.circle.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.blue)
+                            .background(Color.white)
+                            .clipShape(Circle())
+                            .shadow(radius: 10)
+                    }
+                    .padding(.bottom, 50)
+                    .padding(.leading, 20)
+                    Spacer()
+                }
             }
         }
     }
