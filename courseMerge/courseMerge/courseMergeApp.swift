@@ -11,7 +11,8 @@ import SwiftUI
 struct CourseMergeApp: App {
     var body: some Scene {
         WindowGroup {
-            testMapView()
+            //testMapView()
+            ContentView()
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MemberView_empty: View {
+struct MemberEmptyView: View {
     
     // 화면에 시트를 표시 여부 확인
     @State private var showCreatePartySheet = false
@@ -59,11 +59,11 @@ struct MemberView_empty: View {
             .padding()
         }
         .sheet(isPresented: $showCreatePartySheet) {
-            MemberPartySettingSheet()
+            MemberDetailSettingSheet()
         }
     }
 }
 
 #Preview {
-    MemberView_empty()
+    MemberEmptyView()
 }

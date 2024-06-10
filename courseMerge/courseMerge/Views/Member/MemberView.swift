@@ -14,17 +14,17 @@ struct MemberView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if createdParties.isEmpty {
-                    MemberView_empty()
+                if createdParties.isEmpty
+                {
+                    MemberEmptyView()
                 } else {
-                    Text("생성한 파티 목록이 있습니다.")
+                    MemberDetailView()
                 }
             }
             .navigationTitle("구성원")
         }
     }
 }
-
 #Preview {
     MemberView()
 }
