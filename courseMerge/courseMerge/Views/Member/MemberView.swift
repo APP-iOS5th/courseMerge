@@ -9,12 +9,11 @@ import SwiftUI
 
 struct MemberView: View {
     
-    @State private var createdParties: [Party] = []
+    @State private var createdParties: [GroupPartyInfo] = []
     
     var body: some View {
         NavigationView {
             VStack {
-                
                 if createdParties.isEmpty {
                     MemberView_empty()
                 } else {
