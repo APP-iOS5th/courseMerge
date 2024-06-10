@@ -16,7 +16,6 @@ struct testMapView: View {
     
     @State private var isFirstCourse: Bool = false
     
-    @State private var isShowUpdateCourseViewModal: Bool = false
     
     
     var body: some View {
@@ -34,19 +33,18 @@ struct testMapView: View {
                     Image(systemName: "doc.text")
                         .font(.title)
                 }
-                Button {
-                    isShowUpdateCourseViewModal = true
-                } label: {
+                NavigationLink(destination: UpdateCourseView()) {
                     Image(systemName: "arrowshape.right.fill")
                         .font(.title)
                 }
+                
             }
             .sheet(isPresented: $isShowSearchViewModal) {
                 SearchView()
             }
             .sheet(isPresented: $isShowDetailViewModal) {
                 SearchResultDetailView(item: MapDetailItem.recentVisitedExample.first!, isFirstCourse: $isFirstCourse)
-                //                .presentationDetents([.fraction(0.6), .fraction(0.75)])
+//                                .presentationDetents([.fraction(0.6), .fraction(0.75)])
                     .presentationDetents(isFirstCourse ? [.fraction(0.65), .fraction(0.8)] : [.fraction(0.6), .fraction(0.75)])
                 //                .presentationDetents(Set(heights))
                     .presentationDragIndicator(.visible)
@@ -60,19 +58,26 @@ struct ItemRow: View {
     let item: MapDetailItem
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(item.name ?? "No Name")
-                .font(.body)
-            Text(item.address ?? "No address")
-                .font(.subheadline)
+        HStack {
+            VStack(alignment: .leading) {
+                Text(item.name ?? "No Name")
+                    .font(.body)
+                Text(item.address ?? "No address")
+                    .font(.subheadline)
+                    .foregroundStyle(Color("LabelsSecondary"))
+            }
+            
+            Spacer()
+            
+            Text(item.category?.rawValue ?? "No Category")
                 .foregroundStyle(Color("LabelsSecondary"))
         }
     }
 }
 
-//#Preview {
-//    ItemRow(item: MapDetailItem.recentVisitedExample.first!)
-//}
+#Preview {
+    ItemRow(item: MapDetailItem.recentVisitedExample.first!)
+}
 
 
 // MARK: - SearchView

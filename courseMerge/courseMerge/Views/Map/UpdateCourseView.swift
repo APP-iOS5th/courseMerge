@@ -30,8 +30,13 @@ struct UpdateCourseView: View {
                                 }
                             }
                         )) {
-                            // Section content goes here
-                            Text("Section content for \(sample.description)")
+                            ForEach(sample.items) { item in
+                                VStack {
+                                    NavigationLink(destination: SearchResultDetailView(item: item, isFirstCourse: .constant(false))) {
+                                        ItemRow(item: item)
+                                    }
+                                }
+                            }
                         } header: {
                             VStack(alignment: .leading) {
                                 Text(sample.description)

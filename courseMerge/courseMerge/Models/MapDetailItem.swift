@@ -11,6 +11,7 @@ struct CourseDescription: Identifiable {
     let id = UUID()
     let description: String
     let date: Date
+    let items: [MapDetailItem]
     
     var formattedDate: String {
         let formatter = DateFormatter()
@@ -21,9 +22,9 @@ struct CourseDescription: Identifiable {
 
 extension CourseDescription {
     static var example: [CourseDescription] = [
-        CourseDescription(description: "연남동 코스 끝내기", date: Date(timeIntervalSince1970: 1719910800)), // Example date: 2024-06-01
-        CourseDescription(description: "오늘은 성수도", date: Date(timeIntervalSince1970: 1719997200)),
-        CourseDescription(description: "이제 어디갈까", date: Date(timeIntervalSince1970: 1720083600))
+        CourseDescription(description: "연남동 코스 끝내기", date: Date(timeIntervalSince1970: 1719910800), items: MapDetailItem.recentVisitedExample),
+        CourseDescription(description: "오늘은 성수도", date: Date(timeIntervalSince1970: 1719997200), items: MapDetailItem.recentVisitedExample),
+        CourseDescription(description: "이제 어디갈까", date: Date(timeIntervalSince1970: 1720083600), items: MapDetailItem.recentVisitedExample)
     ]
 }
 
