@@ -12,6 +12,8 @@ struct UpdateCourseView: View {
     let descriptionSample = CourseDescription.example
     @State private var selectedItem: MapDetailItem?
     
+    @State private var searchText: String = ""
+
     var body: some View {
         VStack {
             /* ios 17 부터 가능!! -
@@ -61,6 +63,8 @@ struct UpdateCourseView: View {
                         }
                     }
                 }
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+
                 .listStyle(.sidebar)
             }
         }
