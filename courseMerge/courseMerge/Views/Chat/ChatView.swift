@@ -36,35 +36,78 @@ struct ChatView: View {
     let item: GroupPartyInfo
     @Environment(\.colorScheme) var colorScheme
     @State var exampleMessages: [Message] = Message.exampleMessages
+    @State private var newMessage: String = ""
     
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                // TODO: 내가 아닌 메시지 같은 사람이 연속으로 보낼 경우, profileImage, name 생략.
-                // 그리고 나 혹은 다른 사람이 연속으로 보낼 경우 메시지 간 간격 줄이기
-                ForEach(exampleMessages) { item in
-                    
-                    HStack(alignment: .top, spacing: 10) {
-                        if !item.isCurrentUser {
-                            Image(systemName: "person.circle.fill")
-                                .resizable()
-                                .frame(width: 40, height: 40, alignment: .center)
-                                .cornerRadius(20)
-                        } else {
-                            Spacer()
+        VStack {
+            ScrollView {
+                LazyVStack {
+                    // TODO: 내가 아닌 메시지 같은 사람이 연속으로 보낼 경우, profileImage, name 생략.
+                    // 그리고 나 혹은 다른 사람이 연속으로 보낼 경우 메시지 간 간격 줄이기
+                    ForEach(exampleMessages) { item in
+                        
+                        HStack(alignment: .top, spacing: 10) {
+                            if !item.isCurrentUser {
+                                Image(systemName: "person.circle.fill")
+                                    .resizable()
+                                    .frame(width: 40, height: 40, alignment: .center)
+                                    .cornerRadius(20)
+                            } else {
+                                Spacer()
+                            }
+                            MessageCell(contentMessage: item.content, isCurrentUser: item.isCurrentUser, member: item.member)
                         }
-                        MessageCell(contentMessage: item.content, isCurrentUser: item.isCurrentUser, member: item.member)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
                 }
             }
+            .background(colorScheme == .dark ? Color("BGSecondaryDarkElevated") : Color("BGSecondary"))
+            .navigationTitle(item.title)
+            .toolbarBackground(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : Color("BGPrimary"), for: .navigationBar)
+            .navigationBarTitleDisplayMode(.inline)
+            
+            Spacer()
+            
+            messageTextField
+            
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(colorScheme == .dark ? Color("BGSecondaryDarkElevated") : Color("BGSecondary"))
-        .navigationTitle(item.title)
-        .toolbarBackground(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : Color("BGPrimary"), for: .navigationBar)
-        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    // MARK: - messageTextField
+    private var messageTextField: some View {
+        HStack {
+            TextField("메시지를 입력해주세요.", text: $newMessage)
+                .padding(10)
+                .background(Color(.systemGray6))
+                .cornerRadius(20)
+                .overlay(
+                    HStack {
+                        Spacer()
+                        if newMessage.isEmpty {
+                            Image(systemName: "camera")
+                                .foregroundColor(.gray)
+                                .padding(.trailing, 10)
+                        }
+                    }
+                )
+                .padding(.horizontal, 10)
+            
+            Button(action: {
+                if !newMessage.isEmpty {
+                    exampleMessages.append(Message(content: newMessage, isCurrentUser: true, member: User(username: "이융의", usercolor: "PastelBlue", isHost: false)))
+                    newMessage = ""
+                }
+            }) {
+                Image(systemName: "arrow.up.circle.fill")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.blue)
+            }
+            .padding(.trailing, 10)
+        }
+        .padding(.bottom, 10)
+        .background(Color(UIColor.systemBackground))
     }
 }
 
