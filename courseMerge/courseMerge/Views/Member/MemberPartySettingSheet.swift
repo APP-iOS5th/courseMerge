@@ -25,6 +25,7 @@ struct MemberPartySettingSheet: View {
         NavigationView {
             ScrollViewReader { targetproxy in
                 VStack(alignment: .leading) {
+
                     Text("제목")
                         .font(.title3)
                         .fontWeight(.bold)
@@ -70,10 +71,6 @@ struct MemberPartySettingSheet: View {
                     presentMode.wrappedValue.dismiss()
                 }
             )
-            .onAppear{
-                //시작일 DatePicker가 활성화 될 경우
-                //종료일 DatePicker가 활성화 될 경우.
-            }
         }
     }
 }
