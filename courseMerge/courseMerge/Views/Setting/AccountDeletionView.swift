@@ -40,7 +40,7 @@ struct AccountDeletionView: View {
             }
             Spacer()
             Button("안내사항을 모두 확인하였으며, 이에 동의합니다.", systemImage: flag ? "checkmark.circle" : "checkmark.circle.fill") {
-                    flag = false
+                flag.toggle()
             }
             
             Divider()

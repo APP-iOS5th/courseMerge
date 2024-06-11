@@ -129,7 +129,7 @@ struct MemberGridView: View {
     
     @Binding var isSharingSheetPresented: Bool
     
-    var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+    var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
 
     var body: some View{
         ScrollView{

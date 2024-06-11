@@ -42,7 +42,7 @@ struct MemberHeaderView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .frame(height: 52)
                 
-                PartySelectionButton()
+//                PartySelectionButton(activatedPartyName: <#Binding<String>#>)
             }
             Divider()
         }
