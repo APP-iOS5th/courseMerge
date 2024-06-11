@@ -16,21 +16,6 @@ struct GroupPartyInfo: Identifiable {
     var enddate: Date
 }
 
-struct User: Hashable {
-    let id: UUID = UUID()
-    var username: String
-    var usercolor: String
-    var isHost: Bool
-    //사용 예정
-    //var isUser: Bool
-    
-    //색상명 수정 필요
-    static func randomProfileColor() -> String {
-        let ProfileColor: [String] = [".pastelBlue", ".pastelYellow", ".pastelGreen"]
-        return ProfileColor.filter { !$0.contains("blue") && !$0.contains("red") && !$0.contains("yellow") && !$0.contains("green") }.randomElement() ?? ".gray" // 기본값은 ".pastelRed"
-    }
-}
-
 extension GroupPartyInfo {
     static var exampleParties: [GroupPartyInfo] = [
         GroupPartyInfo(

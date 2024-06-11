@@ -7,16 +7,50 @@
 
 import SwiftUI
 
+/*
+ TODO:
+ 0: 로그인할 때 - '본인'임을 구별할 수 있도록 User 모델에 추가?
+ 1. profile view - view builder
+ 2. members grid view
+ 3.
+ */
+
+//struct Profile: View {
+//    var body: some View {
+//        // custom profile View
+//        Circle().fill(Color(item.member.usercolor))
+//            .stroke(Color(.separatorsNonOpaque), lineWidth: 1)
+//            .frame(width: 50, height: 50)
+//            .overlay {
+//                Image("ProfileMark")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .frame(width: 20, height: 20)
+//                
+//                if item.member.isHost {
+//                    VStack {
+//                        Spacer()
+//                        HStack {
+//                            Spacer()
+//                            Image("custom.crown.circle.fill")
+//                        }
+//                    }
+//                }
+//                // 호스트도 아닌 본인인 경우 추가
+//            }
+//        
+//    }
+//}
 
 struct MemberDetailView: View {
     
-    @State private var createdParties: [GroupPartyInfo] = []
+    @State private var createdParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties
     @State private var isSharingSheetPresented = false
     
     var body: some View {
         
         VStack{
-            PartyInfoControllView()
+            PartyInfoControllView(createdParties: $createdParties)
             AddMemberProfileView()
         .padding(10)
         .sheet(isPresented: $isSharingSheetPresented){
@@ -27,8 +61,9 @@ struct MemberDetailView: View {
 }
 
 struct PartyInfoControllView: View {
-   
+    @Binding var createdParties: [GroupPartyInfo]
     //뷰모델에서 데이터 가져오기
+    
     @State private var partyDescr: String = "내용을 입력하세요."
     
     @State private var isDescrExpanded: Bool = false
@@ -43,8 +78,8 @@ struct PartyInfoControllView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 40, height: 40)
-                
             }
+            
             VStack(alignment: .leading){
                 HStack{
                     VStack(alignment: .leading){
@@ -113,7 +148,7 @@ struct AddMemberProfileView: View {
                     }
                 })
                 
-                ForEach(profilebtns, id: \.self) {index in
+                ForEach(profilebtns) { index in
                     Button(action: {
                         
                     }, label: {

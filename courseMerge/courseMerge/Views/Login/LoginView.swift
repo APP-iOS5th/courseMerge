@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseAuth
 import AuthenticationServices
 import CryptoKit
+import FirebaseFirestore
 
 struct LoginView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -86,7 +87,7 @@ struct SignInWithAppleButtonView: View {
             onRequest: { request in // ASAuthorizationAppleIDProvider ??
                 let nonce = randomNonceString()
                 currentNonce = nonce
-                request.requestedScopes = [.fullName, .email]
+                request.requestedScopes = []    // email, name 모두 필요x
                 request.nonce = sha256(nonce)
             },
             onCompletion: { result in
@@ -122,15 +123,33 @@ struct SignInWithAppleButtonView: View {
                 }
                 print("User is signed in to Firebase with Apple.")
                 self.authViewModel.isSignedIn = true    // ContentView 로 이동!!!
-                if let fullName = appleIDCredential.fullName {
-                    let displayName = "\(fullName.givenName ?? "") \(fullName.familyName ?? "")"
-                    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                    changeRequest?.displayName = displayName
-                    changeRequest?.commitChanges { error in
-                        if let error = error {
-                            print("Failed to update display name: \(error.localizedDescription)")
+                // 현재 사용자 UID 확인
+                if let user = Auth.auth().currentUser {
+                    let uid = user.uid
+
+                    // Firestore에서 사용자 문서 가져오기
+                    let db = Firestore.firestore()
+                    let userRef = db.collection("users").document(uid)
+                    userRef.getDocument { (document, error) in
+                        // 기존 사용자일 경우
+                        if let document = document, document.exists {
+                            print("User already exists")
                         } else {
-                            print("Display name updated to \(displayName)")
+                            // 새로운 사용자 생성
+                            let randomUsername = generateRandomUsername()
+                            let newUser = User(uid: uid, username: randomUsername, usercolor: "pastelBlue", isHost: false)
+                            userRef.setData([
+                                "uid": newUser.uid,
+                                "username": newUser.username,
+                                "usercolor": newUser.usercolor,
+                                "isHost": newUser.isHost
+                            ]) { err in
+                                if let err = err {
+                                    print("Error writing document: \(err)")
+                                } else {
+                                    print("User successfully created!")
+                                }
+                            }
                         }
                     }
                 }
@@ -162,4 +181,22 @@ private func sha256(_ input: String) -> String {
     let hashedData = SHA256.hash(data: inputData)
     let hashString = hashedData.compactMap { String(format: "%02x", $0) }.joined()
     return hashString
+}
+
+// 한글 닉네임 생성기
+private func generateRandomUsername() -> String {
+    let determiners = [
+        "예쁜", "화난", "귀여운", "배고픈", "철학적인",
+        "현학적인", "슬픈", "푸른", "비싼", "밝은"
+    ]
+    
+    let animals = [
+        "호랑이", "비버", "강아지", "부엉이", "여우",
+        "치타", "문어", "고양이", "미어캣", "다람쥐"
+    ]
+    
+    let randomDeterminer = determiners.randomElement() ?? "사용자"
+    let randomAnimal = animals.randomElement() ?? "사용자"
+    
+    return "\(randomDeterminer)\(randomAnimal)\(Int.random(in: 1000...9999))"
 }

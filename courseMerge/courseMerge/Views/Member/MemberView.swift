@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MemberView: View {
     
-    @State private var createdParties: [GroupPartyInfo] = []
+    @State private var createdParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties
     
     var body: some View {
         NavigationView {
@@ -25,6 +25,7 @@ struct MemberView: View {
         }
     }
 }
+
 #Preview {
     MemberView()
 }
