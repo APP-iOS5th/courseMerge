@@ -9,19 +9,27 @@ import SwiftUI
 
 
 struct MemberDetailView: View {
-    
+    //공유 시트
     @State private var isSharingSheetPresented = false
     
     var body: some View {
         
         VStack{
             PartyInfoControllView()
-            AddMemberProfileView()
-        .padding(25)
-        .sheet(isPresented: $isSharingSheetPresented){
-            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Sheet Content")/*@END_MENU_TOKEN@*/
+            AddMemberProfileView(isSharingSheetPresented: $isSharingSheetPresented)
+            
         }
-        
+        .padding(10)
+//        .sheet(isPresented: $ismodiftyPartySheet){
+//            MemberDetailSettingSheet(ismodiftyPartySheet: $ismodiftyPartySheet)
+//        }
+        .background(
+            AppSharingSheet(
+                isPresented: $isSharingSheetPresented,
+                //아래는 테스트 주소, 앱 정보를 담은 링크를 보내야 함
+                activityItems: [URL(string: "https://www.google.com")!]
+            )
+        )
     }
 }
 
@@ -37,32 +45,39 @@ struct PartyInfoControllView: View {
     var body: some View{
         HStack{
             //샘플
-            ZStack{
-                Circle().fill(.pastelRed)
-                    .frame(width: 100, height: 100)
-                Image("ProfileMark")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 40, height: 40)
-                if hasCrown {
-                    Image(systemName: "crown.fill")
+            VStack{
+                ZStack{
+                    Circle().fill(.pastelRed)
+                        .frame(width: 100, height: 100)
+                    Image("ProfileMark")
                         .resizable()
-                        .scaledToFit()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.white)
-                        .background(Color.yellow)
-                        .clipShape(Circle())
-                        .offset(x: 30, y: 35)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 40, height: 40)
+                    if hasCrown {
+                        Image(systemName: "crown.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                            .background(Color.yellow)
+                            .clipShape(Circle())
+                            .offset(x: 30, y: 35)
+                    }
+            
                 }
-                
+                //2024.6.11 호스트 이름이 들어가야 함. (미작업)
+                Text("별빛여우")
+                    .foregroundStyle(.labelsPrimary)
             }
             VStack(alignment: .leading){
                 HStack{
                     VStack(alignment: .leading){
+                        //2024.6.11 작성한 파티 타이틀이 들어가야 함. (미작업)
                         Text("ex 제주도 파티")
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.labelsPrimary)
+                        //2024.6.11 선택한 날짜가 들어가야 함. (미작업)
                         Text("ex 2024.06.30")
                             .font(.callout)
                             .fontWeight(.regular)
@@ -72,12 +87,13 @@ struct PartyInfoControllView: View {
                     Spacer()
                     
                     Button(action: {
-                        
+                       // ismodiftyPartySheet = true
                     }, label: {
                         Text("Edit")
                     })
                 }
                 Divider()
+                //2024.6.11 파티 설명에서 입력한 내용이 들어가야 함. (미작업)
                 DisclosureGroup("파티 설명", isExpanded: $isDescrExpanded){
                     TextEditor(text: $partyDescr )
                         .frame(height: 10)
@@ -87,10 +103,7 @@ struct PartyInfoControllView: View {
                 .frame(maxHeight: isDescrExpanded ? 100 : 0)
                 Divider()
             }
-            .padding(.trailing, 10)
-           
-            
-        }.padding(10)
+        }
     }
 }
 
@@ -98,9 +111,10 @@ struct AddMemberProfileView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    //공유 시트
+    @Binding var isSharingSheetPresented: Bool
     @State private var profilebtns: [User] = []
     @State private var btncnt: Int = 0
-    
     
     var body: some View{
         ScrollView{
@@ -109,10 +123,13 @@ struct AddMemberProfileView: View {
                 Button(action: {
                     //시트가 나오고
                     //공유 링크가 나오고
-                    //접속 해야지 추가...
-                    //
+                    isSharingSheetPresented = true
+                    
+                    //접속링크를 확인하고선 프로필을 추가 할 수 있도록 작업필요..
                     profilebtns.append(User(username: "New User\(btncnt)", usercolor: User.randomColor() ?? ".gray", isHost: false))
                     btncnt += 1
+                    
+                    //isActivityViewPresented = true
                 }, label: {
                     VStack{
                         ZStack{
@@ -150,7 +167,7 @@ struct AddMemberProfileView: View {
                         Button(action:{
                             print("우리 말로 하자..")
                         }){
-                            //융의님 나중에 여기 확인해주세열
+                            //융의님 나중에 채팅뷰로 이동하는 화면 확인해주세열
                             NavigationLink(destination: EmptyView()){
                                 Label("대화하기", systemImage: "message")
                                     .foregroundColor(.labelsPrimary)
@@ -167,10 +184,9 @@ struct AddMemberProfileView: View {
                     }
                 }
             }
-        }}
+        }
     }
 }
-
 #Preview {
     MemberDetailView()
 }
