@@ -68,7 +68,6 @@ struct MemberDetailView: View {
 }
 
 struct PartyInfoControllView: View {
-    @Binding var createdParties: [GroupPartyInfo]
     //뷰모델에서 데이터 가져오기
     
     @State private var partyDescr: String = "내용을 입력하세요."
