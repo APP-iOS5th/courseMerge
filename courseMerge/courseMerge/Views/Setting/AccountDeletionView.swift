@@ -10,7 +10,8 @@ import SwiftUI
 struct AccountDeletionView: View {
     @State var showAlert = false
     @State var flag = true
-    
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     var body: some View {
         VStack {
             Image("Logo")
@@ -52,6 +53,19 @@ struct AccountDeletionView: View {
             .disabled(flag)
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("탈퇴하기"), dismissButton: .destructive(Text("확인")))
+            }
+            
+            .alert("알림", isPresented: $showAlert) {
+                Button("취소", role: .cancel) {
+                    showAlert = false
+                }
+                Button(role: .destructive) {
+                    authViewModel.deleteUser()
+                } label: {
+                    Text("확인")
+                }
+            } message: {
+                Text("정말로 회원탈퇴 하시겠습니까?")
             }
         }
         .navigationTitle("회원탈퇴")

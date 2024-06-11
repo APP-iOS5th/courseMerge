@@ -15,4 +15,8 @@ class AuthViewModel: ObservableObject {
     func checkSignInStatus() {
         self.isSignedIn = Auth.auth().currentUser != nil
     }
+    
+    func deleteUser() {
+        self.isSignedIn = false
+    }
 }

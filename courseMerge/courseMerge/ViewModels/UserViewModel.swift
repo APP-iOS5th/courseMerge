@@ -13,7 +13,7 @@ class UserViewModel: ObservableObject {
     @Published var currentUserUID: String?
     
     init() {
-        // Sample data for demonstration
+        // parties 컬렉션과 users 컬렉션을 연동해야 합니다
         users = [
             User(username: "별빛여우", usercolor: "PastelRed", isHost: true),
             User(username: "달빛도깨비", usercolor: "PastelBlue", isHost: false),
@@ -33,17 +33,18 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func identifySelfInParty(allMembers: [User]) {
-        guard let currentUserUID = currentUserUID else {
-            print("No current user logged in.")
-            return
-        }
-        for member in allMembers {
-            if member.uid == currentUserUID {
-                print("This is you: \(member.username)")
-            } else {
-                print("Other member: \(member.username)")
-            }
-        }
-    }
+//    users 컬렉션에 있는 모든 사용자를 대상으로 본인인지를 구분하는 로직
+//    func identifySelfInParty(allMembers: [User]) {
+//        guard let currentUserUID = currentUserUID else {
+//            print("No current user logged in.")
+//            return
+//        }
+//        for member in allMembers {
+//            if member.uid == currentUserUID {
+//                print("This is you: \(member.username)")
+//            } else {
+//                print("Other member: \(member.username)")
+//            }
+//        }
+//    }
 }
