@@ -21,18 +21,21 @@ struct testMapView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
+                
                 Button {
                     isShowSearchViewModal = true
                 } label: {
                     Image(systemName: "magnifyingglass")
                         .font(.title)
                 }
+                
                 Button {
                     isShowDetailViewModal = true
                 } label: {
                     Image(systemName: "doc.text")
                         .font(.title)
                 }
+                
                 NavigationLink(destination: UpdateCourseView()) {
                     Image(systemName: "arrowshape.right.fill")
                         .font(.title)

@@ -15,6 +15,8 @@
 		3D349C3B2C16D68C0092E10C /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C3A2C16D68C0092E10C /* ReportView.swift */; };
 		3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */; };
 		78C24FCA2C16989D007DAF99 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C24FC92C16989D007DAF99 /* MapView.swift */; };
+		9707CB152C172F4B0011C3E2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9707CB142C172F4B0011C3E2 /* ChatView.swift */; };
+		9707CB172C173D370011C3E2 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9707CB162C173D370011C3E2 /* RoundedCorner.swift */; };
 		9708BCE02C169F5F0025C7DA /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9708BCDF2C169F5F0025C7DA /* CategoryItem.swift */; };
 		970B7CBD2C168D31003CB335 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CBC2C168D31003CB335 /* SearchView.swift */; };
 		970B7CBF2C168D3B003CB335 /* SearchResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CBE2C168D3B003CB335 /* SearchResultDetailView.swift */; };
@@ -50,6 +52,8 @@
 		3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDeletionView.swift; path = courseMerge/Views/Setting/AccountDeletionView.swift; sourceTree = SOURCE_ROOT; };
 		78C24FC92C16989D007DAF99 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = courseMerge/Views/Map/MapView.swift; sourceTree = SOURCE_ROOT; };
 		78EDDE042C1694B0009C4EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9707CB142C172F4B0011C3E2 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		9707CB162C173D370011C3E2 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		9708BCDF2C169F5F0025C7DA /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		970B7CBC2C168D31003CB335 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		970B7CBE2C168D3B003CB335 /* SearchResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDetailView.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				9717A3BA2C15D35A00B92765 /* ChatListView.swift */,
+				9707CB142C172F4B0011C3E2 /* ChatView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				9717A3CD2C16885700B92765 /* color.swift */,
+				9707CB162C173D370011C3E2 /* RoundedCorner.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -316,6 +322,7 @@
 				EA4D62BF2C16E53A003EA8EB /* MemberView_withMembers.swift in Sources */,
 				9717A3B32C15D33400B92765 /* LoginView.swift in Sources */,
 				EA4D62B72C16B9D1003EA8EB /* MemberPartySettingSheet.swift in Sources */,
+				9707CB172C173D370011C3E2 /* RoundedCorner.swift in Sources */,
 				EA4D62B92C16DFE8003EA8EB /* MemberView_empty.swift in Sources */,
 				9717A3B92C15D35000B92765 /* SettingView.swift in Sources */,
 				3D349C392C16D5E60092E10C /* DevelopersDetailsView.swift in Sources */,
@@ -328,6 +335,7 @@
 				970B7CC12C168D4C003CB335 /* SearchResultsView.swift in Sources */,
 				9717A39A2C15CF4E00B92765 /* CourseMergeApp.swift in Sources */,
 				9717A3D02C16885F00B92765 /* model.swift in Sources */,
+				9707CB152C172F4B0011C3E2 /* ChatView.swift in Sources */,
 				9708BCE02C169F5F0025C7DA /* CategoryItem.swift in Sources */,
 				970B7CBD2C168D31003CB335 /* SearchView.swift in Sources */,
 				9717A3CE2C16885700B92765 /* color.swift in Sources */,
