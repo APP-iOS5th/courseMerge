@@ -9,10 +9,9 @@ import SwiftUI
 
 struct MemberView: View {
     
+    @State private var createdParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties
     @Environment(\.colorScheme) var colorScheme
-    
-    @State private var createdParties: [GroupPartyInfo] = []
-    
+        
     var body: some View {
         NavigationView {
             VStack {
@@ -27,6 +26,7 @@ struct MemberView: View {
         }
     }
 }
+
 #Preview {
     MemberView()
 }

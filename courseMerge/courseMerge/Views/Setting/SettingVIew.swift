@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SettingView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
     @State var showAlert = false
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -78,9 +80,21 @@ struct SettingView: View {
                     Button("로그아웃", systemImage: "rectangle.portrait.and.arrow.right.fill") {
                         showAlert = true
                     }
-                        .alert(isPresented: $showAlert) {
-                            Alert(title: Text("로그아웃!"), primaryButton: .cancel(), secondaryButton: .destructive(Text("확인")))
+//                        .alert(isPresented: $showAlert) {
+//                            Alert(title: Text("로그아웃!"), primaryButton: .cancel(), secondaryButton: .destructive(Text("확인")))    // deprecated 코드
+//                        }
+                    .alert("알림", isPresented: $showAlert) {
+                        Button("취소", role: .cancel) {
+                            showAlert = false
                         }
+                        Button {
+                            authViewModel.isSignedIn = false
+                        } label: {
+                            Text("확인")
+                        }
+                    } message: {
+                        Text("로그아웃 하시겠습니까?")
+                    }
                 
                     
                     NavigationLink {
