@@ -54,6 +54,8 @@ struct PracticeMapView: View {
 //}
 
 struct RouteViewPractice: View {
+    let exampleRoute: MultiDayRoute = MultiDayRoute.example.first!
+    
     @State private var route: MKRoute?
     @State private var travelTime: String?
     private let gradient = LinearGradient(colors: [.red, .orange], startPoint: .leading, endPoint: .trailing)
@@ -65,13 +67,13 @@ struct RouteViewPractice: View {
                 MapPolyline(route.polyline)
                     .stroke(.pastelRed, lineWidth: 10)
                 
-                Marker("엠파이어 빌딩", systemImage: "star.fill", coordinate: .empireStateBuilding)
-                    .tint(.orange)
-                    .tag(1)
+                Marker("startLocation1", systemImage: "", coordinate: exampleRoute.routes[0].startPoint.location ?? .empireStateBuilding)
                 
-                Marker("콜롬비아 대학", systemImage: "book.fill", coordinate: .columbiaUniversity)
-                    .tint(.orange)
-                    .tag(1)
+                Marker(coordinate: exampleRoute.routes[0].nextPoint.location ?? .columbiaUniversity) {
+                    Image(systemName: "mappin.circle.fill")
+                        .foregroundStyle(Color(exampleRoute.user.usercolor))
+                }
+                
                 
             }
         }
@@ -86,7 +88,7 @@ struct RouteViewPractice: View {
             }
         }
         .onAppear {
-            fetchRouteFrom(.columbiaUniversity, to: .empireStateBuilding)
+            fetchRouteFrom(exampleRoute.routes[0].startPoint.location ?? .empireStateBuilding, to: exampleRoute.routes[0].nextPoint.location ?? .columbiaUniversity)
         }
     }
 }
