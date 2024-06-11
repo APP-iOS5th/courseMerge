@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MemberView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @State private var createdParties: [GroupPartyInfo] = []
     
     var body: some View {

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MemberEmptyView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     // 화면에 시트를 표시 여부 확인
     @State private var showCreatePartySheet = false
     
