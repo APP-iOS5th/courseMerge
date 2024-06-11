@@ -20,7 +20,7 @@ struct MultiDayRoute: Identifiable {
     let id = UUID()
     let user: User
     let date: Date
-    let routes: [Route]
+    let routes: [Route] // 하루의 루트: multidayroute.routes
     
     var formattedDate: String {
         let formatter = DateFormatter()
@@ -29,29 +29,29 @@ struct MultiDayRoute: Identifiable {
     }
 }
 
-struct Routes {
-    var multiDayRoutes: [MultiDayRoute]
-    
-    mutating func addRoute(_ multiDayRoute: MultiDayRoute) {
-        multiDayRoutes.append(multiDayRoute)
-    }
-    
-    mutating func removeRoute(at index: Int) {
-        guard index >= 0 && index < multiDayRoutes.count else {
-            print("Index out of range")
-            return
-        }
-        multiDayRoutes.remove(at: index)
-    }
-    
-    func getRoute(at index: Int) -> MultiDayRoute? {
-        guard index >= 0 && index < multiDayRoutes.count else {
-            print("Index out of range")
-            return nil
-        }
-        return multiDayRoutes[index]
-    }
-}
+//struct Routes {
+//    var multiDayRoutes: [MultiDayRoute]
+//    
+//    mutating func addRoute(_ multiDayRoute: MultiDayRoute) {
+//        multiDayRoutes.append(multiDayRoute)
+//    }
+//    
+//    mutating func removeRoute(at index: Int) {
+//        guard index >= 0 && index < multiDayRoutes.count else {
+//            print("Index out of range")
+//            return
+//        }
+//        multiDayRoutes.remove(at: index)
+//    }
+//    
+//    func getRoute(at index: Int) -> MultiDayRoute? {
+//        guard index >= 0 && index < multiDayRoutes.count else {
+//            print("Index out of range")
+//            return nil
+//        }
+//        return multiDayRoutes[index]
+//    }
+//}
 
 //enum TransportationMode: String {
 //    case walking
