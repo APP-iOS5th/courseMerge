@@ -53,7 +53,8 @@ struct HeaderView: View {
     @State private var expanded = false
     @State private var showingActionSheet = false
     @State private var activatedPartyName: String = "제주도 파티"
-    
+    @State private var isShowSearchViewModal: Bool = false
+
     var body: some View {
         VStack {
             HStack {
@@ -102,6 +103,7 @@ struct HeaderView: View {
                 
                 Button {
                     // TODO: 검색화면 연결
+                    isShowSearchViewModal = true
                 } label: {
                     Image(systemName: "magnifyingglass")
                         .padding()
@@ -118,6 +120,9 @@ struct HeaderView: View {
                 .frame(height: 52)
             
             Divider()
+        }
+        .sheet(isPresented: $isShowSearchViewModal) {
+            SearchView()
         }
         .padding(.horizontal)
         .background(Color.white)

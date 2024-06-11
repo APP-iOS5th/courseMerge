@@ -40,6 +40,7 @@ struct ChatView: View {
     
     var body: some View {
         VStack {
+            // TODO: 메시지가 새로 올라올 경우, 아래로 스크롤 포커스
             ScrollView {
                 LazyVStack {
                     // TODO: 내가 아닌 메시지 같은 사람이 연속으로 보낼 경우, profileImage, name 생략.
