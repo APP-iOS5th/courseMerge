@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct MemberView: View {
+    
+    @State private var createdParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties
+    
     var body: some View {
-        VStack {
-            Text("MemberView")
+        NavigationView {
+            VStack {
+                if createdParties.isEmpty
+                {
+                    MemberEmptyView()
+                } else {
+                    MemberDetailView()
+                }
+            }
+            .navigationTitle("구성원")
         }
     }
 }
