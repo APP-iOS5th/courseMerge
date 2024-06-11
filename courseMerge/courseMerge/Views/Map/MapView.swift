@@ -191,7 +191,7 @@ struct MemberCustomDisclosureGroup: View {
     }
 }
 
-/// 현재위치 버튼
+/// 현재위치 버튼, 코스변경 버튼
 struct CurrentLocationAndUpdateCourseButton: View {
     @ObservedObject var locationManager: LocationManager
     @Binding var region: MKCoordinateRegion
