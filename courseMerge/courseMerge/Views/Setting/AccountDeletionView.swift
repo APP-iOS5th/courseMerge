@@ -23,7 +23,7 @@ struct AccountDeletionView: View {
             Text("탈퇴하시면 이용 중인 코스머지가 삭제되며, 모든 데이타는 복구가 불가능합니다.")
             ZStack{
                 Rectangle()
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.fillTertiary)
                     .frame(height: 60)
                     .cornerRadius(10)
                 VStack(alignment:.leading) {
