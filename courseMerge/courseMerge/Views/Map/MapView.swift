@@ -187,7 +187,7 @@ struct MemberCustomDisclosureGroup: View {
                 }
                 .padding()
                 .padding(.top, -8)
-                .background(Color.white.opacity(0.5))
+                .background(Color.white.opacity(0.8))
             }
             
             Button {
@@ -204,7 +204,7 @@ struct MemberCustomDisclosureGroup: View {
                     Spacer()
                 }
                 .frame(height: 20)
-                .background(Color.white.opacity(expanded ? 0.5 : 1))
+                .background(Color.white.opacity(expanded ? 0.8 : 1))
             }
             .padding(.top, -8)
             
@@ -254,32 +254,6 @@ struct CurrentLocationAndUpdateCourseButton: View {
                 .padding(.bottom, 50)
                 .padding(.trailing, 20)
 
-            }
-        }
-    }
-}
-
-/// 코스변경하기 버튼
-struct UpdateCourseButton: View {
-    var body: some View {
-        VStack {
-            Spacer()
-            
-            HStack {
-                Button {
-                    // change view
-                } label: {
-                    Text("코스변경하기")
-                        .foregroundColor(.white)
-                }
-//                .padding(.bottom, 50)
-                .padding(.trailing, 20)
-                .frame(width: 200, height: 60)
-                .font(.system(size: 15))
-                .background(Color.blue)
-                .cornerRadius(20)
-                
-                Spacer()
             }
         }
     }
@@ -348,7 +322,8 @@ struct IconView: View {
             }
             
             Text(label)
-                .font(.caption)
+                .font(.system(size: 11))
+                .foregroundColor(.black)
         }
         .background(
             GeometryReader { geometry in
