@@ -45,18 +45,20 @@ import SwiftUI
 struct MemberDetailView: View {
     //공유 시트
     @State private var isSharingSheetPresented = false
-    
+    //구성원 수정 시트 뷰모델
+    @State private var isModifySheetPresented = false
+
     var body: some View {
         
         VStack{
-            PartyInfoControllView()
+            PartyInfoControllView(isModifySheetPresented: $isModifySheetPresented)
             AddMemberProfileView(isSharingSheetPresented: $isSharingSheetPresented)
             
         }
         .padding(10)
-//        .sheet(isPresented: $ismodiftyPartySheet){
-//            MemberDetailSettingSheet(ismodiftyPartySheet: $ismodiftyPartySheet)
-//        }
+        .sheet(isPresented: $isModifySheetPresented) {
+            MemberModifySheet()
+        }
         .background(
             AppSharingSheet(
                 isPresented: $isSharingSheetPresented,
@@ -68,9 +70,11 @@ struct MemberDetailView: View {
 }
 
 struct PartyInfoControllView: View {
-    //뷰모델에서 데이터 가져오기
+    
+    @Binding var isModifySheetPresented: Bool
     
     @State private var partyDescr: String = "내용을 입력하세요."
+    @State private var activatedPartyTitle: String = "제주도 파티"
     //설명 열고 닫기
     @State private var isDescrExpanded: Bool = false
     //호스트 표시
@@ -108,7 +112,7 @@ struct PartyInfoControllView: View {
                 HStack{
                     VStack(alignment: .leading){
                         //2024.6.11 작성한 파티 타이틀이 들어가야 함. (미작업)
-                        Text("ex 제주도 파티")
+                        Text(activatedPartyTitle)
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.labelsPrimary)
@@ -122,7 +126,7 @@ struct PartyInfoControllView: View {
                     Spacer()
                     
                     Button(action: {
-                       // ismodiftyPartySheet = true
+                        isModifySheetPresented = true
                     }, label: {
                         Text("Edit")
                     })
@@ -186,7 +190,6 @@ struct AddMemberProfileView: View {
                     }, label: {
                         VStack{
                             ZStack{
-                                //Circle().fill(Color(index.usercolor))
                                 Circle().fill(Color.stringToColor((index.usercolor)))
                                     .frame(width: 80, height: 80)
                                 Image("ProfileMark")

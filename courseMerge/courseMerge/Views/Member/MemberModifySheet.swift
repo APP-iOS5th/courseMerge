@@ -1,18 +1,14 @@
 //
-//  MemberPartySettingSheet.swift
+//  MemberModifySheet.swift
 //  CourseMerge
 //
-//  Created by Heeji Jung on 6/10/24.
+//  Created by Heeji Jung on 6/11/24.
 //
 
 import SwiftUI
-
-struct MemberDetailSettingSheet: View {
-   
+struct MemberModifySheet: View {
     @Environment(\.presentationMode) var presentMode
     
-    //@Binding var ismodiftyPartySheet: Bool
-    @Binding var isCreatePartySheet: Bool
     //파티(모임) 제목 enumtype으로 빼기
     @State private var partytitle = " 내용을 입력하세요.(필수)"
     //파티(모임) 제목 폰트 컬러
@@ -58,13 +54,12 @@ struct MemberDetailSettingSheet: View {
                         }
                         .foregroundColor(partyDescrColor)
                     
-                    DatePickerInputArea()
-    
+                    ModifyDatePickerInputArea()
                     
                 }
             }
             .padding(.horizontal)
-            .navigationBarTitle("test", displayMode: .inline)
+            .navigationBarTitle("파티 수정", displayMode: .inline)
             .navigationBarItems(
                 leading: Button("Cancel") {
                     presentMode.wrappedValue.dismiss()
@@ -78,7 +73,7 @@ struct MemberDetailSettingSheet: View {
     }
 }
 
-struct DatePickerInputArea: View {
+struct ModifyDatePickerInputArea: View {
     //시작일
     @State private var startDate = Date()
     //종료일
@@ -87,8 +82,8 @@ struct DatePickerInputArea: View {
     @State private var activeDatePicker: EActiveDatePicker? = nil
     
     enum EActiveDatePicker {
-           case startDate
-           case endDate
+        case startDate
+        case endDate
     }
     
     //Datepicer - startDate
@@ -150,7 +145,7 @@ struct DatePickerInputArea: View {
             }
             .padding(.leading,  5)
         }
-       
+        
         
         if activeDatePicker == .startDate  {
             DatePicker("시작일",selection: $startDate,displayedComponents: .date)
@@ -161,7 +156,7 @@ struct DatePickerInputArea: View {
         }
         
         if activeDatePicker == .endDate {
-            DatePicker("종료일",selection: $endDate,displayedComponents: .date)             
+            DatePicker("종료일",selection: $endDate,displayedComponents: .date)
                 .datePickerStyle(.graphical)
                 .padding(20)
                 .id("endDatePicker")
@@ -171,7 +166,7 @@ struct DatePickerInputArea: View {
         
         Spacer()
     }
-        
+    
     
     
     private func formatDate(_ date: Date) -> String {
@@ -181,6 +176,13 @@ struct DatePickerInputArea: View {
     }
 }
 
+//struct MemberModifySheet: View {
+//    var body: some View {
+//        
+//        
+//    }
+//    
+//}
 #Preview {
-    MemberDetailSettingSheet(isCreatePartySheet:.constant(false))
+    MemberModifySheet()
 }
