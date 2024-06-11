@@ -47,35 +47,37 @@ struct PartyInfoView: View {
     var body: some View{
         HStack {
             //샘플
-            VStack {
-                ZStack {
-                    Circle().fill(.pastelRed)
-                        .frame(width: 100, height: 100)
-                    Image("ProfileMark")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 40, height: 40)
-                    if hasCrown {
-                        Image(systemName: "crown.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
-                            .background(Color.yellow)
-                            .clipShape(Circle())
-                            .offset(x: 30, y: 35)
-                    }
+//            VStack {
+//                ZStack {
+//                    Circle().fill(.pastelRed)
+//                        .frame(width: 100, height: 100)
+//                    Image("ProfileMark")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
+//                        .frame(width: 40, height: 40)
+//                    if hasCrown {
+//                        Image(systemName: "crown.fill")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 30, height: 30)
+//                            .foregroundColor(.white)
+//                            .background(Color.yellow)
+//                            .clipShape(Circle())
+//                            .offset(x: 30, y: 35)
+//                    }
+//            
+//                }
+//                //2024.6.11 호스트 이름이 들어가야 함. (미작업)
+//                Text("별빛여우")
+//                    .foregroundStyle(.labelsPrimary)
+//            }
             
-                }
-                //2024.6.11 호스트 이름이 들어가야 함. (미작업)
-                Text("별빛여우")
-                    .foregroundStyle(.labelsPrimary)
-            }
+            ProfileView(user: userViewModel.users.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50)
             
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
-                        //2024.6.11 작성한 파티 타이틀이 들어가야 함. (미작업)
+                        // 2024.6.11 작성한 파티 타이틀이 들어가야 함. (미작업)
                         Text("ex 제주도 파티")
                             .font(.title)
                             .fontWeight(.semibold)

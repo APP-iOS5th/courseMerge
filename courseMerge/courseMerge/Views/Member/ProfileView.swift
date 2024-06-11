@@ -35,19 +35,19 @@ struct ProfileView: View {
                             HStack {
                                 Spacer()
                                 Image("custom.crown.circle.fill")
+                                    
                             }
                         }
-                    } 
-//                    else if user.uid == userViewModel.currentUserUID {
-//                        // host 일 경우에는 무조건 crown. 본인 경우에는 person. 그 외는 x
-//                        VStack {
-//                            Spacer()
-//                            HStack {
-//                                Spacer()
-//                                Image("user_profil_mark")
-//                            }
-//                        }
-//                    }
+                    } else if user.uid == userViewModel.currentUserUID {
+                        // host 일 경우에는 무조건 crown. 본인 경우에는 person. 그 외는 x
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                Image("user_profil_mark")
+                            }
+                        }
+                    }
                 }
             
             // name
