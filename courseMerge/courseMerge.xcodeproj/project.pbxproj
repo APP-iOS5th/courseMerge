@@ -17,6 +17,7 @@
 		78C24FCA2C16989D007DAF99 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C24FC92C16989D007DAF99 /* MapView.swift */; };
 		9707CB152C172F4B0011C3E2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9707CB142C172F4B0011C3E2 /* ChatView.swift */; };
 		9707CB172C173D370011C3E2 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9707CB162C173D370011C3E2 /* RoundedCorner.swift */; };
+		9707CB192C17D3E10011C3E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9707CB182C17D3E10011C3E2 /* GoogleService-Info.plist */; };
 		9708BCE02C169F5F0025C7DA /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9708BCDF2C169F5F0025C7DA /* CategoryItem.swift */; };
 		970B7CBD2C168D31003CB335 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CBC2C168D31003CB335 /* SearchView.swift */; };
 		970B7CBF2C168D3B003CB335 /* SearchResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CBE2C168D3B003CB335 /* SearchResultDetailView.swift */; };
@@ -54,6 +55,7 @@
 		78EDDE042C1694B0009C4EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9707CB142C172F4B0011C3E2 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		9707CB162C173D370011C3E2 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		9707CB182C17D3E10011C3E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9708BCDF2C169F5F0025C7DA /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		970B7CBC2C168D31003CB335 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		970B7CBE2C168D3B003CB335 /* SearchResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDetailView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		9717A3982C15CF4E00B92765 /* CourseMerge */ = {
 			isa = PBXGroup;
 			children = (
+				9707CB182C17D3E10011C3E2 /* GoogleService-Info.plist */,
 				78EDDE042C1694B0009C4EDF /* Info.plist */,
 				9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */,
 				9717A3C82C1687AE00B92765 /* Models */,
@@ -279,7 +282,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */;
+			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -304,6 +307,7 @@
 			files = (
 				9717A3A12C15CF5000B92765 /* Preview Assets.xcassets in Resources */,
 				9717A39E2C15CF5000B92765 /* Assets.xcassets in Resources */,
+				9707CB192C17D3E10011C3E2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +550,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */ = {
+		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9717A3A22C15CF5000B92765 /* Debug */,
