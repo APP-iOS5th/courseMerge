@@ -42,7 +42,7 @@ struct HeaderView: View {
             HStack {
                 PartySelectionButton()
                 PartyDateSelectionPicker()
-                PlaceSearchButton()
+                PlaceSearchButton(isShowSearchViewModal: $isShowSearchViewModal)
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
             .frame(height: 48)
@@ -121,9 +121,11 @@ struct PartyDateSelectionPicker: View {
 
 /// 장소검색버튼
 struct PlaceSearchButton: View {
+    @Binding var isShowSearchViewModal: Bool
+    
     var body: some View {
         Button {
-            // TODO: 검색화면 연결
+            isShowSearchViewModal = true
         } label: {
             Image(systemName: "magnifyingglass")
                 .padding()
