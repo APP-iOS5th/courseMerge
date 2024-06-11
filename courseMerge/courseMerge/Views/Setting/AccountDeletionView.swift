@@ -50,8 +50,13 @@ struct AccountDeletionView: View {
             }
             .buttonStyle(.borderedProminent)
             .disabled(flag)
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("탈퇴하기"), dismissButton: .destructive(Text("확인")))
+            .alert("탈퇴하기", isPresented: $showAlert) {
+                Button(role: .destructive) {
+//                    SignInWithAppleButtonView()
+                    print("signInWithApple")
+                } label: {
+                    Text("탈퇴하기")
+                }
             }
         }
         .navigationTitle("회원탈퇴")
