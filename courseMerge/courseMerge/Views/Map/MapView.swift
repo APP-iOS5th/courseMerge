@@ -17,19 +17,20 @@ struct MapView: View {
     )
     
     var body: some View {
-        ZStack {
-            
-            Map(coordinateRegion: $region, showsUserLocation: true)
-            
-            VStack {
-                HeaderView()
-                Spacer()
+        NavigationStack {
+            ZStack {
+                Map(coordinateRegion: $region, showsUserLocation: true)
+                
+                VStack {
+                    HeaderView()
+                    Spacer()
+                }
+                
+                CurrentLocationAndUpdateCourseButton(locationManager: locationManager, region: $region)
             }
-            
-            CurrentLocationButton(locationManager: locationManager, region: $region)
-        }
-        .onAppear {
-            locationManager.requestLocation()
+            .onAppear {
+                locationManager.requestLocation()
+            }
         }
     }
 }
@@ -191,7 +192,7 @@ struct MemberCustomDisclosureGroup: View {
 }
 
 /// 현재위치 버튼
-struct CurrentLocationButton: View {
+struct CurrentLocationAndUpdateCourseButton: View {
     @ObservedObject var locationManager: LocationManager
     @Binding var region: MKCoordinateRegion
 
@@ -218,6 +219,44 @@ struct CurrentLocationButton: View {
                 }
                 .padding(.bottom, 50)
                 .padding(.leading, 20)
+                
+                Spacer()
+                
+                NavigationLink(destination: UpdateCourseView()) {
+                    Text("코스변경하기")
+                        .foregroundColor(.white)
+                        .frame(width: 132, height: 50)
+                        .background(Color.blue)
+                        .cornerRadius(12)
+                        .font(.system(size: 17))
+                }
+                .padding(.bottom, 50)
+                .padding(.trailing, 20)
+
+            }
+        }
+    }
+}
+
+/// 코스변경하기 버튼
+struct UpdateCourseButton: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            
+            HStack {
+                Button {
+                    // change view
+                } label: {
+                    Text("코스변경하기")
+                        .foregroundColor(.white)
+                }
+//                .padding(.bottom, 50)
+                .padding(.trailing, 20)
+                .frame(width: 200, height: 60)
+                .font(.system(size: 15))
+                .background(Color.blue)
+                .cornerRadius(20)
                 
                 Spacer()
             }
