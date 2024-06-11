@@ -16,8 +16,6 @@ struct testMapView: View {
     
     @State private var isFirstCourse: Bool = false
     
-    
-    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
