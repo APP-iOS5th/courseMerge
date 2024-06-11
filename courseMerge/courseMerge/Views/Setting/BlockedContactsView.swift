@@ -29,7 +29,6 @@ struct BlockedContactsView: View {
                 Button("추가하기...") {
                    let newItem = BlockedItem(text: "1335")
                     blockedList.append(newItem)
-                    print(blockedList.last?.text ?? "default")
                 }
             }
             .navigationDestination(for: String.self) { text in
@@ -49,7 +48,7 @@ struct BlockedContactsView: View {
     }//body
     
     func unblockItem(at offsets: IndexSet) {
-        
+        blockedList.remove(atOffsets: offsets)
     }
 }
 
