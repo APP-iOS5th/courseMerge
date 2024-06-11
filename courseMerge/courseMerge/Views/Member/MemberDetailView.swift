@@ -97,7 +97,8 @@ struct AddMemberProfileView: View {
                     //공유 링크가 나오고
                     //접속 해야지 추가...
                     //
-                    profilebtns.append(User(username: "New User", usercolor: ".pastelBlue", isHost:false))
+                   
+                    profilebtns.append(User(username: "New User", usercolor: User.allColors().randomElement() ?? ".gray", isHost: false))
                 }, label: {
                     VStack{
                         ZStack{
@@ -119,8 +120,12 @@ struct AddMemberProfileView: View {
                     }, label: {
                         VStack{
                             ZStack{
-                                //Circle().fill(Color("\(index.usercolor)")) //컬러 수정 필요
-                                Circle().fill(.pastelBlue) //컬러 수정필요하다... 색을 못 읽어온다...
+                                
+                                Circle().fill(Color("\(index.usercolor)")) //컬러 수정 필요
+//                                Circle().fill(
+//                                    Color("\(colors)"))
+                                //Circle().fill(
+                                    //olor(.pastelYellow))
                                     .frame(width: 80, height: 80)
                                 Image("ProfileMark")
                                     .resizable()
@@ -131,6 +136,19 @@ struct AddMemberProfileView: View {
                                 .foregroundStyle(.labelsPrimary)
                         }
                     })
+                    .contextMenu{
+                        Button(action:{
+                            print("우리 말로 하자..")
+                        }){
+                            Label("대화하기", systemImage: "message")
+                                .foregroundColor(.labelsPrimary)
+                        }
+                        Button(role: .destructive ,action:{
+                            print("그냥 나가라... 삭제 완 ><")
+                        }){
+                            Label("삭제하기", systemImage: "trash")
+                        }
+                    }
                 }
             }
         }}
