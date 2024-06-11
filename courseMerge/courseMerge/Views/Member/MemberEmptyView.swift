@@ -9,8 +9,10 @@ import SwiftUI
 
 struct MemberEmptyView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     // 화면에 시트를 표시 여부 확인
-    @State private var showCreatePartySheet = false
+    @State private var isCreatePartySheet = false
     
     // 파티 가입 여부 확인
     @State private var isPartyJoined = false
@@ -30,7 +32,7 @@ struct MemberEmptyView: View {
                 .padding()
             
             Button(action: {
-                showCreatePartySheet = true
+                isCreatePartySheet = true
             }) {
                 Text("새 파티 만들기")
                     .fontWeight(.bold)
@@ -58,8 +60,8 @@ struct MemberEmptyView: View {
             }
             .padding()
         }
-        .sheet(isPresented: $showCreatePartySheet) {
-            MemberDetailSettingSheet()
+        .sheet(isPresented: $isCreatePartySheet) {
+            MemberDetailSettingSheet(isCreatePartySheet: $isCreatePartySheet)
         }
     }
 }

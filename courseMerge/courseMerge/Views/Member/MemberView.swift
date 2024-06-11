@@ -10,7 +10,8 @@ import SwiftUI
 struct MemberView: View {
     
     @State private var createdParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties
-    
+    @Environment(\.colorScheme) var colorScheme
+        
     var body: some View {
         NavigationView {
             VStack {

@@ -138,7 +138,6 @@
 				9707CB1D2C17DE4C0011C3E2 /* CourseMerge.entitlements */,
 				9707CB232C17EA8E0011C3E2 /* GoogleService-Info.plist */,
 				78EDDE042C1694B0009C4EDF /* Info.plist */,
-				9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */,
 				9717A3C82C1687AE00B92765 /* Models */,
 				9717A3C72C1687AC00B92765 /* Extensions */,
 				9717A3C62C1687A900B92765 /* ViewModels */,
@@ -264,6 +263,7 @@
 		9717A3C82C1687AE00B92765 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */,
 				9717A3CF2C16885F00B92765 /* model.swift */,
 				9708BCDF2C169F5F0025C7DA /* CategoryItem.swift */,
 				97FD63552C16D7E30080438A /* MapDetailItem.swift */,

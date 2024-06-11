@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct MemberDetailSettingSheet: View {
-    // 시트 작동을 위한 상태 변수
+   
     @Environment(\.presentationMode) var presentMode
     
+    //@Binding var ismodiftyPartySheet: Bool
+    @Binding var isCreatePartySheet: Bool
     //파티(모임) 제목 enumtype으로 빼기
     @State private var partytitle = " 내용을 입력하세요.(필수)"
     //파티(모임) 제목 폰트 컬러
@@ -19,7 +21,8 @@ struct MemberDetailSettingSheet: View {
     @State private var partyDescr = "내용을 입력하세요."
     //파티(모임) 설명 폰트 컬러
     @State private var partyDescrColor: Color = .labelsTertiary
-
+    
+    @State private var createdParties: [GroupPartyInfo] = []
     
     var body: some View {
         NavigationView {
@@ -179,5 +182,5 @@ struct DatePickerInputArea: View {
 }
 
 #Preview {
-    MemberDetailSettingSheet()
+    MemberDetailSettingSheet(isCreatePartySheet:.constant(false))
 }
