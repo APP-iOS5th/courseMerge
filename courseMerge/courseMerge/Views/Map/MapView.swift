@@ -7,23 +7,28 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct MapView: View {
+    @StateObject private var locationManager = LocationManager()
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780),
+        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
     
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $region)
+            Map(coordinateRegion: $region, showsUserLocation: true)
             
             VStack {
                 HeaderView()
                 Spacer()
             }
             
-            CurrentLocationButton()
+            CurrentLocationButton(locationManager: locationManager, region: $region)
+        }
+        .onAppear {
+            locationManager.requestLocation()
         }
     }
 }
@@ -184,13 +189,22 @@ struct MemberCustomDisclosureGroup: View {
 
 /// 현재위치 버튼
 struct CurrentLocationButton: View {
+    @ObservedObject var locationManager: LocationManager
+    @Binding var region: MKCoordinateRegion
+
     var body: some View {
         VStack {
             Spacer()
+            
             HStack {
-                Button(action: {
-                    print("현재위치버튼 클릭")
-                }) {
+                Button {
+                    if let userLocation = locationManager.location?.coordinate {
+                        region = MKCoordinateRegion(
+                            center: userLocation,
+                            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                        )
+                    }
+                } label: {
                     Image(systemName: "location.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
@@ -201,6 +215,7 @@ struct CurrentLocationButton: View {
                 }
                 .padding(.bottom, 50)
                 .padding(.leading, 20)
+                
                 Spacer()
             }
         }
@@ -281,24 +296,6 @@ struct IconView: View {
         )
     }
 }
-
-struct IconData {
-    var color: Color
-    var iconName: String
-    var label: String
-    var hasCrown: Bool
-    var hasPerson: Bool
-}
-
-let iconData: [IconData] = [
-    IconData(color: .black, iconName: "Main", label: "Main", hasCrown: false, hasPerson: false),
-    IconData(color: .red, iconName: "별빛여우", label: "별빛여우", hasCrown: true, hasPerson: false),
-    IconData(color: .orange, iconName: "달빛도깨비", label: "달빛도깨비", hasCrown: false, hasPerson: true),
-    IconData(color: .yellow, iconName: "무지개코끼리", label: "무지개코끼리", hasCrown: false, hasPerson: false),
-    IconData(color: .green, iconName: "개코원숭이", label: "개코원숭이", hasCrown: false, hasPerson: false),
-    IconData(color: .purple, iconName: "악어모가지", label: "악어모가지", hasCrown: false, hasPerson: false),
-    IconData(color: .brown, iconName: "기린발톱", label: "기린발톱", hasCrown: false, hasPerson: false)
-]
 
 #Preview {
     MapView()
