@@ -49,7 +49,9 @@
 		97BBA25F2C18226200893A77 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBA25E2C18226200893A77 /* UserViewModel.swift */; };
 		97BBA2612C18384E00893A77 /* PartyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBA2602C18384D00893A77 /* PartyViewModel.swift */; };
 		97FD63562C16D7E30080438A /* MapDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD63552C16D7E30080438A /* MapDetailItem.swift */; };
-		EA4D62B72C16B9D1003EA8EB /* MemberDetailSettingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62B62C16B9D1003EA8EB /* MemberDetailSettingSheet.swift */; };
+		EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */; };
+		EA3C38D62C183499005EE040 /* MemberAddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D52C183499005EE040 /* MemberAddSheet.swift */; };
+		EA3C38D82C1834AC005EE040 /* MemberModifySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D72C1834AC005EE040 /* MemberModifySheet.swift */; };
 		EA4D62B92C16DFE8003EA8EB /* MemberEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */; };
 		EA4D62BD2C16E2C3003EA8EB /* GroupPartyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BC2C16E2C3003EA8EB /* GroupPartyItem.swift */; };
 		EA4D62BF2C16E53A003EA8EB /* MemberDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */; };
@@ -100,7 +102,9 @@
 		97BBA25E2C18226200893A77 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		97BBA2602C18384D00893A77 /* PartyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyViewModel.swift; sourceTree = "<group>"; };
 		97FD63552C16D7E30080438A /* MapDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailItem.swift; sourceTree = "<group>"; };
-		EA4D62B62C16B9D1003EA8EB /* MemberDetailSettingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailSettingSheet.swift; path = courseMerge/Views/Member/MemberDetailSettingSheet.swift; sourceTree = SOURCE_ROOT; };
+		EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailViewModel.swift; path = courseMerge/ViewModels/MemberDetailViewModel.swift; sourceTree = SOURCE_ROOT; };
+		EA3C38D52C183499005EE040 /* MemberAddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberAddSheet.swift; path = courseMerge/Views/Member/MemberAddSheet.swift; sourceTree = SOURCE_ROOT; };
+		EA3C38D72C1834AC005EE040 /* MemberModifySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberModifySheet.swift; path = courseMerge/Views/Member/MemberModifySheet.swift; sourceTree = SOURCE_ROOT; };
 		EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberEmptyView.swift; path = courseMerge/Views/Member/MemberEmptyView.swift; sourceTree = SOURCE_ROOT; };
 		EA4D62BC2C16E2C3003EA8EB /* GroupPartyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupPartyItem.swift; path = courseMerge/Models/GroupPartyItem.swift; sourceTree = SOURCE_ROOT; };
 		EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailView.swift; path = courseMerge/Views/Member/MemberDetailView.swift; sourceTree = SOURCE_ROOT; };
@@ -154,6 +158,7 @@
 				78EDDE042C1694B0009C4EDF /* Info.plist */,
 				9717A3992C15CF4E00B92765 /* CourseMergeApp.swift */,
 				9717A3C82C1687AE00B92765 /* Models */,
+				EA3C38D02C1823C7005EE040 /* Utils */,
 				9717A3C72C1687AC00B92765 /* Extensions */,
 				9717A3C62C1687A900B92765 /* ViewModels */,
 				9717A3C42C16879800B92765 /* APIs */,
@@ -193,7 +198,8 @@
 				975B97202C1844BE005090C4 /* ProfileView.swift */,
 				EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */,
 				EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */,
-				EA4D62B62C16B9D1003EA8EB /* MemberDetailSettingSheet.swift */,
+				EA3C38D52C183499005EE040 /* MemberAddSheet.swift */,
+				EA3C38D72C1834AC005EE040 /* MemberModifySheet.swift */,
 				EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */,
 			);
 			path = Member;
@@ -268,6 +274,7 @@
 				97BBA2602C18384D00893A77 /* PartyViewModel.swift */,
 				97BBA25E2C18226200893A77 /* UserViewModel.swift */,
 				97B6AE272C17F3E300595C12 /* AuthViewModel.swift */,
+				EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -293,6 +300,13 @@
 				787C94502C17F27A00069603 /* IconData.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EA3C38D02C1823C7005EE040 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,7 +396,6 @@
 				97B6AE2A2C1800AF00595C12 /* Message.swift in Sources */,
 				97BBA25D2C1821CE00893A77 /* SignInWithAppleButtonView.swift in Sources */,
 				9707CB172C173D370011C3E2 /* RoundedCorner.swift in Sources */,
-				EA4D62B72C16B9D1003EA8EB /* MemberDetailSettingSheet.swift in Sources */,
 				EA4D62B92C16DFE8003EA8EB /* MemberEmptyView.swift in Sources */,
 				97BBA2612C18384E00893A77 /* PartyViewModel.swift in Sources */,
 				786D27CB2C174006007186CB /* LocationManager.swift in Sources */,
@@ -392,6 +405,7 @@
 				787C94512C17F27A00069603 /* IconData.swift in Sources */,
 				3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */,
 				97B6AE282C17F3E300595C12 /* AuthViewModel.swift in Sources */,
+				EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */,
 				3D349C352C16D5090092E10C /* PrivacyPolicyView.swift in Sources */,
 				9717A3BD2C15D36200B92765 /* MemberView.swift in Sources */,
 				9717A3CA2C16882000B92765 /* test.swift in Sources */,
@@ -408,6 +422,8 @@
 				970B7CBD2C168D31003CB335 /* SearchView.swift in Sources */,
 				9717A3CE2C16885700B92765 /* color.swift in Sources */,
 				9717A3BB2C15D35A00B92765 /* ChatListView.swift in Sources */,
+				EA3C38D62C183499005EE040 /* MemberAddSheet.swift in Sources */,
+				EA3C38D82C1834AC005EE040 /* MemberModifySheet.swift in Sources */,
 				3D349C332C16D4110092E10C /* BlockedContactsView.swift in Sources */,
 				9717A3CC2C16883900B92765 /* viewModel.swift in Sources */,
 				3D349C3B2C16D68C0092E10C /* ReportView.swift in Sources */,

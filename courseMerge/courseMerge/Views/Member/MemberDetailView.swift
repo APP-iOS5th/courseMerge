@@ -12,16 +12,21 @@ import SwiftUI
 struct MemberDetailView: View {
     @State private var isSharingSheetPresented = false
     @StateObject private var userViewModel = UserViewModel()
+    //구성원 수정 시트 뷰모델
+    @State private var isModifySheetPresented = false
 
     var body: some View {
         
         VStack{
-            PartyInfoView()
+            PartyInfoView(isModifySheetPresented: $isModifySheetPresented)
             
             MemberGridView(isSharingSheetPresented: $isSharingSheetPresented)
         }
         .environmentObject(userViewModel)
         .padding(10)
+        .sheet(isPresented: $isModifySheetPresented) {
+            MemberModifySheet()
+        }
         .background(
             AppSharingSheet(
                 isPresented: $isSharingSheetPresented,
@@ -37,8 +42,10 @@ struct MemberDetailView: View {
 
 struct PartyInfoView: View {
     @EnvironmentObject var userViewModel: UserViewModel
+    @Binding var isModifySheetPresented: Bool
 
     @State private var partyDescr: String = "내용을 입력하세요."
+    @State private var activatedPartyTitle: String = "제주도 파티"
     //설명 열고 닫기
     @State private var isDescrExpanded: Bool = false
     //호스트 표시
@@ -92,7 +99,7 @@ struct PartyInfoView: View {
                     Spacer()
                     
                     Button(action: {
-                       // ismodiftyPartySheet = true
+                        isModifySheetPresented = true
                     }, label: {
                         Text("Edit")
                     })
