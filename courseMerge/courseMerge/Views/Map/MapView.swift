@@ -29,6 +29,8 @@ struct MapView: View {
 }
 
 struct HeaderView: View {
+    @State private var isShowSearchViewModal: Bool = false
+    
     var body: some View {
         VStack {
             HStack {
