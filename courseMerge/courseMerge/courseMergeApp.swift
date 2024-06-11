@@ -39,14 +39,4 @@ struct CourseMergeApp: App {
     }
 }
 
-class AuthViewModel: ObservableObject {
-    @Published var isSignedIn: Bool = false
-    
-    func checkSignInStatus() {
-        if Auth.auth().currentUser != nil {
-            self.isSignedIn = true
-        } else {
-            self.isSignedIn = false
-        }
-    }
-}
+

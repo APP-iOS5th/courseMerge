@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     var body: some View {
         TabView {
             MemberView()
@@ -30,6 +32,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("설정", systemImage: "gearshape.fill")
                 }
+                .environmentObject(authViewModel)
         }
     }
 }
