@@ -15,6 +15,8 @@ struct MapView: View {
         center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
+    @State private var activatedPartyName: String = ""
+    @State private var isShowAlert: Bool = true
     
     var body: some View {
         NavigationStack {
@@ -22,7 +24,7 @@ struct MapView: View {
                 Map(coordinateRegion: $region, showsUserLocation: true)
                 
                 VStack {
-                    HeaderView()
+                    HeaderView(activatedPartyName: $activatedPartyName)
                     Spacer()
                 }
                 
@@ -30,6 +32,24 @@ struct MapView: View {
             }
             .onAppear {
                 locationManager.requestLocation()
+                
+                if activatedPartyName.isEmpty {
+                    isShowAlert = true
+                } else {
+                    isShowAlert = false
+                }
+            }
+            .alert("알림", isPresented: $isShowAlert) {
+                Button("지금 안해요", role: .cancel) {
+                    isShowAlert = false
+                }
+                NavigationLink(destination: MemberView()) {
+                    Text("추가")
+                        .font(.system(size: 17))
+                        .fontWeight(.semibold)
+                }
+            } message: {
+                Text("현재 참여중인 파티가 없습니다.\n파티를 추가하시겠어요?")
             }
         }
     }
@@ -37,11 +57,12 @@ struct MapView: View {
 
 struct HeaderView: View {
     @State private var isShowSearchViewModal: Bool = false
+    @Binding var activatedPartyName: String
     
     var body: some View {
         VStack {
             HStack {
-                PartySelectionButton()
+                PartySelectionButton(activatedPartyName: $activatedPartyName)
                 PartyDateSelectionPicker()
                 PlaceSearchButton(isShowSearchViewModal: $isShowSearchViewModal)
             }
@@ -65,7 +86,7 @@ struct HeaderView: View {
 /// 파티를 선택할 수 있는 버튼(actionSheet)
 struct PartySelectionButton: View {
     @State private var showingActionSheet = false
-    @State private var activatedPartyName: String = "제주도 파티"
+    @Binding var activatedPartyName: String
     
     var body: some View {
         Button {
