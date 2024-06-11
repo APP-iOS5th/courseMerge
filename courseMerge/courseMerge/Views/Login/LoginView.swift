@@ -12,9 +12,9 @@ import AuthenticationServices
 import CryptoKit
 
 struct LoginView: View {
-    
+    @EnvironmentObject var authViewModel: AuthViewModel
     @Environment(\.colorScheme) var colorScheme
-    
+
     var body: some View {
         
         VStack {
@@ -44,13 +44,16 @@ struct LoginView: View {
                 .padding(.top,20)
             
             // 애플 로그인 버튼
-            if colorScheme == .light {
-                SignInWithAppleButtonView()
-                    .signInWithAppleButtonStyle(.black)
-            } else {
-                SignInWithAppleButtonView()
-                    .signInWithAppleButtonStyle(.white)
+            Group {
+                if colorScheme == .light {
+                    SignInWithAppleButtonView()
+                        .signInWithAppleButtonStyle(.black)
+                } else {
+                    SignInWithAppleButtonView()
+                        .signInWithAppleButtonStyle(.white)
+                }
             }
+            .environmentObject(authViewModel)
         }
     }
 }
@@ -75,7 +78,8 @@ struct LoginView: View {
 
 struct SignInWithAppleButtonView: View {
     @State private var currentNonce: String?
-    
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     var body: some View {
         SignInWithAppleButton(
             .signUp,
@@ -117,7 +121,7 @@ struct SignInWithAppleButtonView: View {
                     return
                 }
                 print("User is signed in to Firebase with Apple.")
-                // Handle successful sign in here
+                self.authViewModel.isSignedIn = true    // ContentView 로 이동!!!
                 if let fullName = appleIDCredential.fullName {
                     let displayName = "\(fullName.givenName ?? "") \(fullName.familyName ?? "")"
                     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()

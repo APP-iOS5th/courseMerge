@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseCore
+import FirebaseAuth
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
@@ -19,10 +20,33 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct CourseMergeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
+    @StateObject private var authViewModel = AuthViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            Group {
+                if authViewModel.isSignedIn {
+                    ContentView()
+                } else {
+                    LoginView()
+                }
+            }
+            .environmentObject(authViewModel)
+            .onAppear {
+                authViewModel.checkSignInStatus()
+            }
+        }
+    }
+}
+
+class AuthViewModel: ObservableObject {
+    @Published var isSignedIn: Bool = false
+    
+    func checkSignInStatus() {
+        if Auth.auth().currentUser != nil {
+            self.isSignedIn = true
+        } else {
+            self.isSignedIn = false
         }
     }
 }

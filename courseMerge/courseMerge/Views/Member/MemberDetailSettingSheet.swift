@@ -35,7 +35,7 @@ struct MemberDetailSettingSheet: View {
                         .frame(width:  361, height: 65)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: partytitle) { newValue in
+                        .onChange(of: partytitle) { _, newValue in
                             partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
                         }
                         .foregroundColor(partyTitleColor)
@@ -50,7 +50,7 @@ struct MemberDetailSettingSheet: View {
                         .scrollContentBackground(.hidden)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: partyDescr) { newValue in
+                        .onChange(of: partyDescr) { _, newValue in
                             partyDescrColor = newValue.isEmpty ? .labelsPrimary : .labelsPrimary
                         }
                         .foregroundColor(partyDescrColor)
