@@ -18,10 +18,17 @@ struct MapView: View {
     @State private var activatedPartyName: String = "제주도 파티"
     @State private var isShowAlert: Bool = true
     
+    @State private var cameraPosition = MapCameraPosition.region(MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 37.9033, longitude: 127.0606),
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    ))
+    
     var body: some View {
         NavigationStack {
             ZStack {
-                Map(coordinateRegion: $region, showsUserLocation: true)
+                Map(position: $cameraPosition)
+                    .ignoresSafeArea()
+                
                 
                 VStack {
                     HeaderView(activatedPartyName: $activatedPartyName)
@@ -82,12 +89,12 @@ struct HeaderView: View {
 }
 
 
-
 /// 파티를 선택할 수 있는 버튼(actionSheet)
 struct PartySelectionButton: View {
     @State private var showingActionSheet = false
     @Binding var activatedPartyName: String
-    
+    @State private var exampleParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties
+
     var body: some View {
         Button {
             self.showingActionSheet = true
@@ -103,24 +110,23 @@ struct PartySelectionButton: View {
             .font(.system(size: 15))
             .background(Color.blue)
             .cornerRadius(20)
-            .actionSheet(isPresented: $showingActionSheet) {
-                ActionSheet(
-                    title: Text("파티를 선택해주세요"),
-                    message: nil,
-                    // TODO: 버튼 텍스트에 fontWeight 안들어감 ㅂㄷㅂㄷ
-                    buttons: [
-                        .default(Text("제주도 파티").fontWeight(.bold), action: {
-                            self.activatedPartyName = "제주도 파티"
-                        }),
-                        .default(Text("은평구 파티").fontWeight(.regular), action: {
-                            self.activatedPartyName = "은평구 파티"
-                        }),
-                        .default(Text("동두천 파티").fontWeight(.regular), action: {
-                            self.activatedPartyName = "동두천 파티"
-                        }),
-                        .cancel(Text("Cancel"))
-                    ]
-                )
+            .confirmationDialog(
+                "파티를 선택해주세요",
+                isPresented: $showingActionSheet, titleVisibility: .visible,presenting: exampleParties
+            ) { parties in
+                ForEach(parties) { party in
+                    Button {
+                        self.activatedPartyName = party.title
+                    } label: {
+                        if party.title == activatedPartyName {
+                            Text(party.title)
+                                .fontWeight(.bold)
+                        } else {
+                            Text(party.title)
+                        }
+                    }
+                }
+                Button("Cancel", role: .cancel) {}
             }
         }
     }
