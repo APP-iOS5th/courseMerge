@@ -12,36 +12,59 @@ import CoreLocation
 struct MapView: View {
     @StateObject private var locationManager = LocationManager()
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
+        center: CLLocationCoordinate2D(latitude: 37.9033, longitude: 127.0606),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
+    @State private var activatedPartyName: String = "제주도 파티"
+    @State private var isShowAlert: Bool = true
     
     var body: some View {
-        ZStack {
-            Map(coordinateRegion: $region, showsUserLocation: true)
-            
-            VStack {
-                HeaderView()
-                Spacer()
+        NavigationStack {
+            ZStack {
+                Map(coordinateRegion: $region, showsUserLocation: true)
+                
+                VStack {
+                    HeaderView(activatedPartyName: $activatedPartyName)
+                    Spacer()
+                }
+                
+                CurrentLocationAndUpdateCourseButton(locationManager: locationManager, region: $region)
             }
-            
-            CurrentLocationButton(locationManager: locationManager, region: $region)
-        }
-        .onAppear {
-            locationManager.requestLocation()
+            .onAppear {
+                locationManager.requestLocation()
+                
+                if activatedPartyName.isEmpty {
+                    isShowAlert = true
+                } else {
+                    isShowAlert = false
+                }
+            }
+            .alert("알림", isPresented: $isShowAlert) {
+                Button("지금 안해요", role: .cancel) {
+                    isShowAlert = false
+                }
+                NavigationLink(destination: MemberView()) {
+                    Text("추가")
+                        .font(.system(size: 17))
+                        .fontWeight(.semibold)
+                }
+            } message: {
+                Text("현재 참여중인 파티가 없습니다.\n파티를 추가하시겠어요?")
+            }
         }
     }
 }
 
 struct HeaderView: View {
     @State private var isShowSearchViewModal: Bool = false
+    @Binding var activatedPartyName: String
     
     var body: some View {
         VStack {
             HStack {
-                PartySelectionButton()
+                PartySelectionButton(activatedPartyName: $activatedPartyName)
                 PartyDateSelectionPicker()
-                PlaceSearchButton()
+                PlaceSearchButton(isShowSearchViewModal: $isShowSearchViewModal)
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
             .frame(height: 48)
@@ -63,7 +86,7 @@ struct HeaderView: View {
 /// 파티를 선택할 수 있는 버튼(actionSheet)
 struct PartySelectionButton: View {
     @State private var showingActionSheet = false
-    @State private var activatedPartyName: String = "제주도 파티"
+    @Binding var activatedPartyName: String
     
     var body: some View {
         Button {
@@ -120,9 +143,11 @@ struct PartyDateSelectionPicker: View {
 
 /// 장소검색버튼
 struct PlaceSearchButton: View {
+    @Binding var isShowSearchViewModal: Bool
+    
     var body: some View {
         Button {
-            // TODO: 검색화면 연결
+            isShowSearchViewModal = true
         } label: {
             Image(systemName: "magnifyingglass")
                 .padding()
@@ -161,8 +186,8 @@ struct MemberCustomDisclosureGroup: View {
                     }
                 }
                 .padding()
+                .background(Color.white.opacity(0.8))
                 .padding(.top, -8)
-                .background(Color.white.opacity(0.5))
             }
             
             Button {
@@ -179,16 +204,15 @@ struct MemberCustomDisclosureGroup: View {
                     Spacer()
                 }
                 .frame(height: 20)
-                .background(Color.white.opacity(expanded ? 0.5 : 1))
+                .background(Color.white.opacity(expanded ? 0.8 : 1))
             }
             .padding(.top, -8)
-            
         }
     }
 }
 
-/// 현재위치 버튼
-struct CurrentLocationButton: View {
+/// 현재위치 버튼, 코스변경 버튼
+struct CurrentLocationAndUpdateCourseButton: View {
     @ObservedObject var locationManager: LocationManager
     @Binding var region: MKCoordinateRegion
 
@@ -217,6 +241,18 @@ struct CurrentLocationButton: View {
                 .padding(.leading, 20)
                 
                 Spacer()
+                
+                NavigationLink(destination: UpdateCourseView()) {
+                    Text("코스변경하기")
+                        .foregroundColor(.white)
+                        .frame(width: 132, height: 50)
+                        .background(Color.blue)
+                        .cornerRadius(12)
+                        .font(.system(size: 17))
+                }
+                .padding(.bottom, 50)
+                .padding(.trailing, 20)
+
             }
         }
     }
@@ -285,7 +321,8 @@ struct IconView: View {
             }
             
             Text(label)
-                .font(.caption)
+                .font(.system(size: 11))
+                .foregroundColor(.black)
         }
         .background(
             GeometryReader { geometry in
