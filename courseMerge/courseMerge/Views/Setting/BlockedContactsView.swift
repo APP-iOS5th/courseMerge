@@ -15,6 +15,7 @@ struct BlockedContactsView: View {
         BlockedItem(text: "+82 1688-3131"),
         BlockedItem(text: "+82 1688-3132"),
     ]
+    @State var flag = false
     var body: some View {
         
         NavigationStack {
@@ -24,12 +25,14 @@ struct BlockedContactsView: View {
                         Text(item.text)
                     }
                 }
-                .onDelete(perform: unblockItem)                
+                .onDelete { blockedList.remove(atOffsets: $0)}
+                .onMove { blockedList.move(fromOffsets: $0, toOffset: $1)}
                 
                 Button("추가하기...") {
                    let newItem = BlockedItem(text: "1335")
                     blockedList.append(newItem)
                 }
+                .disabled(flag)
             }
             .navigationDestination(for: String.self) { text in
                 Text("blocked item = \(text)")
@@ -39,17 +42,11 @@ struct BlockedContactsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("수정") {
-                    
-                }
-                
+                EditButton()
             }
+            
         }
     }//body
-    
-    func unblockItem(at offsets: IndexSet) {
-        blockedList.remove(atOffsets: offsets)
-    }
 }
 
 
