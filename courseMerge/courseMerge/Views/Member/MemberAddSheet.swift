@@ -10,16 +10,12 @@ import SwiftUI
 struct MemberAddSheet: View {
     @Environment(\.presentationMode) var presentMode
     
-    //파티(모임) 제목 enumtype으로 빼기
-    @State private var partytitle = " 내용을 입력하세요.(필수)"
+    //뷰모델
+    @StateObject var memberDetailViewModel = MemberDetailViewModel()
     //파티(모임) 제목 폰트 컬러
     @State private var partyTitleColor: Color = .labelsTertiary
-    //파티(모임) 설명  enumtype으로 빼기
-    @State private var partyDescr = "내용을 입력하세요."
     //파티(모임) 설명 폰트 컬러
     @State private var partyDescrColor: Color = .labelsTertiary
-    
-    @StateObject var memberDetailViewModel = MemberDetailViewModel()
     
     
     var body: some View {
@@ -32,7 +28,7 @@ struct MemberAddSheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextField("내용을 입력하세요.(필수)", text: $partytitle)
+                    TextField("내용을 입력하세요.(필수)", text: $memberDetailViewModel.partytitle)
                         .frame(width:  361, height: 65)
                         .background(.fillTertiary)
                         .cornerRadius(10)

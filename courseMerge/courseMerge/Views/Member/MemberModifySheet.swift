@@ -9,16 +9,12 @@ import SwiftUI
 struct MemberModifySheet: View {
     @Environment(\.presentationMode) var presentMode
     
-    //파티(모임) 제목 enumtype으로 빼기
-    @State private var partytitle = " 내용을 입력하세요.(필수)"
+    //뷰모델
+    @StateObject var memberDetailViewModel = MemberDetailViewModel()
     //파티(모임) 제목 폰트 컬러
     @State private var partyTitleColor: Color = .labelsTertiary
-    //파티(모임) 설명  enumtype으로 빼기
-    @State private var partyDescr = "내용을 입력하세요."
     //파티(모임) 설명 폰트 컬러
     @State private var partyDescrColor: Color = .labelsTertiary
-    
-    @State private var createdParties: [GroupPartyInfo] = []
     
     var body: some View {
         NavigationView {
@@ -30,11 +26,11 @@ struct MemberModifySheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextField("내용을 입력하세요.(필수)", text: $partytitle)
+                    TextField("내용을 입력하세요.(필수)", text: $memberDetailViewModel.partytitle)
                         .frame(width:  361, height: 65)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: partytitle) { _, newValue in
+                        .onChange(of: memberDetailViewModel.partytitle) { _, newValue in
                             partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
                         }
                         .foregroundColor(partyTitleColor)
@@ -44,17 +40,17 @@ struct MemberModifySheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextEditor(text: $partyDescr)
+                    TextEditor(text: $memberDetailViewModel.partyDescr)
                         .frame(width:  361, height: 200)
                         .scrollContentBackground(.hidden)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: partyDescr) { _, newValue in
+                        .onChange(of: memberDetailViewModel.partyDescr) { _, newValue in
                             partyDescrColor = newValue.isEmpty ? .labelsPrimary : .labelsPrimary
                         }
                         .foregroundColor(partyDescrColor)
                     
-                    ModifyDatePickerInputArea()
+                    ModifyDatePickerInputArea(vm: memberDetailViewModel)
                     
                 }
             }
@@ -74,10 +70,8 @@ struct MemberModifySheet: View {
 }
 
 struct ModifyDatePickerInputArea: View {
-    //시작일
-    @State private var startDate = Date()
-    //종료일
-    @State private var endDate = Date()
+    
+    @ObservedObject var vm: MemberDetailViewModel
     //DatePicker 활성화 체크
     @State private var activeDatePicker: EActiveDatePicker? = nil
     
@@ -100,7 +94,7 @@ struct ModifyDatePickerInputArea: View {
                     
                     Spacer()
                     
-                    Button("\(formatDate(startDate))"){
+                    Button("\(formatDate(vm.startDate))"){
                         
                         if activeDatePicker == .startDate {
                             activeDatePicker = nil
@@ -126,7 +120,7 @@ struct ModifyDatePickerInputArea: View {
                     
                     Spacer()
                     
-                    Button("\(formatDate(endDate))"){
+                    Button("\(formatDate(vm.endDate))"){
                         
                         if activeDatePicker == .endDate {
                             activeDatePicker = nil
@@ -148,7 +142,7 @@ struct ModifyDatePickerInputArea: View {
         
         
         if activeDatePicker == .startDate  {
-            DatePicker("시작일",selection: $startDate,displayedComponents: .date)
+            DatePicker("시작일",selection:  $vm.startDate,displayedComponents: .date)
                 .datePickerStyle(.graphical)
                 .padding(20)
                 .id("startDatePicker")
@@ -156,7 +150,7 @@ struct ModifyDatePickerInputArea: View {
         }
         
         if activeDatePicker == .endDate {
-            DatePicker("종료일",selection: $endDate,displayedComponents: .date)
+            DatePicker("종료일",selection:  $vm.endDate,displayedComponents: .date)
                 .datePickerStyle(.graphical)
                 .padding(20)
                 .id("endDatePicker")
