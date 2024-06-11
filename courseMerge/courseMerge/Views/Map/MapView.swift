@@ -12,10 +12,10 @@ import CoreLocation
 struct MapView: View {
     @StateObject private var locationManager = LocationManager()
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
+        center: CLLocationCoordinate2D(latitude: 37.9033, longitude: 127.0606),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
-    @State private var activatedPartyName: String = ""
+    @State private var activatedPartyName: String = "제주도 파티"
     @State private var isShowAlert: Bool = true
     
     var body: some View {
@@ -186,8 +186,8 @@ struct MemberCustomDisclosureGroup: View {
                     }
                 }
                 .padding()
-                .padding(.top, -8)
                 .background(Color.white.opacity(0.8))
+                .padding(.top, -8)
             }
             
             Button {
@@ -207,7 +207,6 @@ struct MemberCustomDisclosureGroup: View {
                 .background(Color.white.opacity(expanded ? 0.8 : 1))
             }
             .padding(.top, -8)
-            
         }
     }
 }
