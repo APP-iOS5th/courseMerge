@@ -40,32 +40,41 @@ struct LoginView: View {
             .padding(.top,20)
         
         //애플 로그인
+        if colorScheme == .light {
+            SignInWithAppleButtonView()
+                .signInWithAppleButtonStyle(.black)
+        } else {
+            SignInWithAppleButtonView()
+                .signInWithAppleButtonStyle(.white)
+        }
+        
+
+    }
+}
+
+struct SignInWithAppleButtonView: View {
+    var body: some View {
         SignInWithAppleButton(
-            onRequest: { request in
-            },
-            onCompletion: { result in
-                switch result {
-                case .success(let authResults):
-                    print("Authorization successful: \(authResults)")
-                case .failure(let error):
-                    print("Authorization failed: \(error.localizedDescription)")
-                }
-            }
+            .signUp,
+            onRequest: {_ in },
+            onCompletion: {_ in }
         )
         .frame(width: 240, height: 53)
-        
-        //signInWithGoogle 사용 예정
-        Button("Google 로그인") {
-            
-        }
-        .padding()
-        .foregroundColor(.black)
-        .frame(width: 240, height: 53)
-        .background(.fillTertiary)
-        .padding(.top,20)
     }
 }
 
 #Preview {
     LoginView()
 }
+
+/*
+ //signInWithGoogle 사용 예정
+ Button("Google 로그인") {
+     
+ }
+ .padding()
+ .foregroundColor(.black)
+ .frame(width: 240, height: 53)
+ .background(.fillTertiary)
+ .padding(.top,20)
+ */
