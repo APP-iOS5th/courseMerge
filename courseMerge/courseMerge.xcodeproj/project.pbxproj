@@ -36,10 +36,10 @@
 		9717A3CE2C16885700B92765 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3CD2C16885700B92765 /* color.swift */; };
 		9717A3D02C16885F00B92765 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717A3CF2C16885F00B92765 /* model.swift */; };
 		97FD63562C16D7E30080438A /* MapDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD63552C16D7E30080438A /* MapDetailItem.swift */; };
-		EA4D62B72C16B9D1003EA8EB /* MemberPartySettingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62B62C16B9D1003EA8EB /* MemberPartySettingSheet.swift */; };
-		EA4D62B92C16DFE8003EA8EB /* MemberView_empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62B82C16DFE8003EA8EB /* MemberView_empty.swift */; };
+		EA4D62B72C16B9D1003EA8EB /* MemberDetailSettingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62B62C16B9D1003EA8EB /* MemberDetailSettingSheet.swift */; };
+		EA4D62B92C16DFE8003EA8EB /* MemberEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */; };
 		EA4D62BD2C16E2C3003EA8EB /* GroupPartyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BC2C16E2C3003EA8EB /* GroupPartyItem.swift */; };
-		EA4D62BF2C16E53A003EA8EB /* MemberView_withMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BE2C16E53A003EA8EB /* MemberView_withMembers.swift */; };
+		EA4D62BF2C16E53A003EA8EB /* MemberDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,10 +74,10 @@
 		9717A3CD2C16885700B92765 /* color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = color.swift; path = courseMerge/Extensions/color.swift; sourceTree = SOURCE_ROOT; };
 		9717A3CF2C16885F00B92765 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = model.swift; path = courseMerge/Models/model.swift; sourceTree = SOURCE_ROOT; };
 		97FD63552C16D7E30080438A /* MapDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailItem.swift; sourceTree = "<group>"; };
-		EA4D62B62C16B9D1003EA8EB /* MemberPartySettingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberPartySettingSheet.swift; path = courseMerge/Views/Member/MemberPartySettingSheet.swift; sourceTree = SOURCE_ROOT; };
-		EA4D62B82C16DFE8003EA8EB /* MemberView_empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberView_empty.swift; path = courseMerge/Views/Member/MemberView_empty.swift; sourceTree = SOURCE_ROOT; };
+		EA4D62B62C16B9D1003EA8EB /* MemberDetailSettingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailSettingSheet.swift; path = courseMerge/Views/Member/MemberDetailSettingSheet.swift; sourceTree = SOURCE_ROOT; };
+		EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberEmptyView.swift; path = courseMerge/Views/Member/MemberEmptyView.swift; sourceTree = SOURCE_ROOT; };
 		EA4D62BC2C16E2C3003EA8EB /* GroupPartyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupPartyItem.swift; path = courseMerge/Models/GroupPartyItem.swift; sourceTree = SOURCE_ROOT; };
-		EA4D62BE2C16E53A003EA8EB /* MemberView_withMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberView_withMembers.swift; path = courseMerge/Views/Member/MemberView_withMembers.swift; sourceTree = SOURCE_ROOT; };
+		EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailView.swift; path = courseMerge/Views/Member/MemberDetailView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,9 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				9717A3BC2C15D36200B92765 /* MemberView.swift */,
-				EA4D62BE2C16E53A003EA8EB /* MemberView_withMembers.swift */,
-				EA4D62B82C16DFE8003EA8EB /* MemberView_empty.swift */,
-				EA4D62B62C16B9D1003EA8EB /* MemberPartySettingSheet.swift */,
+				EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */,
+				EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */,
+				EA4D62B62C16B9D1003EA8EB /* MemberDetailSettingSheet.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */;
+			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -319,11 +319,11 @@
 				78C24FCA2C16989D007DAF99 /* MapView.swift in Sources */,
 				970B7CBF2C168D3B003CB335 /* SearchResultDetailView.swift in Sources */,
 				97FD63562C16D7E30080438A /* MapDetailItem.swift in Sources */,
-				EA4D62BF2C16E53A003EA8EB /* MemberView_withMembers.swift in Sources */,
+				EA4D62BF2C16E53A003EA8EB /* MemberDetailView.swift in Sources */,
 				9717A3B32C15D33400B92765 /* LoginView.swift in Sources */,
-				EA4D62B72C16B9D1003EA8EB /* MemberPartySettingSheet.swift in Sources */,
 				9707CB172C173D370011C3E2 /* RoundedCorner.swift in Sources */,
-				EA4D62B92C16DFE8003EA8EB /* MemberView_empty.swift in Sources */,
+				EA4D62B72C16B9D1003EA8EB /* MemberDetailSettingSheet.swift in Sources */,
+				EA4D62B92C16DFE8003EA8EB /* MemberEmptyView.swift in Sources */,
 				9717A3B92C15D35000B92765 /* SettingView.swift in Sources */,
 				3D349C392C16D5E60092E10C /* DevelopersDetailsView.swift in Sources */,
 				3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */,
@@ -546,7 +546,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */ = {
+		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9717A3A22C15CF5000B92765 /* Debug */,

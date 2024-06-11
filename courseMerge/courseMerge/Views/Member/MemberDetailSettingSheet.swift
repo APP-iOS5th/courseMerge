@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MemberPartySettingSheet: View {
+struct MemberDetailSettingSheet: View {
     // 시트 작동을 위한 상태 변수
     @Environment(\.presentationMode) var presentMode
     
@@ -179,5 +179,5 @@ struct DatePickerInputArea: View {
 }
 
 #Preview {
-    MemberPartySettingSheet()
+    MemberDetailSettingSheet()
 }
