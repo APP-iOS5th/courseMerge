@@ -33,7 +33,10 @@ struct CourseMergeApp: App {
             }
             .environmentObject(authViewModel)
             .onAppear {
+
                 authViewModel.checkSignInStatus()
+                print(authViewModel.isSignedIn)
+
             }
         }
     }

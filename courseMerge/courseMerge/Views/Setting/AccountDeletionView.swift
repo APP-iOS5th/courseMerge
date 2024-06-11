@@ -60,7 +60,15 @@ struct AccountDeletionView: View {
                     showAlert = false
                 }
                 Button(role: .destructive) {
-                    authViewModel.deleteUser()
+                    authViewModel.deleteUser { result in
+                        switch result {
+                        case .success:
+                            print("successfully user deleted")
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                    
                 } label: {
                     Text("확인")
                 }
