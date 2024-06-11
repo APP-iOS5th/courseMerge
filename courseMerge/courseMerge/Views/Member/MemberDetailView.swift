@@ -97,8 +97,7 @@ struct AddMemberProfileView: View {
                     //공유 링크가 나오고
                     //접속 해야지 추가...
                     //
-                   
-                    profilebtns.append(User(username: "New User", usercolor: User.allColors().randomElement() ?? ".gray", isHost: false))
+                    profilebtns.append(User(username: "New User", usercolor: User.randomColor() ?? ".gray", isHost: false))
                 }, label: {
                     VStack{
                         ZStack{
@@ -120,12 +119,8 @@ struct AddMemberProfileView: View {
                     }, label: {
                         VStack{
                             ZStack{
-                                
-                                Circle().fill(Color("\(index.usercolor)")) //컬러 수정 필요
-//                                Circle().fill(
-//                                    Color("\(colors)"))
-                                //Circle().fill(
-                                    //olor(.pastelYellow))
+                                //Circle().fill(Color(index.usercolor))
+                                Circle().fill(Color.stringToColor((index.usercolor)))
                                     .frame(width: 80, height: 80)
                                 Image("ProfileMark")
                                     .resizable()
