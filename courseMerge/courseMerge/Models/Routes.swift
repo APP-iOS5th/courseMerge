@@ -11,7 +11,7 @@ import SwiftUI
 struct Route {
     let startPoint: MapDetailItem
     let nextPoint: MapDetailItem
-    let travelTime: TimeInterval // in seconds
+    let travelTime: TimeInterval // in seconds -- 일단 추가
 //    let transportationMode: TransportationMode
 }
 
@@ -59,3 +59,31 @@ struct Routes {
 //    case cycling
 //    case publicTransport
 //}
+
+
+// MARK: - example data
+
+extension MultiDayRoute {
+    static var example: [MultiDayRoute] {
+        let user1 = User(username: "훈이", usercolor: "gray", isHost: false)
+        let user2 = User(username: "철수", usercolor: "blue", isHost: false)
+        let user3 = User(username: "짱구", usercolor: "red", isHost: false)
+        
+        
+        let startLocation1 = MapDetailItem.recentVisitedExample[0]
+        let startLocation2 = MapDetailItem.recentVisitedExample[2]
+        let nextLocation1 = MapDetailItem.recentVisitedExample[1]
+        let nextLocation2 = MapDetailItem.recentVisitedExample[2]
+        
+
+        let route1 = Route(startPoint: startLocation1, nextPoint: nextLocation1, travelTime: 1800)
+        let route2 = Route(startPoint: startLocation2, nextPoint: nextLocation2, travelTime: 1800)
+
+        
+        return [
+            MultiDayRoute(user: user1, date: Date(), routes: [route1]),
+            MultiDayRoute(user: user2, date: Date(), routes: [route2]),
+            MultiDayRoute(user: user3, date: Date(), routes: [route1])
+        ]
+    }
+}
