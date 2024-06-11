@@ -14,7 +14,7 @@
 | 황규상   | 이융의   | 정희지   | 조현기   |
 |--------|----------|----------|----------|
 | ![황규상](https://github.com/kyuSangHwang.png) | ![이융의](https://github.com/iyungui.png) | ![정희지](https://github.com/Jeongheeji.png) | ![조현기](https://github.com/iOS5thLikeLion.png) |
-| [hgs3896](https://github.com/kyuSangHwang)    | [youngelee](https://github.com/iyungui)   | [JeongHeeji](https://github.com/Jeongheeji.png) | [hyeongi](https://github.com/iOS5thLikeLion)      |
+| [kyuSangHwang](https://github.com/kyuSangHwang)    | [iyungui](https://github.com/iyungui)   | [Jeongheeji](https://github.com/Jeongheeji.png) | [iOS5thLikeLion](https://github.com/iOS5thLikeLion)      |
 
 ## 기능
 - 여행 일정 생성 및 관리 
