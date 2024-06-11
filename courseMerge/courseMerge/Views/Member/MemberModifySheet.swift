@@ -176,7 +176,7 @@ struct ModifyDatePickerInputArea: View {
     }
 }
 
-//struct MemberModifySheet: View {
+//struct MemberProfileModifySheet: View {
 //    var body: some View {
 //        
 //        

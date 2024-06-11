@@ -19,7 +19,8 @@ struct MemberAddSheet: View {
     //파티(모임) 설명 폰트 컬러
     @State private var partyDescrColor: Color = .labelsTertiary
     
-    @State private var createdParties: [GroupPartyInfo] = []
+    @StateObject var memberDetailViewModel = MemberDetailViewModel()
+    
     
     var body: some View {
         NavigationView {
@@ -35,7 +36,7 @@ struct MemberAddSheet: View {
                         .frame(width:  361, height: 65)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: partytitle) { _, newValue in
+                        .onChange(of: memberDetailViewModel.partytitle) { _, newValue in
                             partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
                         }
                         .foregroundColor(partyTitleColor)
@@ -45,17 +46,17 @@ struct MemberAddSheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextEditor(text: $partyDescr)
+                    TextEditor(text: $memberDetailViewModel.partyDescr)
                         .frame(width:  361, height: 200)
                         .scrollContentBackground(.hidden)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: partyDescr) { _, newValue in
+                        .onChange(of: memberDetailViewModel.partyDescr) { _, newValue in
                             partyDescrColor = newValue.isEmpty ? .labelsPrimary : .labelsPrimary
                         }
                         .foregroundColor(partyDescrColor)
                     
-                    AddDatePickerInputArea()
+                    AddDatePickerInputArea(vm: memberDetailViewModel)
                     
                 }
             }
@@ -66,6 +67,8 @@ struct MemberAddSheet: View {
                     presentMode.wrappedValue.dismiss()
                 },
                 trailing: Button("Save") {
+                    memberDetailViewModel.savePartyData()
+                    // 파이어베이스 스토리지에 저장
                     // 저장 작업을 수행하고 시트를 닫음
                     presentMode.wrappedValue.dismiss()
                 }
@@ -75,10 +78,9 @@ struct MemberAddSheet: View {
 }
 
 struct AddDatePickerInputArea: View {
-    //시작일
-    @State private var startDate = Date()
-    //종료일
-    @State private var endDate = Date()
+    
+    @ObservedObject var vm: MemberDetailViewModel
+    
     //DatePicker 활성화 체크
     @State private var activeDatePicker: EActiveDatePicker? = nil
     
@@ -101,7 +103,7 @@ struct AddDatePickerInputArea: View {
                     
                     Spacer()
                     
-                    Button("\(formatDate(startDate))"){
+                    Button("\(formatDate(vm.startDate))"){
                         
                         if activeDatePicker == .startDate {
                             activeDatePicker = nil
@@ -127,7 +129,7 @@ struct AddDatePickerInputArea: View {
                     
                     Spacer()
                     
-                    Button("\(formatDate(endDate))"){
+                    Button("\(formatDate(vm.endDate))"){
                         
                         if activeDatePicker == .endDate {
                             activeDatePicker = nil
@@ -149,7 +151,7 @@ struct AddDatePickerInputArea: View {
         
         
         if activeDatePicker == .startDate  {
-            DatePicker("시작일",selection: $startDate,displayedComponents: .date)
+            DatePicker("시작일",selection: $vm.startDate,displayedComponents: .date)
                 .datePickerStyle(.graphical)
                 .padding(20)
                 .id("startDatePicker")
@@ -157,7 +159,7 @@ struct AddDatePickerInputArea: View {
         }
         
         if activeDatePicker == .endDate {
-            DatePicker("종료일",selection: $endDate,displayedComponents: .date)
+            DatePicker("종료일",selection: $vm.endDate,displayedComponents: .date)
                 .datePickerStyle(.graphical)
                 .padding(20)
                 .id("endDatePicker")
