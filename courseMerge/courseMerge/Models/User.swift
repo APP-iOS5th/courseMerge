@@ -44,32 +44,15 @@ extension User {
         "#FF1493"  // DeepPink
     ]
     
-    static func randomColor() -> String {
+    static func randomColor(excludeColors: [String]) -> String {
         let combinedColors = ProfileColor + hexColors
-        let uniqueColors = Array(Set(combinedColors))
+        let uniqueColors = Array(Set(combinedColors)).filter { !excludeColors.contains($0) }
         
         if let randomColor = uniqueColors.randomElement() {
-            if ProfileColor.contains(randomColor) {
-                return randomColor
-            } else {
-                return randomColor
-            }
+            return randomColor
         } else {
             return "Gray" // 기본값은 회색
         }
     }
 }
 
-func identifySelfInParty(partyMembers: [User]) {
-    guard let currentUserUID = Auth.auth().currentUser?.uid else {
-        print("No current user logged in.")
-        return
-    }
-    for member in partyMembers {
-        if member.uid == currentUserUID {
-            print("This is you: \(member.username)")
-        } else {
-            print("Other member: \(member.username)")
-        }
-    }
-}
