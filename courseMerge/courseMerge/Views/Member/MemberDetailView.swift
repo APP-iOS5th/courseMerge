@@ -54,14 +54,18 @@ struct PartyInfoView: View {
     //호스트 표시
     var hasCrown: Bool = true
     
-    // 날짜 형식 지정
-//    let dateFormatter = DateFormatter()
-//    dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-//
-//    // 날짜를 형식에 맞게 변환
-//    let formattedStartDate = dateFormatter.string(from: memberDetailViewModel.startDate)
-//    let formattedEndDate = dateFormatter.string(from: memberDetailViewModel.endDate)
-//    
+    // 날짜를 원하는 형식으로 포맷하는 프로퍼티
+    var formattedStartDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        return dateFormatter.string(from: memberDetailViewModel.startDate)
+    }
+
+    var formattedEndDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        return dateFormatter.string(from: memberDetailViewModel.endDate)
+    }
     
     var body: some View{
         HStack {
@@ -77,7 +81,7 @@ struct PartyInfoView: View {
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.labelsPrimary)
                         //2024.6.11 선택한 날짜가 들어가야 함./ 년월일만 출력 (미작업)
-                        Text("\(memberDetailViewModel.startDate) ~ \(memberDetailViewModel.endDate)")
+                        Text("\(formattedStartDate) ~ \(formattedEndDate)")
                             .font(.callout)
                             .fontWeight(.regular)
                             .foregroundStyle(Color.labelsSecondary)
