@@ -93,23 +93,25 @@ struct PartyInfoView: View {
                 }
                 .padding(.leading)
             }
-            
-            if party.description.count > maxDescriptionLength {
-                DisclosureGroup(isExpanded: $isExpanded) {
+            HStack {
+                if party.description.count > maxDescriptionLength {
+                    DisclosureGroup(isExpanded: $isExpanded) {
+                        Text(party.description)
+                            .lineLimit(nil)
+                            .multilineTextAlignment(.leading)
+                    } label: {
+                        Text(isExpanded ? "접기" : "더보기")
+                            .font(.footnote)
+                            .foregroundColor(.blue)
+                    }
+                    .animation(.default)
+                } else {
                     Text(party.description)
+                        .font(.footnote)    // 수정
                         .lineLimit(nil)
                         .multilineTextAlignment(.leading)
-                } label: {
-                    Text(isExpanded ? "접기" : "더보기")
-                        .font(.footnote)
-                        .foregroundColor(.blue)
                 }
-                .animation(.default)
-            } else {
-                Text(party.description)
-                    .font(.footnote)    // 수정
-                    .lineLimit(nil)
-                    .multilineTextAlignment(.leading)
+                Spacer()
             }
         }
         .padding(.horizontal, 10)
