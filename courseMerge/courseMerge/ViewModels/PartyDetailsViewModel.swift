@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+// Parties CRUD, current Party
 class PartyDetailsViewModel: ObservableObject {
     @Published var parties: [PartyDetail] = []
     @Published var currentParty: PartyDetail

@@ -38,7 +38,7 @@ struct PartySelectionButton: View {
                 }
             }
         }
-        .fullScreenCover(isPresented: $showingAddPartySheetView, content: {
+        .sheet(isPresented: $showingAddPartySheetView, content: {
             AddPartySheetView()
                 .environmentObject(partiesViewModel)
         })
