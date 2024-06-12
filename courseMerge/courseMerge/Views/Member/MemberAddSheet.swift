@@ -10,8 +10,7 @@ import SwiftUI
 struct MemberAddSheet: View {
     @Environment(\.presentationMode) var presentMode
     
-    //뷰모델
-    @StateObject var memberDetailViewModel = MemberDetailViewModel()
+    @EnvironmentObject var memberDetailViewModel: MemberDetailViewModel
     //파티(모임) 제목 폰트 컬러
     @State private var partyTitleColor: Color = .labelsTertiary
     //파티(모임) 설명 폰트 컬러
@@ -182,5 +181,8 @@ struct AddDatePickerInputArea: View {
 }
 
 #Preview {
-    MemberAddSheet()
+    MemberAddSheet().environmentObject(MemberDetailViewModel())
+    
+        
+
 }

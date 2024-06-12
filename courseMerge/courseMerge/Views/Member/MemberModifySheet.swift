@@ -10,7 +10,7 @@ struct MemberModifySheet: View {
     @Environment(\.presentationMode) var presentMode
     
     //뷰모델
-    @StateObject var memberDetailViewModel = MemberDetailViewModel()
+    @EnvironmentObject var memberDetailViewModel: MemberDetailViewModel
     //파티(모임) 제목 폰트 컬러
     @State private var partyTitleColor: Color = .labelsTertiary
     //파티(모임) 설명 폰트 컬러
@@ -67,6 +67,11 @@ struct MemberModifySheet: View {
                 },
                 trailing: Button("Save") {
                     // 저장 작업을 수행하고 시트를 닫음
+                    if let firstParty = memberDetailViewModel.createdPartInfo.first {
+                        if let index = memberDetailViewModel.createdPartInfo.firstIndex(where: { $0.title == firstParty.title }) {
+                            memberDetailViewModel.updatePartyData(atIndex: index)
+                        }
+                    }
                     presentMode.wrappedValue.dismiss()
                 }
             )

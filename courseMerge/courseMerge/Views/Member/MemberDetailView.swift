@@ -12,22 +12,22 @@ import SwiftUI
 struct MemberDetailView: View {
     @State private var isSharingSheetPresented = false
     @StateObject private var userViewModel = UserViewModel()
-    @StateObject private var memberDetailViewModel = MemberDetailViewModel()
+    @StateObject public var memberDetailViewModel: MemberDetailViewModel
     //구성원 수정 시트 뷰모델
     @State private var isModifySheetPresented = false
 
     var body: some View {
         
         VStack{
-            PartyInfoView(isModifySheetPresented: $isModifySheetPresented)
+            PartyInfoView(memberDetailViewModel: memberDetailViewModel, isModifySheetPresented: $isModifySheetPresented)
             
-            MemberGridView(isSharingSheetPresented: $isSharingSheetPresented)
+            MemberGridView(memberDetailViewModel: memberDetailViewModel,isSharingSheetPresented: $isSharingSheetPresented)
         }
         .environmentObject(userViewModel)
         .environmentObject(memberDetailViewModel)
         .padding(10)
         .sheet(isPresented: $isModifySheetPresented) {
-            MemberModifySheet()
+            MemberModifySheet().environmentObject(memberDetailViewModel)
         }
         .background(
             AppSharingSheet(
@@ -44,8 +44,7 @@ struct MemberDetailView: View {
 
 struct PartyInfoView: View {
     @EnvironmentObject var userViewModel: UserViewModel
-    @EnvironmentObject var memberDetailViewModel: MemberDetailViewModel
-    
+    @ObservedObject var memberDetailViewModel: MemberDetailViewModel
     @Binding var isModifySheetPresented: Bool
 
     @State private var partyDescr: String = "내용을 입력하세요."
@@ -55,10 +54,27 @@ struct PartyInfoView: View {
     //호스트 표시
     var hasCrown: Bool = true
     
+    // 날짜를 원하는 형식으로 포맷하는 프로퍼티
+    var formattedStartDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        return dateFormatter.string(from: memberDetailViewModel.startDate)
+    }
+
+    var formattedEndDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        return dateFormatter.string(from: memberDetailViewModel.endDate)
+    }
+    
     var body: some View{
         HStack {
             
             ProfileView(user: userViewModel.users.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
+            
+//            ForEach(memberDetailViewModel.createdPartInfo) { partys in
+//                ProfileView(user: partys.members.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
+//            }
             
             VStack(alignment: .leading) {
                 HStack {
@@ -69,8 +85,8 @@ struct PartyInfoView: View {
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.labelsPrimary)
                         //2024.6.11 선택한 날짜가 들어가야 함./ 년월일만 출력 (미작업)
-                        Text("\(memberDetailViewModel.startDate) ~ \(memberDetailViewModel.endDate)")
-                            .font(.callout)
+                        Text("\(formattedStartDate) ~ \(formattedEndDate)")
+                            .font(.footnote)
                             .fontWeight(.regular)
                             .foregroundStyle(Color.labelsSecondary)
                     }
@@ -103,6 +119,7 @@ struct PartyInfoView: View {
 
 struct MemberGridView: View {
     @EnvironmentObject var userViewModel: UserViewModel
+    @ObservedObject var memberDetailViewModel: MemberDetailViewModel
 
     @Environment(\.colorScheme) var colorScheme
     
@@ -130,28 +147,31 @@ struct MemberGridView: View {
                             .foregroundStyle(.labelsPrimary)
                     }
                 }
-                
-                ForEach(userViewModel.users) { user in
-                    Button {
-                        
-                    } label: {
-                        ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40,isUsername: true)
-                            .environmentObject(userViewModel)
-                    }
-                    .contextMenu {
+                //ForEach(userViewModel.users) { user in
+                ForEach(memberDetailViewModel.createdPartInfo) { partys in
+                    ForEach(partys.members){ user in
                         Button {
                             
                         } label: {
-                            NavigationLink(destination: EmptyView()) {
-                                Label("대화하기", systemImage: "message")
-                                    .foregroundColor(.labelsPrimary)
-                            }
+                            ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40,isUsername: true)
+                                //.environmentObject(userViewModel)
+                                .environmentObject(memberDetailViewModel)
                         }
-                        
-                        Button(role: .destructive) {
+                        .contextMenu {
+                            Button {
+                                
+                            } label: {
+                                NavigationLink(destination: EmptyView()) {
+                                    Label("대화하기", systemImage: "message")
+                                        .foregroundColor(.labelsPrimary)
+                                }
+                            }
                             
-                        } label: {
-                            Label("삭제하기", systemImage: "trash")
+                            Button(role: .destructive) {
+                                userViewModel.deleteUser(withUID: user.uid)
+                            } label: {
+                                Label("삭제하기", systemImage: "trash")
+                            }
                         }
                     }
                 }
@@ -161,5 +181,5 @@ struct MemberGridView: View {
 }
 
 #Preview {
-    MemberDetailView()
+    MemberDetailView(memberDetailViewModel: MemberDetailViewModel())
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct MemberEmptyView: View {
     
     @Environment(\.colorScheme) var colorScheme
-    @StateObject private var memberDetailViewModel = MemberDetailViewModel()
+    @StateObject public var memberDetailViewModel: MemberDetailViewModel
     //구성원 추가 시트 뷰모델
     @State private var isAddSheetPresented = false
     // 파티 가입 여부 확인
@@ -60,9 +60,10 @@ struct MemberEmptyView: View {
                     }
                     .padding()
                 } else {
-                    NavigationLink(destination: MemberDetailView()) {
-                        MemberDetailView()
+                    NavigationLink(destination: MemberDetailView(memberDetailViewModel: memberDetailViewModel)) {
+                        MemberDetailView(memberDetailViewModel: memberDetailViewModel)
                     }
+                    .environmentObject(MemberDetailViewModel())
                 }
             }
             .sheet(isPresented: $isAddSheetPresented, onDismiss: {
@@ -73,12 +74,12 @@ struct MemberEmptyView: View {
                     print("no move")
                 }
             }) {
-                MemberAddSheet()
+                MemberAddSheet().environmentObject(memberDetailViewModel)
             }
         }
     }
 }
 
 #Preview {
-    MemberEmptyView()
+    MemberEmptyView(memberDetailViewModel: MemberDetailViewModel())
 }
