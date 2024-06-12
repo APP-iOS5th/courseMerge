@@ -73,6 +73,7 @@ struct MapView: View {
 }
 
 struct HeaderView: View {
+    @Environment(\.colorScheme) var colorScheme
     @State private var isShowSearchViewModal: Bool = false
     @Binding var activatedPartyName: String
     @Binding var searchResults: [MapDetailItem]
@@ -93,10 +94,11 @@ struct HeaderView: View {
             SearchView(searchResults: $searchResults)
         }
         .padding(.horizontal)
-        .background(Color.white)
+        .background(colorScheme == .dark ? Color("BGPrimaryDarkBase") : Color("BGPrimary"))
         
         MemberCustomDisclosureGroup()
     }
+        
 }
 
 
@@ -171,6 +173,7 @@ struct PlaceSearchButton: View {
 
 /// 선택된 파티에 따라 구성원을 보여주는 Custom DisclosureGroup
 struct MemberCustomDisclosureGroup: View {
+    @Environment(\.colorScheme) var colorScheme
     @State private var expanded = false
     @State private var iconViewHeight: CGFloat = 0
     
@@ -200,7 +203,8 @@ struct MemberCustomDisclosureGroup: View {
                     }
                 }
                 .padding()
-                .background(Color.white.opacity(0.8))
+                .background(colorScheme == .dark ? Color("BGPrimaryDarkBase").opacity(expanded ? 0.8 : 1) : Color("BGPrimary").opacity(expanded ? 0.8 : 1))
+                //.background(Color.white.opacity(0.8))
                 .padding(.top, -8)
             }
             
@@ -212,13 +216,14 @@ struct MemberCustomDisclosureGroup: View {
                 HStack {
                     Spacer()
                     Image(systemName: expanded ? "chevron.up" : "chevron.down")
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .dark ? Color("BGTertiaryDarkElevated") : Color("BGPrimaryDarkBase") ) //색상명 수정 필요
                         .padding(.bottom, 8)
                         .offset(y: 4)
                     Spacer()
                 }
                 .frame(height: 20)
-                .background(Color.white.opacity(expanded ? 0.8 : 1))
+                .background(colorScheme == .dark ? Color("BGPrimaryDarkBase").opacity(expanded ? 0.8 : 1) : Color("BGPrimary").opacity(expanded ? 0.8 : 1))
+//                .background(Color.white.opacity(expanded ? 0.8 : 1))
             }
             .padding(.top, -8)
         }

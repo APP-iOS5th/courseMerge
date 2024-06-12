@@ -53,7 +53,7 @@ struct MemberEmptyView: View {
                     }) {
                         Text("기존 파티에 가입하기")
                             .fontWeight(.regular)
-                            .foregroundColor(.primary)
+                            .foregroundColor(.black)
                             .frame(width: 170, height: 53)
                             .background(Color.bgSecondary)
                             .cornerRadius(10)

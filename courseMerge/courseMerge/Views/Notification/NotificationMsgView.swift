@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NotificationMsgView: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var notiViewModel: NotificationViewModel
    // var testidx: Int  = notiViewModel.notifiMsg.userProfileidx
@@ -20,7 +20,7 @@ struct NotificationMsgView: View {
                     ForEach(notiViewModel.notifiMsg){ notimsg in
                         ZStack{
                             Rectangle()
-                                .fill(Color.bgSecondary)
+                                .fill(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : Color("BGPrimary"))
                                 .frame(width: geometry.size.width, height: 200) // Rectangle의 너비만큼 설정
                                 .cornerRadius(10)
                             VStack{
@@ -31,11 +31,11 @@ struct NotificationMsgView: View {
                                         .foregroundStyle(.labelsPrimary)
                                         .padding(.leading)
                                     ProfileView(user: userViewModel.users[notimsg.userProfileidx], width: 25, height: 25, overlayWidth: 10, overlayHeight: 10, isUsername: false)
+                                    
                                     Text(notimsg.datetime)
                                         .fontWeight(.regular)
                                         .font(.callout)
-                                        .foregroundStyle(.labelsTertiary)
-                                        .padding(.trailing)
+                                        .foregroundStyle(.labelsPrimary)
                                 }
                                 Text(notimsg.msg)
                             }

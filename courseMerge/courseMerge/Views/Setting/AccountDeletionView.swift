@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AccountDeletionView: View {
+    @Environment(\.colorScheme) var colorScheme
     @State var showAlert = false
     @State var flag = true
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -34,7 +35,9 @@ struct AccountDeletionView: View {
                     .cornerRadius(10)
                 VStack(alignment:.leading) {
                     Text("･ 모임, 코스, 프로필 등 모든 정보가 삭제됩니다")
+                        .foregroundStyle(.black)
                     Text("･ 구성원과의 채팅은 삭제되지 않으니 미리 확인하세요")
+                        .foregroundStyle(.black)
                 }
                 .font(.footnote)
                 
