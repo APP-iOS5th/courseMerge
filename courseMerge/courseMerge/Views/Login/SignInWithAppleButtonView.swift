@@ -126,7 +126,7 @@ struct SignInWithAppleButtonView: View {
 
 
 @available(iOS 13, *)
-func randomNonceString(length: Int = 32) -> String {
+private func randomNonceString(length: Int = 32) -> String {
     precondition(length > 0)
     var randomBytes = [UInt8](repeating: 0, count: length)
     let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
@@ -140,12 +140,9 @@ func randomNonceString(length: Int = 32) -> String {
 }
 
 @available(iOS 13, *)
-func sha256(_ input: String) -> String {
+private func sha256(_ input: String) -> String {
     let inputData = Data(input.utf8)
     let hashedData = SHA256.hash(data: inputData)
     let hashString = hashedData.compactMap { String(format: "%02x", $0) }.joined()
     return hashString
 }
-
-
-

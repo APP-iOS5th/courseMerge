@@ -13,7 +13,7 @@ class UserViewModel: ObservableObject {
     @Published var currentUserUID: String?
     
     init() {
-        // parties 컬렉션과 users 컬렉션을 연동해야 합니다
+        // TODO: parties 컬렉션과 users 컬렉션을 연동해야 합니다
         users = [
             User(username: "별빛여우", usercolor: "PastelRed", isHost: true),
             User(username: "달빛도깨비", usercolor: "PastelBlue", isHost: false),

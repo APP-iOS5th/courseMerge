@@ -51,10 +51,6 @@ struct AccountDeletionView: View {
             }
             .buttonStyle(.borderedProminent)
             .disabled(flag)
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("탈퇴하기"), dismissButton: .destructive(Text("확인")))
-            }
-            
             .alert("알림", isPresented: $showAlert) {
                 Button("취소", role: .cancel) {
                     showAlert = false

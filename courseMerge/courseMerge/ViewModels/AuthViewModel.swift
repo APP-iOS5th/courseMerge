@@ -17,6 +17,8 @@ class AuthViewModel: ObservableObject {
     }
     
     func deleteUser() {
+        // TODO: db 에서 해당 유저 삭제
+        // TODO: id token 애플 토큰 삭제
         self.isSignedIn = false
     }
 }
