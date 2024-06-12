@@ -27,36 +27,33 @@ struct MapView: View {
         NavigationStack {
             ZStack {
                 Map(position: $cameraPosition)
-                    .ignoresSafeArea()
-                
+                    .onAppear {
+                        locationManager.requestLocation()
+                    }
                 
                 VStack {
                     HeaderView(activatedPartyName: $activatedPartyName)
                     Spacer()
                 }
                 
-                CurrentLocationAndUpdateCourseButton(locationManager: locationManager, region: $region)
+                CurrentLocationAndUpdateCourseButton(locationManager: locationManager, cameraPosition: $cameraPosition)
             }
             .onAppear {
-                locationManager.requestLocation()
-                
                 if activatedPartyName.isEmpty {
                     isShowAlert = true
                 } else {
                     isShowAlert = false
                 }
             }
-            .alert("알림", isPresented: $isShowAlert) {
-                Button("지금 안해요", role: .cancel) {
-                    isShowAlert = false
-                }
-                NavigationLink(destination: MemberView()) {
-                    Text("추가")
-                        .font(.system(size: 17))
-                        .fontWeight(.semibold)
-                }
-            } message: {
-                Text("현재 참여중인 파티가 없습니다.\n파티를 추가하시겠어요?")
+            .alert(isPresented: $isShowAlert) {
+                Alert(
+                    title: Text("알림"),
+                    message: Text("현재 참여중인 파티가 없습니다.\n파티를 추가하시겠어요?"),
+                    primaryButton: .default(Text("추가")) {
+                        isShowAlert = false
+                    },
+                    secondaryButton: .cancel(Text("지금 안해요"))
+                )
             }
         }
     }
@@ -112,18 +109,14 @@ struct PartySelectionButton: View {
             .cornerRadius(20)
             .confirmationDialog(
                 "파티를 선택해주세요",
-                isPresented: $showingActionSheet, titleVisibility: .visible,presenting: exampleParties
-            ) { parties in
-                ForEach(parties) { party in
+                isPresented: $showingActionSheet
+            ) {
+                ForEach(exampleParties) { party in
                     Button {
                         self.activatedPartyName = party.title
                     } label: {
-                        if party.title == activatedPartyName {
-                            Text(party.title)
-                                .fontWeight(.bold)
-                        } else {
-                            Text(party.title)
-                        }
+                        Text(party.title)
+                            .fontWeight(party.title == activatedPartyName ? .bold : .regular)
                     }
                 }
                 Button("Cancel", role: .cancel) {}
@@ -220,7 +213,7 @@ struct MemberCustomDisclosureGroup: View {
 /// 현재위치 버튼, 코스변경 버튼
 struct CurrentLocationAndUpdateCourseButton: View {
     @ObservedObject var locationManager: LocationManager
-    @Binding var region: MKCoordinateRegion
+    @Binding var cameraPosition: MapCameraPosition
 
     var body: some View {
         VStack {
@@ -228,12 +221,13 @@ struct CurrentLocationAndUpdateCourseButton: View {
             
             HStack {
                 Button {
-                    if let userLocation = locationManager.location?.coordinate {
-                        region = MKCoordinateRegion(
-                            center: userLocation,
-                            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-                        )
-                    }
+                    cameraPosition = .userLocation(
+                        followsHeading: false,
+                        fallback: .region(MKCoordinateRegion(
+                            center: CLLocationCoordinate2D(latitude: 37.9033, longitude: 127.0606),
+                            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                        ))
+                    )
                 } label: {
                     Image(systemName: "location.circle.fill")
                         .resizable()
@@ -258,11 +252,11 @@ struct CurrentLocationAndUpdateCourseButton: View {
                 }
                 .padding(.bottom, 50)
                 .padding(.trailing, 20)
-
             }
         }
     }
 }
+
 
 /// 해당 화면의 title text
 struct viewTitleText: View {
@@ -343,3 +337,4 @@ struct IconView: View {
 #Preview {
     MapView()
 }
+
