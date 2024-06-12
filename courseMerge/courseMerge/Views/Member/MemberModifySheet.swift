@@ -12,9 +12,9 @@ struct MemberModifySheet: View {
     //뷰모델
     @EnvironmentObject var memberDetailViewModel: MemberDetailViewModel
     //파티(모임) 제목 폰트 컬러
-    @State private var partyTitleColor: Color = .labelsTertiary
+    @State private var partyTitleColor: Color = .labelsPrimary
     //파티(모임) 설명 폰트 컬러
-    @State private var partyDescrColor: Color = .labelsTertiary
+    @State private var partyDescrColor: Color = .labelsPrimary
     
     var body: some View {
         NavigationView {
@@ -26,14 +26,25 @@ struct MemberModifySheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextField("내용을 입력하세요.(필수)", text: $memberDetailViewModel.partyTitle)
-                        .frame(width:  361, height: 65)
-                        .background(.fillTertiary)
-                        .cornerRadius(10)
-                        .onChange(of: memberDetailViewModel.partyTitle) { _, newValue in
-                            partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
+                    ZStack(alignment: .leading) {
+                        if memberDetailViewModel.partyTitle.isEmpty {
+                            Text("파티명을 입력해주세요.")
+                                .foregroundStyle(partyTitleColor)
+                                .padding(.leading, 10)
+                                .font(.system(size: 18))
                         }
-                        .foregroundColor(partyTitleColor)
+                                                
+                        TextField(" ", text: $memberDetailViewModel.partyTitle)
+                            .padding(.leading, 10)
+                            .frame(width:  361, height: 65)
+                            .font(.system(size: 18))
+                            .background(.fillTertiary)
+                            .cornerRadius(10)
+                            .onChange(of: memberDetailViewModel.partyTitle) { _, newValue in
+                                partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
+                            }
+                    }
+                    .foregroundColor(partyTitleColor)
                     
                     if memberDetailViewModel.partyTitle.isEmpty {
                         Text("파티 제목을 입력해주세요 (필수)")
@@ -45,15 +56,29 @@ struct MemberModifySheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextEditor(text: $memberDetailViewModel.partyDescr)
-                        .frame(width:  361, height: 200)
-                        .scrollContentBackground(.hidden)
-                        .background(.fillTertiary)
-                        .cornerRadius(10)
-                        .onChange(of: memberDetailViewModel.partyDescr) { _, newValue in
-                            partyDescrColor = newValue.isEmpty ? .labelsPrimary : .labelsPrimary
+                    ZStack(alignment: .leading) {
+                        if memberDetailViewModel.partyDescr.isEmpty {
+                            Text("파티에 대한 설명을 입력해주세요.")
+                                .foregroundStyle(partyDescrColor)
+                                .padding(.leading, 14)
+                                .padding(.top, -82)
+                                .font(.system(size: 18))
                         }
-                        .foregroundColor(partyDescrColor)
+                        
+                        TextEditor(text: $memberDetailViewModel.partyDescr)
+                            .padding(.leading, 10)
+                            .padding(.top, 10)
+                            .frame(width:  361, height: 200)
+                            .font(.system(size: 18))
+                            .scrollContentBackground(.hidden)
+                            .background(.fillTertiary)
+                            .cornerRadius(10)
+                            .onChange(of: memberDetailViewModel.partyDescr) { _, newValue in
+                                partyDescrColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
+                            }
+                    }
+                    .foregroundColor(partyDescrColor)
+                        
                     
                     ModifyDatePickerInputArea(vm: memberDetailViewModel)
                     

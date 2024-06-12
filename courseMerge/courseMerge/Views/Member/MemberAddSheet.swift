@@ -33,7 +33,7 @@ struct MemberAddSheet: View {
                     ZStack(alignment: .leading) {
                         // TextField가 비어 있을 때 표시되는 placeholder 텍스트
                         if partyTitleText.isEmpty {
-                            Text("Placeholder")
+                            Text("파티명을 입력해주세요.")
                                 .foregroundStyle(partyTitleColor)
                                 .padding(.leading, 10)
                                 .font(.system(size: 18))
@@ -57,7 +57,7 @@ struct MemberAddSheet: View {
                     }
                     .frame(width: 361, height: 65)
 
-                    if memberDetailViewModel.partyTitle.isEmpty {
+                    if partyTitleText.isEmpty {
                         Text("파티 제목을 입력해주세요 (필수)")
                             .foregroundColor(.red)
                             .padding(.leading, 10)
@@ -71,7 +71,7 @@ struct MemberAddSheet: View {
                     
                     ZStack(alignment: .topLeading) {
                         if partyDescrText.isEmpty {
-                            Text("Placeholder")
+                            Text("파티에 대한 설명을 입력해주세요.")
                                 .foregroundStyle(partyDescrColor)
                                 .padding(.leading, 12)
                                 .padding(.top, 18)
@@ -86,7 +86,7 @@ struct MemberAddSheet: View {
                             .background(Color.fillTertiary)
                             .cornerRadius(10)
                             .onChange(of: partyDescrText) { _, newValue1 in
-                                partyDescrColor = newValue1.isEmpty ? .labelsPrimary : .labelsPrimary
+                                partyDescrColor = newValue1.isEmpty ? .labelsTertiary : .labelsPrimary
                             }
                             .foregroundColor(partyDescrColor)
                             .font(.system(size: 18))
