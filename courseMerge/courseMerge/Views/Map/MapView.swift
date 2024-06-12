@@ -23,7 +23,9 @@ struct MapView: View {
     @State private var searchResults = [MapDetailItem]()
     @State private var selectedLocation: MapDetailItem?
 
-    
+    // viewModel
+    @StateObject var partiesViewModel = PartyDetailsViewModel()
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -46,6 +48,7 @@ struct MapView: View {
                 
                 VStack {
                     HeaderView(activatedPartyName: $activatedPartyName, searchResults: $searchResults)
+                        .environmentObject(partiesViewModel)
                     Spacer()
                 }
                 
@@ -77,12 +80,14 @@ struct HeaderView: View {
     @State private var isShowSearchViewModal: Bool = false
     @Binding var activatedPartyName: String
     @Binding var searchResults: [MapDetailItem]
-
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+    
     var body: some View {
         VStack {
             HStack {
                 PartySelectionButton(activatedPartyName: $activatedPartyName)
                 PartyDateSelectionPicker()
+                    .environmentObject(partiesViewModel)
                 PlaceSearchButton(isShowSearchViewModal: $isShowSearchViewModal)
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
@@ -106,7 +111,7 @@ struct HeaderView: View {
 struct PartySelectionButton: View {
     @State private var showingActionSheet = false
     @Binding var activatedPartyName: String
-    @State private var exampleParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
 
     var body: some View {
         Button {
@@ -127,7 +132,7 @@ struct PartySelectionButton: View {
                 "파티를 선택해주세요",
                 isPresented: $showingActionSheet
             ) {
-                ForEach(exampleParties) { party in
+                ForEach(partiesViewModel.parties) { party in
                     Button {
                         self.activatedPartyName = party.title
                     } label: {

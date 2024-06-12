@@ -53,60 +53,60 @@ struct PracticeMapView: View {
 //    }
 //}
 
-struct RouteViewPractice: View {
-    let exampleRoute: MultiDayRoute = MultiDayRoute.example.first!
-    
-    @State private var route: MKRoute?
-    @State private var travelTime: String?
-    private let gradient = LinearGradient(colors: [.red, .orange], startPoint: .leading, endPoint: .trailing)
-    private let stroke = StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round, dash: [8, 8])
-    
-    var body: some View {
-        Map {
-            if let route {
-                MapPolyline(route.polyline)
-                    .stroke(.pastelRed, lineWidth: 10)
-                
-                Marker("startLocation1", systemImage: "", coordinate: exampleRoute.routes[0].startPoint.location ?? .empireStateBuilding)
-                
-                Marker(coordinate: exampleRoute.routes[0].nextPoint.location ?? .columbiaUniversity) {
-                    Image(systemName: "mappin.circle.fill")
-                        .foregroundStyle(Color(exampleRoute.user.usercolor))
-                }
-                
-                
-            }
-        }
-        .overlay(alignment: .bottom) {
-            if let travelTime {
-                Text("Travel time: \(travelTime)")
-                    .padding()
-                    .font(.headline)
-                    .foregroundStyle(.black)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(15)
-            }
-        }
-        .onAppear {
-            fetchRouteFrom(exampleRoute.routes[0].startPoint.location ?? .empireStateBuilding, to: exampleRoute.routes[0].nextPoint.location ?? .columbiaUniversity)
-        }
-    }
-}
-
-extension RouteViewPractice {
-    private func fetchRouteFrom(_ source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) {
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: source))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
-        request.transportType = .automobile
-        
-        Task {
-            let result = try? await MKDirections(request: request).calculate()
-            route = result?.routes.first
-//            getTravelTime()
-        }
-    }
-}
+//struct RouteViewPractice: View {
+//    let exampleRoute: Course = Course.example.first!
+//    
+//    @State private var route: MKRoute?
+//    @State private var travelTime: String?
+//    private let gradient = LinearGradient(colors: [.red, .orange], startPoint: .leading, endPoint: .trailing)
+//    private let stroke = StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round, dash: [8, 8])
+//    
+//    var body: some View {
+//        Map {
+//            if let route {
+//                MapPolyline(route.polyline)
+//                    .stroke(.pastelRed, lineWidth: 10)
+//                
+//                Marker("startLocation1", systemImage: "", coordinate: exampleRoute.routes[0].startPoint.location ?? .empireStateBuilding)
+//                
+//                Marker(coordinate: exampleRoute.routes[0].nextPoint.location ?? .columbiaUniversity) {
+//                    Image(systemName: "mappin.circle.fill")
+//                        .foregroundStyle(Color(exampleRoute.user.usercolor))
+//                }
+//                
+//                
+//            }
+//        }
+//        .overlay(alignment: .bottom) {
+//            if let travelTime {
+//                Text("Travel time: \(travelTime)")
+//                    .padding()
+//                    .font(.headline)
+//                    .foregroundStyle(.black)
+//                    .background(.ultraThinMaterial)
+//                    .cornerRadius(15)
+//            }
+//        }
+//        .onAppear {
+//            fetchRouteFrom(exampleRoute.routes[0].startPoint.location ?? .empireStateBuilding, to: exampleRoute.routes[0].nextPoint.location ?? .columbiaUniversity)
+//        }
+//    }
+//}
+//
+//extension RouteViewPractice {
+//    private func fetchRouteFrom(_ source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) {
+//        let request = MKDirections.Request()
+//        request.source = MKMapItem(placemark: MKPlacemark(coordinate: source))
+//        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
+//        request.transportType = .automobile
+//        
+//        Task {
+//            let result = try? await MKDirections(request: request).calculate()
+//            route = result?.routes.first
+////            getTravelTime()
+//        }
+//    }
+//}
 
 struct LocationPreviewLookAroundView: View {
     @State private var lookAroundScene: MKLookAroundScene?
@@ -189,10 +189,10 @@ struct MyFavoriteLocation: Identifiable, Equatable {
     }
 }
 
-#Preview {
-    RouteViewPractice()
-    
-}
+//#Preview {
+//    RouteViewPractice()
+//    
+//}
 
 
 extension CLLocationCoordinate2D {

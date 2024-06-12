@@ -16,11 +16,11 @@ struct NotificationView: View {
         NavigationView {
             VStack {
                 //클릭한 알림의 파티로 이동
-                ScrollView{
-                    NotificationMsgView()
-                        .environmentObject(userViewModel)
-                        .environmentObject(notiViewModel)
-                }
+//                ScrollView{
+//                    NotificationMsgView()
+//                        .environmentObject(userViewModel)
+//                        .environmentObject(notiViewModel)
+//                }
             }
             .navigationTitle("알림")
             .background(colorScheme == .dark ? Color("BGPrimaryDarkBase") : Color("BGPrimary"))

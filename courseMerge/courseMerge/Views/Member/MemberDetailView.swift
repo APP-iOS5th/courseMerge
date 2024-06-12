@@ -168,7 +168,8 @@ struct MemberGridView: View {
                             }
                             
                             Button(role: .destructive) {
-                                userViewModel.deleteUser(withUID: user.uid)
+//                                userViewModel.deleteUser(withUID: user.uid)
+                                // 파티원삭제는 -> 파티 뷰 모델에서 관리
                             } label: {
                                 Label("삭제하기", systemImage: "trash")
                             }

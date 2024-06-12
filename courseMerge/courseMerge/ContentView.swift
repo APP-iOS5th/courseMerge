@@ -32,8 +32,9 @@ struct ContentView: View {
                 .tabItem {
                     Label("설정", systemImage: "gearshape.fill")
                 }
-                .environmentObject(authViewModel)
         }
+        .environmentObject(authViewModel)
+
     }
 }
 

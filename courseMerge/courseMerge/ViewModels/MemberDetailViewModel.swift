@@ -20,7 +20,7 @@ class MemberDetailViewModel: ObservableObject {
     // 모임 멤버들
     @Published var members: [User] = []
     //파티(모임) 정보 저장
-    @Published var createdPartInfo: [GroupPartyInfo] = []
+    @Published var createdPartInfo: [PartyDetail] = []
     
     func savePartyData() {
         // 파이어베이스 스토리지에 저장
@@ -28,14 +28,11 @@ class MemberDetailViewModel: ObservableObject {
             print("Party title is required and cannot be empty")
             return
         }
-        
-        
-        let newPartydata = GroupPartyInfo(title: partytitle, description: partyDescr, members: userViewModel.users, startdate: startDate, enddate: endDate)
+        let newPartydata = PartyDetail(title: partytitle, description: partyDescr, members: userViewModel.users, startdate: startDate, enddate: endDate)
         createdPartInfo.append(newPartydata)
     }
     
     func updatePartyData(atIndex index: Int){
-        
         //인덱스 유효 확인
         guard index >= -1 && index < createdPartInfo.count else {
             return
@@ -47,6 +44,5 @@ class MemberDetailViewModel: ObservableObject {
         createdPartInfo[index].startdate = startDate
         createdPartInfo[index].enddate = endDate
     }
-    
 }
 

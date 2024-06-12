@@ -9,21 +9,31 @@ import SwiftUI
 
 struct ChatListView: View {
     @State private var showNotification = false
-    @State private var exampleParties = GroupPartyInfo.exampleParties
     @State private var isShowAlert: Bool = true
+    
+    // viewModel
+    @StateObject var authViewModel = AuthViewModel()
+    @StateObject var partiesViewModel = PartyDetailsViewModel()
+    @StateObject var messagesViewModel = MessageViewModel()
     
     var body: some View {
         NavigationStack {
             ZStack {
                 List {
-                    ForEach(exampleParties) { item in
-                         NavigationLink(destination: ChatView(item: item)) {
+                    ForEach(partiesViewModel.parties) { party in
+                        NavigationLink(
+                            destination: ChatView(party: party)
+                                .environmentObject(authViewModel)
+                                .environmentObject(partiesViewModel)
+                                .environmentObject(messagesViewModel)
+                            
+                        ) {
                              VStack(alignment: .leading) {
-                                 Text(item.title)
+                                 Text(party.title)
                                      .font(.headline)
                                  
-                                 if let firstMember = item.members.first {
-                                     Text("\(firstMember.username) 외 \(item.members.count - 1)명")
+                                 if let firstMember = party.members.first {
+                                     Text("\(firstMember.username) 외 \(party.members.count - 1)명")
                                          .font(.subheadline)
                                          .foregroundColor(Color("LabelsSecondary"))
                                  } else {
@@ -34,8 +44,8 @@ struct ChatListView: View {
                              }
                          }
                      }
-                    .onDelete(perform: deleteItems)
-                    .onMove(perform: moveItems)
+//                    .onDelete(perform: deleteItems)
+//                    .onMove(perform: moveItems)
                 }
                 .navigationTitle("채팅")
                 .toolbar {
@@ -85,11 +95,11 @@ struct ChatListView: View {
         }
     }
     private func deleteItems(at offsets: IndexSet) {
-        exampleParties.remove(atOffsets: offsets)
+        partiesViewModel.parties.remove(atOffsets: offsets)
     }
     
     private func moveItems(from source: IndexSet, to destination: Int) {
-        exampleParties.move(fromOffsets: source, toOffset: destination)
+        partiesViewModel.parties.move(fromOffsets: source, toOffset: destination)
     }
 }
 

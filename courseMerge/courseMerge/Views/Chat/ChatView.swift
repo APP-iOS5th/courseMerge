@@ -10,11 +10,19 @@ import SwiftUI
 // MARK: - ChatView
 
 struct ChatView: View {
-    let item: GroupPartyInfo
+    let party: PartyDetail
+    
     @Environment(\.colorScheme) var colorScheme
-    @State var exampleMessages: [Message] = Message.exampleMessages
+    
+    
     @State private var newMessage: String = ""
+    
+    // viewModel
     @StateObject var viewModel = UserViewModel()
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+    @EnvironmentObject var messagesViewModel: MessageViewModel
+    
     var body: some View {
         VStack {
             // TODO: 메시지가 새로 올라올 경우, 아래로 스크롤 포커스
@@ -22,7 +30,7 @@ struct ChatView: View {
                 LazyVStack {
                     // TODO: 내가 아닌 메시지 같은 사람이 연속으로 보낼 경우, profileImage, name 생략.
                     // 그리고 나 혹은 다른 사람이 연속으로 보낼 경우 메시지 간 간격 줄이기
-                    ForEach(exampleMessages) { item in
+                    ForEach(messagesViewModel.messages) { item in
                         
                         HStack(alignment: .top, spacing: 10) {
                             if !item.isCurrentUser {
@@ -39,7 +47,7 @@ struct ChatView: View {
                 }
             }
             .background(colorScheme == .dark ? Color("BGSecondaryDarkElevated") : Color("BGSecondary"))
-            .navigationTitle(item.title)
+            .navigationTitle(party.title)
             .toolbarBackground(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : Color("BGPrimary"), for: .navigationBar)
             .navigationBarTitleDisplayMode(.inline)
             
@@ -71,7 +79,7 @@ struct ChatView: View {
             
             Button(action: {
                 if !newMessage.isEmpty {
-                    exampleMessages.append(Message(content: newMessage, isCurrentUser: true, member: User(username: "이융의", usercolor: "PastelBlue", isHost: false)))
+                    messagesViewModel.messages.append(Message(content: newMessage, isCurrentUser: true, member: authViewModel.currentUser!, party: party))
                     newMessage = ""
                 }
             }) {
@@ -110,12 +118,12 @@ struct MessageCell: View {
     }
 }
 
-#Preview {
-    MessageCell(contentMessage: "This is a single message cell", isCurrentUser: true, member: User(username: "이융의", usercolor: "PastelBlue", isHost: false))
-}
-
-#Preview {
-    NavigationStack {
-        ChatView(item: GroupPartyInfo.exampleParties.first!, exampleMessages: Message.exampleMessages)
-    }
-}
+//#Preview {
+//    MessageCell(contentMessage: "This is a single message cell", isCurrentUser: true, member: User(username: "이융의", usercolor: "PastelBlue", isHost: false))
+//}
+//
+//#Preview {
+//    NavigationStack {
+//        ChatView(item: PartyDetail.exampleParties.first!, exampleMessages: Message.exampleMessages)
+//    }
+//}
