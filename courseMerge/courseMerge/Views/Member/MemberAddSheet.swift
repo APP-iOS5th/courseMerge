@@ -15,27 +15,36 @@ struct MemberAddSheet: View {
     @State private var partyTitleColor: Color = .labelsTertiary
     //파티(모임) 설명 폰트 컬러
     @State private var partyDescrColor: Color = .labelsTertiary
+    @State private var titleTextEditor: String = ""
+    @State private var descriptionTextEditor: String = ""
     
     
     var body: some View {
         NavigationView {
             ScrollViewReader { targetproxy in
                 VStack(alignment: .leading) {
-
                     Text("제목")
                         .font(.title3)
                         .fontWeight(.bold)
                         .padding(.top,20)
-                    
-                    TextField("내용을 입력하세요.(필수)", text: $memberDetailViewModel.partytitle)
+        
+                    TextField("", text: $titleTextEditor)
+                        .padding(.leading, 10)
+                        .overlay(alignment: .topLeading) {
+                            Text("Placeholder")
+                                .foregroundStyle(titleTextEditor.isEmpty ? partyTitleColor : .clear)
+                                .padding(.leading, 10)
+                                .font(.system(size: 18))
+                        }
+                        .foregroundColor(partyTitleColor)
                         .frame(width:  361, height: 65)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: memberDetailViewModel.partytitle) { _, newValue in
+                        .onChange(of: titleTextEditor) { _, newValue in
                             partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
                         }
-                        .foregroundColor(partyTitleColor)
-                    
+                        .font(.system(size: 18))
+
                     if memberDetailViewModel.partytitle.isEmpty {
                         Text("파티 제목을 입력해주세요 (필수)")
                             .foregroundColor(.red)
@@ -47,15 +56,25 @@ struct MemberAddSheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextEditor(text: $memberDetailViewModel.partyDescr)
+                    TextEditor(text: $descriptionTextEditor)
+                        .padding(.leading, 10)
+                        .padding(.top, 10)
+                        .overlay(alignment: .topLeading) {
+                            Text("Placeholder")
+                                .foregroundStyle(descriptionTextEditor.isEmpty ? partyDescrColor : .clear)
+                                .padding(.leading, 12)
+                                .padding(.top, 18)
+                                .font(.system(size: 18))
+                        }
                         .frame(width:  361, height: 200)
                         .scrollContentBackground(.hidden)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: memberDetailViewModel.partyDescr) { _, newValue in
-                            partyDescrColor = newValue.isEmpty ? .labelsPrimary : .labelsPrimary
+                        .onChange(of: descriptionTextEditor) { _, newValue1 in
+                            partyDescrColor = newValue1.isEmpty ? .labelsPrimary : .labelsPrimary
                         }
                         .foregroundColor(partyDescrColor)
+                        .font(.system(size: 18))
                     
                     AddDatePickerInputArea(vm: memberDetailViewModel)
                     

@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct MemberView: View {
-
     @StateObject private var memberDetailViewModel = MemberDetailViewModel()
     @Environment(\.colorScheme) var colorScheme
-        
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -28,7 +27,6 @@ struct MemberView: View {
     }
 }
 
-
 struct MemberHeaderView: View {
     @State private var isShowSearchViewModal: Bool = false
     
@@ -40,19 +38,15 @@ struct MemberHeaderView: View {
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .frame(height: 52)
-                
-                //MemberPartySelecBtn()
             }
+            
             Divider()
         }
-
         .padding(.horizontal)
         .background(Color.white)
         
     }
 }
-
-
 
 #Preview {
     MemberView()

@@ -16,7 +16,7 @@ struct ProfileView: View {
     var isUsername: Bool
     
     @EnvironmentObject var userViewModel: UserViewModel
-
+    
     var body: some View {
         VStack {
             // image
@@ -36,7 +36,6 @@ struct ProfileView: View {
                             HStack {
                                 Spacer()
                                 Image("custom.crown.circle.fill")
-                                    
                             }
                         }
                     } else if user.uid == userViewModel.currentUserUID {
@@ -57,6 +56,7 @@ struct ProfileView: View {
                     .font(.callout)
                     .foregroundStyle(.labelsPrimary)
             }
+            
         }
     }
 }
