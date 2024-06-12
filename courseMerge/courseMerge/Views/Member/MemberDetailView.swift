@@ -70,11 +70,11 @@ struct PartyInfoView: View {
     var body: some View{
         HStack {
             
-            ProfileView(user: userViewModel.users.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
+            //ProfileView(user: userViewModel.users.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
             
-//            ForEach(memberDetailViewModel.createdPartInfo) { partys in
-//                ProfileView(user: partys.members.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
-//            }
+            ForEach(memberDetailViewModel.createdPartInfo) { partys in
+                ProfileView(user: partys.members.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
+            }
             
             VStack(alignment: .leading) {
                 HStack {
