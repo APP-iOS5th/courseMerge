@@ -30,6 +30,7 @@ struct MemberView: View {
 
 
 struct MemberHeaderView: View {
+    @Environment(\.colorScheme) var colorScheme
     @State private var isShowSearchViewModal: Bool = false
     
     var body: some View {
@@ -37,6 +38,7 @@ struct MemberHeaderView: View {
             HStack{
                 Text("구성원")
                     .font(.largeTitle)
+                    .foregroundStyle(.labelsPrimary)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .frame(height: 52)
@@ -45,9 +47,8 @@ struct MemberHeaderView: View {
             }
             Divider()
         }
-
+        .background(colorScheme == .dark ? Color("BGPrimaryDarkBase") : Color("BGPrimary"))
         .padding(.horizontal)
-        .background(Color.white)
         
     }
 }

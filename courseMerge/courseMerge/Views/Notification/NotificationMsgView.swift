@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NotificationMsgView: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var notiViewModel: NotificationViewModel
    // var testidx: Int  = notiViewModel.notifiMsg.userProfileidx
@@ -20,8 +20,8 @@ struct NotificationMsgView: View {
                     ForEach(notiViewModel.notifiMsg){ notimsg in
                         ZStack{
                             Rectangle()
-                                .fill(Color.bgSecondary)
-                                .frame(width: geometry.size.width, height: 200) // Rectangle의 너비만큼 설정
+                                .fill(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : Color("BGSecondary"))
+                                .frame(width: geometry.size.width, height: 190) // Rectangle의 너비만큼 설정
                                 .cornerRadius(10)
                             VStack{
                                 HStack{
@@ -30,21 +30,26 @@ struct NotificationMsgView: View {
                                         .font(.title)
                                         .foregroundStyle(.labelsPrimary)
                                         .padding(.leading)
+                                    //Spacer()
                                     ProfileView(user: userViewModel.users[notimsg.userProfileidx], width: 25, height: 25, overlayWidth: 10, overlayHeight: 10, isUsername: false)
+                                    //Spacer()
                                     Text(notimsg.datetime)
                                         .fontWeight(.regular)
                                         .font(.callout)
                                         .foregroundStyle(.labelsTertiary)
-                                        .padding(.trailing)
+                                        .frame(maxWidth: .infinity)
+                                    
                                 }
                                 Text(notimsg.msg)
+                                   // .frame(maxWidth: .infinity)
                             }
                         }
                     }
+                    .padding(.bottom, 10)
                 }
             }
         }
-        .padding(10)
+        .padding(20)
     }
 }
 

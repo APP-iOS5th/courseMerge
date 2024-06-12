@@ -49,7 +49,7 @@ struct MapView: View {
                     Spacer()
                 }
                 
-                CurrentLocationAndUpdateCourseButton(locationManager: locationManager, cameraPosition: $cameraPosition)
+                CurrentLocationAndUpdateCourseButton(locationManager: locationManager, cameraPosition: $position)
             }
             .onAppear {
                 if activatedPartyName.isEmpty {
@@ -73,6 +73,7 @@ struct MapView: View {
 }
 
 struct HeaderView: View {
+    @Environment(\.colorScheme) var colorScheme
     @State private var isShowSearchViewModal: Bool = false
     @Binding var activatedPartyName: String
     @Binding var searchResults: [MapDetailItem]
@@ -93,10 +94,11 @@ struct HeaderView: View {
             SearchView(searchResults: $searchResults)
         }
         .padding(.horizontal)
-        .background(Color.white)
+        .background(colorScheme == .dark ? Color("BGPrimaryDarkBase") : Color("BGPrimary"))
         
         MemberCustomDisclosureGroup()
     }
+        
 }
 
 
@@ -171,6 +173,7 @@ struct PlaceSearchButton: View {
 
 /// 선택된 파티에 따라 구성원을 보여주는 Custom DisclosureGroup
 struct MemberCustomDisclosureGroup: View {
+    @Environment(\.colorScheme) var colorScheme
     @State private var expanded = false
     @State private var iconViewHeight: CGFloat = 0
     
@@ -179,7 +182,8 @@ struct MemberCustomDisclosureGroup: View {
             if expanded {
                 VStack {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
+                        HStack {                          
+                            
                             ForEach(1...iconData.count, id: \.self) { index in
                                 Button(action: {
                                     print("\(iconData[index-1].label) 버튼 클릭")
@@ -199,7 +203,8 @@ struct MemberCustomDisclosureGroup: View {
                     }
                 }
                 .padding()
-                .background(Color.white.opacity(0.8))
+                .background(colorScheme == .dark ? Color("BGPrimaryDarkBase").opacity(expanded ? 0.8 : 1) : Color("BGPrimary").opacity(expanded ? 0.8 : 1))
+                //.background(Color.white.opacity(0.8))
                 .padding(.top, -8)
             }
             
@@ -211,13 +216,14 @@ struct MemberCustomDisclosureGroup: View {
                 HStack {
                     Spacer()
                     Image(systemName: expanded ? "chevron.up" : "chevron.down")
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .dark ? Color("BGTertiaryDarkElevated") : Color("BGPrimaryDarkBase") ) //색상명 수정 필요
                         .padding(.bottom, 8)
                         .offset(y: 4)
                     Spacer()
                 }
                 .frame(height: 20)
-                .background(Color.white.opacity(expanded ? 0.8 : 1))
+                .background(colorScheme == .dark ? Color("BGPrimaryDarkBase").opacity(expanded ? 0.8 : 1) : Color("BGPrimary").opacity(expanded ? 0.8 : 1))
+//                .background(Color.white.opacity(expanded ? 0.8 : 1))
             }
             .padding(.top, -8)
         }
@@ -287,6 +293,8 @@ struct viewTitleText: View {
 
 
 struct IconView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     var color: Color
     var iconName: String
     var label: String
@@ -301,14 +309,10 @@ struct IconView: View {
                     .fill(color)
                     .frame(width: 70, height: 70)
                 
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 40, height: 40)
-                
-                Image(systemName: "mappin.and.ellipse")
+                Image("ProfileMark")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 20, height: 20)
+                    .frame(width: 40, height: 40)
                     .foregroundColor(color)
                 
                 if hasCrown {
@@ -336,7 +340,7 @@ struct IconView: View {
             
             Text(label)
                 .font(.system(size: 11))
-                .foregroundColor(.black)
+                .foregroundStyle(.labelsPrimary)
         }
         .background(
             GeometryReader { geometry in
