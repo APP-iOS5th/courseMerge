@@ -27,9 +27,17 @@ struct MapView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Map(position: $position)
-                    .ignoresSafeArea()
-                
+                Map(position: $position, selection: $selectedLocation) {
+                    ForEach(searchResults) { result in
+                        if let location = result.location {
+                            Marker(coordinate: location) {
+                                Image(systemName: "mappin")
+                            }
+                            .tag(result)
+                        }
+                    }
+                }
+                .ignoresSafeArea()
                 
                 VStack {
                     HeaderView(activatedPartyName: $activatedPartyName, searchResults: $searchResults)

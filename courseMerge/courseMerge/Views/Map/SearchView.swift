@@ -93,10 +93,10 @@ struct SearchView: View {
                         if let singleLocation = try? await locationService.search(with: "\(completion.name ?? "") \(completion.address ?? "")").first {
                             searchResults = [singleLocation]
                             print("searchResults: \(searchResults)")
-//                            dismiss()
-                            withAnimation {
-                                self.heights = 0.5
-                            }
+                            dismiss()
+//                            withAnimation {
+//                                self.heights = 0.5
+//                            }
                         }
                     }
                 } label: {

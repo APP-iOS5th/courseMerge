@@ -10,14 +10,23 @@ import SwiftUI
 import MapKit
 
 // 특정 장소의 상세 정보
-struct MapDetailItem: Identifiable {
+struct MapDetailItem: Identifiable, Hashable {
     let id = UUID()
     let name: String?
     let address: String?
     let phoneNumber: String?
     let category: Category?
     let location: CLLocationCoordinate2D?
+
+    static func == (lhs: MapDetailItem, rhs: MapDetailItem) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
+
 
 extension MapDetailItem {
     static var recentVisitedExample: [MapDetailItem] = [
