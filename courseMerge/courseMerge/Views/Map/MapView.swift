@@ -293,6 +293,8 @@ struct viewTitleText: View {
 
 
 struct IconView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     var color: Color
     var iconName: String
     var label: String
@@ -338,7 +340,7 @@ struct IconView: View {
             
             Text(label)
                 .font(.system(size: 11))
-                .foregroundColor(.black)
+                .foregroundStyle(.labelsPrimary)
         }
         .background(
             GeometryReader { geometry in
