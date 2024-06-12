@@ -89,8 +89,10 @@ struct AddPartySheetView: View {
                 trailing: Button("저장") {
                     if partyTitle.isEmpty {
                         self.showHelpText = true
+                    } else {
+                        partiesViewModel.addParty(PartyDetail(title: partyTitle, description: partyDescr, members: User.exampleUsers, startdate: startDate, enddate: endDate))
+                        dismiss()
                     }
-                    dismiss()
                 }
                     .foregroundColor(partyTitle.isEmpty ? .labelsTertiary : .blue) // Save 버튼 색상 설정
             )

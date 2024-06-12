@@ -15,12 +15,28 @@ struct MemberView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 if partiesViewModel.parties.isEmpty {
+                    
                     MemberEmptyView()
+                    
                 } else {
+                    
                     MemberDetailView()
+                }
+            }
+            .task {
+                if let currentParty = partiesViewModel.currentParty {
+                    print("current Party :: \(currentParty)")
+                }
+                partiesViewModel.fetchParties()
+            }
+            .onReceive(partiesViewModel.$currentParty) { newParty in
+                if let newParty = newParty {
+                    print("Updated current party: \(newParty)")
+                } else {
+                    print("No current party selected")
                 }
             }
             .environmentObject(partiesViewModel)

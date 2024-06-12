@@ -16,7 +16,7 @@ struct NotificationView: View {
 //    @StateObject private var notiViewModel = NotificationViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 //클릭한 알림의 파티로 이동
 //                ScrollView{

@@ -20,17 +20,20 @@ struct MemberDetailView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            PartyInfoView(party: partiesViewModel.currentParty, isModifySheetPresented: $isModifySheetPresented)
+            if let currentParty = partiesViewModel.currentParty {
+                PartyInfoView(party: currentParty, isModifySheetPresented: $isModifySheetPresented)
+                
+                Divider()
+                
+                MemberGridView(party: currentParty, isSharingSheetPresented: $isSharingSheetPresented)
+            }
             
-            Divider()
-
-            MemberGridView(party: partiesViewModel.currentParty, isSharingSheetPresented: $isSharingSheetPresented)
         }
         .environmentObject(userViewModel)
         .environmentObject(partiesViewModel)
         .padding(10)
         .sheet(isPresented: $isModifySheetPresented) {
-            UpdatePartySheetView(party: partiesViewModel.currentParty)
+            UpdatePartySheetView(party: partiesViewModel.currentParty!)
                 .environmentObject(partiesViewModel)
 
         }
@@ -49,6 +52,10 @@ struct MemberDetailView: View {
 
 struct PartyInfoView: View {
     let party: PartyDetail
+    
+    
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     
     @Binding var isModifySheetPresented: Bool
     @State private var isExpanded = false

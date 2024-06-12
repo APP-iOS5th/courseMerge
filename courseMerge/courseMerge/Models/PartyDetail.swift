@@ -6,17 +6,28 @@
 //
 
 import Foundation
-
+import FirebaseFirestore
 // 단일 파티 상세 정보 - 파티명, 파티 설명, 멤버 누구누구 있는지(호스트 여부 파악 가능). 기간
 // 따로 Parties 를 만들 필요는 x
 
-struct PartyDetail: Identifiable {
-    let id: UUID = UUID()
+struct PartyDetail: Identifiable, Codable {
+    let id = UUID()
     var title: String
     var description: String
     var members: [User]
     var startdate: Date
     var enddate: Date
+    var docId: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case description
+        case members
+        case startdate
+        case enddate
+        case docId
+    }
 }
 
 extension PartyDetail {
