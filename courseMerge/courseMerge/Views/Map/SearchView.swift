@@ -21,7 +21,7 @@ struct SearchView: View {
     @State private var locationService = LocationService(completer: MKLocalSearchCompleter())
     @Binding var searchResults: [MapDetailItem]
     
-    @State private var heights: Double = 0.7
+//    @State private var heights: Double = 0.7
     
     @State private var selectedItem: MapDetailItem?
 
@@ -51,7 +51,7 @@ struct SearchView: View {
             .background(colorScheme == .dark ? Color("BGSecondaryDarkElevated") : Color("BGSecondary"))
         }
         .interactiveDismissDisabled()
-        .presentationDetents([.medium, .fraction(self.heights)])
+        .presentationDetents([.fraction(0.7)])
         .presentationBackground(.regularMaterial)
         .presentationBackgroundInteraction(.enabled(upThrough: .large))
         .sheet(item: $selectedItem) { item in
