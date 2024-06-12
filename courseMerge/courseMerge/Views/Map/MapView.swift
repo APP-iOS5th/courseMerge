@@ -49,7 +49,7 @@ struct MapView: View {
                     Spacer()
                 }
                 
-                CurrentLocationAndUpdateCourseButton(locationManager: locationManager, cameraPosition: $cameraPosition)
+                CurrentLocationAndUpdateCourseButton(locationManager: locationManager, cameraPosition: $position)
             }
             .onAppear {
                 if activatedPartyName.isEmpty {

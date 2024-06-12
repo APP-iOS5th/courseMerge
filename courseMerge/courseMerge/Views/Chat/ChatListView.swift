@@ -34,12 +34,8 @@ struct ChatListView: View {
                              }
                          }
                      }
-                    .onDelete(perform: { indexSet in
-                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
-                    })
-                    .onMove(perform: { indices, newOffset in
-                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
-                    })
+                    .onDelete(perform: deleteItems)
+                    .onMove(perform: moveItems)
                 }
                 .navigationTitle("채팅")
                 .toolbar {
@@ -87,6 +83,13 @@ struct ChatListView: View {
                 showNotification = false
             }
         }
+    }
+    private func deleteItems(at offsets: IndexSet) {
+        exampleParties.remove(atOffsets: offsets)
+    }
+    
+    private func moveItems(from source: IndexSet, to destination: Int) {
+        exampleParties.move(fromOffsets: source, toOffset: destination)
     }
 }
 

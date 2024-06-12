@@ -14,7 +14,6 @@ struct GroupPartyInfo: Identifiable {
     var members: [User]
     var startdate: Date
     var enddate: Date
-    
 }
 
 extension GroupPartyInfo {
