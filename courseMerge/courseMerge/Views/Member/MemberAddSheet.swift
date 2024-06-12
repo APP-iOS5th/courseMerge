@@ -15,8 +15,9 @@ struct MemberAddSheet: View {
     @State private var partyTitleColor: Color = .labelsTertiary
     //파티(모임) 설명 폰트 컬러
     @State private var partyDescrColor: Color = .labelsTertiary
-    @State private var titleTextEditor: String = ""
-    @State private var descriptionTextEditor: String = ""
+    
+    @State private var partyTitleText: String = ""
+    @State private var partyDescrText: String = ""
     
     
     var body: some View {
@@ -26,24 +27,35 @@ struct MemberAddSheet: View {
                     Text("제목")
                         .font(.title3)
                         .fontWeight(.bold)
-                        .padding(.top,20)
-        
-                    TextField("", text: $titleTextEditor)
-                        .padding(.leading, 10)
-                        .overlay(alignment: .topLeading) {
+                        .padding(.top, 20)
+                    
+                    // TextField와 placeholder를 포함하는 ZStack
+                    ZStack(alignment: .leading) {
+                        // TextField가 비어 있을 때 표시되는 placeholder 텍스트
+                        if partyTitleText.isEmpty {
                             Text("Placeholder")
-                                .foregroundStyle(titleTextEditor.isEmpty ? partyTitleColor : .clear)
+                                .foregroundStyle(partyTitleColor)
                                 .padding(.leading, 10)
                                 .font(.system(size: 18))
                         }
-                        .foregroundColor(partyTitleColor)
-                        .frame(width:  361, height: 65)
-                        .background(.fillTertiary)
-                        .cornerRadius(10)
-                        .onChange(of: titleTextEditor) { _, newValue in
-                            partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
-                        }
-                        .font(.system(size: 18))
+                        
+                        TextField("", text: $partyTitleText)
+                            .padding(.leading, 10)
+                            .foregroundColor(partyTitleColor)
+                            .frame(width: 361, height: 65)
+                            .background(Color.fillTertiary)
+                            .cornerRadius(10)
+                            .onChange(of: partyTitleText) { _, newValue in
+                                partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
+                            }
+                            .font(.system(size: 18))
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                // 빈 공간 터치 시에도 TextField가 활성화되도록 설정
+                                UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
+                            }
+                    }
+                    .frame(width: 361, height: 65)
 
                     if memberDetailViewModel.partyTitle.isEmpty {
                         Text("파티 제목을 입력해주세요 (필수)")
@@ -57,25 +69,33 @@ struct MemberAddSheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextEditor(text: $descriptionTextEditor)
-                        .padding(.leading, 10)
-                        .padding(.top, 10)
-                        .overlay(alignment: .topLeading) {
+                    ZStack(alignment: .topLeading) {
+                        if partyDescrText.isEmpty {
                             Text("Placeholder")
-                                .foregroundStyle(descriptionTextEditor.isEmpty ? partyDescrColor : .clear)
+                                .foregroundStyle(partyDescrColor)
                                 .padding(.leading, 12)
                                 .padding(.top, 18)
                                 .font(.system(size: 18))
                         }
-                        .frame(width:  361, height: 200)
-                        .scrollContentBackground(.hidden)
-                        .background(.fillTertiary)
-                        .cornerRadius(10)
-                        .onChange(of: descriptionTextEditor) { _, newValue1 in
-                            partyDescrColor = newValue1.isEmpty ? .labelsPrimary : .labelsPrimary
-                        }
-                        .foregroundColor(partyDescrColor)
-                        .font(.system(size: 18))
+                        
+                        TextEditor(text: $partyDescrText)
+                            .padding(.leading, 10)
+                            .padding(.top, 10)
+                            .frame(width: 361, height: 200)
+                            .scrollContentBackground(.hidden)
+                            .background(Color.fillTertiary)
+                            .cornerRadius(10)
+                            .onChange(of: partyDescrText) { _, newValue1 in
+                                partyDescrColor = newValue1.isEmpty ? .labelsPrimary : .labelsPrimary
+                            }
+                            .foregroundColor(partyDescrColor)
+                            .font(.system(size: 18))
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
+                            }
+                    }
+                    .frame(width: 361, height: 200)
                     
                     AddDatePickerInputArea(vm: memberDetailViewModel)
                     
@@ -88,8 +108,8 @@ struct MemberAddSheet: View {
                     presentMode.wrappedValue.dismiss()
                 },
                 trailing: Button("Save") {
-                    memberDetailViewModel.partyTitle = titleTextEditor
-                    memberDetailViewModel.partyDescr = descriptionTextEditor
+                    memberDetailViewModel.partyTitle = partyTitleText
+                    memberDetailViewModel.partyDescr = partyDescrText
                     
                     memberDetailViewModel.savePartyData()
                     // 파이어베이스 스토리지에 저장
