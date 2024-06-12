@@ -54,6 +54,15 @@ struct PartyInfoView: View {
     //호스트 표시
     var hasCrown: Bool = true
     
+    // 날짜 형식 지정
+//    let dateFormatter = DateFormatter()
+//    dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+//
+//    // 날짜를 형식에 맞게 변환
+//    let formattedStartDate = dateFormatter.string(from: memberDetailViewModel.startDate)
+//    let formattedEndDate = dateFormatter.string(from: memberDetailViewModel.endDate)
+//    
+    
     var body: some View{
         HStack {
             

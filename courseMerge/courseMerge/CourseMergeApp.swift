@@ -24,22 +24,17 @@ struct CourseMergeApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            Group {
-//                if authViewModel.isSignedIn {
-//                    ContentView()
-//                } else {
-//                    LoginView()
-//                }
-//            }
-//            .environmentObject(authViewModel)
-//            .onAppear {
-//
-//                authViewModel.checkSignInStatus()
-//                print(authViewModel.isSignedIn)
-//
-//            }
-            LoginView()
-//            RouteViewPractice()
+            Group {
+                if authViewModel.isSignedIn {
+                    ContentView()
+                } else {
+                    LoginView()
+                }
+            }
+            .environmentObject(authViewModel)
+            .onAppear {
+                authViewModel.checkSignInStatus()
+            }
         }
     }
 }

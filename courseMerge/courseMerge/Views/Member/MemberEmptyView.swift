@@ -60,10 +60,10 @@ struct MemberEmptyView: View {
                     }
                     .padding()
                 } else {
-//                    NavigationLink(destination: MemberDetailView()) {
-//                        //MemberDetailView(memberDetailViewModel: memberDetailViewModel)
-//                    }
-//                    .environmentObject(MemberDetailViewModel())
+                    NavigationLink(destination: MemberDetailView(memberDetailViewModel: memberDetailViewModel)) {
+                        MemberDetailView(memberDetailViewModel: memberDetailViewModel)
+                    }
+                    .environmentObject(MemberDetailViewModel())
                 }
             }
             .sheet(isPresented: $isAddSheetPresented, onDismiss: {
