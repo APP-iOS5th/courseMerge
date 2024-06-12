@@ -67,6 +67,11 @@ struct MemberModifySheet: View {
                 },
                 trailing: Button("Save") {
                     // 저장 작업을 수행하고 시트를 닫음
+                    if let firstParty = memberDetailViewModel.createdPartInfo.first {
+                        if let index = memberDetailViewModel.createdPartInfo.firstIndex(where: { $0.title == firstParty.title }) {
+                            memberDetailViewModel.updatePartyData(atIndex: index)
+                        }
+                    }
                     presentMode.wrappedValue.dismiss()
                 }
             )

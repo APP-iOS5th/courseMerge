@@ -27,7 +27,7 @@ struct MemberDetailView: View {
         .environmentObject(memberDetailViewModel)
         .padding(10)
         .sheet(isPresented: $isModifySheetPresented) {
-            MemberModifySheet()
+            MemberModifySheet().environmentObject(memberDetailViewModel)
         }
         .background(
             AppSharingSheet(

@@ -35,7 +35,7 @@ class MemberDetailViewModel: ObservableObject {
     func updatePartyData(atIndex index: Int){
         
         //인덱스 유효 확인
-        guard index >= 0 && index < createdPartInfo.count else {
+        guard index >= -1 && index < createdPartInfo.count else {
                 return
         }
         // 해당 인덱스에 있는 파티 정보를 업데이트
