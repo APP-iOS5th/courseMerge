@@ -17,6 +17,8 @@
 		786D27CB2C174006007186CB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786D27CA2C174006007186CB /* LocationManager.swift */; };
 		787C94512C17F27A00069603 /* IconData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C94502C17F27A00069603 /* IconData.swift */; };
 		78C24FCA2C16989D007DAF99 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C24FC92C16989D007DAF99 /* MapView.swift */; };
+		868C2FC22C188656008E2DB6 /* PracticeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C2FC12C188656008E2DB6 /* PracticeMapView.swift */; };
+		868C2FC42C189951008E2DB6 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C2FC32C189951008E2DB6 /* Routes.swift */; };
 		9707CB152C172F4B0011C3E2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9707CB142C172F4B0011C3E2 /* ChatView.swift */; };
 		9707CB172C173D370011C3E2 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9707CB162C173D370011C3E2 /* RoundedCorner.swift */; };
 		9707CB1C2C17D5950011C3E2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9707CB1B2C17D5950011C3E2 /* FirebaseAuth */; };
@@ -70,6 +72,8 @@
 		787C94502C17F27A00069603 /* IconData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IconData.swift; path = courseMerge/Models/IconData.swift; sourceTree = SOURCE_ROOT; };
 		78C24FC92C16989D007DAF99 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = courseMerge/Views/Map/MapView.swift; sourceTree = SOURCE_ROOT; };
 		78EDDE042C1694B0009C4EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		868C2FC12C188656008E2DB6 /* PracticeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PracticeMapView.swift; path = courseMerge/Views/Map/PracticeMapView.swift; sourceTree = SOURCE_ROOT; };
+		868C2FC32C189951008E2DB6 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = courseMerge/Models/Routes.swift; sourceTree = SOURCE_ROOT; };
 		9707CB142C172F4B0011C3E2 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		9707CB162C173D370011C3E2 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		9707CB1D2C17DE4C0011C3E2 /* CourseMerge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CourseMerge.entitlements; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				78C24FC92C16989D007DAF99 /* MapView.swift */,
+				868C2FC12C188656008E2DB6 /* PracticeMapView.swift */,
 				970B7CBC2C168D31003CB335 /* SearchView.swift */,
 				970B7CBE2C168D3B003CB335 /* SearchResultDetailView.swift */,
 				970B7CC02C168D4C003CB335 /* SearchResultsView.swift */,
@@ -298,6 +303,7 @@
 				97B6AE2D2C18024300595C12 /* User.swift */,
 				97B6AE292C1800AF00595C12 /* Message.swift */,
 				787C94502C17F27A00069603 /* IconData.swift */,
+				868C2FC32C189951008E2DB6 /* Routes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -348,7 +354,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */;
+			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -399,6 +405,7 @@
 				EA4D62B92C16DFE8003EA8EB /* MemberEmptyView.swift in Sources */,
 				97BBA2612C18384E00893A77 /* PartyViewModel.swift in Sources */,
 				786D27CB2C174006007186CB /* LocationManager.swift in Sources */,
+				868C2FC22C188656008E2DB6 /* PracticeMapView.swift in Sources */,
 				975B97212C1844BE005090C4 /* ProfileView.swift in Sources */,
 				9717A3B92C15D35000B92765 /* SettingView.swift in Sources */,
 				3D349C392C16D5E60092E10C /* DevelopersDetailsView.swift in Sources */,
@@ -408,6 +415,7 @@
 				EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */,
 				3D349C352C16D5090092E10C /* PrivacyPolicyView.swift in Sources */,
 				9717A3BD2C15D36200B92765 /* MemberView.swift in Sources */,
+				868C2FC42C189951008E2DB6 /* Routes.swift in Sources */,
 				9717A3CA2C16882000B92765 /* test.swift in Sources */,
 				EA4D62BD2C16E2C3003EA8EB /* GroupPartyItem.swift in Sources */,
 				9717A39C2C15CF4E00B92765 /* ContentView.swift in Sources */,
@@ -632,7 +640,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */ = {
+		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9717A3A22C15CF5000B92765 /* Debug */,

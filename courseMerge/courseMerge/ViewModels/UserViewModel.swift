@@ -32,19 +32,4 @@ class UserViewModel: ObservableObject {
             print("No current user logged in.")
         }
     }
-    
-//    users 컬렉션에 있는 모든 사용자를 대상으로 본인인지를 구분하는 로직
-//    func identifySelfInParty(allMembers: [User]) {
-//        guard let currentUserUID = currentUserUID else {
-//            print("No current user logged in.")
-//            return
-//        }
-//        for member in allMembers {
-//            if member.uid == currentUserUID {
-//                print("This is you: \(member.username)")
-//            } else {
-//                print("Other member: \(member.username)")
-//            }
-//        }
-//    }
 }
