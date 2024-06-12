@@ -50,7 +50,7 @@ struct UpdatePartySheetView: View {
                 
                 TextField("제목을 입력하세요.(필수)", text: $partyTitle)
                     .padding(.leading, 10)
-                    .foregroundColor(partyTitleColor)
+//                    .foregroundColor(partyTitleColor)
                     .frame(width:  361, height: 65)
                     .background(.fillTertiary)
                     .cornerRadius(10)
@@ -74,7 +74,7 @@ struct UpdatePartySheetView: View {
                     .scrollContentBackground(.hidden)
                     .background(.fillTertiary)
                     .cornerRadius(10)
-                    .foregroundColor(partyDescrColor)
+//                    .foregroundColor(partyDescrColor)
                     .font(.system(size: 18))
                 
                 DatePicker("시작일", selection: $startDate, displayedComponents: .date)

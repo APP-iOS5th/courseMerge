@@ -150,7 +150,8 @@ struct MemberGridView: View {
                             .foregroundStyle(.labelsPrimary)
                     }
                 }
-                ForEach(party.members) { user in
+                
+                ForEach(party.members.filter { !$0.isHost }) { user in
                     Button {
                         
                     } label: {
