@@ -248,3 +248,10 @@ extension CLLocationCoordinate2D {
 //        }
 //    }
 //}
+
+
+
+
+/*
+ https://vlw1p.app.link/courseMerge
+ */
