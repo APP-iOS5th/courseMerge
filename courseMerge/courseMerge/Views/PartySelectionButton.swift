@@ -13,6 +13,8 @@ struct PartySelectionButton: View {
     @State private var showingActionSheet = false
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
 
+    @State private var showingAddPartySheetView = false
+    
     var body: some View {
         Button {
             self.showingActionSheet = true
@@ -26,6 +28,8 @@ struct PartySelectionButton: View {
                 .cornerRadius(20)
         }
         .confirmationDialog("파티를 선택해주세요.", isPresented: $showingActionSheet) {
+            Button("새 파티 추가") { self.showingAddPartySheetView = true }
+            
             ForEach(partiesViewModel.parties) { party in
                 Button {
                     partiesViewModel.currentParty = party
@@ -34,6 +38,10 @@ struct PartySelectionButton: View {
                 }
             }
         }
+        .fullScreenCover(isPresented: $showingAddPartySheetView, content: {
+            AddPartySheetView()
+                .environmentObject(partiesViewModel)
+        })
     }
 }
 

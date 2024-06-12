@@ -30,8 +30,8 @@ struct MemberDetailView: View {
         .environmentObject(partiesViewModel)
         .padding(10)
         .sheet(isPresented: $isModifySheetPresented) {
-//            UpdatePartySheetView()
-//                .environmentObject(partiesViewModel)
+            UpdatePartySheetView(party: partiesViewModel.currentParty)
+                .environmentObject(partiesViewModel)
 
         }
         .background(
