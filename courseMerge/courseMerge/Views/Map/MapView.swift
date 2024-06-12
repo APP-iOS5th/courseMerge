@@ -18,15 +18,17 @@ struct MapView: View {
     @State private var activatedPartyName: String = "제주도 파티"
     @State private var isShowAlert: Bool = true
     
-    @State private var cameraPosition = MapCameraPosition.region(MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.9033, longitude: 127.0606),
-        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-    ))
+//    @State private var cameraPosition = MapCameraPosition.region(MKCoordinateRegion(
+//        center: CLLocationCoordinate2D(latitude: 37.9033, longitude: 127.0606),
+//        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+//    ))
+    @State private var position = MapCameraPosition.automatic
+
     
     var body: some View {
         NavigationStack {
             ZStack {
-                Map(position: $cameraPosition)
+                Map(position: $position)
                     .ignoresSafeArea()
                 
                 
