@@ -49,7 +49,7 @@ struct MapView: View {
                     Spacer()
                 }
                 
-                CurrentLocationAndUpdateCourseButton(locationManager: locationManager, cameraPosition: $cameraPosition)
+                CurrentLocationAndUpdateCourseButton(locationManager: locationManager, cameraPosition: $position)
             }
             .onAppear {
                 if activatedPartyName.isEmpty {
@@ -179,7 +179,8 @@ struct MemberCustomDisclosureGroup: View {
             if expanded {
                 VStack {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
+                        HStack {                          
+                            
                             ForEach(1...iconData.count, id: \.self) { index in
                                 Button(action: {
                                     print("\(iconData[index-1].label) 버튼 클릭")
@@ -301,14 +302,10 @@ struct IconView: View {
                     .fill(color)
                     .frame(width: 70, height: 70)
                 
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 40, height: 40)
-                
-                Image(systemName: "mappin.and.ellipse")
+                Image("ProfileMark")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 20, height: 20)
+                    .frame(width: 40, height: 40)
                     .foregroundColor(color)
                 
                 if hasCrown {
