@@ -21,7 +21,7 @@ struct ProfileView: View {
         VStack {
             // image
             Circle()
-                .fill(Color(user.usercolor))
+                .fill(Color.stringToColor(user.usercolor))
                 .stroke(Color(.separatorsNonOpaque), lineWidth: 1)
                 .frame(width: width, height: height)
                 .overlay {

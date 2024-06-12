@@ -91,7 +91,10 @@ struct AddPartySheetView: View {
                     if partyTitle.isEmpty {
                         self.showHelpText = true
                     } else {
-                        partiesViewModel.addParty(PartyDetail(title: partyTitle, description: partyDescr, members: User.exampleUsers, startdate: startDate, enddate: endDate))
+                        if let currentUser = authViewModel.currentUser {
+                            // 자기 자신 추가
+                            partiesViewModel.addParty(PartyDetail(title: partyTitle, description: partyDescr, members: [currentUser], startdate: startDate, enddate: endDate))
+                        }
                         dismiss()
                     }
                 }

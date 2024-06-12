@@ -21,6 +21,10 @@ extension Color {
     }
     
     static func stringToColor(_ string: String) -> Color {
-        return Color(hex: string)
+        if string.starts(with: "#") {
+            return Color(hex: string)
+        } else {
+            return Color(string) // Assuming the string is a color asset name
+        }
     }
 }
