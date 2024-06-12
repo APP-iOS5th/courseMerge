@@ -27,6 +27,7 @@
 		9708BCE02C169F5F0025C7DA /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9708BCDF2C169F5F0025C7DA /* CategoryItem.swift */; };
 		970979B52C193750006B4ACD /* MapItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970979B42C193750006B4ACD /* MapItemRow.swift */; };
 		970979B92C19AFBA006B4ACD /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970979B82C19AFBA006B4ACD /* MessageViewModel.swift */; };
+		970979BB2C19D454006B4ACD /* PartySelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970979BA2C19D454006B4ACD /* PartySelectionButton.swift */; };
 		970B7CBD2C168D31003CB335 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CBC2C168D31003CB335 /* SearchView.swift */; };
 		970B7CBF2C168D3B003CB335 /* SearchResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CBE2C168D3B003CB335 /* SearchResultDetailView.swift */; };
 		970B7CC32C168D5A003CB335 /* UpdateCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B7CC22C168D5A003CB335 /* UpdateCourseView.swift */; };
@@ -51,8 +52,8 @@
 		97BBA2612C18384E00893A77 /* PartyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBA2602C18384D00893A77 /* PartyDetailsViewModel.swift */; };
 		97FD63562C16D7E30080438A /* MapDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD63552C16D7E30080438A /* MapDetailItem.swift */; };
 		EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */; };
-		EA3C38D62C183499005EE040 /* MemberAddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D52C183499005EE040 /* MemberAddSheet.swift */; };
-		EA3C38D82C1834AC005EE040 /* MemberModifySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D72C1834AC005EE040 /* MemberModifySheet.swift */; };
+		EA3C38D62C183499005EE040 /* AddPartySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D52C183499005EE040 /* AddPartySheetView.swift */; };
+		EA3C38D82C1834AC005EE040 /* UpdatePartySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */; };
 		EA3C38DA2C18800C005EE040 /* NotificationMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D92C18800C005EE040 /* NotificationMsgView.swift */; };
 		EA3C38DC2C189168005EE040 /* NotificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38DB2C189168005EE040 /* NotificationData.swift */; };
 		EA3C38DE2C18949A005EE040 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38DD2C18949A005EE040 /* NotificationViewModel.swift */; };
@@ -83,6 +84,7 @@
 		9708BCDF2C169F5F0025C7DA /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		970979B42C193750006B4ACD /* MapItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItemRow.swift; sourceTree = "<group>"; };
 		970979B82C19AFBA006B4ACD /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		970979BA2C19D454006B4ACD /* PartySelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartySelectionButton.swift; sourceTree = "<group>"; };
 		970B7CBC2C168D31003CB335 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		970B7CBE2C168D3B003CB335 /* SearchResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDetailView.swift; sourceTree = "<group>"; };
 		970B7CC22C168D5A003CB335 /* UpdateCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCourseView.swift; sourceTree = "<group>"; };
@@ -108,8 +110,8 @@
 		97BBA2602C18384D00893A77 /* PartyDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyDetailsViewModel.swift; sourceTree = "<group>"; };
 		97FD63552C16D7E30080438A /* MapDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailItem.swift; sourceTree = "<group>"; };
 		EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailViewModel.swift; path = courseMerge/ViewModels/MemberDetailViewModel.swift; sourceTree = SOURCE_ROOT; };
-		EA3C38D52C183499005EE040 /* MemberAddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberAddSheet.swift; path = courseMerge/Views/Member/MemberAddSheet.swift; sourceTree = SOURCE_ROOT; };
-		EA3C38D72C1834AC005EE040 /* MemberModifySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberModifySheet.swift; path = courseMerge/Views/Member/MemberModifySheet.swift; sourceTree = SOURCE_ROOT; };
+		EA3C38D52C183499005EE040 /* AddPartySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddPartySheetView.swift; path = courseMerge/Views/Member/AddPartySheetView.swift; sourceTree = SOURCE_ROOT; };
+		EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UpdatePartySheetView.swift; path = courseMerge/Views/Member/UpdatePartySheetView.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38D92C18800C005EE040 /* NotificationMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationMsgView.swift; path = courseMerge/Views/Notification/NotificationMsgView.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38DB2C189168005EE040 /* NotificationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationData.swift; path = courseMerge/Models/NotificationData.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38DD2C18949A005EE040 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationViewModel.swift; path = courseMerge/ViewModels/NotificationViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -189,6 +191,8 @@
 		9717A3A72C15CFAC00B92765 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				975B97202C1844BE005090C4 /* ProfileView.swift */,
+				970979BA2C19D454006B4ACD /* PartySelectionButton.swift */,
 				9717A3AD2C15D00400B92765 /* Login */,
 				9717A3AC2C15CFFD00B92765 /* Notification */,
 				9717A3AB2C15CFF500B92765 /* Setting */,
@@ -203,11 +207,10 @@
 			isa = PBXGroup;
 			children = (
 				9717A3BC2C15D36200B92765 /* MemberView.swift */,
-				975B97202C1844BE005090C4 /* ProfileView.swift */,
 				EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */,
 				EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */,
-				EA3C38D52C183499005EE040 /* MemberAddSheet.swift */,
-				EA3C38D72C1834AC005EE040 /* MemberModifySheet.swift */,
+				EA3C38D52C183499005EE040 /* AddPartySheetView.swift */,
+				EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */,
 				EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */,
 			);
 			path = Member;
@@ -422,6 +425,7 @@
 				3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */,
 				97B6AE282C17F3E300595C12 /* AuthViewModel.swift in Sources */,
 				EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */,
+				970979BB2C19D454006B4ACD /* PartySelectionButton.swift in Sources */,
 				3D349C352C16D5090092E10C /* PrivacyPolicyView.swift in Sources */,
 				EA3C38DA2C18800C005EE040 /* NotificationMsgView.swift in Sources */,
 				9717A3BD2C15D36200B92765 /* MemberView.swift in Sources */,
@@ -438,8 +442,8 @@
 				970B7CBD2C168D31003CB335 /* SearchView.swift in Sources */,
 				9717A3CE2C16885700B92765 /* color.swift in Sources */,
 				9717A3BB2C15D35A00B92765 /* ChatListView.swift in Sources */,
-				EA3C38D62C183499005EE040 /* MemberAddSheet.swift in Sources */,
-				EA3C38D82C1834AC005EE040 /* MemberModifySheet.swift in Sources */,
+				EA3C38D62C183499005EE040 /* AddPartySheetView.swift in Sources */,
+				EA3C38D82C1834AC005EE040 /* UpdatePartySheetView.swift in Sources */,
 				3D349C332C16D4110092E10C /* BlockedContactsView.swift in Sources */,
 				3D349C3B2C16D68C0092E10C /* ReportView.swift in Sources */,
 				3D349C312C16B94B0092E10C /* UpdateProfileView.swift in Sources */,

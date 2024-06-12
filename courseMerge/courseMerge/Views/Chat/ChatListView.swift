@@ -12,9 +12,11 @@ struct ChatListView: View {
     @State private var isShowAlert: Bool = true
     
     // viewModel
-    @StateObject var authViewModel = AuthViewModel()
-    @StateObject var partiesViewModel = PartyDetailsViewModel()
     @StateObject var messagesViewModel = MessageViewModel()
+    
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     
     var body: some View {
         NavigationStack {

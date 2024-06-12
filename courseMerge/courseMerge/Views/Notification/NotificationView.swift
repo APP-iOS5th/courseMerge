@@ -9,8 +9,11 @@ import SwiftUI
 
 struct NotificationView: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateObject private var userViewModel = UserViewModel()
-    @StateObject private var notiViewModel = NotificationViewModel()
+    
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+//    @StateObject private var notiViewModel = NotificationViewModel()
     
     var body: some View {
         NavigationView {

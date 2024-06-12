@@ -20,6 +20,21 @@ struct PartyDetail: Identifiable {
 }
 
 extension PartyDetail {
+    // 날짜를 원하는 형식으로 포맷하는 프로퍼티
+    var formattedStartDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        return dateFormatter.string(from: self.startdate)
+    }
+
+    var formattedEndDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        return dateFormatter.string(from: self.enddate)
+    }
+}
+
+extension PartyDetail {
     static var exampleParty: PartyDetail = PartyDetail(title: "제주도 파티", description: "iOS 앱스쿨 5기", members: User.exampleUsers, startdate: Date(), enddate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!)
     
     static var exampleParties: [PartyDetail] = [

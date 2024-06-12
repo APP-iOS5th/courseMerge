@@ -24,8 +24,10 @@ struct MapView: View {
     @State private var selectedLocation: MapDetailItem?
 
     // viewModel
-    @StateObject var partiesViewModel = PartyDetailsViewModel()
-
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -85,10 +87,15 @@ struct HeaderView: View {
     var body: some View {
         VStack {
             HStack {
-                PartySelectionButton(activatedPartyName: $activatedPartyName)
+                PartySelectionButton()
+                    .environmentObject(partiesViewModel)
+
                 PartyDateSelectionPicker()
                     .environmentObject(partiesViewModel)
+                
                 PlaceSearchButton(isShowSearchViewModal: $isShowSearchViewModal)
+                    .environmentObject(partiesViewModel)
+
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
             .frame(height: 48)
@@ -107,49 +114,12 @@ struct HeaderView: View {
 }
 
 
-/// 파티를 선택할 수 있는 버튼(actionSheet)
-struct PartySelectionButton: View {
-    @State private var showingActionSheet = false
-    @Binding var activatedPartyName: String
-    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
-
-    var body: some View {
-        Button {
-            self.showingActionSheet = true
-        } label: {
-            HStack {
-                Image(systemName: "line.3.horizontal")
-                    .foregroundColor(.white)
-                Text(activatedPartyName)
-                    .foregroundColor(.white)
-            }
-            .padding()
-            .frame(width: 130, height: 34)
-            .font(.system(size: 15))
-            .background(Color.blue)
-            .cornerRadius(20)
-            .confirmationDialog(
-                "파티를 선택해주세요",
-                isPresented: $showingActionSheet
-            ) {
-                ForEach(partiesViewModel.parties) { party in
-                    Button {
-                        self.activatedPartyName = party.title
-                    } label: {
-                        Text(party.title)
-                            .fontWeight(party.title == activatedPartyName ? .bold : .regular)
-                    }
-                }
-                Button("Cancel", role: .cancel) {}
-            }
-        }
-    }
-}
 
 /// 파티 구성 기간 중 특정 날짜에 대한 구성원들의 코스를 볼 수 있게 날짜를 선택하는 피커
 struct PartyDateSelectionPicker: View {
     @State private var selectedDate = Date()
-    
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+
     var body: some View {
         DatePicker("", selection: $selectedDate, displayedComponents: .date)
             .datePickerStyle(CompactDatePickerStyle())
@@ -164,7 +134,8 @@ struct PartyDateSelectionPicker: View {
 /// 장소검색버튼
 struct PlaceSearchButton: View {
     @Binding var isShowSearchViewModal: Bool
-    
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+
     var body: some View {
         Button {
             isShowSearchViewModal = true

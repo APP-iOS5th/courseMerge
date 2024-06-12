@@ -9,11 +9,23 @@ import Foundation
 
 class PartyDetailsViewModel: ObservableObject {
     @Published var parties: [PartyDetail] = []
+    @Published var currentParty: PartyDetail
 
     init() {
         self.parties = Self.loadExampleData()
+        self.currentParty = Self.loadExampleSingleData()    // 변경 필요
     }
-
+    
+    private static func loadExampleSingleData() -> PartyDetail {
+        PartyDetail(
+            title: "제주도 파티",
+            description: "iOS 앱스쿨 5기",
+            members: User.exampleUsers,
+            startdate: Date(),
+            enddate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+        )
+    }
+    
     private static func loadExampleData() -> [PartyDetail] {
         return [
             PartyDetail(

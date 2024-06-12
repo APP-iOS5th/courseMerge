@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct SettingView: View {
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
+    
     @State var showAlert = false
     
     var body: some View {

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var partiesViewModel = PartyDetailsViewModel()
+    @StateObject private var userViewModel = UserViewModel()
+    
     @EnvironmentObject var authViewModel: AuthViewModel
 
     var body: some View {
@@ -33,6 +36,8 @@ struct ContentView: View {
                     Label("설정", systemImage: "gearshape.fill")
                 }
         }
+        .environmentObject(userViewModel)
+        .environmentObject(partiesViewModel)
         .environmentObject(authViewModel)
 
     }

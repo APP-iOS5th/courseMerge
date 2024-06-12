@@ -11,23 +11,26 @@ import SwiftUI
 
 struct MemberDetailView: View {
     @State private var isSharingSheetPresented = false
-    @StateObject private var userViewModel = UserViewModel()
-    @StateObject public var memberDetailViewModel: MemberDetailViewModel
-    //구성원 수정 시트 뷰모델
+    
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+
+    //구성원 수정 시트
     @State private var isModifySheetPresented = false
 
     var body: some View {
-        
-        VStack{
-            PartyInfoView(memberDetailViewModel: memberDetailViewModel, isModifySheetPresented: $isModifySheetPresented)
+        VStack {
+            PartyInfoView(party: partiesViewModel.currentParty, isModifySheetPresented: $isModifySheetPresented)
             
-            MemberGridView(memberDetailViewModel: memberDetailViewModel,isSharingSheetPresented: $isSharingSheetPresented)
+            MemberGridView(party: partiesViewModel.currentParty, isSharingSheetPresented: $isSharingSheetPresented)
         }
         .environmentObject(userViewModel)
-        .environmentObject(memberDetailViewModel)
+        .environmentObject(partiesViewModel)
         .padding(10)
         .sheet(isPresented: $isModifySheetPresented) {
-            MemberModifySheet().environmentObject(memberDetailViewModel)
+//            UpdatePartySheetView()
+//                .environmentObject(partiesViewModel)
+
         }
         .background(
             AppSharingSheet(
@@ -43,48 +46,36 @@ struct MemberDetailView: View {
 // MARK: - PartyInfoView
 
 struct PartyInfoView: View {
-    @EnvironmentObject var userViewModel: UserViewModel
-    @ObservedObject var memberDetailViewModel: MemberDetailViewModel
-    @Binding var isModifySheetPresented: Bool
+    let party: PartyDetail
 
-    @State private var partyDescr: String = "내용을 입력하세요."
-    @State private var activatedPartyTitle: String = "제주도 파티"
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+    
+    @Binding var isModifySheetPresented: Bool
+    
     //설명 열고 닫기
     @State private var isDescrExpanded: Bool = false
-    //호스트 표시
-    var hasCrown: Bool = true
     
-    // 날짜를 원하는 형식으로 포맷하는 프로퍼티
-    var formattedStartDate: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        return dateFormatter.string(from: memberDetailViewModel.startDate)
-    }
 
-    var formattedEndDate: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        return dateFormatter.string(from: memberDetailViewModel.endDate)
-    }
     
-    var body: some View{
+    var body: some View {
         HStack {
-            
-            //ProfileView(user: userViewModel.users.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
-            
-            ForEach(memberDetailViewModel.createdPartInfo) { partys in
-                ProfileView(user: partys.members.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
-            }
+//            let hosts = party.members.filter { $0.isHost }
+//            if let host = hosts.first {
+//                ProfileView(user: host, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50, isUsername: true)
+//                    .environmentObject(userViewModel)
+//            }
             
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(memberDetailViewModel.partytitle)
+                        Text(party.title)
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.labelsPrimary)
+                        
                         //2024.6.11 선택한 날짜가 들어가야 함./ 년월일만 출력 (미작업)
-                        Text("\(formattedStartDate) ~ \(formattedEndDate)")
+                        Text("\(party.formattedStartDate) ~ \(party.formattedEndDate)")
                             .font(.footnote)
                             .fontWeight(.regular)
                             .foregroundStyle(Color.labelsSecondary)
@@ -99,14 +90,10 @@ struct PartyInfoView: View {
                     })
                 }
                 Divider()
-                //2024.6.11 파티 설명에서 입력한 내용이 들어가야 함. (미작업)
-                DisclosureGroup(memberDetailViewModel.partyDescr, isExpanded: $isDescrExpanded) {
-//                    TextEditor(text: $memberDetailViewModel.partyDescr )
-//                        .frame(height: 10)
-//                        .foregroundColor(Color.labelsSecondary)
-//                        .padding()
-                }
-                .frame(maxHeight: isDescrExpanded ? 100 : 0)
+                
+                DisclosureGroup(party.description, isExpanded: $isDescrExpanded) {}
+                    .frame(maxHeight: isDescrExpanded ? 100 : 0)
+                
                 Divider()
             }
         }
@@ -118,19 +105,19 @@ struct PartyInfoView: View {
 // MARK: - MemberGridView
 
 struct MemberGridView: View {
-    @EnvironmentObject var userViewModel: UserViewModel
-    @ObservedObject var memberDetailViewModel: MemberDetailViewModel
+    let party: PartyDetail
 
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     @Environment(\.colorScheme) var colorScheme
     
     @Binding var isSharingSheetPresented: Bool
     
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
 
-    var body: some View{
-        ScrollView{
+    var body: some View {
+        ScrollView {
             LazyVGrid(columns: columns, spacing: 10) {
-                
                 Button {
                     isSharingSheetPresented = true
                 } label: {
@@ -147,32 +134,28 @@ struct MemberGridView: View {
                             .foregroundStyle(.labelsPrimary)
                     }
                 }
-                //ForEach(userViewModel.users) { user in
-                ForEach(memberDetailViewModel.createdPartInfo) { partys in
-                    ForEach(partys.members){ user in
+                ForEach(party.members) { user in
+                    Button {
+                        
+                    } label: {
+                        ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40, isUsername: true)
+                            .environmentObject(userViewModel)
+                    }
+                    // TODO: design
+                    .contextMenu {
                         Button {
                             
                         } label: {
-                            ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40,isUsername: true)
-                                //.environmentObject(userViewModel)
-                                .environmentObject(memberDetailViewModel)
+                            NavigationLink(destination: EmptyView()) {
+                                Label("대화하기", systemImage: "message")
+                                    .foregroundColor(.labelsPrimary)
+                            }
                         }
-                        .contextMenu {
-                            Button {
-                                
-                            } label: {
-                                NavigationLink(destination: EmptyView()) {
-                                    Label("대화하기", systemImage: "message")
-                                        .foregroundColor(.labelsPrimary)
-                                }
-                            }
-                            
-                            Button(role: .destructive) {
-//                                userViewModel.deleteUser(withUID: user.uid)
-                                // 파티원삭제는 -> 파티 뷰 모델에서 관리
-                            } label: {
-                                Label("삭제하기", systemImage: "trash")
-                            }
+                        
+                        Button(role: .destructive) {
+                            // 파티원삭제는 -> 파티 뷰 모델에서 관리
+                        } label: {
+                            Label("삭제하기", systemImage: "trash")
                         }
                     }
                 }
@@ -181,6 +164,6 @@ struct MemberGridView: View {
     }
 }
 
-#Preview {
-    MemberDetailView(memberDetailViewModel: MemberDetailViewModel())
-}
+//#Preview {
+//    MemberDetailView()
+//}

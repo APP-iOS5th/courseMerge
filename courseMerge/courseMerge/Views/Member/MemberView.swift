@@ -8,45 +8,30 @@
 import SwiftUI
 
 struct MemberView: View {
-    @StateObject private var memberDetailViewModel = MemberDetailViewModel()
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView {
             VStack {
-                
-                if memberDetailViewModel.createdPartInfo.isEmpty
-                {
-                    MemberEmptyView(memberDetailViewModel: memberDetailViewModel)
+                if partiesViewModel.parties.isEmpty {
+                    MemberEmptyView()
                 } else {
-                    MemberHeaderView()
-                    MemberDetailView(memberDetailViewModel: memberDetailViewModel)
+                    MemberDetailView()
                 }
             }
-        }
-    }
-}
-
-struct MemberHeaderView: View {
-    @Environment(\.colorScheme) var colorScheme
-    @State private var isShowSearchViewModal: Bool = false
-    
-    var body: some View {
-        VStack {
-            HStack{
-                Text("구성원")
-                    .font(.largeTitle)
-                    .foregroundStyle(.labelsPrimary)
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .frame(height: 52)
-            }
+            .environmentObject(partiesViewModel)
+            .environmentObject(userViewModel)
             
-            Divider()
+            .navigationTitle("구성원")
+            .toolbar {
+                PartySelectionButton()
+                    .environmentObject(partiesViewModel)
+            }
         }
-        .background(colorScheme == .dark ? Color("BGPrimaryDarkBase") : Color("BGPrimary"))
-        .padding(.horizontal)
-        
     }
 }
 
