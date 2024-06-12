@@ -18,11 +18,10 @@ struct MapView: View {
     @State private var activatedPartyName: String = "제주도 파티"
     @State private var isShowAlert: Bool = true
     
-//    @State private var cameraPosition = MapCameraPosition.region(MKCoordinateRegion(
-//        center: CLLocationCoordinate2D(latitude: 37.9033, longitude: 127.0606),
-//        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-//    ))
+    
     @State private var position = MapCameraPosition.automatic
+    @State private var searchResults = [MapDetailItem]()
+    @State private var selectedLocation: MapDetailItem?
 
     
     var body: some View {
@@ -33,7 +32,7 @@ struct MapView: View {
                 
                 
                 VStack {
-                    HeaderView(activatedPartyName: $activatedPartyName)
+                    HeaderView(activatedPartyName: $activatedPartyName, searchResults: $searchResults)
                     Spacer()
                 }
                 
@@ -67,7 +66,8 @@ struct MapView: View {
 struct HeaderView: View {
     @State private var isShowSearchViewModal: Bool = false
     @Binding var activatedPartyName: String
-    
+    @Binding var searchResults: [MapDetailItem]
+
     var body: some View {
         VStack {
             HStack {
@@ -81,7 +81,7 @@ struct HeaderView: View {
             viewTitleText()
         }
         .sheet(isPresented: $isShowSearchViewModal) {
-            SearchView()
+            SearchView(searchResults: $searchResults)
         }
         .padding(.horizontal)
         .background(Color.white)

@@ -15,14 +15,13 @@ struct SearchView: View {
     @State private var searchText: String = ""
     
     let categoryItems: [CategoryItem] = CategoryItem.categoryItems
-    
     let recentVisited: [MapDetailItem] = MapDetailItem.recentVisitedExample
-    
-//  Focus State 추가
-    
     @State private var isFirstCourse: Bool = true
     
-    @State private var locationService = LocationService(completer: .init())
+    @State private var locationService = LocationService(completer: MKLocalSearchCompleter())
+    @Binding var searchResults: [MapDetailItem]
+    
+    @State private var heights: Double = 0.7
 
     var body: some View {
         NavigationStack {
@@ -33,8 +32,8 @@ struct SearchView: View {
                     recentVisitedView
                 } else {
                     searchResultsView
-                        .onChange(of: searchText) {
-                            locationService.update(queryFragment: searchText)
+                        .onChange(of: searchText) { _, newValue in
+                            locationService.update(queryFragment: newValue)
                         }
                 }
             }
@@ -50,7 +49,7 @@ struct SearchView: View {
             .background(colorScheme == .dark ? Color("BGSecondaryDarkElevated") : Color("BGSecondary"))
         }
         .interactiveDismissDisabled()
-        .presentationDetents([.medium, .large])
+        .presentationDetents([.medium, .fraction(self.heights)])
         .presentationBackground(.regularMaterial)
         .presentationBackgroundInteraction(.enabled(upThrough: .large))
     }
@@ -83,6 +82,49 @@ struct SearchView: View {
         }
     }
     
+
+    
+    // MARK: - SearchResultList
+    var searchResultsView: some View {
+        List {
+            ForEach(locationService.completions) { completion in
+                Button {
+                    Task {
+                        if let singleLocation = try? await locationService.search(with: "\(completion.name ?? "") \(completion.address ?? "")").first {
+                            searchResults = [singleLocation]
+                            print("searchResults: \(searchResults)")
+//                            dismiss()
+                            withAnimation {
+                                self.heights = 0.5
+                            }
+                        }
+                    }
+                } label: {
+                    MapItemRow(item: completion)
+                }
+            }
+        }
+        .listStyle(GroupedListStyle())
+        .scrollContentBackground(.hidden)
+        .background(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : .clear)
+    }
+    
+    // MARK: - SearchBar
+    var searchBar: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+            TextField("장소를 검색하세요.", text: $searchText)
+                .autocorrectionDisabled()
+                .onSubmit {
+                    Task {
+                        searchResults = (try? await locationService.search(with: searchText)) ?? []
+                    }
+                }
+        }
+        .modifier(TextFieldGrayBackgroundColor())
+        .padding(.horizontal, 20)
+    }
+    
     // MARK: - RecentVisited
     var recentVisitedView: some View {
         // recent Visited
@@ -109,33 +151,6 @@ struct SearchView: View {
         .scrollContentBackground(.hidden)
         .background(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : .clear)
     }
-    
-    // MARK: - SearchResultList
-    var searchResultsView: some View {
-        List {
-            ForEach(locationService.completions) { completion in
-                Button {
-                    
-                } label: {
-                    MapItemRow(item: completion)
-                }
-            }
-        }
-        .listStyle(GroupedListStyle())
-        .scrollContentBackground(.hidden)
-        .background(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : .clear)
-    }
-    
-    // MARK: - SearchBar
-    var searchBar: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-            TextField("장소를 검색하세요.", text: $searchText)
-                .autocorrectionDisabled()
-        }
-        .modifier(TextFieldGrayBackgroundColor())
-        .padding(.horizontal, 20)
-    }
 }
 
 struct TextFieldGrayBackgroundColor: ViewModifier {
@@ -156,11 +171,46 @@ struct TextFieldGrayBackgroundColor: ViewModifier {
 
 import MapKit
 
+//
+//@Observable
+//class LocationService: NSObject, MKLocalSearchCompleterDelegate {
+//    private let completer: MKLocalSearchCompleter
+//
+//    var completions = [MapDetailItem]()
+//
+//    init(completer: MKLocalSearchCompleter) {
+//        self.completer = completer
+//        super.init()
+//        self.completer.delegate = self
+//    }
+//
+//    func update(queryFragment: String) {
+//        completer.resultTypes = .address
+//        completer.queryFragment = queryFragment
+//    }
+//
+//    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+//        completions = completer.results.map { result in
+//            
+//            let mapItem = result.value(forKey: "_mapItem") as? MKMapItem
+//            
+//            return .init(
+//                name: result.title,
+//                address: result.subtitle,
+//                phoneNumber: mapItem?.phoneNumber,
+//                category: Category(rawValue: mapItem?.pointOfInterestCategory?.rawValue ?? ""),
+//                // MKMapItem.pointOfInterestCategory 이건가? placemark?
+//                location: mapItem?.placemark.coordinate
+//            )
+//        }
+//    }
+//}
+
+
 
 @Observable
 class LocationService: NSObject, MKLocalSearchCompleterDelegate {
     private let completer: MKLocalSearchCompleter
-
     var completions = [MapDetailItem]()
 
     init(completer: MKLocalSearchCompleter) {
@@ -170,22 +220,58 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
     }
 
     func update(queryFragment: String) {
-        completer.resultTypes = .address
+        completer.resultTypes = .pointOfInterest
         completer.queryFragment = queryFragment
     }
 
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        completions = completer.results.map { result in
-            
-            let mapItem = result.value(forKey: "_mapItem") as? MKMapItem
-            
-            return .init(
-                name: result.title,
-                address: result.subtitle,
-                phoneNumber: mapItem?.phoneNumber,
-                category: Category(rawValue: mapItem?.pointOfInterestCategory?.rawValue ?? ""),
-                // MKMapItem.pointOfInterestCategory 이건가? placemark?
-                location: mapItem?.placemark.coordinate
+        let group = DispatchGroup()
+        completions.removeAll()
+
+        for result in completer.results {
+            group.enter()
+            let searchRequest = MKLocalSearch.Request()
+            searchRequest.naturalLanguageQuery = result.title
+
+            let search = MKLocalSearch(request: searchRequest)
+            search.start { response, error in
+                if let item = response?.mapItems.first {
+                    let mapDetailItem = MapDetailItem(
+                        name: result.title,
+                        address: result.subtitle,
+                        phoneNumber: item.phoneNumber,
+                        category: Category(rawValue: item.pointOfInterestCategory?.rawValue ?? ""),
+                        location: item.placemark.coordinate
+                    )
+                    self.completions.append(mapDetailItem)
+                }
+                group.leave()
+            }
+        }
+
+        group.notify(queue: .main) {
+            // 결과가 업데이트되었을 때, 필요하면 추가적인 작업을 여기에 추가
+        }
+    }
+
+    func search(with query: String, coordinate: CLLocationCoordinate2D? = nil) async throws -> [MapDetailItem] {
+        let mapKitRequest = MKLocalSearch.Request()
+        mapKitRequest.naturalLanguageQuery = query
+        mapKitRequest.resultTypes = .pointOfInterest
+        if let coordinate {
+            mapKitRequest.region = .init(.init(origin: .init(coordinate), size: .init(width: 1, height: 1)))
+        }
+        let search = MKLocalSearch(request: mapKitRequest)
+        let response = try await search.start()
+
+        return response.mapItems.compactMap { mapItem in
+            guard let location = mapItem.placemark.location?.coordinate else { return nil }
+            return MapDetailItem(
+                name: mapItem.name,
+                address: mapItem.placemark.title,
+                phoneNumber: mapItem.phoneNumber,
+                category: Category(rawValue: mapItem.pointOfInterestCategory?.rawValue ?? ""),
+                location: location
             )
         }
     }

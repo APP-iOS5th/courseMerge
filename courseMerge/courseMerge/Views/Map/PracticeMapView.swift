@@ -202,49 +202,49 @@ extension CLLocationCoordinate2D {
 }
 
 
-struct testMapView: View {
-    @State private var isShowSearchViewModal: Bool = false
-    
-    // result detail view fraction
-    let heights = stride(from: 0.5, through: 0.75, by: 0.1).map { PresentationDetent.fraction($0) }
-    @State private var isShowDetailViewModal: Bool = false
-    
-    @State private var isFirstCourse: Bool = false
-    
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 20) {
-                
-                Button {
-                    isShowSearchViewModal = true
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                        .font(.title)
-                }
-                
-                Button {
-                    isShowDetailViewModal = true
-                } label: {
-                    Image(systemName: "doc.text")
-                        .font(.title)
-                }
-                
-                NavigationLink(destination: UpdateCourseView()) {
-                    Image(systemName: "arrowshape.right.fill")
-                        .font(.title)
-                }
-                
-            }
-            .sheet(isPresented: $isShowSearchViewModal) {
-                SearchView()
-            }
-            .sheet(isPresented: $isShowDetailViewModal) {
-                SearchResultDetailView(item: MapDetailItem.recentVisitedExample.first!, isFirstCourse: $isFirstCourse, isEdit: .constant(false))
-//                                .presentationDetents([.fraction(0.6), .fraction(0.75)])
-                    .presentationDetents(isFirstCourse ? [.fraction(0.65), .fraction(0.8)] : [.fraction(0.6), .fraction(0.75)])
-                //                .presentationDetents(Set(heights))
-                    .presentationDragIndicator(.visible)
-            }
-        }
-    }
-}
+//struct testMapView: View {
+//    @State private var isShowSearchViewModal: Bool = false
+//    
+//    // result detail view fraction
+//    let heights = stride(from: 0.5, through: 0.75, by: 0.1).map { PresentationDetent.fraction($0) }
+//    @State private var isShowDetailViewModal: Bool = false
+//    
+//    @State private var isFirstCourse: Bool = false
+//    
+//    var body: some View {
+//        NavigationStack {
+//            VStack(spacing: 20) {
+//                
+//                Button {
+//                    isShowSearchViewModal = true
+//                } label: {
+//                    Image(systemName: "magnifyingglass")
+//                        .font(.title)
+//                }
+//                
+//                Button {
+//                    isShowDetailViewModal = true
+//                } label: {
+//                    Image(systemName: "doc.text")
+//                        .font(.title)
+//                }
+//                
+//                NavigationLink(destination: UpdateCourseView()) {
+//                    Image(systemName: "arrowshape.right.fill")
+//                        .font(.title)
+//                }
+//                
+//            }
+//            .sheet(isPresented: $isShowSearchViewModal) {
+//                SearchView()
+//            }
+//            .sheet(isPresented: $isShowDetailViewModal) {
+//                SearchResultDetailView(item: MapDetailItem.recentVisitedExample.first!, isFirstCourse: $isFirstCourse, isEdit: .constant(false))
+////                                .presentationDetents([.fraction(0.6), .fraction(0.75)])
+//                    .presentationDetents(isFirstCourse ? [.fraction(0.65), .fraction(0.8)] : [.fraction(0.6), .fraction(0.75)])
+//                //                .presentationDetents(Set(heights))
+//                    .presentationDragIndicator(.visible)
+//            }
+//        }
+//    }
+//}
