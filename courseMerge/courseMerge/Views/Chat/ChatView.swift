@@ -18,7 +18,6 @@ struct ChatView: View {
     @State private var newMessage: String = ""
     
     // viewModel
-    @StateObject var viewModel = UserViewModel()
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     @EnvironmentObject var messagesViewModel: MessageViewModel
@@ -35,7 +34,7 @@ struct ChatView: View {
                         HStack(alignment: .top, spacing: 10) {
                             if !item.isCurrentUser {
                                 
-                                ProfileView(user: item.member, width: 50, height: 50, overlayWidth: 20, overlayHeight: 20, isUsername: false).environmentObject(viewModel)
+                                ProfileView(user: item.member, width: 50, height: 50, overlayWidth: 20, overlayHeight: 20, isUsername: false).environmentObject(authViewModel)
                             } else {
                                 Spacer()
                             }

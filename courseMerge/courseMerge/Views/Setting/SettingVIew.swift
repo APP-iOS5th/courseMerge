@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SettingView: View {
-    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
     

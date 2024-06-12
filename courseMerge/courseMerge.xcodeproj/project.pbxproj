@@ -15,7 +15,6 @@
 		3D349C3B2C16D68C0092E10C /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C3A2C16D68C0092E10C /* ReportView.swift */; };
 		3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */; };
 		786D27CB2C174006007186CB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786D27CA2C174006007186CB /* LocationManager.swift */; };
-		787C94512C17F27A00069603 /* IconData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C94502C17F27A00069603 /* IconData.swift */; };
 		78C24FCA2C16989D007DAF99 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C24FC92C16989D007DAF99 /* MapView.swift */; };
 		868C2FC22C188656008E2DB6 /* PracticeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C2FC12C188656008E2DB6 /* PracticeMapView.swift */; };
 		868C2FC42C189951008E2DB6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C2FC32C189951008E2DB6 /* Course.swift */; };
@@ -72,7 +71,6 @@
 		3D349C3A2C16D68C0092E10C /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReportView.swift; path = courseMerge/Views/Setting/ReportView.swift; sourceTree = SOURCE_ROOT; };
 		3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDeletionView.swift; path = courseMerge/Views/Setting/AccountDeletionView.swift; sourceTree = SOURCE_ROOT; };
 		786D27CA2C174006007186CB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = CourseMerge/Utils/LocationManager.swift; sourceTree = SOURCE_ROOT; };
-		787C94502C17F27A00069603 /* IconData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IconData.swift; path = courseMerge/Models/IconData.swift; sourceTree = SOURCE_ROOT; };
 		78C24FC92C16989D007DAF99 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = courseMerge/Views/Map/MapView.swift; sourceTree = SOURCE_ROOT; };
 		78EDDE042C1694B0009C4EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		868C2FC12C188656008E2DB6 /* PracticeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PracticeMapView.swift; path = courseMerge/Views/Map/PracticeMapView.swift; sourceTree = SOURCE_ROOT; };
@@ -309,7 +307,6 @@
 				EA4D62BC2C16E2C3003EA8EB /* PartyDetail.swift */,
 				97B6AE2D2C18024300595C12 /* User.swift */,
 				97B6AE292C1800AF00595C12 /* Message.swift */,
-				787C94502C17F27A00069603 /* IconData.swift */,
 				868C2FC32C189951008E2DB6 /* Course.swift */,
 				EA3C38DB2C189168005EE040 /* NotificationData.swift */,
 			);
@@ -363,7 +360,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */;
+			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -421,7 +418,6 @@
 				975B97212C1844BE005090C4 /* ProfileView.swift in Sources */,
 				9717A3B92C15D35000B92765 /* SettingView.swift in Sources */,
 				3D349C392C16D5E60092E10C /* DevelopersDetailsView.swift in Sources */,
-				787C94512C17F27A00069603 /* IconData.swift in Sources */,
 				3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */,
 				97B6AE282C17F3E300595C12 /* AuthViewModel.swift in Sources */,
 				EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */,
@@ -652,7 +648,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */ = {
+		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9717A3A22C15CF5000B92765 /* Debug */,

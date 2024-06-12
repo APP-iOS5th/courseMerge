@@ -14,9 +14,8 @@ struct ProfileView: View {
     var overlayWidth: CGFloat
     var overlayHeight: CGFloat
     var isUsername: Bool
-    var isLarge: Bool?
     
-    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
         VStack {
@@ -42,7 +41,7 @@ struct ProfileView: View {
                                     .frame(width: 30, height: 30)
                             }
                         }
-                    } else if user.uid == userViewModel.currentUserUID {
+                    } else if user.uid == authViewModel.currentUserUID {
                         // host 일 경우에는 무조건 crown. 본인 경우에는 person. 그 외는 x
                         VStack {
                             Spacer()

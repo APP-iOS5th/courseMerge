@@ -9,7 +9,6 @@
 //
 //struct NotificationMsgView: View {
 //    @Environment(\.colorScheme) var colorScheme
-//    @EnvironmentObject var userViewModel: UserViewModel
 //    @EnvironmentObject var notiViewModel: NotificationViewModel
 //   // var testidx: Int  = notiViewModel.notifiMsg.userProfileidx
 //    

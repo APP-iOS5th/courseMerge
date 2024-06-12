@@ -14,7 +14,6 @@ struct ChatListView: View {
     // viewModel
     @StateObject var messagesViewModel = MessageViewModel()
     
-    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     

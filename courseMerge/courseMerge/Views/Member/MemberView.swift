@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MemberView: View {
-    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
 
@@ -40,7 +39,7 @@ struct MemberView: View {
                 }
             }
             .environmentObject(partiesViewModel)
-            .environmentObject(userViewModel)
+            .environmentObject(authViewModel)
             
             .navigationTitle("구성원")
             .toolbar {

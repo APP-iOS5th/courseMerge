@@ -12,7 +12,7 @@ import SwiftUI
 struct MemberDetailView: View {
     @State private var isSharingSheetPresented = false
     
-    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
 
     //구성원 수정 시트
@@ -29,7 +29,7 @@ struct MemberDetailView: View {
             }
             
         }
-        .environmentObject(userViewModel)
+        .environmentObject(authViewModel)
         .environmentObject(partiesViewModel)
         .padding(10)
         .fullScreenCover(isPresented: $isModifySheetPresented) {
@@ -53,7 +53,7 @@ struct PartyInfoView: View {
     let party: PartyDetail
     
     
-    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     
     @Binding var isModifySheetPresented: Bool
@@ -66,6 +66,7 @@ struct PartyInfoView: View {
                 let hosts = party.members.filter { $0.isHost }
                 if let host = hosts.first {
                     ProfileView(user: host, width: 90, height: 90, overlayWidth: 30, overlayHeight: 50, isUsername: true)
+//                        .environmentObject(authViewModel)
                 }
                 
                 VStack(alignment: .leading, spacing: 10) {
@@ -122,7 +123,7 @@ struct PartyInfoView: View {
 struct MemberGridView: View {
     let party: PartyDetail
 
-    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     @Environment(\.colorScheme) var colorScheme
     
@@ -154,7 +155,7 @@ struct MemberGridView: View {
                         
                     } label: {
                         ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40, isUsername: true)
-                            .environmentObject(userViewModel)
+                            .environmentObject(authViewModel)
                     }
                     // TODO: design
                     .contextMenu {
@@ -184,7 +185,7 @@ struct MemberDetailView_Previews: PreviewProvider {
         NavigationStack {
             VStack {
                 MemberDetailView()
-                    .environmentObject(UserViewModel())
+                    .environmentObject(AuthViewModel())
                     .environmentObject(PartyDetailsViewModel())
             }
             .navigationTitle("구성원")

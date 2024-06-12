@@ -10,7 +10,6 @@ import SwiftUI
 struct NotificationView: View {
     @Environment(\.colorScheme) var colorScheme
     
-    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
 //    @StateObject private var notiViewModel = NotificationViewModel()

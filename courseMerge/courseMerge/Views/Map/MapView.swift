@@ -24,7 +24,6 @@ struct MapView: View {
     @State private var selectedLocation: MapDetailItem?
 
     // viewModel
-    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
     
@@ -51,6 +50,8 @@ struct MapView: View {
                 VStack {
                     HeaderView(activatedPartyName: $activatedPartyName, searchResults: $searchResults)
                         .environmentObject(partiesViewModel)
+                        .environmentObject(authViewModel)
+                        
                     Spacer()
                 }
                 
@@ -83,7 +84,8 @@ struct HeaderView: View {
     @Binding var activatedPartyName: String
     @Binding var searchResults: [MapDetailItem]
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
-    
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     var body: some View {
         VStack {
             HStack {
@@ -109,6 +111,8 @@ struct HeaderView: View {
         .background(colorScheme == .dark ? Color("BGPrimaryDarkBase") : Color("BGPrimary"))
         
         MemberCustomDisclosureGroup()
+            .environmentObject(partiesViewModel)
+            .environmentObject(authViewModel)
     }
         
 }
@@ -151,29 +155,27 @@ struct PlaceSearchButton: View {
 struct MemberCustomDisclosureGroup: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var expanded = false
-    @State private var iconViewHeight: CGFloat = 0
-    
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+
     var body: some View {
         VStack {
             if expanded {
                 VStack {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {                          
-                            
-                            ForEach(1...iconData.count, id: \.self) { index in
-                                Button(action: {
-                                    print("\(iconData[index-1].label) 버튼 클릭")
-                                }) {
-                                    IconView(
-                                        color: iconData[index-1].color,
-                                        iconName: iconData[index-1].iconName,
-                                        label: iconData[index-1].label,
-                                        hasCrown: iconData[index-1].hasCrown,
-                                        hasPerson: iconData[index-1].hasPerson,
-                                        iconViewHeight: $iconViewHeight
-                                    )
+                            if let currentParty = partiesViewModel.currentParty {
+                                ForEach(currentParty.members) { user in
+                                    Button(action: {
+                                        print("seleted user: \(user.username)")
+                                    }) {
+                                        ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40, isUsername: true)
+                                            .environmentObject(authViewModel)
+                                    }
+                                    .padding(.horizontal, 8)
                                 }
-                                .padding(.horizontal, 8)
+                            } else {
+                                
                             }
                         }
                     }
@@ -266,67 +268,6 @@ struct viewTitleText: View {
     }
 }
 
-
-
-struct IconView: View {
-    @Environment(\.colorScheme) var colorScheme
-    
-    var color: Color
-    var iconName: String
-    var label: String
-    var hasCrown: Bool = false
-    var hasPerson: Bool = false
-    @Binding var iconViewHeight: CGFloat
-    
-    var body: some View {
-        VStack {
-            ZStack {
-                Circle()
-                    .fill(color)
-                    .frame(width: 70, height: 70)
-                
-                Image("ProfileMark")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 40, height: 40)
-                    .foregroundColor(color)
-                
-                if hasCrown {
-                    Image(systemName: "crown.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.white)
-                        .background(Color.yellow)
-                        .clipShape(Circle())
-                        .offset(x: 20, y: 20)
-                }
-                
-                if hasPerson {
-                    Image(systemName: "person.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .clipShape(Circle())
-                        .offset(x: 20, y: 20)
-                }
-            }
-            
-            Text(label)
-                .font(.system(size: 11))
-                .foregroundStyle(.labelsPrimary)
-        }
-        .background(
-            GeometryReader { geometry in
-                Color.clear.onAppear {
-                    self.iconViewHeight = geometry.size.height
-                }
-            }
-        )
-    }
-}
 
 #Preview {
     MapView()
