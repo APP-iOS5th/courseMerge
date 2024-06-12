@@ -32,10 +32,9 @@ struct MemberDetailView: View {
         .environmentObject(userViewModel)
         .environmentObject(partiesViewModel)
         .padding(10)
-        .sheet(isPresented: $isModifySheetPresented) {
+        .fullScreenCover(isPresented: $isModifySheetPresented) {
             UpdatePartySheetView(party: partiesViewModel.currentParty!)
                 .environmentObject(partiesViewModel)
-
         }
         .background(
             AppSharingSheet(

@@ -84,10 +84,16 @@ class PartyDetailsViewModel: ObservableObject {
             db.collection("parties").document(docId).delete { error in
                 if let error = error {
                     print("Error removing party from Firestore: \(error.localizedDescription)")
+                } else {
+                    self.parties.removeAll { $0.id == party.id }
+                    if self.currentParty?.id == party.id {
+                        self.currentParty = self.parties.first
+                    }
                 }
             }
         }
     }
+
 }
 
 

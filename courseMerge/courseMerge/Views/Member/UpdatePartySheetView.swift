@@ -36,7 +36,8 @@ struct UpdatePartySheetView: View {
     @State private var partyDescrColor: Color = .labelsTertiary
     
     @State private var showHelpText: Bool = false
-    
+    @State private var showDeleteConfirmation: Bool = false
+
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
@@ -89,6 +90,34 @@ struct UpdatePartySheetView: View {
                     .cornerRadius(10)
                 
                 Spacer()
+                
+                // 삭제 버튼
+                Button(action: {
+                    showDeleteConfirmation = true
+                }) {
+                    Text("삭제하기")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, minHeight: 50)
+                        .background(Color.red)
+                        .cornerRadius(10)
+                        .padding(.horizontal, 20)
+                        .padding(.top)
+                }
+                .alert(isPresented: $showDeleteConfirmation) {
+                    Alert(
+                        title: Text("정말 삭제하시겠습니까?"),
+                        message: Text("이 작업은 되돌릴 수 없습니다."),
+                        primaryButton: .destructive(Text("삭제")) {
+                            if let currentParty = partiesViewModel.currentParty {
+                                partiesViewModel.deleteParty(currentParty)
+                                dismiss()
+                            }
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
+                
             }
             .padding(.horizontal)
             .navigationBarTitle("파티 수정", displayMode: .inline)
