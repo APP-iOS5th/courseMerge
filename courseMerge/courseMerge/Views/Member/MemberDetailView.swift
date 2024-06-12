@@ -82,7 +82,7 @@ struct PartyInfoView: View {
                             .foregroundStyle(Color.labelsPrimary)
                         //2024.6.11 선택한 날짜가 들어가야 함./ 년월일만 출력 (미작업)
                         Text("\(formattedStartDate) ~ \(formattedEndDate)")
-                            .font(.callout)
+                            .font(.footnote)
                             .fontWeight(.regular)
                             .foregroundStyle(Color.labelsSecondary)
                     }
