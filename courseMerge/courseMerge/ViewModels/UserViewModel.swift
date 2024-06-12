@@ -21,6 +21,7 @@ class UserViewModel: ObservableObject {
             User(username: "무지개코끼리", usercolor: "PastelYellow", isHost: false)
         ]
         
+        
         // Fetch current user UID
         fetchCurrentUserUID()
     }
@@ -30,6 +31,16 @@ class UserViewModel: ObservableObject {
             currentUserUID = uid
         } else {
             print("No current user logged in.")
+        }
+    }
+    
+    func deleteUser(withUID uid: String?) {
+        if let index = users.firstIndex(where: { $0.uid == currentUserUID }) {
+           // printf(currentUserUID)
+           // printf(index)
+            users.remove(at: index)
+        } else {
+            print("User with UID \(uid) not found.")
         }
     }
 }

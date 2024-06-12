@@ -21,7 +21,7 @@ struct MemberDetailView: View {
         VStack{
             PartyInfoView(memberDetailViewModel: memberDetailViewModel, isModifySheetPresented: $isModifySheetPresented)
             
-            MemberGridView(isSharingSheetPresented: $isSharingSheetPresented)
+            MemberGridView(memberDetailViewModel: memberDetailViewModel,isSharingSheetPresented: $isSharingSheetPresented)
         }
         .environmentObject(userViewModel)
         .environmentObject(memberDetailViewModel)
@@ -115,6 +115,7 @@ struct PartyInfoView: View {
 
 struct MemberGridView: View {
     @EnvironmentObject var userViewModel: UserViewModel
+    @ObservedObject var memberDetailViewModel: MemberDetailViewModel
 
     @Environment(\.colorScheme) var colorScheme
     
@@ -142,28 +143,31 @@ struct MemberGridView: View {
                             .foregroundStyle(.labelsPrimary)
                     }
                 }
-                
-                ForEach(userViewModel.users) { user in
-                    Button {
-                        
-                    } label: {
-                        ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40,isUsername: true)
-                            .environmentObject(userViewModel)
-                    }
-                    .contextMenu {
+                //ForEach(userViewModel.users) { user in
+                ForEach(memberDetailViewModel.createdPartInfo) { partys in
+                    ForEach(partys.members){ user in
                         Button {
                             
                         } label: {
-                            NavigationLink(destination: EmptyView()) {
-                                Label("대화하기", systemImage: "message")
-                                    .foregroundColor(.labelsPrimary)
-                            }
+                            ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40,isUsername: true)
+                                //.environmentObject(userViewModel)
+                                .environmentObject(memberDetailViewModel)
                         }
-                        
-                        Button(role: .destructive) {
+                        .contextMenu {
+                            Button {
+                                
+                            } label: {
+                                NavigationLink(destination: EmptyView()) {
+                                    Label("대화하기", systemImage: "message")
+                                        .foregroundColor(.labelsPrimary)
+                                }
+                            }
                             
-                        } label: {
-                            Label("삭제하기", systemImage: "trash")
+                            Button(role: .destructive) {
+                                userViewModel.deleteUser(withUID: user.uid)
+                            } label: {
+                                Label("삭제하기", systemImage: "trash")
+                            }
                         }
                     }
                 }

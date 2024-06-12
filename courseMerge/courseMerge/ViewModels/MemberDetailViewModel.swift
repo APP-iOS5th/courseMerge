@@ -8,7 +8,7 @@
 import Foundation
 
 class MemberDetailViewModel: ObservableObject {
-
+    let userViewModel = UserViewModel()
     //파티(모임) 제목 enumtype으로 빼기
     @Published var partytitle = " 내용을 입력하세요.(필수)"
     //파티(모임) 설명  enumtype으로 빼기
@@ -25,10 +25,12 @@ class MemberDetailViewModel: ObservableObject {
     func savePartyData() {
         // 파이어베이스 스토리지에 저장
         guard !partytitle.isEmpty else {
-                    print("Party title is required and cannot be empty")
-                    return
+            print("Party title is required and cannot be empty")
+            return
         }
-        let newPartydata = GroupPartyInfo(title: partytitle, description: partyDescr, members: members, startdate: startDate, enddate: endDate)
+        
+        
+        let newPartydata = GroupPartyInfo(title: partytitle, description: partyDescr, members: userViewModel.users, startdate: startDate, enddate: endDate)
         createdPartInfo.append(newPartydata)
     }
     
@@ -36,7 +38,7 @@ class MemberDetailViewModel: ObservableObject {
         
         //인덱스 유효 확인
         guard index >= -1 && index < createdPartInfo.count else {
-                return
+            return
         }
         // 해당 인덱스에 있는 파티 정보를 업데이트
         createdPartInfo[index].title = partytitle

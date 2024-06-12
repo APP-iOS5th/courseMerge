@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MemberView: View {
 
-    //@State private var createdParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties
     @StateObject private var memberDetailViewModel = MemberDetailViewModel()
     @Environment(\.colorScheme) var colorScheme
         
@@ -19,7 +18,6 @@ struct MemberView: View {
                 
                 if memberDetailViewModel.createdPartInfo.isEmpty
                 {
-                    //MemberEmptyView()
                     MemberEmptyView(memberDetailViewModel: memberDetailViewModel)
                 } else {
                     MemberHeaderView()
@@ -55,6 +53,7 @@ struct MemberHeaderView: View {
         
     }
 }
+
 
 
 #Preview {
