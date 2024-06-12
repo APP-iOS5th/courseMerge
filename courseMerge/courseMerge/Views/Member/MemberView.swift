@@ -23,7 +23,7 @@ struct MemberView: View {
                     MemberEmptyView(memberDetailViewModel: memberDetailViewModel)
                 } else {
                     MemberHeaderView()
-                    //MemberDetailView(memberDetailViewModel: memberDetailViewModel)
+                    MemberDetailView(memberDetailViewModel: memberDetailViewModel)
                 }
             }
         }
