@@ -24,6 +24,10 @@ class MemberDetailViewModel: ObservableObject {
     
     func savePartyData() {
         // 파이어베이스 스토리지에 저장
+        guard !partytitle.isEmpty else {
+                    print("Party title is required and cannot be empty")
+                    return
+        }
         let newPartydata = GroupPartyInfo(title: partytitle, description: partyDescr, members: members, startdate: startDate, enddate: endDate)
         createdPartInfo.append(newPartydata)
     }

@@ -54,6 +54,9 @@
 		EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */; };
 		EA3C38D62C183499005EE040 /* MemberAddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D52C183499005EE040 /* MemberAddSheet.swift */; };
 		EA3C38D82C1834AC005EE040 /* MemberModifySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D72C1834AC005EE040 /* MemberModifySheet.swift */; };
+		EA3C38DA2C18800C005EE040 /* NotificationMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D92C18800C005EE040 /* NotificationMsgView.swift */; };
+		EA3C38DC2C189168005EE040 /* NotificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38DB2C189168005EE040 /* NotificationData.swift */; };
+		EA3C38DE2C18949A005EE040 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38DD2C18949A005EE040 /* NotificationViewModel.swift */; };
 		EA4D62B92C16DFE8003EA8EB /* MemberEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */; };
 		EA4D62BD2C16E2C3003EA8EB /* GroupPartyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BC2C16E2C3003EA8EB /* GroupPartyItem.swift */; };
 		EA4D62BF2C16E53A003EA8EB /* MemberDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */; };
@@ -109,6 +112,9 @@
 		EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailViewModel.swift; path = courseMerge/ViewModels/MemberDetailViewModel.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38D52C183499005EE040 /* MemberAddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberAddSheet.swift; path = courseMerge/Views/Member/MemberAddSheet.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38D72C1834AC005EE040 /* MemberModifySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberModifySheet.swift; path = courseMerge/Views/Member/MemberModifySheet.swift; sourceTree = SOURCE_ROOT; };
+		EA3C38D92C18800C005EE040 /* NotificationMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationMsgView.swift; path = courseMerge/Views/Notification/NotificationMsgView.swift; sourceTree = SOURCE_ROOT; };
+		EA3C38DB2C189168005EE040 /* NotificationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationData.swift; path = courseMerge/Models/NotificationData.swift; sourceTree = SOURCE_ROOT; };
+		EA3C38DD2C18949A005EE040 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationViewModel.swift; path = courseMerge/ViewModels/NotificationViewModel.swift; sourceTree = SOURCE_ROOT; };
 		EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberEmptyView.swift; path = courseMerge/Views/Member/MemberEmptyView.swift; sourceTree = SOURCE_ROOT; };
 		EA4D62BC2C16E2C3003EA8EB /* GroupPartyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupPartyItem.swift; path = courseMerge/Models/GroupPartyItem.swift; sourceTree = SOURCE_ROOT; };
 		EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailView.swift; path = courseMerge/Views/Member/MemberDetailView.swift; sourceTree = SOURCE_ROOT; };
@@ -250,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				9717A3B42C15D33D00B92765 /* NotificationView.swift */,
+				EA3C38D92C18800C005EE040 /* NotificationMsgView.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -279,6 +286,7 @@
 				97BBA2602C18384D00893A77 /* PartyViewModel.swift */,
 				97BBA25E2C18226200893A77 /* UserViewModel.swift */,
 				97B6AE272C17F3E300595C12 /* AuthViewModel.swift */,
+				EA3C38DD2C18949A005EE040 /* NotificationViewModel.swift */,
 				EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */,
 			);
 			path = ViewModels;
@@ -304,6 +312,7 @@
 				97B6AE292C1800AF00595C12 /* Message.swift */,
 				787C94502C17F27A00069603 /* IconData.swift */,
 				868C2FC32C189951008E2DB6 /* Routes.swift */,
+				EA3C38DB2C189168005EE040 /* NotificationData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -404,6 +413,7 @@
 				9707CB172C173D370011C3E2 /* RoundedCorner.swift in Sources */,
 				EA4D62B92C16DFE8003EA8EB /* MemberEmptyView.swift in Sources */,
 				97BBA2612C18384E00893A77 /* PartyViewModel.swift in Sources */,
+				EA3C38DE2C18949A005EE040 /* NotificationViewModel.swift in Sources */,
 				786D27CB2C174006007186CB /* LocationManager.swift in Sources */,
 				868C2FC22C188656008E2DB6 /* PracticeMapView.swift in Sources */,
 				975B97212C1844BE005090C4 /* ProfileView.swift in Sources */,
@@ -414,6 +424,7 @@
 				97B6AE282C17F3E300595C12 /* AuthViewModel.swift in Sources */,
 				EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */,
 				3D349C352C16D5090092E10C /* PrivacyPolicyView.swift in Sources */,
+				EA3C38DA2C18800C005EE040 /* NotificationMsgView.swift in Sources */,
 				9717A3BD2C15D36200B92765 /* MemberView.swift in Sources */,
 				868C2FC42C189951008E2DB6 /* Routes.swift in Sources */,
 				9717A3CA2C16882000B92765 /* test.swift in Sources */,
@@ -437,6 +448,7 @@
 				3D349C3B2C16D68C0092E10C /* ReportView.swift in Sources */,
 				3D349C312C16B94B0092E10C /* UpdateProfileView.swift in Sources */,
 				9717A3B52C15D33D00B92765 /* NotificationView.swift in Sources */,
+				EA3C38DC2C189168005EE040 /* NotificationData.swift in Sources */,
 				3D349C372C16D54B0092E10C /* TermsOfServiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,7 +584,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CourseMerge/Preview Content\"";
-				DEVELOPMENT_TEAM = 285ZKW5MPR;
+				DEVELOPMENT_TEAM = HSWVYVMPA9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CourseMerge/Info.plist;
@@ -609,7 +621,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CourseMerge/Preview Content\"";
-				DEVELOPMENT_TEAM = 285ZKW5MPR;
+				DEVELOPMENT_TEAM = HSWVYVMPA9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CourseMerge/Info.plist;

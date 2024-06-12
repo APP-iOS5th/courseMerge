@@ -12,6 +12,7 @@ import SwiftUI
 struct MemberDetailView: View {
     @State private var isSharingSheetPresented = false
     @StateObject private var userViewModel = UserViewModel()
+    @StateObject private var memberDetailViewModel = MemberDetailViewModel()
     //구성원 수정 시트 뷰모델
     @State private var isModifySheetPresented = false
 
@@ -23,6 +24,7 @@ struct MemberDetailView: View {
             MemberGridView(isSharingSheetPresented: $isSharingSheetPresented)
         }
         .environmentObject(userViewModel)
+        .environmentObject(memberDetailViewModel)
         .padding(10)
         .sheet(isPresented: $isModifySheetPresented) {
             MemberModifySheet()
@@ -42,6 +44,8 @@ struct MemberDetailView: View {
 
 struct PartyInfoView: View {
     @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var memberDetailViewModel: MemberDetailViewModel
+    
     @Binding var isModifySheetPresented: Bool
 
     @State private var partyDescr: String = "내용을 입력하세요."
@@ -53,44 +57,19 @@ struct PartyInfoView: View {
     
     var body: some View{
         HStack {
-            //샘플
-//            VStack {
-//                ZStack {
-//                    Circle().fill(.pastelRed)
-//                        .frame(width: 100, height: 100)
-//                    Image("ProfileMark")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                        .frame(width: 40, height: 40)
-//                    if hasCrown {
-//                        Image(systemName: "crown.fill")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 30, height: 30)
-//                            .foregroundColor(.white)
-//                            .background(Color.yellow)
-//                            .clipShape(Circle())
-//                            .offset(x: 30, y: 35)
-//                    }
-//            
-//                }
-//                //2024.6.11 호스트 이름이 들어가야 함. (미작업)
-//                Text("별빛여우")
-//                    .foregroundStyle(.labelsPrimary)
-//            }
             
-            ProfileView(user: userViewModel.users.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50)
+            ProfileView(user: userViewModel.users.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
             
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
                         // 2024.6.11 작성한 파티 타이틀이 들어가야 함. (미작업)
-                        Text("ex 제주도 파티")
+                        Text(memberDetailViewModel.partytitle)
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.labelsPrimary)
-                        //2024.6.11 선택한 날짜가 들어가야 함. (미작업)
-                        Text("ex 2024.06.30")
+                        //2024.6.11 선택한 날짜가 들어가야 함./ 년월일만 출력 (미작업)
+                        Text("\(memberDetailViewModel.startDate) ~ \(memberDetailViewModel.endDate)")
                             .font(.callout)
                             .fontWeight(.regular)
                             .foregroundStyle(Color.labelsSecondary)
@@ -106,7 +85,7 @@ struct PartyInfoView: View {
                 }
                 Divider()
                 //2024.6.11 파티 설명에서 입력한 내용이 들어가야 함. (미작업)
-                DisclosureGroup("파티 설명", isExpanded: $isDescrExpanded) {
+                DisclosureGroup(memberDetailViewModel.partyDescr, isExpanded: $isDescrExpanded) {
                     TextEditor(text: $partyDescr )
                         .frame(height: 10)
                         .foregroundColor(Color.labelsSecondary)
@@ -156,7 +135,7 @@ struct MemberGridView: View {
                     Button {
                         
                     } label: {
-                        ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40)
+                        ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40,isUsername: true)
                             .environmentObject(userViewModel)
                     }
                     .contextMenu {

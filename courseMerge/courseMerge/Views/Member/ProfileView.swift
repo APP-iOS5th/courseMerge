@@ -13,6 +13,7 @@ struct ProfileView: View {
     var height: CGFloat
     var overlayWidth: CGFloat
     var overlayHeight: CGFloat
+    var isUsername: Bool
     
     @EnvironmentObject var userViewModel: UserViewModel
 
@@ -51,9 +52,11 @@ struct ProfileView: View {
                 }
             
             // name
-            Text(user.username)
-                .font(.callout)
-                .foregroundStyle(.labelsPrimary)
+            if isUsername {
+                Text(user.username)
+                    .font(.callout)
+                    .foregroundStyle(.labelsPrimary)
+            }
         }
     }
 }

@@ -22,7 +22,8 @@ struct MemberView: View {
                     MemberEmptyView()
                 } else {
                     MemberHeaderView()
-                    MemberDetailView()
+                    MemberEmptyView()
+                    //MemberDetailView()
                 }
             }
         }
@@ -42,7 +43,7 @@ struct MemberHeaderView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .frame(height: 52)
                 
-//                PartySelectionButton(activatedPartyName: <#Binding<String>#>)
+                //MemberPartySelecBtn()
             }
             Divider()
         }

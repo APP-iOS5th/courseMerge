@@ -37,6 +37,12 @@ struct MemberAddSheet: View {
                         }
                         .foregroundColor(partyTitleColor)
                     
+                    if memberDetailViewModel.partytitle.isEmpty {
+                        Text("파티 제목을 입력해주세요 (필수)")
+                            .foregroundColor(.red)
+                    }
+                    
+                    
                     Text("설명")
                         .font(.title3)
                         .fontWeight(.bold)
