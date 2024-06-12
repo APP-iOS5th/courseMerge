@@ -67,7 +67,7 @@ struct MemberEmptyView: View {
                 }
             }
             .sheet(isPresented: $isAddSheetPresented, onDismiss: {
-                if !memberDetailViewModel.partytitle.isEmpty {
+                if !memberDetailViewModel.partyTitle.isEmpty {
                     isPartyJoined = true
                 }
                 else {

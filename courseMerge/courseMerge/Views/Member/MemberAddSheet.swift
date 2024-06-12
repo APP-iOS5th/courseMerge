@@ -28,11 +28,11 @@ struct MemberAddSheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
         
-                    TextField("", text: $memberDetailViewModel.partytitle)
+                    TextField("", text: $titleTextEditor)
                         .padding(.leading, 10)
                         .overlay(alignment: .topLeading) {
                             Text("Placeholder")
-                                .foregroundStyle(memberDetailViewModel.partytitle.isEmpty ? partyTitleColor : .clear)
+                                .foregroundStyle(titleTextEditor.isEmpty ? partyTitleColor : .clear)
                                 .padding(.leading, 10)
                                 .font(.system(size: 18))
                         }
@@ -40,12 +40,12 @@ struct MemberAddSheet: View {
                         .frame(width:  361, height: 65)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: memberDetailViewModel.partytitle) { _, newValue in
+                        .onChange(of: titleTextEditor) { _, newValue in
                             partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
                         }
                         .font(.system(size: 18))
 
-                    if memberDetailViewModel.partytitle.isEmpty {
+                    if memberDetailViewModel.partyTitle.isEmpty {
                         Text("파티 제목을 입력해주세요 (필수)")
                             .foregroundColor(.red)
                             .padding(.leading, 10)
@@ -57,12 +57,12 @@ struct MemberAddSheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextEditor(text: $memberDetailViewModel.partyDescr)
+                    TextEditor(text: $descriptionTextEditor)
                         .padding(.leading, 10)
                         .padding(.top, 10)
                         .overlay(alignment: .topLeading) {
                             Text("Placeholder")
-                                .foregroundStyle(memberDetailViewModel.partyDescr.isEmpty ? partyDescrColor : .clear)
+                                .foregroundStyle(descriptionTextEditor.isEmpty ? partyDescrColor : .clear)
                                 .padding(.leading, 12)
                                 .padding(.top, 18)
                                 .font(.system(size: 18))
@@ -71,7 +71,7 @@ struct MemberAddSheet: View {
                         .scrollContentBackground(.hidden)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: memberDetailViewModel.partyDescr) { _, newValue1 in
+                        .onChange(of: descriptionTextEditor) { _, newValue1 in
                             partyDescrColor = newValue1.isEmpty ? .labelsPrimary : .labelsPrimary
                         }
                         .foregroundColor(partyDescrColor)
@@ -88,6 +88,9 @@ struct MemberAddSheet: View {
                     presentMode.wrappedValue.dismiss()
                 },
                 trailing: Button("Save") {
+                    memberDetailViewModel.partyTitle = titleTextEditor
+                    memberDetailViewModel.partyDescr = descriptionTextEditor
+                    
                     memberDetailViewModel.savePartyData()
                     // 파이어베이스 스토리지에 저장
                     // 저장 작업을 수행하고 시트를 닫음
@@ -187,7 +190,6 @@ struct AddDatePickerInputArea: View {
                 .padding(.bottom, 70)
         }
         
-        
         Spacer()
     }
     
@@ -202,7 +204,4 @@ struct AddDatePickerInputArea: View {
 
 #Preview {
     MemberAddSheet().environmentObject(MemberDetailViewModel())
-    
-        
-
 }

@@ -26,16 +26,16 @@ struct MemberModifySheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextField("내용을 입력하세요.(필수)", text: $memberDetailViewModel.partytitle)
+                    TextField("내용을 입력하세요.(필수)", text: $memberDetailViewModel.partyTitle)
                         .frame(width:  361, height: 65)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: memberDetailViewModel.partytitle) { _, newValue in
+                        .onChange(of: memberDetailViewModel.partyTitle) { _, newValue in
                             partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
                         }
                         .foregroundColor(partyTitleColor)
                     
-                    if memberDetailViewModel.partytitle.isEmpty {
+                    if memberDetailViewModel.partyTitle.isEmpty {
                         Text("파티 제목을 입력해주세요 (필수)")
                             .foregroundColor(.red)
                     }
@@ -188,5 +188,5 @@ struct ModifyDatePickerInputArea: View {
 //    
 //}
 #Preview {
-    MemberModifySheet()
+    MemberModifySheet().environmentObject(MemberDetailViewModel())
 }

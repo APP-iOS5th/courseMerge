@@ -79,7 +79,7 @@ struct PartyInfoView: View {
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(memberDetailViewModel.partytitle)
+                        Text(memberDetailViewModel.partyTitle)
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.labelsPrimary)
