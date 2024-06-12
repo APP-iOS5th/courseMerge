@@ -91,8 +91,13 @@ struct AddPartySheetView: View {
                     if partyTitle.isEmpty {
                         self.showHelpText = true
                     } else {
+                        
                         if let currentUser = authViewModel.currentUser, let currentParty = partiesViewModel.currentParty {
-                            let newParty = PartyDetail(title: partyTitle, description: partyDescr, members: [currentUser], startdate: startDate, enddate: endDate)
+                            
+                            var hostUser = currentUser
+                            hostUser.isHost = true
+                            
+                            let newParty = PartyDetail(title: partyTitle, description: partyDescr, members: [hostUser], startdate: startDate, enddate: endDate)
                             partiesViewModel.addParty(newParty)
                             
                             // 추가한 파티로 이동
