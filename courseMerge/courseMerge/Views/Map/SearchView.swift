@@ -22,6 +22,8 @@ struct SearchView: View {
     @Binding var searchResults: [MapDetailItem]
     
     @State private var heights: Double = 0.7
+    
+    @State private var selectedItem: MapDetailItem?
 
     var body: some View {
         NavigationStack {
@@ -52,8 +54,13 @@ struct SearchView: View {
         .presentationDetents([.medium, .fraction(self.heights)])
         .presentationBackground(.regularMaterial)
         .presentationBackgroundInteraction(.enabled(upThrough: .large))
+        .sheet(item: $selectedItem) { item in
+            SearchResultDetailView(item: item, isFirstCourse: $isFirstCourse, isEdit: .constant(false))
+                .presentationDetents([.fraction(0.7)])
+                .presentationDragIndicator(.visible)
+        }
     }
-    
+
     // MARK: - CategoryList
     var categoryList: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -131,10 +138,11 @@ struct SearchView: View {
         List {
             Section {
                 ForEach(recentVisited) { item in
-                    NavigationLink(destination: SearchResultDetailView(item: item, isFirstCourse: $isFirstCourse, isEdit: .constant(false))) {
-                        MapItemRow(item: item)
-                        
-                    }
+                        Button {
+                            selectedItem = item
+                        } label: {
+                            MapItemRow(item: item)
+                        }
                 }
                 .swipeActions {
                     Button(role: .destructive) {
@@ -171,42 +179,7 @@ struct TextFieldGrayBackgroundColor: ViewModifier {
 
 import MapKit
 
-//
-//@Observable
-//class LocationService: NSObject, MKLocalSearchCompleterDelegate {
-//    private let completer: MKLocalSearchCompleter
-//
-//    var completions = [MapDetailItem]()
-//
-//    init(completer: MKLocalSearchCompleter) {
-//        self.completer = completer
-//        super.init()
-//        self.completer.delegate = self
-//    }
-//
-//    func update(queryFragment: String) {
-//        completer.resultTypes = .address
-//        completer.queryFragment = queryFragment
-//    }
-//
-//    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-//        completions = completer.results.map { result in
-//            
-//            let mapItem = result.value(forKey: "_mapItem") as? MKMapItem
-//            
-//            return .init(
-//                name: result.title,
-//                address: result.subtitle,
-//                phoneNumber: mapItem?.phoneNumber,
-//                category: Category(rawValue: mapItem?.pointOfInterestCategory?.rawValue ?? ""),
-//                // MKMapItem.pointOfInterestCategory 이건가? placemark?
-//                location: mapItem?.placemark.coordinate
-//            )
-//        }
-//    }
-//}
-
-
+// MARK: - LocationService
 
 @Observable
 class LocationService: NSObject, MKLocalSearchCompleterDelegate {
