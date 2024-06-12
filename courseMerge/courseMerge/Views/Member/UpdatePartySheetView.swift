@@ -19,12 +19,15 @@ struct UpdatePartySheetView: View {
     @State private var partyDescr: String // TextField에서 사용할 party.description을 바인딩하기 위한 속성
     @State private var startDate: Date
     @State private var endDate: Date
+    @State private var docId: String
     // 생성자 수정
     init(party: PartyDetail) {
         _partyTitle = State(initialValue: party.title) // 초기값으로 파티의 제목을 설정
         _partyDescr = State(initialValue: party.description) // 초기값으로 파티의 설명을 설정
         _startDate = State(initialValue: party.startdate)
         _endDate = State(initialValue: party.enddate)
+        _docId = State(initialValue: party.docId ?? "")
+        
     }
     
     //파티(모임) 제목 폰트 컬러
@@ -96,8 +99,14 @@ struct UpdatePartySheetView: View {
                 trailing: Button("저장") {
                     if partyTitle.isEmpty {
                         self.showHelpText = true
+                    } else {
+                        if let currentParty = partiesViewModel.currentParty {
+                                     let updatedParty = PartyDetail(title: partyTitle, description: partyDescr, members: currentParty.members, startdate: startDate, enddate: endDate, docId: docId)
+                                     partiesViewModel.updateParty(updatedParty)
+                                     partiesViewModel.currentParty = updatedParty // 현재 파티로 변경
+                                 }
+                        dismiss()
                     }
-                    dismiss()
                 }
                     .foregroundColor(partyTitle.isEmpty ? .labelsTertiary : .blue) // Save 버튼 색상 설정
             )

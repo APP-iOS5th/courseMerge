@@ -14,7 +14,6 @@ struct PartySelectionButton: View {
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
 
     @State private var showingAddPartySheetView = false
-//    @State private var selectedParty: PartyDetail?  // 변경
 
     var body: some View {
         if let currentParty = partiesViewModel.currentParty {
@@ -34,7 +33,6 @@ struct PartySelectionButton: View {
                 
                 ForEach(partiesViewModel.parties) { party in
                     Button {
-//                        self.selectedParty = party
                         self.partiesViewModel.currentParty = party
                     } label: {
                         Text(party.title)
