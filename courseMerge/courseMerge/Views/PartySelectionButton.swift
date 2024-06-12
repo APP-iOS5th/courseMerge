@@ -11,9 +11,12 @@ import SwiftUI
 
 struct PartySelectionButton: View {
     @State private var showingActionSheet = false
-    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
 
     @State private var showingAddPartySheetView = false
+    
+    
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
 
     var body: some View {
         if let currentParty = partiesViewModel.currentParty {
@@ -55,4 +58,5 @@ struct PartySelectionButton: View {
 #Preview {
     PartySelectionButton()
         .environmentObject(PartyDetailsViewModel())
+        .environmentObject(AuthViewModel())
 }

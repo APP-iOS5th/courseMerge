@@ -10,7 +10,7 @@ import SwiftUI
 struct MemberEmptyView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
-    
+    @EnvironmentObject var authViewModel: AuthViewModel
     //구성원 추가 시트 뷰모델
     @State private var isAddSheetPresented = false
     
@@ -58,6 +58,7 @@ struct MemberEmptyView: View {
         }
         .sheet(isPresented: $isAddSheetPresented) {
             AddPartySheetView()
+                .environmentObject(authViewModel)
                 .environmentObject(partiesViewModel)
         }
     }

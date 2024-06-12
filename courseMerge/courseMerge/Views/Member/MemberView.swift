@@ -45,6 +45,7 @@ struct MemberView: View {
             .toolbar {
                 PartySelectionButton()
                     .environmentObject(partiesViewModel)
+                    .environmentObject(authViewModel)
             }
         }
     }

@@ -194,6 +194,7 @@ struct MemberDetailView_Previews: PreviewProvider {
             .navigationTitle("구성원")
             .toolbar {
                 PartySelectionButton()
+                    .environmentObject(AuthViewModel())
                     .environmentObject(PartyDetailsViewModel())
             }
         }

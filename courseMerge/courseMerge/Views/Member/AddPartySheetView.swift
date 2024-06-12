@@ -24,7 +24,8 @@ struct AddPartySheetView: View {
     
     // viewModel
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
-    
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     @State private var showHelpText: Bool = false
     
     var body: some View {

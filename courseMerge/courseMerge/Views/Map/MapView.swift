@@ -90,6 +90,7 @@ struct HeaderView: View {
         VStack {
             HStack {
                 PartySelectionButton()
+                    .environmentObject(authViewModel)
                     .environmentObject(partiesViewModel)
 
                 PartyDateSelectionPicker()
