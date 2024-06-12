@@ -14,6 +14,7 @@ struct ProfileView: View {
     var overlayWidth: CGFloat
     var overlayHeight: CGFloat
     var isUsername: Bool
+    var isLarge: Bool?
     
     @EnvironmentObject var userViewModel: UserViewModel
     
@@ -36,6 +37,9 @@ struct ProfileView: View {
                             HStack {
                                 Spacer()
                                 Image("custom.crown.circle.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
                             }
                         }
                     } else if user.uid == userViewModel.currentUserUID {
@@ -45,6 +49,9 @@ struct ProfileView: View {
                             HStack {
                                 Spacer()
                                 Image("user_profil_mark")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
                             }
                         }
                     } else {

@@ -19,9 +19,11 @@ struct MemberDetailView: View {
     @State private var isModifySheetPresented = false
 
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             PartyInfoView(party: partiesViewModel.currentParty, isModifySheetPresented: $isModifySheetPresented)
             
+            Divider()
+
             MemberGridView(party: partiesViewModel.currentParty, isSharingSheetPresented: $isSharingSheetPresented)
         }
         .environmentObject(userViewModel)
@@ -47,59 +49,66 @@ struct MemberDetailView: View {
 
 struct PartyInfoView: View {
     let party: PartyDetail
-
-    @EnvironmentObject var userViewModel: UserViewModel
-    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     
     @Binding var isModifySheetPresented: Bool
-    
-    //설명 열고 닫기
-    @State private var isDescrExpanded: Bool = false
-    
-
+    @State private var isExpanded = false
+    let maxDescriptionLength = 100
     
     var body: some View {
-        HStack {
-//            let hosts = party.members.filter { $0.isHost }
-//            if let host = hosts.first {
-//                ProfileView(user: host, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50, isUsername: true)
-//                    .environmentObject(userViewModel)
-//            }
-            
-            VStack(alignment: .leading) {
-                HStack {
-                    VStack(alignment: .leading) {
+        VStack(spacing: 20) {
+            HStack {
+                let hosts = party.members.filter { $0.isHost }
+                if let host = hosts.first {
+                    ProfileView(user: host, width: 90, height: 90, overlayWidth: 30, overlayHeight: 50, isUsername: true)
+                }
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
                         Text(party.title)
-                            .font(.title)
+                            .font(.title2)
                             .fontWeight(.semibold)
-                            .foregroundStyle(Color.labelsPrimary)
+                            .foregroundStyle(.labelsPrimary)
                         
-                        //2024.6.11 선택한 날짜가 들어가야 함./ 년월일만 출력 (미작업)
-                        Text("\(party.formattedStartDate) ~ \(party.formattedEndDate)")
-                            .font(.footnote)
-                            .fontWeight(.regular)
-                            .foregroundStyle(Color.labelsSecondary)
+                        Spacer()
+                        
+                        Button(action: {
+                            isModifySheetPresented = true
+                        }) {
+                            Text("Edit")
+                                .foregroundColor(.blue)
+                        }
                     }
                     
-                    Spacer()
-                    
-                    Button(action: {
-                        isModifySheetPresented = true
-                    }, label: {
-                        Text("Edit")
-                    })
+                    Text("\(party.formattedStartDate) ~ \(party.formattedEndDate)")
+                        .font(.footnote)
+                        .fontWeight(.regular)
+                        .foregroundStyle(.labelsSecondary)
                 }
-                Divider()
-                
-                DisclosureGroup(party.description, isExpanded: $isDescrExpanded) {}
-                    .frame(maxHeight: isDescrExpanded ? 100 : 0)
-                
-                Divider()
+                .padding(.leading)
+            }
+            
+            if party.description.count > maxDescriptionLength {
+                DisclosureGroup(isExpanded: $isExpanded) {
+                    Text(party.description)
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.leading)
+                } label: {
+                    Text(isExpanded ? "접기" : "더보기")
+                        .font(.footnote)
+                        .foregroundColor(.blue)
+                }
+                .animation(.default)
+            } else {
+                Text(party.description)
+                    .font(.footnote)    // 수정
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
             }
         }
         .padding(.horizontal, 10)
     }
 }
+
 
 
 // MARK: - MemberGridView
@@ -164,6 +173,20 @@ struct MemberGridView: View {
     }
 }
 
-//#Preview {
-//    MemberDetailView()
-//}
+struct MemberDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            VStack {
+                MemberDetailView()
+                    .environmentObject(UserViewModel())
+                    .environmentObject(PartyDetailsViewModel())
+            }
+            .navigationTitle("구성원")
+            .toolbar {
+                PartySelectionButton()
+                    .environmentObject(PartyDetailsViewModel())
+            }
+        }
+    }
+}
+
