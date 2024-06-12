@@ -13,8 +13,10 @@ import CoreLocation
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     @Published var location: CLLocation? // 위치 정보를 업데이트할 때 UI에 알림
+    @Published var authorizationStatus: CLAuthorizationStatus // 위치 접근 권한 상태를 저장
     
     override init() {
+        self.authorizationStatus = locationManager.authorizationStatus
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest // 위치 정확도를 가장 높게 설정
@@ -26,7 +28,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func requestLocation() {
         locationManager.requestLocation()
     }
-    
     
     // MARK: Delegate Method
     
@@ -51,6 +52,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     ///   - manager: CLLocationManager 인스턴스
     ///   - status: 새로운 권한 상태
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        authorizationStatus = status
         switch status {
         case .authorizedWhenInUse, .authorizedAlways:
             locationManager.startUpdatingLocation() // 권한이 허용, 위치 업데이트 시작.
