@@ -20,7 +20,7 @@ class MemberDetailViewModel: ObservableObject {
     // 모임 멤버들
     @Published var members: [User] = []
     //파티(모임) 정보 저장
-    @Published private var createdPartInfo: [GroupPartyInfo] = []
+    @Published var createdPartInfo: [GroupPartyInfo] = []
     
     func savePartyData() {
         // 파이어베이스 스토리지에 저장
