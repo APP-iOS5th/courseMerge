@@ -255,8 +255,8 @@
 		9717A3AC2C15CFFD00B92765 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				9717A3B42C15D33D00B92765 /* NotificationView.swift */,
 				EA3C38D92C18800C005EE040 /* NotificationMsgView.swift */,
+				9717A3B42C15D33D00B92765 /* NotificationView.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
