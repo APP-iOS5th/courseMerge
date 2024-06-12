@@ -10,7 +10,7 @@ import Foundation
 class MemberDetailViewModel: ObservableObject {
     let userViewModel = UserViewModel()
     //파티(모임) 제목 enumtype으로 빼기
-    @Published var partytitle = " 내용을 입력하세요.(필수)"
+    @Published var partytitle = "제목을 입력하세요.(필수)"
     //파티(모임) 설명  enumtype으로 빼기
     @Published var partyDescr = "내용을 입력하세요."
     //시작일

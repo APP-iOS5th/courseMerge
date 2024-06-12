@@ -70,7 +70,7 @@ struct PartyInfoView: View {
     var body: some View{
         HStack {
             
-            ProfileView(user: userViewModel.users.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
+            ProfileView(user: userViewModel.users.first!, width: 90, height: 90, overlayWidth: 30, overlayHeight: 50,isUsername: true)
             
 //            ForEach(memberDetailViewModel.createdPartInfo) { partys in
 //                ProfileView(user: partys.members.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
@@ -79,7 +79,6 @@ struct PartyInfoView: View {
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
-                        // 2024.6.11 작성한 파티 타이틀이 들어가야 함. (미작업)
                         Text(memberDetailViewModel.partytitle)
                             .font(.title)
                             .fontWeight(.semibold)
@@ -111,6 +110,7 @@ struct PartyInfoView: View {
                 Divider()
             }
         }
+        .padding(.horizontal, 10)
     }
 }
 

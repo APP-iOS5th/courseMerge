@@ -28,11 +28,11 @@ struct MemberAddSheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
         
-                    TextField("", text: $titleTextEditor)
+                    TextField("", text: $memberDetailViewModel.partytitle)
                         .padding(.leading, 10)
                         .overlay(alignment: .topLeading) {
                             Text("Placeholder")
-                                .foregroundStyle(titleTextEditor.isEmpty ? partyTitleColor : .clear)
+                                .foregroundStyle(memberDetailViewModel.partytitle.isEmpty ? partyTitleColor : .clear)
                                 .padding(.leading, 10)
                                 .font(.system(size: 18))
                         }
@@ -40,7 +40,7 @@ struct MemberAddSheet: View {
                         .frame(width:  361, height: 65)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: titleTextEditor) { _, newValue in
+                        .onChange(of: memberDetailViewModel.partytitle) { _, newValue in
                             partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
                         }
                         .font(.system(size: 18))
@@ -48,6 +48,7 @@ struct MemberAddSheet: View {
                     if memberDetailViewModel.partytitle.isEmpty {
                         Text("파티 제목을 입력해주세요 (필수)")
                             .foregroundColor(.red)
+                            .padding(.leading, 10)
                     }
                     
                     
@@ -56,12 +57,12 @@ struct MemberAddSheet: View {
                         .fontWeight(.bold)
                         .padding(.top,20)
                     
-                    TextEditor(text: $descriptionTextEditor)
+                    TextEditor(text: $memberDetailViewModel.partyDescr)
                         .padding(.leading, 10)
                         .padding(.top, 10)
                         .overlay(alignment: .topLeading) {
                             Text("Placeholder")
-                                .foregroundStyle(descriptionTextEditor.isEmpty ? partyDescrColor : .clear)
+                                .foregroundStyle(memberDetailViewModel.partyDescr.isEmpty ? partyDescrColor : .clear)
                                 .padding(.leading, 12)
                                 .padding(.top, 18)
                                 .font(.system(size: 18))
@@ -70,7 +71,7 @@ struct MemberAddSheet: View {
                         .scrollContentBackground(.hidden)
                         .background(.fillTertiary)
                         .cornerRadius(10)
-                        .onChange(of: descriptionTextEditor) { _, newValue1 in
+                        .onChange(of: memberDetailViewModel.partyDescr) { _, newValue1 in
                             partyDescrColor = newValue1.isEmpty ? .labelsPrimary : .labelsPrimary
                         }
                         .foregroundColor(partyDescrColor)
