@@ -10,8 +10,7 @@ import SwiftUI
 struct MemberAddSheet: View {
     @Environment(\.presentationMode) var presentMode
     
-    //뷰모델
-    @StateObject var memberDetailViewModel = MemberDetailViewModel()
+    @EnvironmentObject var memberDetailViewModel: MemberDetailViewModel
     //파티(모임) 제목 폰트 컬러
     @State private var partyTitleColor: Color = .labelsTertiary
     //파티(모임) 설명 폰트 컬러
@@ -36,6 +35,12 @@ struct MemberAddSheet: View {
                             partyTitleColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
                         }
                         .foregroundColor(partyTitleColor)
+                    
+                    if memberDetailViewModel.partytitle.isEmpty {
+                        Text("파티 제목을 입력해주세요 (필수)")
+                            .foregroundColor(.red)
+                    }
+                    
                     
                     Text("설명")
                         .font(.title3)
@@ -176,5 +181,8 @@ struct AddDatePickerInputArea: View {
 }
 
 #Preview {
-    MemberAddSheet()
+    MemberAddSheet().environmentObject(MemberDetailViewModel())
+    
+        
+
 }

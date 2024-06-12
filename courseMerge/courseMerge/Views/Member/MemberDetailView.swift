@@ -12,20 +12,22 @@ import SwiftUI
 struct MemberDetailView: View {
     @State private var isSharingSheetPresented = false
     @StateObject private var userViewModel = UserViewModel()
+    @StateObject public var memberDetailViewModel: MemberDetailViewModel
     //구성원 수정 시트 뷰모델
     @State private var isModifySheetPresented = false
 
     var body: some View {
         
         VStack{
-            PartyInfoView(isModifySheetPresented: $isModifySheetPresented)
+            PartyInfoView(memberDetailViewModel: memberDetailViewModel, isModifySheetPresented: $isModifySheetPresented)
             
-            MemberGridView(isSharingSheetPresented: $isSharingSheetPresented)
+            MemberGridView(memberDetailViewModel: memberDetailViewModel,isSharingSheetPresented: $isSharingSheetPresented)
         }
         .environmentObject(userViewModel)
+        .environmentObject(memberDetailViewModel)
         .padding(10)
         .sheet(isPresented: $isModifySheetPresented) {
-            MemberModifySheet()
+            MemberModifySheet().environmentObject(memberDetailViewModel)
         }
         .background(
             AppSharingSheet(
@@ -42,6 +44,7 @@ struct MemberDetailView: View {
 
 struct PartyInfoView: View {
     @EnvironmentObject var userViewModel: UserViewModel
+    @ObservedObject var memberDetailViewModel: MemberDetailViewModel
     @Binding var isModifySheetPresented: Bool
 
     @State private var partyDescr: String = "내용을 입력하세요."
@@ -51,47 +54,39 @@ struct PartyInfoView: View {
     //호스트 표시
     var hasCrown: Bool = true
     
+    // 날짜를 원하는 형식으로 포맷하는 프로퍼티
+    var formattedStartDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        return dateFormatter.string(from: memberDetailViewModel.startDate)
+    }
+
+    var formattedEndDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        return dateFormatter.string(from: memberDetailViewModel.endDate)
+    }
+    
     var body: some View{
         HStack {
-            //샘플
-//            VStack {
-//                ZStack {
-//                    Circle().fill(.pastelRed)
-//                        .frame(width: 100, height: 100)
-//                    Image("ProfileMark")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                        .frame(width: 40, height: 40)
-//                    if hasCrown {
-//                        Image(systemName: "crown.fill")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 30, height: 30)
-//                            .foregroundColor(.white)
-//                            .background(Color.yellow)
-//                            .clipShape(Circle())
-//                            .offset(x: 30, y: 35)
-//                    }
-//            
-//                }
-//                //2024.6.11 호스트 이름이 들어가야 함. (미작업)
-//                Text("별빛여우")
-//                    .foregroundStyle(.labelsPrimary)
-//            }
             
-            ProfileView(user: userViewModel.users.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50)
+            ProfileView(user: userViewModel.users.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
+            
+//            ForEach(memberDetailViewModel.createdPartInfo) { partys in
+//                ProfileView(user: partys.members.first!, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: true)
+//            }
             
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
                         // 2024.6.11 작성한 파티 타이틀이 들어가야 함. (미작업)
-                        Text("ex 제주도 파티")
+                        Text(memberDetailViewModel.partytitle)
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.labelsPrimary)
-                        //2024.6.11 선택한 날짜가 들어가야 함. (미작업)
-                        Text("ex 2024.06.30")
-                            .font(.callout)
+                        //2024.6.11 선택한 날짜가 들어가야 함./ 년월일만 출력 (미작업)
+                        Text("\(formattedStartDate) ~ \(formattedEndDate)")
+                            .font(.footnote)
                             .fontWeight(.regular)
                             .foregroundStyle(Color.labelsSecondary)
                     }
@@ -106,7 +101,7 @@ struct PartyInfoView: View {
                 }
                 Divider()
                 //2024.6.11 파티 설명에서 입력한 내용이 들어가야 함. (미작업)
-                DisclosureGroup("파티 설명", isExpanded: $isDescrExpanded) {
+                DisclosureGroup(memberDetailViewModel.partyDescr, isExpanded: $isDescrExpanded) {
                     TextEditor(text: $partyDescr )
                         .frame(height: 10)
                         .foregroundColor(Color.labelsSecondary)
@@ -124,6 +119,7 @@ struct PartyInfoView: View {
 
 struct MemberGridView: View {
     @EnvironmentObject var userViewModel: UserViewModel
+    @ObservedObject var memberDetailViewModel: MemberDetailViewModel
 
     @Environment(\.colorScheme) var colorScheme
     
@@ -151,28 +147,31 @@ struct MemberGridView: View {
                             .foregroundStyle(.labelsPrimary)
                     }
                 }
-                
-                ForEach(userViewModel.users) { user in
-                    Button {
-                        
-                    } label: {
-                        ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40)
-                            .environmentObject(userViewModel)
-                    }
-                    .contextMenu {
+                //ForEach(userViewModel.users) { user in
+                ForEach(memberDetailViewModel.createdPartInfo) { partys in
+                    ForEach(partys.members){ user in
                         Button {
                             
                         } label: {
-                            NavigationLink(destination: EmptyView()) {
-                                Label("대화하기", systemImage: "message")
-                                    .foregroundColor(.labelsPrimary)
-                            }
+                            ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40,isUsername: true)
+                                //.environmentObject(userViewModel)
+                                .environmentObject(memberDetailViewModel)
                         }
-                        
-                        Button(role: .destructive) {
+                        .contextMenu {
+                            Button {
+                                
+                            } label: {
+                                NavigationLink(destination: EmptyView()) {
+                                    Label("대화하기", systemImage: "message")
+                                        .foregroundColor(.labelsPrimary)
+                                }
+                            }
                             
-                        } label: {
-                            Label("삭제하기", systemImage: "trash")
+                            Button(role: .destructive) {
+                                userViewModel.deleteUser(withUID: user.uid)
+                            } label: {
+                                Label("삭제하기", systemImage: "trash")
+                            }
                         }
                     }
                 }
@@ -182,5 +181,5 @@ struct MemberGridView: View {
 }
 
 #Preview {
-    MemberDetailView()
+    MemberDetailView(memberDetailViewModel: MemberDetailViewModel())
 }

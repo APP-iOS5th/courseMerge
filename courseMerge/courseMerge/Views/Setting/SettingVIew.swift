@@ -78,17 +78,19 @@ struct SettingView: View {
                 
                 Section {
                     Button("로그아웃", systemImage: "rectangle.portrait.and.arrow.right.fill") {
+                        print(authViewModel.isSignedIn)
                         showAlert = true
+
                     }
-//                        .alert(isPresented: $showAlert) {
-//                            Alert(title: Text("로그아웃!"), primaryButton: .cancel(), secondaryButton: .destructive(Text("확인")))    // deprecated 코드
-//                        }
+                    
                     .alert("알림", isPresented: $showAlert) {
                         Button("취소", role: .cancel) {
                             showAlert = false
                         }
                         Button {
-                            authViewModel.isSignedIn = false
+                            authViewModel.signOut()
+                            print(authViewModel.isSignedIn)
+
                         } label: {
                             Text("확인")
                         }
@@ -99,6 +101,7 @@ struct SettingView: View {
                     
                     NavigationLink {
                         AccountDeletionView()
+                            .environmentObject(authViewModel)
                     } label: {
                         Image(systemName: "person.crop.circle.fill.badge.xmark")
                             .resizable()

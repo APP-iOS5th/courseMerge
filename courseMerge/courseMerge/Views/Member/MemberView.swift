@@ -9,20 +9,19 @@ import SwiftUI
 
 struct MemberView: View {
 
-    @State private var createdParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties
-    
+    @StateObject private var memberDetailViewModel = MemberDetailViewModel()
     @Environment(\.colorScheme) var colorScheme
         
     var body: some View {
         NavigationView {
             VStack {
                 
-                if createdParties.isEmpty
+                if memberDetailViewModel.createdPartInfo.isEmpty
                 {
-                    MemberEmptyView()
+                    MemberEmptyView(memberDetailViewModel: memberDetailViewModel)
                 } else {
                     MemberHeaderView()
-                    MemberDetailView()
+                    MemberDetailView(memberDetailViewModel: memberDetailViewModel)
                 }
             }
         }
@@ -42,18 +41,17 @@ struct MemberHeaderView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .frame(height: 52)
                 
-//                PartySelectionButton(activatedPartyName: <#Binding<String>#>)
+                //MemberPartySelecBtn()
             }
             Divider()
         }
-        .sheet(isPresented: $isShowSearchViewModal) {
-            SearchView()
-        }
+
         .padding(.horizontal)
         .background(Color.white)
         
     }
 }
+
 
 
 #Preview {

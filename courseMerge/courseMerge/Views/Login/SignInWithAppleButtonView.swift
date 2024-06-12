@@ -80,10 +80,8 @@ struct SignInWithAppleButtonView: View {
             if let document = document, document.exists {
                 print("User already exists")
             } else {
-                fetchExistingColors { excludeColors in
-                    fetchExistingUsernames { excludeUsernames in
-                        createNewUser(uid: uid, userRef: userRef, excludeColors: excludeColors, excludeUsernames: excludeUsernames)
-                    }
+                fetchExistingUsernames { excludeUsernames in
+                    createNewUser(uid: uid, userRef: userRef, excludeUsernames: excludeUsernames)
                 }
             }
         }
@@ -102,41 +100,30 @@ struct SignInWithAppleButtonView: View {
         }
     }
 
-    private func fetchExistingColors(completion: @escaping ([String]) -> Void) {
-        let db = Firestore.firestore()
-        db.collection("users").getDocuments { (snapshot, error) in
-            if let error = error {
-                print("Error fetching documents: \(error)")
-                completion([])
-                return
-            }
-            let excludeColors = snapshot?.documents.compactMap { $0.data()["usercolor"] as? String } ?? []
-            completion(excludeColors)
-        }
-    }
-
     // MARK: - Create New User
     
-    private func createNewUser(uid: String, userRef: DocumentReference, excludeColors: [String], excludeUsernames: [String]) {
-        generateRandomUsername(excludeUsernames: excludeUsernames) { randomUsername in
-            let randomColor = User.randomColor(excludeColors: excludeColors)
-            let newUser = User(uid: uid, username: randomUsername, usercolor: randomColor, isHost: false)
-            
-            userRef.setData([
-                "uid": newUser.uid as Any,
-                "username": newUser.username,
-                "usercolor": newUser.usercolor,
-                "isHost": newUser.isHost
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("User successfully created!")
-                }
+    private func createNewUser(uid: String, userRef: DocumentReference, excludeUsernames: [String]) {
+        
+        let randomUsername = User.generateRandomUsername(excludeUsernames: excludeUsernames)
+        let randomColor = User.randomColor()
+        let newUser = User(uid: uid, username: randomUsername, usercolor: randomColor, isHost: false)
+        
+        userRef.setData([
+            "uid": newUser.uid as Any,
+            "username": newUser.username,
+            "usercolor": newUser.usercolor,
+            "isHost": newUser.isHost
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("User successfully created!")
             }
         }
     }
 }
+
+
 
 @available(iOS 13, *)
 private func randomNonceString(length: Int = 32) -> String {
@@ -158,39 +145,4 @@ private func sha256(_ input: String) -> String {
     let hashedData = SHA256.hash(data: inputData)
     let hashString = hashedData.compactMap { String(format: "%02x", $0) }.joined()
     return hashString
-}
-
-// MARK: - 한글 닉네임 생성기
-
-private func generateRandomUsername(excludeUsernames: [String], completion: @escaping (String) -> Void) {
-    let determiners = [
-        "예쁜", "화난", "귀여운", "배고픈", "철학적인",
-        "현학적인", "슬픈", "푸른", "비싼", "밝은",
-        "별빛", "달빛", "햇빛", "눈부신", "신비한",
-        "기운찬", "힘찬", "맑은", "고요한", "찬란한"
-    ]
-    
-    let animals = [
-        "호랑이", "비버", "강아지", "부엉이", "여우",
-        "치타", "문어", "고양이", "미어캣", "다람쥐",
-        "도깨비", "펭귄", "사자", "늑대", "용",
-        "독수리", "백조", "사슴", "부엉이", "물개"
-    ]
-    
-    let maxAttempts = 100
-    var attempts = 0
-    var uniqueUsername: String
-    
-    repeat {
-        attempts += 1
-        let randomDeterminer = determiners.randomElement() ?? "사용자"
-        let randomAnimal = animals.randomElement() ?? "사용자"
-        uniqueUsername = "\(randomDeterminer)\(randomAnimal)\(Int.random(in: 1000...9999))"
-    } while excludeUsernames.contains(uniqueUsername) && attempts < maxAttempts
-    
-    if attempts == maxAttempts {
-        uniqueUsername = "기본사용자\(Int.random(in: 1000...9999))"
-    }
-    
-    completion(uniqueUsername)
 }

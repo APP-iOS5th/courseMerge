@@ -38,7 +38,7 @@ struct UpdateCourseView: View {
                                     Button {
                                         selectedItem = item
                                     } label: {
-                                        ItemRow(item: item)
+                                        MapItemRow(item: item)
                                     }
                                 }
                             }
