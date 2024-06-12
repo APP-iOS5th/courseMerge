@@ -12,7 +12,6 @@ import CoreLocation
 /// 사용자의 위치를 관리하는 Class (위치 업데이트 및 권한 변경 이벤트를 처리)
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
-    
     @Published var location: CLLocation? // 위치 정보를 업데이트할 때 UI에 알림
     
     override init() {
