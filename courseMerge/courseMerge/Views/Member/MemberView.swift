@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MemberView: View {
 
-    @State private var createdParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties
-    
+    @State private var createdParties: [GroupPartyInfo] = GroupPartyInfo.exampleParties    
+    @StateObject private var memberDetailViewModel = MemberDetailViewModel()
     @Environment(\.colorScheme) var colorScheme
         
     var body: some View {
@@ -19,11 +19,11 @@ struct MemberView: View {
                 
                 if createdParties.isEmpty
                 {
-                    MemberEmptyView()
+                    //MemberEmptyView()
+                    MemberEmptyView(memberDetailViewModel: memberDetailViewModel)
                 } else {
                     MemberHeaderView()
-                    MemberEmptyView()
-                    //MemberDetailView()
+                    MemberDetailView(memberDetailViewModel: memberDetailViewModel)
                 }
             }
         }

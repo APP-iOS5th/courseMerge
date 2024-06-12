@@ -38,7 +38,8 @@ struct CourseMergeApp: App {
 //                print(authViewModel.isSignedIn)
 //
 //            }
-            RouteViewPractice()
+            LoginView()
+//            RouteViewPractice()
         }
     }
 }

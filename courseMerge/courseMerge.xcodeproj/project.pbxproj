@@ -71,7 +71,7 @@
 		3D349C382C16D5E60092E10C /* DevelopersDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DevelopersDetailsView.swift; path = courseMerge/Views/Setting/DevelopersDetailsView.swift; sourceTree = SOURCE_ROOT; };
 		3D349C3A2C16D68C0092E10C /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReportView.swift; path = courseMerge/Views/Setting/ReportView.swift; sourceTree = SOURCE_ROOT; };
 		3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDeletionView.swift; path = courseMerge/Views/Setting/AccountDeletionView.swift; sourceTree = SOURCE_ROOT; };
-		786D27CA2C174006007186CB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = CourseMerge/ViewModels/LocationManager.swift; sourceTree = SOURCE_ROOT; };
+		786D27CA2C174006007186CB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = CourseMerge/Utils/LocationManager.swift; sourceTree = SOURCE_ROOT; };
 		787C94502C17F27A00069603 /* IconData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IconData.swift; path = courseMerge/Models/IconData.swift; sourceTree = SOURCE_ROOT; };
 		78C24FC92C16989D007DAF99 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = courseMerge/Views/Map/MapView.swift; sourceTree = SOURCE_ROOT; };
 		78EDDE042C1694B0009C4EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -206,8 +206,8 @@
 			children = (
 				9717A3BC2C15D36200B92765 /* MemberView.swift */,
 				975B97202C1844BE005090C4 /* ProfileView.swift */,
-				EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */,
 				EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */,
+				EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */,
 				EA3C38D52C183499005EE040 /* MemberAddSheet.swift */,
 				EA3C38D72C1834AC005EE040 /* MemberModifySheet.swift */,
 				EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */,
@@ -281,7 +281,6 @@
 		9717A3C62C1687A900B92765 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				786D27CA2C174006007186CB /* LocationManager.swift */,
 				9717A3CB2C16883900B92765 /* viewModel.swift */,
 				97BBA2602C18384D00893A77 /* PartyViewModel.swift */,
 				97BBA25E2C18226200893A77 /* UserViewModel.swift */,
@@ -320,6 +319,7 @@
 		EA3C38D02C1823C7005EE040 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				786D27CA2C174006007186CB /* LocationManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

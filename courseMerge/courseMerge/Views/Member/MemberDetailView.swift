@@ -12,14 +12,14 @@ import SwiftUI
 struct MemberDetailView: View {
     @State private var isSharingSheetPresented = false
     @StateObject private var userViewModel = UserViewModel()
-    @StateObject private var memberDetailViewModel = MemberDetailViewModel()
+    @StateObject public var memberDetailViewModel: MemberDetailViewModel
     //구성원 수정 시트 뷰모델
     @State private var isModifySheetPresented = false
 
     var body: some View {
         
         VStack{
-            PartyInfoView(isModifySheetPresented: $isModifySheetPresented)
+            PartyInfoView(memberDetailViewModel: memberDetailViewModel, isModifySheetPresented: $isModifySheetPresented)
             
             MemberGridView(isSharingSheetPresented: $isSharingSheetPresented)
         }
@@ -44,8 +44,7 @@ struct MemberDetailView: View {
 
 struct PartyInfoView: View {
     @EnvironmentObject var userViewModel: UserViewModel
-    @EnvironmentObject var memberDetailViewModel: MemberDetailViewModel
-    
+    @ObservedObject var memberDetailViewModel: MemberDetailViewModel
     @Binding var isModifySheetPresented: Bool
 
     @State private var partyDescr: String = "내용을 입력하세요."
@@ -161,5 +160,5 @@ struct MemberGridView: View {
 }
 
 #Preview {
-    MemberDetailView()
+    MemberDetailView(memberDetailViewModel: MemberDetailViewModel())
 }
