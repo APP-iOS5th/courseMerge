@@ -48,6 +48,8 @@ struct ProfileView: View {
                                 Image("user_profil_mark")
                             }
                         }
+                    } else {
+                        EmptyView()
                     }
                 }
             
