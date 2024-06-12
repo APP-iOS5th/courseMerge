@@ -43,7 +43,7 @@ class MemberDetailViewModel: ObservableObject {
         // 해당 인덱스에 있는 파티 정보를 업데이트
         createdPartInfo[index].title = partytitle
         createdPartInfo[index].description = partyDescr
-        createdPartInfo[index].members = members
+        createdPartInfo[index].members =  userViewModel.users
         createdPartInfo[index].startdate = startDate
         createdPartInfo[index].enddate = endDate
     }
