@@ -15,9 +15,10 @@ struct NotificationMsgView: View {
     var body: some View {
         VStack{
             ForEach(notiViewModel.notifiMsg){ notimsg in
-                    NotificationCell(userViewModel:userViewModel ,partytitle: notimsg.partyTitle, notifMsg: notimsg.msg, notitime: notimsg.datetime,userProfileidx:notimsg.userProfileidx)
-                        .padding(.bottom, 10)
-                }
+                NotificationCell(userViewModel:userViewModel ,partytitle: notimsg.partyTitle, notifMsg: notimsg.msg, notitime: notimsg.datetime,userProfileidx:notimsg.userProfileidx)
+                    .padding(.bottom, 10)
+            }
+            
         }
         .padding(20)
     }
@@ -34,34 +35,45 @@ struct NotificationCell: View{
     var userProfileidx: Int
     
     var body: some View {
-        ZStack{
-            Rectangle()
-                .fill(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : Color("BGSecondary"))
-                .frame(width: 350, height: 220) // Rectangle의 너비만큼 설정
-                .cornerRadius(10)
-            VStack{
-                HStack(){
-                    Text(partytitle)
-                        .fontWeight(.semibold)
-                        .font(.title)
-                        .foregroundStyle(.labelsPrimary)
-                        .padding(.leading,30)
-                    ProfileView(user: userViewModel.users[userProfileidx], width: 25, height: 25, overlayWidth: 10, overlayHeight: 10, isUsername: false)
-                    Spacer()
-                    Text(notitime)
-                        .fontWeight(.regular)
-                        .font(.callout)
-                        .foregroundStyle(.labelsTertiary)
-                        .padding(.trailing,30)
-                    
-                }
-                Text(notifMsg)
-                    .padding(.leading)
-                    .padding(.top,10)
+        VStack{
+//            HStack {
+//                Spacer()
+//                Button(action: {
+//                    // 닫기 버튼 액션
+//                }) {
+//                    Image(systemName: "xmark")
+//                }
+//                .padding(.trailing)
+//            }.padding(.bottom,10)
+            
+            HStack{
+                Text(partytitle)
+                    .fontWeight(.semibold)
+                    .font(.title2)
+                    .foregroundStyle(.labelsPrimary)
+                    .padding(.leading,30)
+                ProfileView(user: userViewModel.users[userProfileidx], width: 25, height: 25, overlayWidth: 10, overlayHeight: 10, isUsername: false)
+                Spacer()
+                Text(notitime)
+                    .fontWeight(.regular)
+                    .font(.callout)
+                    .foregroundStyle(.labelsTertiary)
+                    .padding(.trailing,30)
+                
             }
-            .padding(.bottom, 20)
+            .padding(.top, 10)
+            
+            Text(notifMsg)
+                .font(.subheadline)
+                .padding(.leading)
+                .padding(.top, 5)
         }
+        .frame(width: 350, height: 160)
+        .background(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : Color("BGSecondary"))
+        .cornerRadius(10)
+        .padding(.bottom, 20)
     }
+    
 }
 
 #Preview {

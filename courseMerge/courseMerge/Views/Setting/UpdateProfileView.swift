@@ -8,30 +8,54 @@
 import SwiftUI
 
 struct UpdateProfileView: View {
+    
+    @Environment(\.colorScheme) var colorScheme
+    
     let colors = ["pasteBlue", "pasteGreen", "pasteRed", "pasteYellow",]
+    //컬러픽커에서 선택한 색상
     @State var selectedColor = Color.pastelBlue
+    //프로필 이름
+    @State var profileName: String = ""
+    // 기존 사용자 이름
+    @State private var excludeUsernames: [String] = []
     
     var body: some View {
         VStack {
             ZStack{
                 Circle().fill(selectedColor)
-                    .frame(width: 200, height: 200)
+                    .frame(width: 150, height: 150)
                 Image("ProfileMark")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
-
+                    .frame(width: 80, height: 80)
+               
             }
-            ZStack{
-                Rectangle()
-                    .foregroundStyle(.fillTertiary)
+            HStack{
+                TextField("프로필 이름", text: $profileName)
                     .frame(width: 200, height: 40)
+                    .background(.fillTertiary)
+                    .font(.title3)
                     .cornerRadius(10)
-                VStack(alignment:.leading) {
-                    Text("프로필 이름")
-                        .font(.title3)
+                    .multilineTextAlignment(.center)
+                    .padding(.leading,10)
+                    .padding(.top)
+                    .padding(.bottom)
+                
+                
+                Button(action: {
+                    let randomUsername = User.generateRandomUsername(excludeUsernames: excludeUsernames)
+                    
+                    profileName = randomUsername
+                }) {
+                    Image(systemName: "shuffle.circle")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.fillPrimary)
                 }
+                
+                
             }
+
             Divider()
             HStack {
                 Button {
@@ -107,7 +131,7 @@ struct UpdateProfileView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("확인") {
-                    
+                    //저장하기
                 }
                 
             }
