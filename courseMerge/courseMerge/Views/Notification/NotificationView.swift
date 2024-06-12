@@ -23,7 +23,7 @@ struct NotificationView: View {
                 }
             }
             .navigationTitle("알림")
-            .background(colorScheme == .dark ? Color("BGPrimaryDarkBase") : Color("BGSecondary"))
+            .background(colorScheme == .dark ? Color("BGPrimaryDarkBase") : Color("BGPrimary"))
         }
         
     }
