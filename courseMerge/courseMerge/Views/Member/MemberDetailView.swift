@@ -101,10 +101,10 @@ struct PartyInfoView: View {
                 Divider()
                 //2024.6.11 파티 설명에서 입력한 내용이 들어가야 함. (미작업)
                 DisclosureGroup(memberDetailViewModel.partyDescr, isExpanded: $isDescrExpanded) {
-                    TextEditor(text: $partyDescr )
-                        .frame(height: 10)
-                        .foregroundColor(Color.labelsSecondary)
-                        .padding()
+//                    TextEditor(text: $memberDetailViewModel.partyDescr )
+//                        .frame(height: 10)
+//                        .foregroundColor(Color.labelsSecondary)
+//                        .padding()
                 }
                 .frame(maxHeight: isDescrExpanded ? 100 : 0)
                 Divider()
