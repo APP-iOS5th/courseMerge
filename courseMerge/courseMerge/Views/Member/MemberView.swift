@@ -45,9 +45,7 @@ struct MemberHeaderView: View {
             }
             Divider()
         }
-        .sheet(isPresented: $isShowSearchViewModal) {
-            SearchView()
-        }
+
         .padding(.horizontal)
         .background(Color.white)
         
