@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SettingView: View {
-    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     @Environment(\.colorScheme) var colorScheme
     
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -27,15 +26,20 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
-                        Text("프로파일 수정")
+                            .foregroundStyle(.blue)
+                        Text("프로필 수정")
                     }
+                    
                     NavigationLink {
                         BlockedContactsView()
                     } label: {
-                        Image(systemName: "person.slash")
+                        Image(systemName: "person.slash.fill")
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 28)
+                            .frame(height: 25)
+                            .foregroundStyle(.blue)
+                            .padding(.top, -2)
+                            .padding(.leading,2)
                         Text("차단한 사용자 관리")
                     }
                 } header: {
@@ -49,7 +53,9 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
+                            .foregroundStyle(.blue)
                         Text("개인정보 처리방침")
+                            .padding(.leading, 5)
                     }
                     NavigationLink {
                         TermsOfServiceView()
@@ -58,14 +64,19 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
+                            .padding(.leading, 2)
+                            .foregroundStyle(.blue)
                         Text("서비스 이용약관")
+                            .padding(.leading, 3)
                     }
                     
                     NavigationLink {
                         DevelopersDetailsView()
                     } label: {
                         Image(systemName: "hammer.fill")
+                            .foregroundStyle(.blue)
                         Text("개발자 정보")
+                            .padding(.leading, 3)
                     }
                     NavigationLink {
                         ReportView()
@@ -74,7 +85,10 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
+                            .padding(.leading, -3)
+                            .foregroundStyle(.blue)
                         Text("신고하기")
+                            .padding(.leading, 1)
                     }
                     
                 } header: {
@@ -82,11 +96,22 @@ struct SettingView: View {
                 }
                 
                 Section {
-                    Button("로그아웃", systemImage: "rectangle.portrait.and.arrow.right.fill") {
+                    Button(action: {
                         print(authViewModel.isSignedIn)
                         showAlert = true
-
+                    }) {
+                        HStack{
+                            Image(systemName: "rectangle.portrait.and.arrow.right.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 23)
+                                .foregroundStyle(.blue)
+                            Text("로그아웃")
+                                .padding(.leading,2)
+                                .foregroundColor(.labelsPrimary)
+                        }
                     }
+                    .padding(.leading, 2)
                     
                     .alert("알림", isPresented: $showAlert) {
                         Button("취소", role: .cancel) {
@@ -112,7 +137,10 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
+                            .padding(.leading, -4)
+                            .foregroundStyle(.blue)
                         Text("회원탈퇴")
+                            .padding(.leading, 1)
                     }
                     
                 } header: {
@@ -128,4 +156,6 @@ struct SettingView: View {
 
 #Preview {
     SettingView()
+        .environmentObject(AuthViewModel())
+    
 }

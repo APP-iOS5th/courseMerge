@@ -20,8 +20,8 @@ struct NotificationData: Identifiable {
 extension NotificationData {
     static var exampleNotification: [NotificationData] = [
         NotificationData(party: PartyDetail.exampleParty, msg:"Host 가 함께 갈 메인 코스를 확정했습니다.\n확인해주세요.", sendmsgtime: "5분전"),
-//        NotificationData(party: PartyDetail.exampleParty, datetime: "1시간 전", msg:"이융의님이 메시지를 보냈습니다.",sendmsgtime: "1시간 전"),
-//        NotificationData(party: PartyDetail.exampleParty, datetime: "06/01", msg:"황규상님이 메시지를 보냈습니다.",sendmsgtime: "30분 전")
+        NotificationData(party: PartyDetail.exampleParty, msg:"이융의님이 메시지를 보냈습니다.",sendmsgtime: "1시간 전"),
+        NotificationData(party: PartyDetail.exampleParty, msg:"황규상님이 메시지를 보냈습니다.",sendmsgtime: "30분 전")
     ]
 }
 

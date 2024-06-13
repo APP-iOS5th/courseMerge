@@ -9,23 +9,18 @@ import SwiftUI
 
 struct NotificationMsgView: View {
     let notifications = NotificationData.exampleNotification
-    //@EnvironmentObject var notiViewModel: NotificationViewModel
-    // var testidx: Int  = notiViewModel.notifiMsg.userProfileidx
     
     var body: some View {
         VStack{
-            
-            ForEach(notifications) { notis in
-                //ForEach(notis) { notimsg in
-                    NotificationCell(
-                        partydatail: notis.party,
-                        notifMsg: notis.msg,
-                        sendmsgtime: notis.sendmsgtime
-                    )
-                //}
-                .padding(.bottom, 10)
+            List(notifications) { notis in
+                NotificationCell(
+                    partydatail: notis.party,
+                    notifMsg: notis.msg,
+                    sendmsgtime: notis.sendmsgtime
+                )
+                .padding(.bottom, 30)
             }
-        }.padding(20)
+        }
 
     }
 }
@@ -76,7 +71,7 @@ struct NotificationCell: View{
                 .padding(.top, 5)
         }
         .frame(width: 350, height: 160)
-        .background(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : Color("BGSecondary"))
+        .background(colorScheme == .dark ? Color("BGPrimaryDarkElevated") : Color("BGPrimary"))
         .cornerRadius(10)
         .padding(.bottom, 20)
     }
