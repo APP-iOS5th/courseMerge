@@ -44,7 +44,8 @@ struct UpdateProfileView: View {
             
             Divider()
             
-//                colorGrid
+            colorGrid
+                .padding()
         
 
             
@@ -102,21 +103,28 @@ struct UpdateProfileView: View {
         }
     }
     
-//    var colorGrid: some view {
-//        ScrollView {
-//            LazyHGrid(columns: columns, spacing: 10) {
-//                HStack {
-//                    ForEach(User.hexColors) { color in
-//                        Button {
-//                            selectedColor = color
-//                        } label: {
-//                            ProfileView(user: User.exampleUsers.first!, width: 80, height: 80, overlayWidth: 40, overlayHeight: 40, isUsername: false)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
+
+    var colorGrid: some View {
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 15) {
+                ForEach(User.hexColors, id: \.self) { color in
+                    Button {
+                        selectedColor = color
+                        user.usercolor = color
+                    } label: {
+                        ZStack {
+                            Circle().fill(Color(hex: color))
+                                .frame(width: 70, height: 70)
+                            Image("ProfileMark")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 25, height: 25)
+                        }
+                    }
+                }
+            }
+        }
+    }
     
 //    var customColor: some View {
 //        ZStack (alignment: .center) {
