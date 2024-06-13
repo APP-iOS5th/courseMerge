@@ -54,7 +54,7 @@ struct ChatListView: View {
                 .navigationTitle("채팅")
                 .toolbar {
                     EditButton()
-                        .disabled(!authViewModel.isSignedIn)
+                        .disabled(partiesViewModel.parties.isEmpty)
                 }
                 
                 VStack {
