@@ -30,7 +30,8 @@ struct SettingView: View {
                             .foregroundStyle(.blue)
                         Text("프로필 수정")
                     }
-                    
+                    .disabled(!authViewModel.isSignedIn)
+
                     NavigationLink {
                         BlockedContactsView()
                     } label: {
@@ -43,6 +44,8 @@ struct SettingView: View {
                             .padding(.leading,2)
                         Text("차단한 사용자 관리")
                     }
+                    .disabled(!authViewModel.isSignedIn)
+
                 } header: {
                     Text("일반")
                 }
@@ -92,6 +95,8 @@ struct SettingView: View {
                         Text("신고하기")
                             .padding(.leading, 1)
                     }
+                    .disabled(!authViewModel.isSignedIn)
+
                     
                 } header: {
                     Text("앱 정보")
@@ -129,7 +134,8 @@ struct SettingView: View {
                     } message: {
                         Text("로그아웃 하시겠습니까?")
                     }
-                
+                    .disabled(!authViewModel.isSignedIn)
+
                     
                     NavigationLink {
                         AccountDeletionView()
@@ -144,7 +150,8 @@ struct SettingView: View {
                         Text("회원탈퇴")
                             .padding(.leading, 1)
                     }
-                    
+                    .disabled(!authViewModel.isSignedIn)
+
                 } header: {
                     Text("계정")
                 }
