@@ -7,7 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
-
+import FirebaseAuth
 // Parties CRUD, current Party
 
 class PartyDetailsViewModel: ObservableObject {
@@ -15,8 +15,10 @@ class PartyDetailsViewModel: ObservableObject {
     @Published var currentParty: PartyDetail?
 
     private var db = Firestore.firestore()
+    private var authViewModel: AuthViewModel
 
-    init() {
+    init(authViewModel: AuthViewModel) {
+        self.authViewModel = authViewModel
         fetchParties()
     }
     
@@ -45,15 +47,25 @@ class PartyDetailsViewModel: ObservableObject {
 
     // 파티 목록 읽기
     func fetchParties() {
+        guard let currentUserUID = authViewModel.currentUserUID else {
+            print("Current user not found")
+            return
+        }
+        
         db.collection("parties").addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print("Error getting parties: \(error.localizedDescription)")
                 return
             }
 
-            self.parties = querySnapshot?.documents.compactMap { document in
+            let allParties = querySnapshot?.documents.compactMap { document in
                 try? document.data(as: PartyDetail.self)
             } ?? []
+            
+            // 현재 사용자가 멤버로 포함된 파티만 필터링
+            self.parties = allParties.filter { party in
+                party.members.contains { $0.uid == currentUserUID }
+            }
 
             // 파티 목록을 불러온 후 currentParty 설정
             if let firstParty = self.parties.first {
@@ -66,6 +78,7 @@ class PartyDetailsViewModel: ObservableObject {
             print("Current party: \(String(describing: self.currentParty))")
         }
     }
+
 
     // 파티 업데이트
     func updateParty(_ party: PartyDetail) {

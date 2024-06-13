@@ -106,6 +106,7 @@ struct MessageCell: View {
             if !isCurrentUser {
                 Text(member.username)
                     .font(.footnote)
+                    .foregroundStyle(.labelsPrimary)
             }
             
             Text(contentMessage)

@@ -24,16 +24,24 @@ struct CourseMergeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Group {
-                if authViewModel.isSignedIn {
-                    ContentView()
-                } else {
-                    LoginView()
+            MainView()
+                .environmentObject(authViewModel)
+                .onAppear {
+                    authViewModel.checkSignInStatus()
                 }
-            }
-            .environmentObject(authViewModel)
-            .onAppear {
-                authViewModel.checkSignInStatus()
+        }
+    }
+}
+
+struct MainView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
+    var body: some View {
+        Group {
+            if authViewModel.isSignedIn {
+                ContentView()
+            } else {
+                LoginView()
             }
         }
     }

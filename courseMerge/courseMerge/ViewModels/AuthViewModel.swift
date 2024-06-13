@@ -9,6 +9,7 @@ import Foundation
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
+import AuthenticationServices
 import SwiftUI
 
 // 사용자 인증 관련 ViewModel (자동 로그인, 로그아웃, 회원탈퇴)
@@ -17,7 +18,8 @@ class AuthViewModel: ObservableObject {
     @Published var isSignedIn: Bool = false
     @Published var currentUser: User? = nil
     @Published var currentUserUID: String?
-
+    @Published var goToLoginView: Bool = false
+    
     init() {
         checkSignInStatus()
         
@@ -30,8 +32,8 @@ class AuthViewModel: ObservableObject {
                 self.currentUser = nil
             }
         }
+        
         fetchCurrentUserUID()
-
     }
     
     func fetchCurrentUserUID() {
@@ -72,7 +74,7 @@ class AuthViewModel: ObservableObject {
                     usercolor: data?["usercolor"] as? String ?? "",
                     isHost: data?["isHost"] as? Bool ?? false
                 )
-                print("load CurrentUser: \(self.currentUser)")
+                print("load CurrentUser: \(String(describing: self.currentUser))")
 
             } else {
                 print("Document does not exist")
@@ -107,14 +109,60 @@ class AuthViewModel: ObservableObject {
                     if let error = error {
                         completion(.failure(error))
                     } else {
-                        print("before delete currentUser: \(self.currentUser)")
                         self.isSignedIn = false
                         self.currentUser = nil
-                        print("after delete currentUser: \(self.currentUser)")
                         completion(.success(()))
                     }
                 }
             }
         }
     }
+    
+    func updateUser(uid: String, userName: String, userColor: String, isHost: Bool, completion: @escaping (Result<User, Error>) -> Void) {
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(uid)
+        
+        userRef.updateData([
+            "username": userName,
+            "usercolor": userColor,
+            "isHost": isHost
+        ]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                self.loadCurrentUser(uid: uid)
+                if let updatedUser = self.currentUser {
+                    completion(.success(updatedUser))
+                } else {
+                    completion(.failure(NSError(domain: "Update Failed", code: 500, userInfo: nil)))
+                }
+            }
+        }
+    }
+    
+//    
+//    func checkLoginFromTestLink() {
+//        guard let url = URL(string: "testflight_link") else { return }
+//        
+//        session = ASWebAuthenticationSession(url: url, callbackURLScheme: "courseMerge") { [weak self] callbackURL, error in
+//            guard let self = self else { return }
+//            
+//            guard error == nil, let callbackURL = callbackURL else {
+//                // Error 처리
+//                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+//                return
+//            }
+//            
+//            if callbackURL.absoluteString.contains("apple_login=true") {
+//                print("Apple login successful")
+//                partyDetailsViewModel.addParty()
+//            } else {
+//                print("Apple login failed or not verified")
+//                // 실패했을 때의 처리를 알림 추가
+//            }
+//        }
+//        
+//        session?.presentationContextProvider = self
+//        session?.start()
+//    }
 }

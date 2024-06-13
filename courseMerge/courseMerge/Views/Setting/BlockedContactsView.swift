@@ -6,51 +6,56 @@
 //
 
 import SwiftUI
-struct BlockedItem: Identifiable {
-    var id = UUID()
-    var text: String
-}
+
 struct BlockedContactsView: View {
-    @State var blockedList: [BlockedItem] = [
-        BlockedItem(text: "+82 1688-3131"),
-        BlockedItem(text: "+82 1688-3132"),
-    ]
-    @State var flag = false
+    @State private var blockedList = BlockedData.exampleBlocked
+
     var body: some View {
-        
-        NavigationStack {
-            List {
-                ForEach(blockedList) { item in
-                    NavigationLink(value: item.text) {
-                        Text(item.text)
+        List {
+            ForEach($blockedList) { $item in
+                ForEach($item.users) { $blocked in
+                    NavigationLink(destination: Text(blocked.username)) {
+                        HStack {
+                            ProfileView(user: blocked, width: 40, height: 40, overlayWidth: 15, overlayHeight: 15, isUsername: false)
+                            Text(blocked.username)
+                        }
                     }
                 }
-                .onDelete { blockedList.remove(atOffsets: $0)}
-                .onMove { blockedList.move(fromOffsets: $0, toOffset: $1)}
-                
-                Button("추가하기...") {
-                   let newItem = BlockedItem(text: "1335")
-                    blockedList.append(newItem)
+                .onDelete { indexSet in
+                    deleteUser(at: indexSet, from: item)
                 }
-                .disabled(flag)
+                .onMove { indices, newOffset in
+                    moveUser(from: indices, to: newOffset, in: item)
+                }
             }
-            .navigationDestination(for: String.self) { text in
-                Text("blocked item = \(text)")
-            }
-        }//NavigationStack
+        }
         .navigationTitle("차단한 사용자 관리")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
             }
-            
         }
-    }//body
+    }
+
+    private func deleteUser(at offsets: IndexSet, from blockedData: BlockedData) {
+        for index in offsets {
+            if let itemIndex = blockedList.firstIndex(where: { $0.id == blockedData.id }) {
+                blockedList[itemIndex].users.remove(at: index)
+            }
+        }
+    }
+
+    private func moveUser(from source: IndexSet, to destination: Int, in blockedData: BlockedData) {
+        if let itemIndex = blockedList.firstIndex(where: { $0.id == blockedData.id }) {
+            blockedList[itemIndex].users.move(fromOffsets: source, toOffset: destination)
+        }
+    }
 }
 
 
 
 #Preview {
     BlockedContactsView()
+        .environmentObject(AuthViewModel())
 }

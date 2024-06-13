@@ -43,12 +43,12 @@ struct UpdatePartySheetView: View {
             VStack(alignment: .leading) {
                 
                 // Title
-                Text("제목")
+                Text("파티명")
                     .font(.title3)
                     .fontWeight(.bold)
                     .padding(.top, 20)
                 
-                TextField("제목을 입력하세요.(필수)", text: $partyTitle)
+                TextField("파티명을 입력하세요. (필수)", text: $partyTitle)
                     .padding(.leading, 10)
 //                    .foregroundColor(partyTitleColor)
                     .frame(width:  361, height: 65)
@@ -56,7 +56,7 @@ struct UpdatePartySheetView: View {
                     .cornerRadius(10)
                 
                 if showHelpText {
-                    Text("파티 제목을 입력해주세요 (필수)")
+                    Text("파티 제목을 입력하세요. (필수)")
                         .foregroundColor(.red)
                         .padding(.leading, 10)
                 }
@@ -67,15 +67,32 @@ struct UpdatePartySheetView: View {
                     .fontWeight(.bold)
                     .padding(.top, 20)
                 
-                TextEditor(text: $partyDescr)
-                    .padding(.leading, 10)
-                    .padding(.top, 10)
-                    .frame(width:  361, height: 200)
-                    .scrollContentBackground(.hidden)
-                    .background(.fillTertiary)
-                    .cornerRadius(10)
-//                    .foregroundColor(partyDescrColor)
-                    .font(.system(size: 18))
+                ZStack(alignment: .topLeading) {
+                     if partyDescr.isEmpty {
+                         Text("파티에 대한 설명을 입력하세요.")
+                             .foregroundStyle(partyDescrColor)
+                             .padding(.leading, 14)
+                             .padding(.top, 18)
+                             .font(.system(size: 18))
+                     }
+                     
+                     TextEditor(text: $partyDescr)
+                         .padding(.leading, 10)
+                         .padding(.top, 10)
+                         .frame(width: 361, height: 200)
+                         .scrollContentBackground(.hidden)
+                         .background(.fillTertiary)
+                         .cornerRadius(10)
+                         .font(.system(size: 18))
+                         .onChange(of: partyDescr) { _, newValue in
+                             partyDescrColor = newValue.isEmpty ? .labelsTertiary : .labelsPrimary
+                         }
+                         .foregroundStyle(partyDescrColor)
+                         .onTapGesture {
+                             UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
+                         }
+                 }
+                 
                 
                 DatePicker("시작일", selection: $startDate, displayedComponents: .date)
                     .datePickerStyle(CompactDatePickerStyle())

@@ -10,16 +10,14 @@ import SwiftUI
 struct NotificationView: View {
     @Environment(\.colorScheme) var colorScheme
     
-    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
-    @EnvironmentObject var authViewModel: AuthViewModel
 //    @StateObject private var notiViewModel = NotificationViewModel()
     
     var body: some View {
         NavigationStack {
             VStack {
-                //클릭한 알림의 파티로 이동
+                // 클릭한 알림의 파티로 이동
 //                ScrollView{
-//                    NotificationMsgView()
+                    NotificationMsgView()
 //                        .environmentObject(userViewModel)
 //                        .environmentObject(notiViewModel)
 //                }
@@ -27,7 +25,6 @@ struct NotificationView: View {
             .navigationTitle("알림")
             .background(colorScheme == .dark ? Color("BGPrimaryDarkBase") : Color("BGPrimary"))
         }
-        
     }
 }
 

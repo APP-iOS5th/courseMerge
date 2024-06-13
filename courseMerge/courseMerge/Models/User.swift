@@ -47,7 +47,6 @@ extension User {
         "#8A2BE2", // BlueViolet
         "#F08080", // LightCoral
         "#32CD32", // LimeGreen
-        "#20B2AA", // LightSeaGreen (중복 추가)
         "#8B008B", // DarkMagenta
         "#00FF00", // Lime
         "#FF4500", // OrangeRed

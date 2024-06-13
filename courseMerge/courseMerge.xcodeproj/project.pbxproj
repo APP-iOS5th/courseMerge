@@ -51,7 +51,6 @@
 		97BBA25F2C18226200893A77 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBA25E2C18226200893A77 /* UserViewModel.swift */; };
 		97BBA2612C18384E00893A77 /* PartyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBA2602C18384D00893A77 /* PartyDetailsViewModel.swift */; };
 		97FD63562C16D7E30080438A /* MapDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD63552C16D7E30080438A /* MapDetailItem.swift */; };
-		EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */; };
 		EA3C38D62C183499005EE040 /* AddPartySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D52C183499005EE040 /* AddPartySheetView.swift */; };
 		EA3C38D82C1834AC005EE040 /* UpdatePartySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */; };
 		EA3C38DA2C18800C005EE040 /* NotificationMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D92C18800C005EE040 /* NotificationMsgView.swift */; };
@@ -61,6 +60,7 @@
 		EA4D62BD2C16E2C3003EA8EB /* PartyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BC2C16E2C3003EA8EB /* PartyDetail.swift */; };
 		EA4D62BF2C16E53A003EA8EB /* MemberDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */; };
 		EA98482D2C17FC06000ECF94 /* AppSharingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */; };
+		EADA80882C1ABD11003813EE /* BlockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA80872C1ABD11003813EE /* BlockedData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,7 +108,6 @@
 		97BBA25E2C18226200893A77 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		97BBA2602C18384D00893A77 /* PartyDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyDetailsViewModel.swift; sourceTree = "<group>"; };
 		97FD63552C16D7E30080438A /* MapDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailItem.swift; sourceTree = "<group>"; };
-		EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailViewModel.swift; path = courseMerge/ViewModels/MemberDetailViewModel.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38D52C183499005EE040 /* AddPartySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddPartySheetView.swift; path = courseMerge/Views/Member/AddPartySheetView.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UpdatePartySheetView.swift; path = courseMerge/Views/Member/UpdatePartySheetView.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38D92C18800C005EE040 /* NotificationMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationMsgView.swift; path = courseMerge/Views/Notification/NotificationMsgView.swift; sourceTree = SOURCE_ROOT; };
@@ -118,6 +117,7 @@
 		EA4D62BC2C16E2C3003EA8EB /* PartyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PartyDetail.swift; path = courseMerge/Models/PartyDetail.swift; sourceTree = SOURCE_ROOT; };
 		EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailView.swift; path = courseMerge/Views/Member/MemberDetailView.swift; sourceTree = SOURCE_ROOT; };
 		EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppSharingSheet.swift; path = courseMerge/Views/Member/AppSharingSheet.swift; sourceTree = SOURCE_ROOT; };
+		EADA80872C1ABD11003813EE /* BlockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlockedData.swift; path = courseMerge/Models/BlockedData.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,8 +210,8 @@
 				EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */,
 				EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */,
 				EA3C38D52C183499005EE040 /* AddPartySheetView.swift */,
-				EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */,
 				EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */,
+				EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -287,7 +287,6 @@
 				97BBA25E2C18226200893A77 /* UserViewModel.swift */,
 				97B6AE272C17F3E300595C12 /* AuthViewModel.swift */,
 				EA3C38DD2C18949A005EE040 /* NotificationViewModel.swift */,
-				EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -311,6 +310,7 @@
 				97B6AE292C1800AF00595C12 /* Message.swift */,
 				868C2FC32C189951008E2DB6 /* Course.swift */,
 				EA3C38DB2C189168005EE040 /* NotificationData.swift */,
+				EADA80872C1ABD11003813EE /* BlockedData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -363,7 +363,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */;
+			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -410,6 +410,7 @@
 				970979B92C19AFBA006B4ACD /* MessageViewModel.swift in Sources */,
 				97FD63562C16D7E30080438A /* MapDetailItem.swift in Sources */,
 				EA4D62BF2C16E53A003EA8EB /* MemberDetailView.swift in Sources */,
+				EADA80882C1ABD11003813EE /* BlockedData.swift in Sources */,
 				97B6AE2A2C1800AF00595C12 /* Message.swift in Sources */,
 				97BBA25D2C1821CE00893A77 /* SignInWithAppleButtonView.swift in Sources */,
 				9707CB172C173D370011C3E2 /* RoundedCorner.swift in Sources */,
@@ -424,7 +425,6 @@
 				3D349C392C16D5E60092E10C /* DevelopersDetailsView.swift in Sources */,
 				3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */,
 				97B6AE282C17F3E300595C12 /* AuthViewModel.swift in Sources */,
-				EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */,
 				970979BB2C19D454006B4ACD /* PartySelectionButton.swift in Sources */,
 				3D349C352C16D5090092E10C /* PrivacyPolicyView.swift in Sources */,
 				EA3C38DA2C18800C005EE040 /* NotificationMsgView.swift in Sources */,
@@ -581,10 +581,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CourseMerge/CourseMerge.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CourseMerge/Preview Content\"";
-				DEVELOPMENT_TEAM = HSWVYVMPA9;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 285ZKW5MPR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CourseMerge/Info.plist;
@@ -606,6 +608,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosmoss.CourseMerge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = courseMerge_dev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -618,10 +622,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CourseMerge/CourseMerge.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CourseMerge/Preview Content\"";
-				DEVELOPMENT_TEAM = HSWVYVMPA9;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 285ZKW5MPR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CourseMerge/Info.plist;
@@ -643,6 +649,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosmoss.CourseMerge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = courseMerge_adhoc;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -652,7 +660,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */ = {
+		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9717A3A22C15CF5000B92765 /* Debug */,
