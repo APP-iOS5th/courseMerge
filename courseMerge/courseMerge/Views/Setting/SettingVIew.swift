@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SettingView: View {
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+    @Environment(\.colorScheme) var colorScheme
+    
     @EnvironmentObject var authViewModel: AuthViewModel
     
     @State var showAlert = false
@@ -24,8 +26,11 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
+                            .foregroundColor(colorScheme == .dark ? Color("BGSecondary") : Color("BGSecondaryDarkElevated"))
                         Text("프로파일 수정")
+                            .foregroundColor(.labelsPrimary)
                     }
+                    
                     NavigationLink {
                         BlockedContactsView()
                     } label: {
@@ -84,6 +89,7 @@ struct SettingView: View {
                         showAlert = true
 
                     }
+                    .foregroundColor(colorScheme == .dark ? Color("BGSecondary") : Color("BGSecondaryDarkElevated"))
                     
                     .alert("알림", isPresented: $showAlert) {
                         Button("취소", role: .cancel) {
@@ -125,4 +131,5 @@ struct SettingView: View {
 
 #Preview {
     SettingView()
+        .environmentObject(AuthViewModel())
 }

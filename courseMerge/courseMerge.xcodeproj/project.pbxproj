@@ -60,6 +60,8 @@
 		EA4D62BD2C16E2C3003EA8EB /* PartyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BC2C16E2C3003EA8EB /* PartyDetail.swift */; };
 		EA4D62BF2C16E53A003EA8EB /* MemberDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */; };
 		EA98482D2C17FC06000ECF94 /* AppSharingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */; };
+		EADA80842C19DCD4003813EE /* BlockedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA80832C19DCD4003813EE /* BlockedItem.swift */; };
+		EADA80862C19ED72003813EE /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA80852C19ED72003813EE /* SettingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +119,8 @@
 		EA4D62BC2C16E2C3003EA8EB /* PartyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PartyDetail.swift; path = courseMerge/Models/PartyDetail.swift; sourceTree = SOURCE_ROOT; };
 		EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailView.swift; path = courseMerge/Views/Member/MemberDetailView.swift; sourceTree = SOURCE_ROOT; };
 		EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppSharingSheet.swift; path = courseMerge/Views/Member/AppSharingSheet.swift; sourceTree = SOURCE_ROOT; };
+		EADA80832C19DCD4003813EE /* BlockedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlockedItem.swift; path = courseMerge/Models/BlockedItem.swift; sourceTree = SOURCE_ROOT; };
+		EADA80852C19ED72003813EE /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingViewModel.swift; path = courseMerge/ViewModels/SettingViewModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +290,7 @@
 				97B6AE272C17F3E300595C12 /* AuthViewModel.swift */,
 				EA3C38DD2C18949A005EE040 /* NotificationViewModel.swift */,
 				EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */,
+				EADA80852C19ED72003813EE /* SettingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				97B6AE292C1800AF00595C12 /* Message.swift */,
 				868C2FC32C189951008E2DB6 /* Course.swift */,
 				EA3C38DB2C189168005EE040 /* NotificationData.swift */,
+				EADA80832C19DCD4003813EE /* BlockedItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -400,10 +406,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9707CB252C17F1BF0011C3E2 /* LoginView.swift in Sources */,
+				EADA80842C19DCD4003813EE /* BlockedItem.swift in Sources */,
 				970B7CC32C168D5A003CB335 /* UpdateCourseView.swift in Sources */,
 				78C24FCA2C16989D007DAF99 /* MapView.swift in Sources */,
 				970B7CBF2C168D3B003CB335 /* SearchResultDetailView.swift in Sources */,
 				970979B92C19AFBA006B4ACD /* MessageViewModel.swift in Sources */,
+				EADA80862C19ED72003813EE /* SettingViewModel.swift in Sources */,
 				97FD63562C16D7E30080438A /* MapDetailItem.swift in Sources */,
 				EA4D62BF2C16E53A003EA8EB /* MemberDetailView.swift in Sources */,
 				97B6AE2A2C1800AF00595C12 /* Message.swift in Sources */,
