@@ -14,8 +14,9 @@ struct LoginView: View {
     @State private var showingContentView: Bool = false
     
     var body: some View {
+        // 어차피 guest login 은 LoginView 에서 시작한 ContentView이기 때문에, viewModel 에서 관리하는 goToLoginView를 조건문에 추가하면 끝!
         ZStack {
-            if showingContentView {
+            if showingContentView && authViewModel.goToLoginView == false {
                 ContentView()
                     .environmentObject(authViewModel)
             } else {
@@ -64,6 +65,7 @@ struct LoginView: View {
                     
                     Button {
                         showingContentView = true
+                        authViewModel.goToLoginView = false // 로그인 안하고 다시 둘러보기 올 수도 있어서
                     } label: {
                         Text("둘러보기")
                             .font(.headline)

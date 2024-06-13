@@ -53,6 +53,7 @@ struct MemberEmptyView: View {
                 // 여기에 기존 파티에 가입하기 버튼의 액션 추가
             }) {
                 Text("기존 파티에 가입하기")
+                
                     .fontWeight(.regular)
                     .foregroundColor(.black)
                     .frame(width: 170, height: 53)
@@ -61,13 +62,18 @@ struct MemberEmptyView: View {
             }
             .padding()
         }
-        .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("로그인이 필요합니다"),
-                message: Text("파티를 만들기 위해서는 로그인이 필요합니다. 로그인을 해주세요."),
-                dismissButton: .default(Text("확인"))
-            )
+        .alert("로그인이 필요합니다.", isPresented: $showAlert) {
+            Button("취소", role: .cancel) {
+                showAlert = false
+            }
+            Button("확인") {
+                authViewModel.isSignedIn = false
+                authViewModel.goToLoginView = true
+            }
+        } message: {
+            Text("파티를 만들기 위해서는 로그인이 필요합니다. 로그인을 해주세요.")
         }
+        
         .sheet(isPresented: $isAddSheetPresented) {
             AddPartySheetView()
                 .environmentObject(authViewModel)
