@@ -19,18 +19,20 @@ struct SettingView: View {
         NavigationStack {
             Form {
                 Section {
-                    NavigationLink {
-                        UpdateProfileView()
-                            .environmentObject(authViewModel)
-                    } label: {
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 28)
-                            .foregroundStyle(.blue)
-                        Text("프로필 수정")
+                    if let currentUser = authViewModel.currentUser {
+                        NavigationLink {
+                            UpdateProfileView(user: currentUser)
+                                .environmentObject(authViewModel)
+                        } label: {
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 28)
+                                .foregroundStyle(.blue)
+                            Text("프로필 수정")
+                        }
+                        .disabled(!authViewModel.isSignedIn)
                     }
-                    .disabled(!authViewModel.isSignedIn)
 
                     NavigationLink {
                         BlockedContactsView()
@@ -103,38 +105,62 @@ struct SettingView: View {
                 }
                 
                 Section {
-                    Button(action: {
-                        print(authViewModel.isSignedIn)
-                        showAlert = true
-                    }) {
-                        HStack{
-                            Image(systemName: "rectangle.portrait.and.arrow.right.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 23)
-                                .foregroundStyle(.blue)
-                            Text("로그아웃")
-                                .padding(.leading,2)
-                                .foregroundColor(.labelsPrimary)
-                        }
-                    }
-                    .padding(.leading, 2)
-                    
-                    .alert("알림", isPresented: $showAlert) {
-                        Button("취소", role: .cancel) {
-                            showAlert = false
-                        }
-                        Button {
-                            authViewModel.signOut()
+                    if authViewModel.isSignedIn {
+                        Button(action: {
                             print(authViewModel.isSignedIn)
-
-                        } label: {
-                            Text("확인")
+                            showAlert = true
+                        }) {
+                            HStack{
+                                Image(systemName: "rectangle.portrait.and.arrow.right.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 23)
+                                    .foregroundStyle(.blue)
+                                Text("로그아웃")
+                                    .padding(.leading,2)
+                                    .foregroundColor(.labelsPrimary)
+                            }
                         }
-                    } message: {
-                        Text("로그아웃 하시겠습니까?")
+                        .padding(.leading, 2)
+                        .alert("알림", isPresented: $showAlert) {
+                            Button("취소", role: .cancel) {
+                                showAlert = false
+                            }
+                            Button {
+                                authViewModel.signOut()
+                                print(authViewModel.isSignedIn)
+
+                            } label: {
+                                Text("확인")
+                            }
+                        } message: {
+                            Text("로그아웃 하시겠습니까?")
+                        }
+                        .disabled(!authViewModel.isSignedIn)
+                        
+                    } else {
+                        Button(action: {
+                            print(authViewModel.isSignedIn)
+                            authViewModel.isSignedIn = false
+                            authViewModel.goToLoginView = true
+                        }) {
+                            HStack{
+                                Image(systemName: "key.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 23)
+                                    .foregroundStyle(.blue)
+                                Text("로그인")
+                                    .padding(.leading, 10)
+                                    .foregroundColor(.labelsPrimary)
+                            }
+                        }
+                        .padding(.leading, 2)
                     }
-                    .disabled(!authViewModel.isSignedIn)
+
+
+                    
+
 
                     
                     NavigationLink {

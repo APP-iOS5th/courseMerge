@@ -32,8 +32,8 @@ class AuthViewModel: ObservableObject {
                 self.currentUser = nil
             }
         }
+        
         fetchCurrentUserUID()
-
     }
     
     func fetchCurrentUserUID() {
@@ -74,7 +74,7 @@ class AuthViewModel: ObservableObject {
                     usercolor: data?["usercolor"] as? String ?? "",
                     isHost: data?["isHost"] as? Bool ?? false
                 )
-                print("load CurrentUser: \(self.currentUser)")
+                print("load CurrentUser: \(String(describing: self.currentUser))")
 
             } else {
                 print("Document does not exist")
@@ -109,12 +109,32 @@ class AuthViewModel: ObservableObject {
                     if let error = error {
                         completion(.failure(error))
                     } else {
-                        print("before delete currentUser: \(self.currentUser)")
                         self.isSignedIn = false
                         self.currentUser = nil
-                        print("after delete currentUser: \(self.currentUser)")
                         completion(.success(()))
                     }
+                }
+            }
+        }
+    }
+    
+    func updateUser(uid: String, userName: String, userColor: String, isHost: Bool, completion: @escaping (Result<User, Error>) -> Void) {
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(uid)
+        
+        userRef.updateData([
+            "username": userName,
+            "usercolor": userColor,
+            "isHost": isHost
+        ]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                self.loadCurrentUser(uid: uid)
+                if let updatedUser = self.currentUser {
+                    completion(.success(updatedUser))
+                } else {
+                    completion(.failure(NSError(domain: "Update Failed", code: 500, userInfo: nil)))
                 }
             }
         }
