@@ -92,8 +92,10 @@ struct AddPartySheetView: View {
                         self.showHelpText = true
                     } else {
                         
-                        if let currentUser = authViewModel.currentUser, let currentParty = partiesViewModel.currentParty {
-                            
+                        if let currentUser = authViewModel.currentUser{
+                        //2024.06.13
+                        //if let currentUser = authViewModel.currentUser, let currentParty = partiesViewModel.currentParty {
+                            print(currentUser)
                             var hostUser = currentUser
                             hostUser.isHost = true
                             

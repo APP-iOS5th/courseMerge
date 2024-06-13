@@ -50,7 +50,6 @@
 		97BBA25F2C18226200893A77 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBA25E2C18226200893A77 /* UserViewModel.swift */; };
 		97BBA2612C18384E00893A77 /* PartyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBA2602C18384D00893A77 /* PartyDetailsViewModel.swift */; };
 		97FD63562C16D7E30080438A /* MapDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD63552C16D7E30080438A /* MapDetailItem.swift */; };
-		EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */; };
 		EA3C38D62C183499005EE040 /* AddPartySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D52C183499005EE040 /* AddPartySheetView.swift */; };
 		EA3C38D82C1834AC005EE040 /* UpdatePartySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */; };
 		EA3C38DA2C18800C005EE040 /* NotificationMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C38D92C18800C005EE040 /* NotificationMsgView.swift */; };
@@ -107,7 +106,6 @@
 		97BBA25E2C18226200893A77 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		97BBA2602C18384D00893A77 /* PartyDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyDetailsViewModel.swift; sourceTree = "<group>"; };
 		97FD63552C16D7E30080438A /* MapDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailItem.swift; sourceTree = "<group>"; };
-		EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailViewModel.swift; path = courseMerge/ViewModels/MemberDetailViewModel.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38D52C183499005EE040 /* AddPartySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddPartySheetView.swift; path = courseMerge/Views/Member/AddPartySheetView.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UpdatePartySheetView.swift; path = courseMerge/Views/Member/UpdatePartySheetView.swift; sourceTree = SOURCE_ROOT; };
 		EA3C38D92C18800C005EE040 /* NotificationMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationMsgView.swift; path = courseMerge/Views/Notification/NotificationMsgView.swift; sourceTree = SOURCE_ROOT; };
@@ -285,7 +283,6 @@
 				97BBA25E2C18226200893A77 /* UserViewModel.swift */,
 				97B6AE272C17F3E300595C12 /* AuthViewModel.swift */,
 				EA3C38DD2C18949A005EE040 /* NotificationViewModel.swift */,
-				EA3C38D32C182674005EE040 /* MemberDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -420,7 +417,6 @@
 				3D349C392C16D5E60092E10C /* DevelopersDetailsView.swift in Sources */,
 				3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */,
 				97B6AE282C17F3E300595C12 /* AuthViewModel.swift in Sources */,
-				EA3C38D42C182674005EE040 /* MemberDetailViewModel.swift in Sources */,
 				970979BB2C19D454006B4ACD /* PartySelectionButton.swift in Sources */,
 				3D349C352C16D5090092E10C /* PrivacyPolicyView.swift in Sources */,
 				EA3C38DA2C18800C005EE040 /* NotificationMsgView.swift in Sources */,
