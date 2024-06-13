@@ -46,6 +46,7 @@ struct SettingView: View {
                 } header: {
                     Text("일반")
                 }
+                
                 Section {
                     NavigationLink {
                         PrivacyPolicyView()
