@@ -1,5 +1,5 @@
 # 코스머지 - 여행 앱 프로젝트 
-![image](https://github.com/APP-iOS5th/courseMerge/assets/51356820/5eebf259-ee07-4de5-b1fe-04e8b506eacf){:.center}
+![image](https://github.com/APP-iOS5th/courseMerge/assets/51356820/5eebf259-ee07-4de5-b1fe-04e8b506eacf)
 
 ## 소개
 이 프로젝트는 여행을 계획하고 관리하는 데 도움을 주는 모바일 애플리케이션입니다.  
