@@ -14,6 +14,9 @@ struct UpdateCourseView: View {
     
     @State private var searchText: String = ""
     
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     var body: some View {
         VStack {
             /* ios 17 부터 가능!! -

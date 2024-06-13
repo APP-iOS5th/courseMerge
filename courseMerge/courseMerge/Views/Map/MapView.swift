@@ -56,6 +56,8 @@ struct MapView: View {
                 }
                 
                 CurrentLocationAndUpdateCourseButton(locationManager: locationManager, cameraPosition: $position)
+                    .environmentObject(partiesViewModel)
+                    .environmentObject(authViewModel)
             }
             .onAppear {
                 if activatedPartyName.isEmpty {
@@ -213,6 +215,9 @@ struct MemberCustomDisclosureGroup: View {
 struct CurrentLocationAndUpdateCourseButton: View {
     @ObservedObject var locationManager: LocationManager
     @Binding var cameraPosition: MapCameraPosition
+    
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
 
     var body: some View {
         VStack {
@@ -241,16 +246,22 @@ struct CurrentLocationAndUpdateCourseButton: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: UpdateCourseView()) {
-                    Text("코스변경하기")
-                        .foregroundColor(.white)
-                        .frame(width: 132, height: 50)
-                        .background(Color.blue)
-                        .cornerRadius(12)
-                        .font(.system(size: 17))
+                if authViewModel.isSignedIn {
+                    NavigationLink(
+                        destination: UpdateCourseView()
+                            .environmentObject(partiesViewModel)
+                            .environmentObject(authViewModel)) 
+                    {
+                        Text("코스변경하기")
+                            .foregroundColor(.white)
+                            .frame(width: 132, height: 50)
+                            .background(Color.blue)
+                            .cornerRadius(12)
+                            .font(.system(size: 17))
+                    }
+                    .padding(.bottom, 50)
+                    .padding(.trailing, 20)
                 }
-                .padding(.bottom, 50)
-                .padding(.trailing, 20)
             }
         }
     }
