@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ChatListView: View {
     @State private var showNotification = false
-    @State private var isShowAlert: Bool = true
+    @State private var isShowAlert: Bool = false
     
+    @State private var showingAddPartySheetView = false
+
     // viewModel
     @StateObject var messagesViewModel = MessageViewModel()
     
@@ -63,19 +65,26 @@ struct ChatListView: View {
                             .cornerRadius(10)
                             .transition(.move(edge: .top).combined(with: .opacity))
                             .animation(.easeInOut(duration: 0.5), value: showNotification)
+//                            .offset(y: -40)
                     }
                     Spacer()
                 }
             }
+            .sheet(isPresented: $showingAddPartySheetView) {
+                AddPartySheetView()
+                    .environmentObject(authViewModel)
+                    .environmentObject(partiesViewModel)
+            }
             .onAppear {
                 showNotificationWithDelay()
+                checkParties()
             }
             .alert("알림", isPresented: $isShowAlert) {
                 Button("지금 안해요", role: .cancel) {
                     isShowAlert = false
                 }
                 Button {
-                    
+                    showingAddPartySheetView = true
                 } label: {
                     Text("추가")
                 }
@@ -93,6 +102,11 @@ struct ChatListView: View {
             withAnimation {
                 showNotification = false
             }
+        }
+    }
+    private func checkParties() {
+        if partiesViewModel.parties.isEmpty {
+            isShowAlert = true
         }
     }
     private func deleteItems(at offsets: IndexSet) {

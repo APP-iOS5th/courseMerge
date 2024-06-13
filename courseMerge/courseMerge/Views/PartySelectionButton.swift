@@ -45,6 +45,7 @@ struct PartySelectionButton: View {
             .sheet(isPresented: $showingAddPartySheetView, content: {
                 AddPartySheetView()
                     .environmentObject(partiesViewModel)
+                    .environmentObject(authViewModel)
             })
             .task {
                 partiesViewModel.fetchParties()
