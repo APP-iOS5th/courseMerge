@@ -14,7 +14,6 @@ struct PartySelectionButton: View {
 
     @State private var showingAddPartySheetView = false
     
-    
     @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
 
