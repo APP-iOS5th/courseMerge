@@ -40,7 +40,7 @@ struct MemberDetailView: View {
                 activityItems: [URL(string: "https://vlw1p.app.link/courseMerge")!]
             )
             .onAppear {
-                partiesViewModel.checkLoginFromTestLink()
+                //partiesViewModel.checkLoginFromTestLink()
             }
         )
     }
@@ -138,7 +138,7 @@ struct MemberGridView: View {
             LazyVGrid(columns: columns, spacing: 10) {
                 Button {
                     isSharingSheetPresented = true
-                    //authViewModel.checkLoginFromTestLink()
+                    partiesViewModel.checkLoginFromTestLink()
                 } label: {
                     VStack {
                         ZStack {
@@ -153,13 +153,42 @@ struct MemberGridView: View {
                             .foregroundStyle(.labelsPrimary)
                     }
                 }
-                
-                ForEach(party.members.filter { !$0.isHost }) { user in
+                ForEach(partiesViewModel.parties) { party in
+                    ForEach(party.members) {user in
+                        Button {
+                            
+                        } label: {
+                            ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40, isUsername: true)
+                                .environmentObject(authViewModel)
+                                .environmentObject(partiesViewModel)
+                        }
+                        // TODO: design
+                        .contextMenu {
+                            Button {
+                                
+                            } label: {
+                                NavigationLink(destination: EmptyView()) {
+                                    Label("대화하기", systemImage: "message")
+                                        .foregroundColor(.labelsPrimary)
+                                }
+                            }
+                            
+                            Button(role: .destructive) {
+                                // 파티원삭제는 -> 파티 뷰 모델에서 관리
+                            } label: {
+                                Label("삭제하기", systemImage: "trash")
+                            }
+                        }
+                    }
+                }
+                //}
+                /*ForEach(party.members.filter { !$0.isHost }) { user in
                     Button {
                         
                     } label: {
                         ProfileView(user: user, width: 75, height: 75, overlayWidth: 30, overlayHeight: 40, isUsername: true)
                             .environmentObject(authViewModel)
+                            .environmentObject(partiesViewModel)
                     }
                     // TODO: design
                     .contextMenu {
@@ -178,7 +207,7 @@ struct MemberGridView: View {
                             Label("삭제하기", systemImage: "trash")
                         }
                     }
-                }
+                }*/
             }
         }
     }
