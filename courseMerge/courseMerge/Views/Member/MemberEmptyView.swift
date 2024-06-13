@@ -89,5 +89,5 @@ struct MemberEmptyView: View {
 #Preview {
     MemberEmptyView()
         .environmentObject(AuthViewModel())
-        .environmentObject(PartyDetailsViewModel(authViewModel: AuthViewModel()))
+        .environmentObject(PartyDetailsViewModel())
 }

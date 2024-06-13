@@ -145,5 +145,5 @@ struct AddPartySheetView: View {
 
 #Preview {
     AddPartySheetView()
-        .environmentObject(PartyDetailsViewModel(authViewModel: AuthViewModel()))
+        .environmentObject(PartyDetailsViewModel())
 }

@@ -190,13 +190,13 @@ struct MemberDetailView_Previews: PreviewProvider {
             VStack {
                 MemberDetailView()
                     .environmentObject(AuthViewModel())
-                    .environmentObject(PartyDetailsViewModel(authViewModel: AuthViewModel()))
+                    .environmentObject(PartyDetailsViewModel())
             }
             .navigationTitle("구성원")
             .toolbar {
                 PartySelectionButton()
                     .environmentObject(AuthViewModel())
-                    .environmentObject(PartyDetailsViewModel(authViewModel: AuthViewModel()))
+                    .environmentObject(PartyDetailsViewModel())
             }
         }
     }

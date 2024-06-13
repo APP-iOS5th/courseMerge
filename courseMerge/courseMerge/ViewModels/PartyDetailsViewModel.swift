@@ -15,10 +15,8 @@ class PartyDetailsViewModel: ObservableObject {
     @Published var currentParty: PartyDetail?
 
     private var db = Firestore.firestore()
-    private var authViewModel: AuthViewModel
 
-    init(authViewModel: AuthViewModel) {
-        self.authViewModel = authViewModel
+    init() {
         fetchParties()
     }
     
@@ -46,8 +44,9 @@ class PartyDetailsViewModel: ObservableObject {
     }
 
     // 파티 목록 읽기
+
     func fetchParties() {
-        guard let currentUserUID = authViewModel.currentUserUID else {
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
             print("Current user not found")
             return
         }
