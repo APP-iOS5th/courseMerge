@@ -13,7 +13,7 @@ struct MemberEmptyView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     //구성원 추가 시트 뷰모델
     @State private var isAddSheetPresented = false
-    @State private var showAlert = false
+    @State private var showLoginAlert = false
 
     var body: some View {
         VStack {
@@ -32,7 +32,7 @@ struct MemberEmptyView: View {
                 if authViewModel.isSignedIn {
                     isAddSheetPresented = true
                 } else {
-                    showAlert = true
+                    showLoginAlert = true
                 }
             }) {
                 Text("새 파티 만들기")
@@ -50,7 +50,11 @@ struct MemberEmptyView: View {
                 .padding(.top, 20)
             
             Button(action: {
-                // 여기에 기존 파티에 가입하기 버튼의 액션 추가
+                if authViewModel.isSignedIn {
+                    isAddSheetPresented = true
+                } else {
+                    showLoginAlert = true
+                }
             }) {
                 Text("기존 파티에 가입하기")
                 
@@ -62,9 +66,10 @@ struct MemberEmptyView: View {
             }
             .padding()
         }
-        .alert("로그인이 필요합니다.", isPresented: $showAlert) {
+        // for guest login
+        .alert("로그인이 필요합니다.", isPresented: $showLoginAlert) {
             Button("취소", role: .cancel) {
-                showAlert = false
+                showLoginAlert = false
             }
             Button("확인") {
                 authViewModel.isSignedIn = false
@@ -73,7 +78,6 @@ struct MemberEmptyView: View {
         } message: {
             Text("파티를 만들기 위해서는 로그인이 필요합니다. 로그인을 해주세요.")
         }
-        
         .sheet(isPresented: $isAddSheetPresented) {
             AddPartySheetView()
                 .environmentObject(authViewModel)
