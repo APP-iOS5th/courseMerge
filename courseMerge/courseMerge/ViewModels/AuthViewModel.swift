@@ -17,7 +17,8 @@ class AuthViewModel: ObservableObject {
     @Published var isSignedIn: Bool = false
     @Published var currentUser: User? = nil
     @Published var currentUserUID: String?
-
+    @Published var goToLoginView: Bool = false
+    
     init() {
         checkSignInStatus()
         

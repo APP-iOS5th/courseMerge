@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatListView: View {
     @State private var showNotification = false
     @State private var isShowAlert: Bool = false
+    @State private var showLoginAlert: Bool = false
     
     @State private var showingAddPartySheetView = false
 
@@ -53,6 +54,7 @@ struct ChatListView: View {
                 .navigationTitle("채팅")
                 .toolbar {
                     EditButton()
+                        .disabled(partiesViewModel.parties.isEmpty)
                 }
                 
                 VStack {
@@ -77,7 +79,7 @@ struct ChatListView: View {
             }
             .onAppear {
                 showNotificationWithDelay()
-                checkParties()
+                checkStatus()
             }
             .alert("알림", isPresented: $isShowAlert) {
                 Button("지금 안해요", role: .cancel) {
@@ -90,6 +92,17 @@ struct ChatListView: View {
                 }
             } message: {
                 Text("현재 참여중인 파티가 없습니다.\n파티를 추가하시겠어요?")
+            }
+            .alert("로그인이 필요합니다.", isPresented: $showLoginAlert) {
+                Button("취소", role: .cancel) {
+                    showLoginAlert = false
+                }
+                Button("확인") {
+                    authViewModel.isSignedIn = false
+                    authViewModel.goToLoginView = true
+                }
+            } message: {
+                Text("로그인 후 파티에 참여하여 이야기를 나누어 보세요.")
             }
         }
     }
@@ -104,10 +117,16 @@ struct ChatListView: View {
             }
         }
     }
-    private func checkParties() {
-        if partiesViewModel.parties.isEmpty {
-            isShowAlert = true
+    
+    private func checkStatus() {
+        if authViewModel.isSignedIn {   // 로그인 했을때
+            if partiesViewModel.parties.isEmpty {   // 파티가 없을 때
+                self.isShowAlert = true
+            }
+        } else { // 로그인 안했을 때
+            self.showLoginAlert = true
         }
+
     }
     private func deleteItems(at offsets: IndexSet) {
         partiesViewModel.parties.remove(atOffsets: offsets)

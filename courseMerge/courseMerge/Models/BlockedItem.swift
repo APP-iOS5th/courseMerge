@@ -11,5 +11,4 @@ struct BlockedItem: Identifiable {
     var id = UUID()
     var users: [User]
     var isblock: Bool
-    
 }
