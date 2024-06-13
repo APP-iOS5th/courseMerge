@@ -13,8 +13,7 @@ struct MemberEmptyView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     //구성원 추가 시트 뷰모델
     @State private var isAddSheetPresented = false
-    @State private var showLoginAlert = false
-
+    
     var body: some View {
         VStack {
             Image(systemName: "person.2.fill")
@@ -29,11 +28,7 @@ struct MemberEmptyView: View {
                 .padding()
             
             Button(action: {
-                if authViewModel.isSignedIn {
-                    isAddSheetPresented = true
-                } else {
-                    showLoginAlert = true
-                }
+                isAddSheetPresented = true
             }) {
                 Text("새 파티 만들기")
                     .fontWeight(.bold)
@@ -50,14 +45,9 @@ struct MemberEmptyView: View {
                 .padding(.top, 20)
             
             Button(action: {
-                if authViewModel.isSignedIn {
-                    isAddSheetPresented = true
-                } else {
-                    showLoginAlert = true
-                }
+                // 여기에 기존 파티에 가입하기 버튼의 액션 추가
             }) {
                 Text("기존 파티에 가입하기")
-                
                     .fontWeight(.regular)
                     .foregroundColor(.black)
                     .frame(width: 170, height: 53)
@@ -65,18 +55,6 @@ struct MemberEmptyView: View {
                     .cornerRadius(10)
             }
             .padding()
-        }
-        // for guest login
-        .alert("로그인이 필요합니다.", isPresented: $showLoginAlert) {
-            Button("취소", role: .cancel) {
-                showLoginAlert = false
-            }
-            Button("확인") {
-                authViewModel.isSignedIn = false
-                authViewModel.goToLoginView = true
-            }
-        } message: {
-            Text("파티를 만들기 위해서는 로그인이 필요합니다. 로그인을 해주세요.")
         }
         .sheet(isPresented: $isAddSheetPresented) {
             AddPartySheetView()
@@ -88,6 +66,5 @@ struct MemberEmptyView: View {
 
 #Preview {
     MemberEmptyView()
-        .environmentObject(AuthViewModel())
         .environmentObject(PartyDetailsViewModel(authViewModel: AuthViewModel()))
 }

@@ -8,15 +8,17 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
+import AuthenticationServices
 // Parties CRUD, current Party
 
 class PartyDetailsViewModel: ObservableObject {
     @Published var parties: [PartyDetail] = []
     @Published var currentParty: PartyDetail?
-
+    
     private var db = Firestore.firestore()
     private var authViewModel: AuthViewModel
-
+    private var session: ASWebAuthenticationSession?
+    
     init(authViewModel: AuthViewModel) {
         self.authViewModel = authViewModel
         fetchParties()
@@ -44,7 +46,7 @@ class PartyDetailsViewModel: ObservableObject {
             updateParty(changedParty)
         }
     }
-
+    
     // 파티 목록 읽기
     func fetchParties() {
         guard let currentUserUID = authViewModel.currentUserUID else {
@@ -57,7 +59,7 @@ class PartyDetailsViewModel: ObservableObject {
                 print("Error getting parties: \(error.localizedDescription)")
                 return
             }
-
+            
             let allParties = querySnapshot?.documents.compactMap { document in
                 try? document.data(as: PartyDetail.self)
             } ?? []
@@ -66,20 +68,20 @@ class PartyDetailsViewModel: ObservableObject {
             self.parties = allParties.filter { party in
                 party.members.contains { $0.uid == currentUserUID }
             }
-
+            
             // 파티 목록을 불러온 후 currentParty 설정
             if let firstParty = self.parties.first {
                 self.currentParty = firstParty
             } else {
                 self.currentParty = nil
             }
-
+            
             print("Fetched parties: \(self.parties)")
             print("Current party: \(String(describing: self.currentParty))")
         }
     }
-
-
+    
+    
     // 파티 업데이트
     func updateParty(_ party: PartyDetail) {
         if let docId = party.docId {
@@ -90,7 +92,7 @@ class PartyDetailsViewModel: ObservableObject {
             }
         }
     }
-
+    
     // 파티 삭제
     func deleteParty(_ party: PartyDetail) {
         if let docId = party.docId {
@@ -106,9 +108,56 @@ class PartyDetailsViewModel: ObservableObject {
             }
         }
     }
-
+    
+    //2024.06.13
+    func checkLoginFromTestLink() {
+        //링크를 타고 왔을때, 애플로그인 혹은 게스트 로그인인지 구분 필요
+        // 애플로그인으로 접속 했을때 currentuserid를 받는디
+        // 그리고 파티 정보를 담은 객체에 저장한다.
+        // 게스트 로그인의 경우에는..?
+        // 호스트 기준으로 방을 알려준다..?
+        
+        //애플로그인
+        if authViewModel.isSignedIn {
+            
+            if let currentUserUID = authViewModel.currentUserUID {
+                // 성공적으로 UID를 가져왔을 때 실행할 코드
+                for i in parties.indices {
+                    parties[i].docId = currentUserUID
+                    do {
+                        try addParty(parties[i])
+                    } catch {
+                        print("Failed to add party: \(error.localizedDescription)")
+                    }
+                }
+            } else {
+                
+                print("Failed to fetch current user UID:")
+                
+                // currentUserUID가 nil인 경우, UID를 비동기적으로 가져옴
+//                authViewModel.fetchCurrentUserUID { [weak self] result in
+//                    guard let self = self else { return }
+//                    
+//                    switch result {
+//                    case .success(let currentUserUID):
+//                        self.parties.forEach { party in
+//                            party.docId = currentUserUID
+//                        }
+//                        do {
+//                            try self.addParty(PartyDetail.self)
+//                        } catch {
+//                            print("Failed to add party: \(error.localizedDescription)")
+//                        }
+//                    case .failure(let error):
+//                        print("Failed to fetch current user UID: \(error.localizedDescription)")
+//                    }
+//                }
+            }
+        } else {
+            //게스트 로그인
+        }
+    }
 }
-
 
 //
 //    

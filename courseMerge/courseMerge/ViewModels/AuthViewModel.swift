@@ -20,7 +20,12 @@ class AuthViewModel: ObservableObject {
     @Published var currentUserUID: String?
     @Published var goToLoginView: Bool = false
     
+    private var session: ASWebAuthenticationSession?
+   // private var partyDetailsViewModel: PartyDetailsViewModel
+    
     init() {
+        //self.partyDetailsViewModel = partyDetailsViewModel
+        
         checkSignInStatus()
         
         // Listen for authentication state changes
@@ -33,7 +38,6 @@ class AuthViewModel: ObservableObject {
             }
         }
         fetchCurrentUserUID()
-
     }
     
     func fetchCurrentUserUID() {
@@ -119,30 +123,4 @@ class AuthViewModel: ObservableObject {
             }
         }
     }
-    
-//    
-//    func checkLoginFromTestLink() {
-//        guard let url = URL(string: "testflight_link") else { return }
-//        
-//        session = ASWebAuthenticationSession(url: url, callbackURLScheme: "courseMerge") { [weak self] callbackURL, error in
-//            guard let self = self else { return }
-//            
-//            guard error == nil, let callbackURL = callbackURL else {
-//                // Error 처리
-//                print("Error: \(error?.localizedDescription ?? "Unknown error")")
-//                return
-//            }
-//            
-//            if callbackURL.absoluteString.contains("apple_login=true") {
-//                print("Apple login successful")
-//                partyDetailsViewModel.addParty()
-//            } else {
-//                print("Apple login failed or not verified")
-//                // 실패했을 때의 처리를 알림 추가
-//            }
-//        }
-//        
-//        session?.presentationContextProvider = self
-//        session?.start()
-//    }
 }
