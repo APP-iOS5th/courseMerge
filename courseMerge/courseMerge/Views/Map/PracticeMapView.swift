@@ -53,25 +53,40 @@ struct PracticeMapView: View {
 //    }
 //}
 
+import SwiftUI
+import MapKit
+
 struct RouteViewPractice: View {
-    let exampleRoute: Course = Course.example.first!
-    
-    @State private var route: MKRoute?
+    let exampleFirstDayRoute: Route = Course.example.routes.first!
+    let exampleCourseUser: User = Course.example.user
+    @State private var polyline: MKPolyline?
     @State private var travelTime: String?
     private let gradient = LinearGradient(colors: [.red, .orange], startPoint: .leading, endPoint: .trailing)
     private let stroke = StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round, dash: [8, 8])
     
+    @StateObject private var viewModel = AuthViewModel()
+    
     var body: some View {
         Map {
-            if let route {
-                MapPolyline(route.polyline)
+            if let polyline {
+                MapPolyline(polyline)
                     .stroke(.pastelRed, lineWidth: 10)
                 
-                Marker("startLocation1", systemImage: "", coordinate: exampleRoute.routes[0].startPoint.location ?? .empireStateBuilding)
-                
-                Marker(coordinate: exampleRoute.routes[0].nextPoint.location ?? .columbiaUniversity) {
-                    Image(systemName: "mappin.circle.fill")
-                        .foregroundStyle(Color(exampleRoute.user.usercolor))
+                ForEach(exampleFirstDayRoute.points, id: \.id) { point in
+                    if let parentLocation = point.parent?.location {
+                        Marker(coordinate: parentLocation) {
+                            Text(point.parent?.name ?? "Parent")
+                            ProfileView(user: exampleCourseUser, width: 50, height: 50, overlayWidth: 20, overlayHeight: 20, isUsername: false)
+                                .environmentObject(viewModel)
+                        }
+                    }
+                    if let childLocation = point.child?.location {
+                        Marker(coordinate: childLocation) {
+                            Text(point.child?.name ?? "Child")
+                            ProfileView(user: exampleCourseUser, width: 50, height: 50, overlayWidth: 20, overlayHeight: 20, isUsername: false)
+                                .environmentObject(viewModel)
+                        }
+                    }
                 }
             }
         }
@@ -86,25 +101,40 @@ struct RouteViewPractice: View {
             }
         }
         .onAppear {
-            fetchRouteFrom(exampleRoute.routes[0].startPoint.location ?? .empireStateBuilding, to: exampleRoute.routes[0].nextPoint.location ?? .columbiaUniversity)
+            drawCompleteRoute()
         }
+    }
+    
+    private func drawCompleteRoute() {
+        var coordinates: [CLLocationCoordinate2D] = []
+        for point in exampleFirstDayRoute.points {
+            if let parentLocation = point.parent?.location {
+                coordinates.append(parentLocation)
+            }
+            if let childLocation = point.child?.location {
+                coordinates.append(childLocation)
+            }
+        }
+        
+        polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
     }
 }
 
-extension RouteViewPractice {
-    private func fetchRouteFrom(_ source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) {
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: source))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
-        request.transportType = .automobile
-        
-        Task {
-            let result = try? await MKDirections(request: request).calculate()
-            route = result?.routes.first
-//            getTravelTime()
-        }
-    }
-}
+//
+//extension RouteViewPractice {
+//    private func fetchRouteFrom(_ source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) {
+//        let request = MKDirections.Request()
+//        request.source = MKMapItem(placemark: MKPlacemark(coordinate: source))
+//        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
+//        request.transportType = .automobile
+//        
+//        Task {
+//            let result = try? await MKDirections(request: request).calculate()
+//            route = result?.routes.first
+////            getTravelTime()
+//        }
+//    }
+//}
 
 struct LocationPreviewLookAroundView: View {
     @State private var lookAroundScene: MKLookAroundScene?
@@ -189,7 +219,7 @@ struct MyFavoriteLocation: Identifiable, Equatable {
 
 #Preview {
     RouteViewPractice()
-    
+        .environmentObject(AuthViewModel())
 }
 
 
