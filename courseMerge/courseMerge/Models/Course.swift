@@ -8,20 +8,29 @@
 import SwiftUI
 
 // 특정 루트의 설명 (이전 장소와 다음 장소 포함)
-struct Route {
-    let startPoint: MapDetailItem
-    let nextPoint: MapDetailItem
-    let travelTime: TimeInterval
-//    let transportationMode: TransportationMode
+
+struct RoutePoint: Identifiable {
+    let id = UUID()
+    let parent: MapDetailItem?
+    let child: MapDetailItem
 }
+
+struct Route: Identifiable {
+    let id = UUID()
+    let points: [RoutePoint]
+    let travelTime: TimeInterval
+    let user: User // 이 루트를 따르는 사용자
+}
+
 
 // 여러 날의 루트를 담는 구조체 - Course
 struct Course: Identifiable {
     let id = UUID()
     let user: User
-    let date: Date
-    let routes: [Route] // 하루의 루트: Course.routes
+    let routes: [Route] // 여러 날의 루트
     let party: PartyDetail
+    var date: Date
+    
     var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
