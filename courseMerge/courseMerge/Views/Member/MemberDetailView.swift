@@ -40,7 +40,7 @@ struct MemberDetailView: View {
             AppSharingSheet(
                 isPresented: $isSharingSheetPresented,
                 //아래는 테스트 주소, 앱 정보를 담은 링크를 보내야 함
-                activityItems: [URL(string: "https://www.google.com")!]
+                activityItems: [URL(string: "https://vlw1p.app.link/courseMerge")!]
             )
         )
     }
