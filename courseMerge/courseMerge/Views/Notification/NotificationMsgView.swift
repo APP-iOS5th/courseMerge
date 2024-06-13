@@ -9,8 +9,6 @@ import SwiftUI
 
 struct NotificationMsgView: View {
     let notifications = NotificationData.exampleNotification
-    //@EnvironmentObject var notiViewModel: NotificationViewModel
-    // var testidx: Int  = notiViewModel.notifiMsg.userProfileidx
     
     var body: some View {
         VStack{
@@ -22,16 +20,6 @@ struct NotificationMsgView: View {
                 )
                 .padding(.bottom, 30)
             }
-//            ForEach(notifications) { notis in
-//                //ForEach(notis) { notimsg in
-//                    NotificationCell(
-//                        partydatail: notis.party,
-//                        notifMsg: notis.msg,
-//                        sendmsgtime: notis.sendmsgtime
-//                    )
-//                //}
-//                .padding(.bottom, 10)
-//            }
         }
 
     }

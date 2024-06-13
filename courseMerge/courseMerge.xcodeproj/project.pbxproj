@@ -59,6 +59,7 @@
 		EA4D62BD2C16E2C3003EA8EB /* PartyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BC2C16E2C3003EA8EB /* PartyDetail.swift */; };
 		EA4D62BF2C16E53A003EA8EB /* MemberDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */; };
 		EA98482D2C17FC06000ECF94 /* AppSharingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */; };
+		EADA80882C1ABD11003813EE /* BlockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA80872C1ABD11003813EE /* BlockedData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +116,7 @@
 		EA4D62BC2C16E2C3003EA8EB /* PartyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PartyDetail.swift; path = courseMerge/Models/PartyDetail.swift; sourceTree = SOURCE_ROOT; };
 		EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailView.swift; path = courseMerge/Views/Member/MemberDetailView.swift; sourceTree = SOURCE_ROOT; };
 		EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppSharingSheet.swift; path = courseMerge/Views/Member/AppSharingSheet.swift; sourceTree = SOURCE_ROOT; };
+		EADA80872C1ABD11003813EE /* BlockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlockedData.swift; path = courseMerge/Models/BlockedData.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +308,7 @@
 				97B6AE292C1800AF00595C12 /* Message.swift */,
 				868C2FC32C189951008E2DB6 /* Course.swift */,
 				EA3C38DB2C189168005EE040 /* NotificationData.swift */,
+				EADA80872C1ABD11003813EE /* BlockedData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				970979B92C19AFBA006B4ACD /* MessageViewModel.swift in Sources */,
 				97FD63562C16D7E30080438A /* MapDetailItem.swift in Sources */,
 				EA4D62BF2C16E53A003EA8EB /* MemberDetailView.swift in Sources */,
+				EADA80882C1ABD11003813EE /* BlockedData.swift in Sources */,
 				97B6AE2A2C1800AF00595C12 /* Message.swift in Sources */,
 				97BBA25D2C1821CE00893A77 /* SignInWithAppleButtonView.swift in Sources */,
 				9707CB172C173D370011C3E2 /* RoundedCorner.swift in Sources */,
