@@ -32,12 +32,12 @@ struct UpdateProfileView: View {
             }
             HStack{
                 TextField("프로필 이름", text: $profileName)
-                    .frame(width: 200, height: 40)
+                    .frame(width: 180, height: 40)
                     .background(.fillTertiary)
                     .font(.title3)
                     .cornerRadius(10)
                     .multilineTextAlignment(.center)
-                    .padding(.leading,10)
+                    .padding(.leading,30)
                     .padding(.top)
                     .padding(.bottom)
                 
