@@ -25,18 +25,20 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
-                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
+                            .foregroundStyle(.blue)
                         Text("프로필 수정")
                     }
                     
                     NavigationLink {
                         BlockedContactsView()
                     } label: {
-                        Image(systemName: "person.slash")
+                        Image(systemName: "person.slash.fill")
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 28)
-                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
+                            .frame(height: 25)
+                            .foregroundStyle(.blue)
+                            .padding(.top, -2)
+                            .padding(.leading,2)
                         Text("차단한 사용자 관리")
                     }
                 } header: {
@@ -50,7 +52,7 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
-                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
+                            .foregroundStyle(.blue)
                         Text("개인정보 처리방침")
                             .padding(.leading, 5)
                     }
@@ -62,7 +64,7 @@ struct SettingView: View {
                             .scaledToFit()
                             .frame(height: 28)
                             .padding(.leading, 2)
-                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
+                            .foregroundStyle(.blue)
                         Text("서비스 이용약관")
                             .padding(.leading, 3)
                     }
@@ -71,7 +73,7 @@ struct SettingView: View {
                         DevelopersDetailsView()
                     } label: {
                         Image(systemName: "hammer.fill")
-                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
+                            .foregroundStyle(.blue)
                         Text("개발자 정보")
                             .padding(.leading, 3)
                     }
@@ -83,7 +85,7 @@ struct SettingView: View {
                             .scaledToFit()
                             .frame(height: 28)
                             .padding(.leading, -3)
-                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
+                            .foregroundStyle(.blue)
                         Text("신고하기")
                             .padding(.leading, 1)
                     }
@@ -102,7 +104,7 @@ struct SettingView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 23)
-                                .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
+                                .foregroundStyle(.blue)
                             Text("로그아웃")
                                 .padding(.leading,2)
                                 .foregroundColor(.labelsPrimary)
@@ -135,7 +137,7 @@ struct SettingView: View {
                             .scaledToFit()
                             .frame(height: 28)
                             .padding(.leading, -4)
-                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
+                            .foregroundStyle(.blue)
                         Text("회원탈퇴")
                             .padding(.leading, 1)
                     }
