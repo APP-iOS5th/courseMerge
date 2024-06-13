@@ -15,13 +15,13 @@ struct ProfileView: View {
     var overlayHeight: CGFloat
     var isUsername: Bool
     
-    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
         VStack {
             // image
             Circle()
-                .fill(Color(user.usercolor))
+                .fill(Color.stringToColor(user.usercolor))
                 .stroke(Color(.separatorsNonOpaque), lineWidth: 1)
                 .frame(width: width, height: height)
                 .overlay {
@@ -36,15 +36,21 @@ struct ProfileView: View {
                             HStack {
                                 Spacer()
                                 Image("custom.crown.circle.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
                             }
                         }
-                    } else if user.uid == userViewModel.currentUserUID {
+                    } else if user.uid == authViewModel.currentUserUID {
                         // host 일 경우에는 무조건 crown. 본인 경우에는 person. 그 외는 x
                         VStack {
                             Spacer()
                             HStack {
                                 Spacer()
                                 Image("user_profil_mark")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
                             }
                         }
                     } else {

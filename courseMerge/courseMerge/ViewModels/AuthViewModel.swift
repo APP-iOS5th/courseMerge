@@ -11,10 +11,13 @@ import FirebaseAuth
 import FirebaseFirestore
 import SwiftUI
 
+// 사용자 인증 관련 ViewModel (자동 로그인, 로그아웃, 회원탈퇴)
+
 class AuthViewModel: ObservableObject {
     @Published var isSignedIn: Bool = false
     @Published var currentUser: User? = nil
-    
+    @Published var currentUserUID: String?
+
     init() {
         checkSignInStatus()
         
@@ -26,6 +29,16 @@ class AuthViewModel: ObservableObject {
             } else {
                 self.currentUser = nil
             }
+        }
+        fetchCurrentUserUID()
+
+    }
+    
+    func fetchCurrentUserUID() {
+        if let uid = Auth.auth().currentUser?.uid {
+            currentUserUID = uid
+        } else {
+            print("No current user logged in.")
         }
     }
     

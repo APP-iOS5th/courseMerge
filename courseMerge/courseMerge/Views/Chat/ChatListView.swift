@@ -9,21 +9,34 @@ import SwiftUI
 
 struct ChatListView: View {
     @State private var showNotification = false
-    @State private var exampleParties = GroupPartyInfo.exampleParties
-    @State private var isShowAlert: Bool = true
+    @State private var isShowAlert: Bool = false
+    
+    @State private var showingAddPartySheetView = false
+
+    // viewModel
+    @StateObject var messagesViewModel = MessageViewModel()
+    
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var partiesViewModel: PartyDetailsViewModel
     
     var body: some View {
         NavigationStack {
             ZStack {
                 List {
-                    ForEach(exampleParties) { item in
-                         NavigationLink(destination: ChatView(item: item)) {
+                    ForEach(partiesViewModel.parties) { party in
+                        NavigationLink(
+                            destination: ChatView(party: party)
+                                .environmentObject(authViewModel)
+                                .environmentObject(partiesViewModel)
+                                .environmentObject(messagesViewModel)
+                            
+                        ) {
                              VStack(alignment: .leading) {
-                                 Text(item.title)
+                                 Text(party.title)
                                      .font(.headline)
                                  
-                                 if let firstMember = item.members.first {
-                                     Text("\(firstMember.username) 외 \(item.members.count - 1)명")
+                                 if let firstMember = party.members.first {
+                                     Text("\(firstMember.username) 외 \(party.members.count - 1)명")
                                          .font(.subheadline)
                                          .foregroundColor(Color("LabelsSecondary"))
                                  } else {
@@ -34,8 +47,8 @@ struct ChatListView: View {
                              }
                          }
                      }
-                    .onDelete(perform: deleteItems)
-                    .onMove(perform: moveItems)
+//                    .onDelete(perform: deleteItems)
+//                    .onMove(perform: moveItems)
                 }
                 .navigationTitle("채팅")
                 .toolbar {
@@ -52,19 +65,26 @@ struct ChatListView: View {
                             .cornerRadius(10)
                             .transition(.move(edge: .top).combined(with: .opacity))
                             .animation(.easeInOut(duration: 0.5), value: showNotification)
+//                            .offset(y: -40)
                     }
                     Spacer()
                 }
             }
+            .sheet(isPresented: $showingAddPartySheetView) {
+                AddPartySheetView()
+                    .environmentObject(authViewModel)
+                    .environmentObject(partiesViewModel)
+            }
             .onAppear {
                 showNotificationWithDelay()
+                checkParties()
             }
             .alert("알림", isPresented: $isShowAlert) {
                 Button("지금 안해요", role: .cancel) {
                     isShowAlert = false
                 }
                 Button {
-                    
+                    showingAddPartySheetView = true
                 } label: {
                     Text("추가")
                 }
@@ -84,12 +104,17 @@ struct ChatListView: View {
             }
         }
     }
+    private func checkParties() {
+        if partiesViewModel.parties.isEmpty {
+            isShowAlert = true
+        }
+    }
     private func deleteItems(at offsets: IndexSet) {
-        exampleParties.remove(atOffsets: offsets)
+        partiesViewModel.parties.remove(atOffsets: offsets)
     }
     
     private func moveItems(from source: IndexSet, to destination: Int) {
-        exampleParties.move(fromOffsets: source, toOffset: destination)
+        partiesViewModel.parties.move(fromOffsets: source, toOffset: destination)
     }
 }
 

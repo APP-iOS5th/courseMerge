@@ -8,12 +8,23 @@
 import Foundation
 import FirebaseAuth
 
-struct User: Identifiable {
+struct User: Identifiable, Codable {
     let id: UUID = UUID()
     var uid: String? // Firebase UID
     var username: String
     var usercolor: String
     var isHost: Bool
+}
+
+
+// Example Data
+extension User {
+    static var exampleUsers: [User] = [
+        User(username: "별빛여우", usercolor: "PastelRed", isHost: true),
+        User(username: "달빛도깨비", usercolor: "PastelBlue", isHost: false),
+        User(username: "개코원숭이", usercolor: "PastelGreen", isHost: false),
+        User(username: "무지개코끼리", usercolor: "PastelYellow", isHost: false)
+    ]
 }
 
 extension User {

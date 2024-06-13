@@ -14,31 +14,35 @@ struct LoginView: View {
 
     var body: some View {
         
-        VStack {
+        VStack(spacing: 10) {
+            Spacer()
             Image("Logo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300, height: 300)
                 .padding()
             
+            
+            
             Text("코스 머지")
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
             
+            Spacer()
+            
             Text("친구들의 코스를 하나로 합쳐보세요")
                 .font(.callout)
                 .fontWeight(.regular)
                 .foregroundColor(.primary)
-                .padding(.top, 20)
-                .padding(.bottom, 70)
+            
+            Spacer()
 
             
             Text("소셜 로그인으로 바로 시작하기")
                 .font(.footnote)
                 .fontWeight(.regular)
                 .foregroundColor(.secondary)
-                .padding(.top,20)
             
             // 애플 로그인 버튼
             Group {
@@ -51,11 +55,23 @@ struct LoginView: View {
                 }
             }
             .environmentObject(authViewModel)
+            
+            
+            NavigationLink(destination: ContentView().environmentObject(authViewModel)) {
+                Text("둘러보기")
+                    .font(.headline)
+                    .foregroundStyle(.black)
+                    .fontWeight(.semibold)
+                    .padding(.top, 20)
+            }
+            
+            Spacer()
         }
     }
 }
 
 #Preview {
     LoginView()
+        .environmentObject(AuthViewModel())
 }
 
