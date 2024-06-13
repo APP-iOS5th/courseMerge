@@ -28,7 +28,8 @@ struct CourseMergeApp: App {
                 if authViewModel.isSignedIn {
                     ContentView()
                 } else {
-                    LoginView()
+//                    LoginView()
+                    ContentView()
                 }
             }
             .environmentObject(authViewModel)
