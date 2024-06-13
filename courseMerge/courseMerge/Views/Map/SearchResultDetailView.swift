@@ -20,7 +20,6 @@ struct SearchResultDetailView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     
-    
     // Update Course View 에서 해당 뷰를 재사용하기 위한 코드 추가
     @Binding var isEdit: Bool
 

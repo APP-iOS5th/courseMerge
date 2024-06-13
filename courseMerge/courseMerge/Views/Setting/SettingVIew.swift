@@ -14,6 +14,7 @@ struct SettingView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     
     @State var showAlert = false
+    @State private var showLoginView: Bool = false
     
     var body: some View {
         NavigationStack {

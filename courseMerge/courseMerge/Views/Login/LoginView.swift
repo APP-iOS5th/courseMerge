@@ -27,9 +27,7 @@ struct LoginView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 300, height: 300)
                         .padding()
-                    
-                    
-                    
+                                        
                     Text("코스 머지")
                         .font(.title)
                         .fontWeight(.bold)
