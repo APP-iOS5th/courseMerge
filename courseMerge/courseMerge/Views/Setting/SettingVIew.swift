@@ -25,8 +25,10 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
-                        Text("프로파일 수정")
+                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
+                        Text("프로필 수정")
                     }
+                    
                     NavigationLink {
                         BlockedContactsView()
                     } label: {
@@ -34,6 +36,7 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
+                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
                         Text("차단한 사용자 관리")
                     }
                 } header: {
@@ -47,6 +50,7 @@ struct SettingView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 28)
+                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
                         Text("개인정보 처리방침")
                             .padding(.leading, 5)
                     }
@@ -58,6 +62,7 @@ struct SettingView: View {
                             .scaledToFit()
                             .frame(height: 28)
                             .padding(.leading, 2)
+                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
                         Text("서비스 이용약관")
                             .padding(.leading, 3)
                     }
@@ -66,6 +71,7 @@ struct SettingView: View {
                         DevelopersDetailsView()
                     } label: {
                         Image(systemName: "hammer.fill")
+                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
                         Text("개발자 정보")
                             .padding(.leading, 3)
                     }
@@ -77,6 +83,7 @@ struct SettingView: View {
                             .scaledToFit()
                             .frame(height: 28)
                             .padding(.leading, -3)
+                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
                         Text("신고하기")
                             .padding(.leading, 1)
                     }
@@ -95,8 +102,10 @@ struct SettingView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 23)
+                                .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
                             Text("로그아웃")
                                 .padding(.leading,2)
+                                .foregroundColor(.labelsPrimary)
                         }
                     }
                     .padding(.leading, 2)
@@ -126,6 +135,7 @@ struct SettingView: View {
                             .scaledToFit()
                             .frame(height: 28)
                             .padding(.leading, -4)
+                            .foregroundStyle(colorScheme == .dark ? Color("BGSecondary") : Color("BGTertiaryDarkElevated"))
                         Text("회원탈퇴")
                             .padding(.leading, 1)
                     }
