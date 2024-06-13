@@ -30,7 +30,7 @@ struct BlockedContactsView: View {
                     NavigationLink(value: blocked.username) {
                         HStack {
                             // 2024.61uuid error
-                            //ProfileView(user: blocked, width: 100, height: 100, overlayWidth: 30, overlayHeight: 50,isUsername: false)
+                           ProfileView(user: blocked, width: 40, height: 40, overlayWidth: 15, overlayHeight: 15,isUsername: false)
                             
                             Text(blocked.username)
                         }

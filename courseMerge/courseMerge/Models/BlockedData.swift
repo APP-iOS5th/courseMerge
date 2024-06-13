@@ -18,8 +18,8 @@ struct BlockedData: Identifiable {
 extension BlockedData {
     static var exampleBlocked: [BlockedData] = [
         BlockedData(users: [
-            User(username: "갈색두더지", usercolor: "brown", isHost: false),
-            User(username: "파랑공작새", usercolor: "Blue", isHost: false)
+            User(username: "갈색두더지", usercolor:  "PastelBlue", isHost: false),
+            User(username: "파랑공작새", usercolor:  "PastelGreen", isHost: false)
         ], isblock: true)
     ]
 }
