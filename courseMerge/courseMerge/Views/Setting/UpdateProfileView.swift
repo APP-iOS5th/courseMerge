@@ -19,6 +19,8 @@ struct UpdateProfileView: View {
     // 기존 사용자 이름
     @State private var excludeUsernames: [String] = []
     
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     var body: some View {
         VStack {
             ZStack{
@@ -113,7 +115,7 @@ struct UpdateProfileView: View {
             }
             .frame(height: 100)
             
-            ZStack (alignment: .center){
+            ZStack (alignment: .center) {
                 Rectangle()
                     .foregroundStyle(.fillTertiary)
                     .frame(width: 200, height: 40)

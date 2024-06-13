@@ -208,8 +208,8 @@
 				EA4D62B82C16DFE8003EA8EB /* MemberEmptyView.swift */,
 				EA4D62BE2C16E53A003EA8EB /* MemberDetailView.swift */,
 				EA3C38D52C183499005EE040 /* AddPartySheetView.swift */,
-				EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */,
 				EA98482C2C17FC06000ECF94 /* AppSharingSheet.swift */,
+				EA3C38D72C1834AC005EE040 /* UpdatePartySheetView.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -360,7 +360,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */;
+			buildConfigurationList = 9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -648,7 +648,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "courseMerge" */ = {
+		9717A3912C15CF4E00B92765 /* Build configuration list for PBXProject "CourseMerge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9717A3A22C15CF5000B92765 /* Debug */,

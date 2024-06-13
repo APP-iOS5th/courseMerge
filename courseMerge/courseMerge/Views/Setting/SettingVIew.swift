@@ -21,6 +21,7 @@ struct SettingView: View {
                 Section {
                     NavigationLink {
                         UpdateProfileView()
+                            .environmentObject(authViewModel)
                     } label: {
                         Image(systemName: "person.circle.fill")
                             .resizable()
