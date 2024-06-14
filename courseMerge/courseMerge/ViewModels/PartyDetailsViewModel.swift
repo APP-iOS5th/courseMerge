@@ -118,8 +118,9 @@ class PartyDetailsViewModel: ObservableObject {
         return currentParty.docId == currentUserUID
     }
     
-    //2024.06.13
-    func checkLoginFromTestLink() {
+    //2024.06.13 에러로 인한 주석처리
+    //TODO : 구성원 추가 에러 수정 필요
+    /*func checkLoginFromTestLink() {
         //링크를 타고 왔을때, 애플로그인 혹은 게스트 로그인인지 구분 필요
         // 애플로그인으로 접속 했을때 currentuserid를 받는디
         // 호스트인지 아닌지 확인
@@ -162,7 +163,7 @@ class PartyDetailsViewModel: ObservableObject {
                 //            else{
                 //                print("게스트 로그인")
         }
-    }
+    }*/
 }
 
 //

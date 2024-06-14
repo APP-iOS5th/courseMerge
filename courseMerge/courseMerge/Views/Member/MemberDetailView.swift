@@ -138,7 +138,8 @@ struct MemberGridView: View {
             LazyVGrid(columns: columns, spacing: 10) {
                 Button {
                     isSharingSheetPresented = true
-                    partiesViewModel.checkLoginFromTestLink()
+                    //에러로 인한 주석처리
+                    //partiesViewModel.checkLoginFromTestLink()
                 } label: {
                     VStack {
                         ZStack {
