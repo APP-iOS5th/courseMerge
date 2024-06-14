@@ -1,6 +1,8 @@
 # 코스머지 - 여행 앱 프로젝트 
 ![image](https://github.com/APP-iOS5th/courseMerge/assets/51356820/5eebf259-ee07-4de5-b1fe-04e8b506eacf)
 
+https://testflight.apple.com/join/2KbIdp1m
+
 ## 소개
 이 프로젝트는 여행을 계획하고 관리하는 데 도움을 주는 모바일 애플리케이션입니다.  
 사용자는 여행 일정을 만들고 저장할 수 있으며, 여행 장소를 검색하고 예약할 수도 있습니다.
