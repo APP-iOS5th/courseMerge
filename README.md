@@ -1,8 +1,5 @@
 # 코스머지 - 여행 앱 프로젝트 
-//로고 넣기
-//testid
-//testpw
-
+![image](https://github.com/APP-iOS5th/courseMerge/assets/51356820/5eebf259-ee07-4de5-b1fe-04e8b506eacf)
 
 ## 소개
 이 프로젝트는 여행을 계획하고 관리하는 데 도움을 주는 모바일 애플리케이션입니다.  
@@ -33,7 +30,6 @@
 - didLink 
 
 ## 프로젝트 구조
-// 사진 혹은 uml로 첨부하기
 - **Extensions**: 색상 및 기타 유틸리티 기능에 대한 확장
 - **APIs**: 여행 데이터 모델 및 비즈니스 로직
 - **ViewModel**: 뷰와 모델 간의 중개자 역할을 수행하는 뷰 모델 

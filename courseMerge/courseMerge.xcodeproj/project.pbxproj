@@ -16,6 +16,7 @@
 		3D349C3D2C16D7AE0092E10C /* AccountDeletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D349C3C2C16D7AE0092E10C /* AccountDeletionView.swift */; };
 		786D27CB2C174006007186CB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786D27CA2C174006007186CB /* LocationManager.swift */; };
 		78C24FCA2C16989D007DAF99 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C24FC92C16989D007DAF99 /* MapView.swift */; };
+		8630484C2C1A2ADC003A1577 /* BranchSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 8630484B2C1A2ADC003A1577 /* BranchSDK */; };
 		868C2FC22C188656008E2DB6 /* PracticeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C2FC12C188656008E2DB6 /* PracticeMapView.swift */; };
 		868C2FC42C189951008E2DB6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C2FC32C189951008E2DB6 /* Course.swift */; };
 		9707CB152C172F4B0011C3E2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9707CB142C172F4B0011C3E2 /* ChatView.swift */; };
@@ -125,6 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9707CB202C17DF710011C3E2 /* AuthenticationServices.framework in Frameworks */,
+				8630484C2C1A2ADC003A1577 /* BranchSDK in Frameworks */,
 				9707CB1C2C17D5950011C3E2 /* FirebaseAuth in Frameworks */,
 				97B6AE2C2C18013400595C12 /* FirebaseFirestore in Frameworks */,
 			);
@@ -340,6 +342,7 @@
 			packageProductDependencies = (
 				9707CB1B2C17D5950011C3E2 /* FirebaseAuth */,
 				97B6AE2B2C18013400595C12 /* FirebaseFirestore */,
+				8630484B2C1A2ADC003A1577 /* BranchSDK */,
 			);
 			productName = CourseMerge;
 			productReference = 9717A3962C15CF4E00B92765 /* CourseMerge.app */;
@@ -371,6 +374,7 @@
 			mainGroup = 9717A38D2C15CF4E00B92765;
 			packageReferences = (
 				9707CB1A2C17D5950011C3E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8630484A2C1A2ADC003A1577 /* XCRemoteSwiftPackageReference "ios-branch-sdk-spm" */,
 			);
 			productRefGroup = 9717A3972C15CF4E00B92765 /* Products */;
 			projectDirPath = "";
@@ -577,10 +581,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CourseMerge/CourseMerge.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CourseMerge/Preview Content\"";
-				DEVELOPMENT_TEAM = 285ZKW5MPR;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 285ZKW5MPR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CourseMerge/Info.plist;
@@ -602,6 +608,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosmoss.CourseMerge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = courseMerge_dev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -614,10 +622,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CourseMerge/CourseMerge.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CourseMerge/Preview Content\"";
-				DEVELOPMENT_TEAM = 285ZKW5MPR;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 285ZKW5MPR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CourseMerge/Info.plist;
@@ -639,6 +650,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosmoss.CourseMerge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = courseMerge_adhoc2;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -669,6 +682,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8630484A2C1A2ADC003A1577 /* XCRemoteSwiftPackageReference "ios-branch-sdk-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BranchMetrics/ios-branch-sdk-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.4.3;
+			};
+		};
 		9707CB1A2C17D5950011C3E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -680,6 +701,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8630484B2C1A2ADC003A1577 /* BranchSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8630484A2C1A2ADC003A1577 /* XCRemoteSwiftPackageReference "ios-branch-sdk-spm" */;
+			productName = BranchSDK;
+		};
 		9707CB1B2C17D5950011C3E2 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9707CB1A2C17D5950011C3E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

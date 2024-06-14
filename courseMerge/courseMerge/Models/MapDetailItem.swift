@@ -50,6 +50,9 @@ extension MapDetailItem {
         MapDetailItem(name: "오츠커피", address: "서울특별시 종로구 456-2", phoneNumber: "010-1234-5678", category: .cafe, location: CLLocationCoordinate2D(latitude: 37.5700, longitude: 126.9835)),
         MapDetailItem(name: "그믐족발", address: "서울특별시 동작구 789-3", phoneNumber: nil, category: .restaurant, location: CLLocationCoordinate2D(latitude: 37.5120, longitude: 126.9396)),
         MapDetailItem(name: "궁둥공원", address: "서울특별시 마포구 101-4", phoneNumber: nil, category: .park, location: CLLocationCoordinate2D(latitude: 37.5520, longitude: 126.9346)),
+        MapDetailItem(name: "동두천", address: "동두천시 동두천동 101-4", phoneNumber: nil, category: .park, location: CLLocationCoordinate2D(latitude: 37.930108, longitude: 127.059591)),
+        MapDetailItem(name: "제주도", address: "제주특별자치도 마포구 101-4", phoneNumber: nil, category: .park, location: CLLocationCoordinate2D(latitude: 37.5520, longitude: 126.9346)),
+        MapDetailItem(name: "테스트", address: "테스트 마포구 101-4", phoneNumber: nil, category: .park, location: CLLocationCoordinate2D(latitude: 37.5520, longitude: 126.9346)),
     ]
 }
 

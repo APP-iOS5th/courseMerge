@@ -88,6 +88,6 @@ struct PartySelectionButton: View {
 
 #Preview {
     PartySelectionButton()
-        .environmentObject(PartyDetailsViewModel(authViewModel: AuthViewModel()))
+        .environmentObject(PartyDetailsViewModel())
         .environmentObject(AuthViewModel())
 }
