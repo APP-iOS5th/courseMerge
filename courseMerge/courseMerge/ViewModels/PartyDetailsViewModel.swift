@@ -108,57 +108,57 @@ class PartyDetailsViewModel: ObservableObject {
     }
     
     // 호스트 확인
-    func isCurrentUserHost() -> Bool {
-        guard let currentUserUID = authViewModel.currentUserUID,
-              let currentParty = currentParty else {
-            return false
-        }
-        return currentParty.docId == currentUserUID
-    }
+//    func isCurrentUserHost() -> Bool {
+//        guard let currentUserUID = authViewModel.currentUserUID,
+//              let currentParty = currentParty else {
+//            return false
+//        }
+//        return currentParty.docId == currentUserUID
+//    }
     
     //2024.06.13
-    func checkLoginFromTestLink() {
-        //링크를 타고 왔을때, 애플로그인 혹은 게스트 로그인인지 구분 필요
-        // 애플로그인으로 접속 했을때 currentuserid를 받는디
-        // 호스트인지 아닌지 확인
-        // 그리고 파티 정보를 담은 객체에 저장한다.
-        // 게스트 로그인의 경우에는..?
-        
-        //애플로그인
-        if authViewModel.isSignedIn {
-            
-            if let currentUserUID = authViewModel.currentUserUID
-            {
-                if isCurrentUserHost() {
-                    
-                    for party in parties {
-                        do {
-                            var newParty = party
-                            newParty.members = party.members
-                            addParty(newParty)
-                        } catch {
-                            print("Failed to add party: \(error.localizedDescription)")
-                        }
-                    }
-                }
-                
-            }
-            else
-            {
-                print("Failed to fetch current user UID:")
-            }
-        }else{
-            
-                //            //2024.06.14 코드 수정 해야 함
-                //            if let error = authViewModel.error {
-                //                // 인증오류
-                //                print("로그인 과정에서 오류 발생: \(error.localizedDescription)")
-                //            } else if{
-                //                //사용자 로그인 취소
-                //                print("알 수 없는 오류로 인해 로그인에 실패했습니다.")
-                //            }
-                //            else{
-                //                print("게스트 로그인")
-        }
-    }
+//    func checkLoginFromTestLink() {
+//        //링크를 타고 왔을때, 애플로그인 혹은 게스트 로그인인지 구분 필요
+//        // 애플로그인으로 접속 했을때 currentuserid를 받는디
+//        // 호스트인지 아닌지 확인
+//        // 그리고 파티 정보를 담은 객체에 저장한다.
+//        // 게스트 로그인의 경우에는..?
+//        
+//        //애플로그인
+//        if authViewModel.isSignedIn {
+//            
+//            if let currentUserUID = authViewModel.currentUserUID
+//            {
+//                if isCurrentUserHost() {
+//                    
+//                    for party in parties {
+//                        do {
+//                            var newParty = party
+//                            newParty.members = party.members
+//                            addParty(newParty)
+//                        } catch {
+//                            print("Failed to add party: \(error.localizedDescription)")
+//                        }
+//                    }
+//                }
+//                
+//            }
+//            else
+//            {
+//                print("Failed to fetch current user UID:")
+//            }
+//        }else{
+//            
+//                //            //2024.06.14 코드 수정 해야 함
+//                //            if let error = authViewModel.error {
+//                //                // 인증오류
+//                //                print("로그인 과정에서 오류 발생: \(error.localizedDescription)")
+//                //            } else if{
+//                //                //사용자 로그인 취소
+//                //                print("알 수 없는 오류로 인해 로그인에 실패했습니다.")
+//                //            }
+//                //            else{
+//                //                print("게스트 로그인")
+//        }
+//    }
 }
