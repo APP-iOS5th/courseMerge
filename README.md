@@ -29,7 +29,7 @@ https://testflight.apple.com/join/2KbIdp1m
 - Swift 및 SwiftUI 프레임워크
 - Firebase (인증, 클라우딩 메세지, 데이터베이스, 스토리지)
 - MapKit 및 Core Location (지도 및 위치 기반 서비스)
-- didLink 
+- branch.io deepLink 
 
 ## 프로젝트 구조
 - **Extensions**: 색상 및 기타 유틸리티 기능에 대한 확장
